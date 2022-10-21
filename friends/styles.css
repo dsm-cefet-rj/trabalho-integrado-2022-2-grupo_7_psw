@@ -1,104 +1,100 @@
 * {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
 
-h1, li {
-    color: white;
-    font-family: Tahoma;
-    padding-top: 10px;
+h1,
+li {
+  color: white;
+  font-family: Tahoma;
+  padding-top: 10px;
 }
 
 h2 {
-    font-family: Tahoma;
-    margin-bottom: 20px;
+  font-family: Tahoma;
+  margin-bottom: 20px;
 }
 
 body {
-    width: 100%;
-    overflow-x: hidden;
-    background-color: #008080;
+  width: 100%;
+  overflow-x: hidden;
+  background-color: #252323;
 }
 
-
-
 .header {
-    background-color: gray;
-    width: 100vw;
-    height: 20vh;
-    margin-bottom: 20px;
+  background-color: #70798c;
+  width: 100vw;
+  height: 20vh;
+  margin-bottom: 20px;
 }
 
 .search-icon {
-    color: white;
-    right: 100%;
-    float: right;
+  color: white;
+  right: 100%;
+  float: right;
 }
 
 .first-row {
-    width: 90vw;
-    height: 20%;
-    margin: auto;
-    margin-bottom: 50px;
+  width: 90vw;
+  height: 20%;
+  margin: auto;
+  margin-bottom: 50px;
 }
 
 .second-row {
-    width: 90vw;
-    height: 20%;
-    margin: auto;
+  width: 90vw;
+  height: 20%;
+  margin: auto;
 }
 
 .list {
-    list-style: none;
-    display: flex;
-    gap: 10px;
-    justify-content: space-around;
+  list-style: none;
+  display: flex;
+  gap: 10px;
+  justify-content: space-around;
 }
 
 li {
-    font-size:large;
+  font-size: large;
 }
 
 .drop {
-    color: white; 
-    
+  color: white;
 }
 
 a {
-    text-decoration: none;
-    color: white;
+  text-decoration: none;
+  color: white;
 }
 
 a:hover {
-    color: rgb(170, 170, 245)
+  color: rgb(170, 170, 245);
 }
 
 .user-friend {
-    display: flex;
-    gap: 10px;
-    align-items: center;
-    margin: 30px 20px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin: 30px 20px;
 }
 
 .photo {
-    width: 100px;
-    height: 100px;
-    background-color: gray;
-    border-radius: 50%;
-
+  width: 100px;
+  height: 100px;
+  background-color: gray;
+  border-radius: 50%;
 }
 
 .title {
-    font-family: tahoma;
-    margin-left: 20px;
-    font-size:xx-large;
-    color: aliceblue;
+  font-family: tahoma;
+  margin-left: 20px;
+  font-size: xx-large;
+  color: aliceblue;
 }
 
 .username-friend {
-    font-family: Tahoma;
-    font-size:x-large;
-    color: aliceblue;
+  font-family: Tahoma;
+  font-size: x-large;
+  color: aliceblue;
 }
