@@ -109,20 +109,31 @@ a:hover {
 
 .description-text {
   font-family: tahoma;
+  font-style: italic;
+}
+
+.update-text{
+  color:rgb(167, 167, 167);
+  font-family: tahoma;
+  font-size:small;
 }
 
 p {
   color: white;
 }
 
-.edit-description {
-  width: 20px;
-  height: 20px;
-  color: aliceblue;
-  right: 95%;
-  top: 90%;
-  position: absolute;
+
+.button-add {
+  background-color: transparent;
+  border: none;
+  color: white;
+  padding: 12px 16px;
+  position:absolute;
+  right: 88%;
+  top: 80%;
+  cursor: pointer;
 }
+
 
 @media only screen and (max-width: 600px) {
   .description-text {

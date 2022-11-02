@@ -7,6 +7,7 @@
     <title>MyReviews</title>
     <script src="https://kit.fontawesome.com/4953b92e51.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="styles.css">
+    <script src="./test.js"> </script>
 </head>
 <body>
     <div class="header">
@@ -39,14 +40,16 @@
         <div class="username-and-description">
             <h3 class="username">dropprUser</h3>
             <div class="description-box">
-                <p class="description-text">
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                     Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an u
-                    nknown printer took a galley of type and scrambled it to make a type specimen book. It has
+                <p id="edit" contenteditable="true" class="description-text">
+                    About me...
                 </p>
-                <i class="edit-description fa-xl fa-solid fa-pen-to-square"></i>
+                <button class="button-add" onclick="saveEdits()"><i class="edit-description fa-xl fa-solid fa-pen-to-square"></i></button>
+                <div id="update">
+                    <p class="update-text">
+                     - Edit the text and click to save for next time
+                    </p>
+                </div>
             </div>
-        </div>
     </section>
 
     <pre class="b1"></pre>
