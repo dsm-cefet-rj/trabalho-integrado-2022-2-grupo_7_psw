@@ -29,6 +29,11 @@
     height: 500px;
 }
 
+.containerStyles {
+    width: 1000px;    
+    height: 500px;
+    margin: 0 outo;
+  }
 
 .flex-card{
     display: flex;
@@ -45,6 +50,7 @@
     align-items: flex-end;
     justify-items:center;
 }
+
 
 
 .slideInfo{
@@ -118,6 +124,47 @@
 .dotStyles:hover {
     color: #fff;
     font-size: 20px;
+}
+
+
+@media (max-width: 608px) {
+    .containerStyles {
+        width: 410px;    
+        height: 300px;
+        margin: 0 outo;
+      }
+
+      .dotStyles {
+        color: #bbb;
+        display: flex;
+        margin: 0 3px;
+        cursor: pointer;
+        font-size: 37px;
+        align-items: center;
+    
+        transition: all 0.2s;
+    }
+    .activeDotSyles {
+        color: #fff;
+        display: flex;
+        margin: 0 10px;
+        cursor: pointer;
+        font-size: 40px;
+        align-items: center;
+        transition: all 0.2s;
+    }
+    
+    .dotStyles:hover {
+        color: #fff;
+        font-size: 40px;
+    }
+
+    .arrow{
+        top: 40%;       
+    }
+    .subtitleFont{
+       display: none;
+    }
 }
 
 

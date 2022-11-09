@@ -65,9 +65,7 @@ const ImageSlider = ({slides}) => {
     //about font config
     const titleFont = {
         color: "white",
-    }
-   
-  
+    }  
 
     return (<div style={sliderStyles} className="flex-item" onMouseOver={togleInfo} onMouseOut={togleInfo}>
                 <div style={leftArrowStyles} onClick={goToPrevious} className="unselectable arrow">❰</div>

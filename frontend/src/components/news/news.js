@@ -36,7 +36,7 @@ function news() {
   return (
       
         
-        <div style={containerStyles} className="container">
+        <div className="container containerStyles">
           <ImageSlider slides={slides}/>
         </div>
       
