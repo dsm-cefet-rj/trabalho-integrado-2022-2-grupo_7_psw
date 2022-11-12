@@ -1,14 +1,14 @@
 import Header from "../components/header";
-import UserPhoto from "../components/userphoto";
+import Friend from "../components/friend";
 
 export default function Friends() {
   return (
     <>
       <Header />
       <div className="d-flex flex-column my-5">
-        <UserPhoto />
-        <UserPhoto />
-        <UserPhoto />
+        <Friend />
+        <Friend />
+        <Friend />
       </div>
     </>
   );
