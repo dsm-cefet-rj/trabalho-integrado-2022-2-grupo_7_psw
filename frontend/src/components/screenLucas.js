@@ -8,15 +8,16 @@ function screenLucas() {
   return (
     <>
       <header id="game-background"></header>
+      <div id="fundo">
       <section id="Game-Content">
         <div id="Poster">
           <img
             className=""
-            src="https://i.imgur.com/ucCzKQv.png"
+            src="https://upload.wikimedia.org/wikipedia/commons/1/1c/Celeste_box_art_final.png"
             alt="Game-Image"
           />
           <h4 className="my-3" id="avrgRating">
-            Average rating: 4.8
+            Average rating 4.8
           </h4>
           <button
             type="button"
@@ -32,8 +33,8 @@ function screenLucas() {
         <div id="Game-Informations">
           <div class="HeadDescription">
             <h2 id="Game-Name">Celeste</h2>
-            <h5>Year: 2018</h5>
-            <h5>Created by: Maddy Torson</h5>
+            <h5>Year 2018</h5>
+            <h5>Created by Maddy Torson</h5>
           </div>
           <p id="Description">
             Celeste is a 2018 platform game designed, directed and written by
@@ -57,6 +58,7 @@ function screenLucas() {
           </p>
         </div>
       </section>
+      </div>
 
       <div
         class="modal fade"

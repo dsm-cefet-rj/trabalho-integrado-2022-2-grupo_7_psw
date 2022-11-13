@@ -4,12 +4,16 @@
   box-sizing: border-box;
 }
 
-h1,
-li {
+h1, li {
   color: black;
+  font-family: 'Montserrat', sans-serif;
   font-family: Tahoma;
   padding-top: 10px;
   font-weight: 600;
+}
+
+header {
+   opacity: 75%;
 }
 
 h2 {
@@ -49,6 +53,17 @@ a:hover {
   height: 40vh;
 }
 
+#Game-Content {
+  position: relative;
+  height: 250px;
+}
+
+#Poster {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 section {
   display: flex;
   margin-left: 4vw;
@@ -68,7 +83,10 @@ section h2 {
 }
 
 section img {
-  display: inline;
+  display: flex;
+  height: 330px;
+  width: 200px;
+  box-shadow: 0 0 3px 3px rgb(28, 28, 28);
 }
 
 .HeadDescription {
@@ -89,15 +107,16 @@ section img {
 
 #avrgRating {
   font-size: 15px;
-  font-family: Tahoma;
+  font-family: 'Montserrat';
+  font-weight: 300;
 }
 
 p {
-  font-family: Tahoma;
+  font-family: 'Montserrat';
 }
 
 hr {
-  margin-top: 15vh;
+  margin-top: 20vh;
   margin-bottom: 10vh;
   border: solid #779ecb;
 }
@@ -119,6 +138,18 @@ input[type="radio"] {
 
 .mytable {
   background-color: #2c3440;
+}
+
+#Description {
+  font-size: small;
+  font-weight: 200;
+  letter-spacing: 1px;
+  
+}
+
+#Description:hover  {
+  font-weight: 300;
+  letter-spacing: 0.95px;
 }
 
 @media (max-width: 900px) {
