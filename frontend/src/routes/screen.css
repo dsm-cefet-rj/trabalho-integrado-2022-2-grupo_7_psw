@@ -152,6 +152,7 @@ input[type="radio"] {
   letter-spacing: 0.95px;
 }
 
+
 @media (max-width: 900px) {
   #Game-Content {
     display: flexbox;
@@ -185,5 +186,9 @@ input[type="radio"] {
     display: flexbox;
     margin: 10px;
     margin-top: 30px;
+  }
+
+  #container {
+    height: 1000px;
   }
 }

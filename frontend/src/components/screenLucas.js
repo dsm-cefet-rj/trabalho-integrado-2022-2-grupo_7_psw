@@ -8,7 +8,7 @@ function screenLucas() {
   return (
     <>
       <header id="game-background"></header>
-      <div id="fundo">
+      <div id="container">
       <section id="Game-Content">
         <div id="Poster">
           <img
