@@ -7,8 +7,8 @@ function friend(){
       <div>
         <div className="col-4 d-flex flex-column mx-2">
           <div className="d-flex align-items-center gap-3 col-12 col-lg-5">
-            <Link to="/dropprUser">
-            <img className="rounded-circle w-50" src={image} />
+            <Link className="position-relative" to="/dropprUser">
+              <img className="rounded-circle w-50" src={image} />
             </Link>
             <h4 className="fs-5 fs-md-4">Username</h4>
           </div>
