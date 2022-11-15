@@ -13,6 +13,7 @@ import Popular from "./routes/popular";
 import NewList from "./routes/newList";
 import DropprUser from "./routes/dropprUser";
 import SignIn from "./routes/signIn";
+import Register from "./routes/register";
 
 const rootElement = document.getElementById("root");
 render(
@@ -23,6 +24,7 @@ render(
       <Route path="friends" element={<Friends />} />
       <Route path="dropprUser" element={<DropprUser />} />
       <Route path="signIn" element={<SignIn />} />
+      <Route path="register" element={<Register />} />
       <Route path="reviews" element={<Reviews />} />
       <Route path="lists" element={<Lists />} />
       <Route path="screen/:id" element={<Screen />} />

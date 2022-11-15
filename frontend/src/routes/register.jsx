@@ -1,18 +1,20 @@
 import Header from "../components/header";
-function signIn(){
+
+function register(){
     return(
         <>
-        <Header/>
+        <Header />
         <div className="container">
           <div className="mt-5 mx-3">
-            <h2 className="text-light">Sign In:</h2>
+            <h5 className="text-light">New in Droppr?</h5>
+            <h2 className="text-light">Register:</h2>
             <form action="">
               <div class="form-group">
                 <label>Username:</label>
                 <input
                   type="text"
                   class="form-control"
-                  placeholder="Username"
+                  placeholder="Enter your username"
                 ></input>
               </div>
               <br></br>
@@ -25,8 +27,17 @@ function signIn(){
                 ></input>
               </div>
               <br></br>
+              <div class="form-group">
+                <label>Repeat your password:</label>
+                <input
+                  type="password"
+                  class="form-control"
+                  placeholder="********"
+                ></input>
+              </div>
+              <br></br>
               <button type="submit" class="btn btn-primary">
-                Sign In
+                Register
               </button>
             </form>
           </div>
@@ -35,4 +46,4 @@ function signIn(){
     );
 }
 
-export default signIn
+export default register;

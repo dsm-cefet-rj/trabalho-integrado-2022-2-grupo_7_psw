@@ -54,6 +54,11 @@ function header() {
                 Sign in
               </Link>
             </li>
+            <li class="nav-item">
+              <Link className="nav-link" to="/register">
+                Register
+              </Link>
+            </li>
           </ul>
           <form class="d-flex mr-5">
             <input
