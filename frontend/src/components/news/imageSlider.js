@@ -1,15 +1,24 @@
 import React, {useState, useEffect} from "react";
-import { useAsyncError } from "react-router-dom";
+import "./imageSlider.css";
+import { useRecoilState, useRecoilValue } from "recoil"; 
+import { slideCounterState, slideInfoState } from "../../recoil/atoms/slideState";
+import { newsSelector } from "./newsService"
+
+
 
 
 const ImageSlider = ({slides}) => {
 
-    const [currentIndex, setCurrentIndex] = useState(0);
+    // const slidess = useRecoilValue(newsSelector);
 
-    const [currentInfoState, setCurrentInfoState] = useState(false);
+    const [currentIndex, setCurrentIndex] = useRecoilState(slideCounterState);
+
+    const [currentInfoState, setCurrentInfoState] = useRecoilState(slideInfoState);
 
     useEffect(() => {
+        // console.log(slides);
         const myInterval = setInterval(() => {
+            
             goToNext();
         }, 5000);
         return () => clearInterval(myInterval);
@@ -62,12 +71,13 @@ const ImageSlider = ({slides}) => {
     }
   
     
-    //about font config
     const titleFont = {
         color: "white",
     }  
 
-    return (<div style={sliderStyles} className="flex-item" onMouseOver={togleInfo} onMouseOut={togleInfo}>
+    return (
+        <div className="container containerStyles">
+            <div style={sliderStyles} className="flex-item " onMouseOver={togleInfo} onMouseOut={togleInfo}>
                 <div style={leftArrowStyles} onClick={goToPrevious} className="unselectable arrow">❰</div>
                 <div style={rightArrowStyles} onClick={goToNext} className="unselectable arrow">❱</div>
                 <div style={slideStyles}>
@@ -84,6 +94,8 @@ const ImageSlider = ({slides}) => {
                 ))}
                 </div>
             </div>
+
+        </div>
         );
 }
 export default ImageSlider;

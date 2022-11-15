@@ -11,12 +11,14 @@ import Settings from "./routes/usersettings";
 import Favorites from "./routes/favorites";
 import Popular from "./routes/popular";
 import NewList from "./routes/newList";
+import { RecoilRoot } from "recoil";
 
 const rootElement = document.getElementById("root");
 render(
+  <RecoilRoot>
   <BrowserRouter>
-    <Routes>
-      <Route path="/" element={<App />} />
+    <Routes>     
+      <Route path="/" element={<App />} />     
       <Route path="profile" element={<Profile />} />
       <Route path="friends" element={<Friends />} />
       <Route path="reviews" element={<Reviews />} />
@@ -27,6 +29,7 @@ render(
       <Route path="/reviews/favorites" element={<Favorites />} />
       <Route path="/lists/new" element={<NewList />} />
     </Routes>
-  </BrowserRouter>,
+  </BrowserRouter>
+  </RecoilRoot>,
   rootElement
 );

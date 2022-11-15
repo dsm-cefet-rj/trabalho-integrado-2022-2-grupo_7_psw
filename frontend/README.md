@@ -26,3 +26,6 @@ Lista de dependências instaladas até agora -
 
 * ReactRouterDomV6 - Dependência utilizada para navegação dentro do react.
   Documentação - https://reactrouter.com/en/v6.3.0/getting-started/installation#basic-installation
+
+* Recoil - Dependëncia usada para gerenciamento de estado.
+  Documjentação - https://recoiljs.org/docs/introduction/getting-started

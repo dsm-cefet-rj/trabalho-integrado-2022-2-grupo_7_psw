@@ -1,9 +1,10 @@
 import { BsStarFill } from "react-icons/bs";
 import React, { useState } from "react";
-
-function screenLucas() {
-  const [rating, setRating] = useState(null);
-  const [hover, setHover] = useState(null);
+import { useRecoilState } from "recoil";
+import { ratingStateAtom, hoverStateAtom } from "../recoil/atoms/screenLucasState";
+function ScreenLucas() {
+  const [rating, setRating] = useRecoilState(ratingStateAtom);
+  const [hover, setHover] = useRecoilState(hoverStateAtom);
 
   return (
     <>
@@ -167,4 +168,4 @@ function screenLucas() {
   );
 }
 
-export default screenLucas;
+export default ScreenLucas;
