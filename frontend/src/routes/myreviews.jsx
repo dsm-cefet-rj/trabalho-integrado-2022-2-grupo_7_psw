@@ -1,14 +1,9 @@
 import Header from "../components/header";
-import GameHome from "../components/homeGame";
 import Review from "../components/review";
 import { Link } from "react-router-dom";
-import Game from "../components/game"
 
 export default function Overview({ origem }) {
-  const AdressGames = "/"+origem+"/allgames";
-  const AdressReview = "/"+origem+"/myreviews";
-
-    return (
+  return (
     <>
       <Header />
       <div className="my-5">
@@ -17,7 +12,7 @@ export default function Overview({ origem }) {
             <p className="text-light fs-6">Overview</p>
           </Link>
 
-          <Link to= "/profile/allgames" >
+          <Link to="/profile/allgames">
             <p className="text-light fs-6">All Games</p>
           </Link>
 

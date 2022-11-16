@@ -1,11 +1,10 @@
-import Header from "../components/header";
 import Game from "../components/game";
 import { Link } from "react-router-dom";
 
 export default function Overview() {
   return (
     <>
-      <div className="my-5">
+      <div className="my-5 col-11 mx-auto">
         <div className="col-11 mx-auto border-bottom border-secondary d-flex gap-4">
           <div className=" border-bottom">
             <Link to="/profile">
@@ -21,9 +20,8 @@ export default function Overview() {
             <p className="text-light fs-6">Reviews</p>
           </Link>
         </div>
-        <div className="row">
-          <div className="col-1"></div>
-          <div className="col-10">
+        <div className="row col-11 mx-auto">
+          <div className="col-11 mx-auto">
             <div className="col-12 my-5 flex-column-reverse justify-content flex-md-row mx-4 mx-md-3">
               <h3>Favorite from User</h3>
             </div>

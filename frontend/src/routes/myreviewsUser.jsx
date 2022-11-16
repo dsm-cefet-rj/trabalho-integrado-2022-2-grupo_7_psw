@@ -1,11 +1,10 @@
 import Header from "../components/header";
-import GameHome from "../components/homeGame";
+
 import Review from "../components/review";
 import { Link } from "react-router-dom";
-import Game from "../components/game"
 
 export default function Overview() {
-    return (
+  return (
     <>
       <Header />
       <div className="my-5">
@@ -14,7 +13,7 @@ export default function Overview() {
             <p className="text-light fs-6">Overview</p>
           </Link>
 
-          <Link to= "/dropprUser/allgamesUser" >
+          <Link to="/dropprUser/allgamesUser">
             <p className="text-light fs-6">All Games</p>
           </Link>
 

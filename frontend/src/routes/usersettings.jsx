@@ -1,7 +1,4 @@
 import Header from "../components/header";
-import image from "../images/userpicture.png";
-
-import "./usersettings.css";
 
 export default function Screen() {
   return (

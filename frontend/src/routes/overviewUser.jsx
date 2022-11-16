@@ -1,4 +1,3 @@
-import Header from "../components/header";
 import Game from "../components/game";
 import { Link } from "react-router-dom";
 
