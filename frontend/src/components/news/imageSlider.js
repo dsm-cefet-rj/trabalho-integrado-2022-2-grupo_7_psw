@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import "./imageSlider.css";
-import { useRecoilState, useRecoilValue } from "recoil";
-import { newsListState, slideCounterState, slideInfoState } from "../../recoil/atoms/slideState";
+import { useRecoilState } from "recoil";
+import { slideCounterState, slideInfoState } from "../../recoil/atoms/slideState";
 import useNewsList from "../../recoil/hooks/useNewsList";
 // import useNewsIndex from "../../recoil/hooks/useNewsIndex";
 
@@ -13,15 +13,6 @@ const ImageSlider = () => {
     const [currentIndex, setCurrentIndex] = useRecoilState(slideCounterState);
     const [currentInfoState, setCurrentInfoState] = useRecoilState(slideInfoState);
 
-    useEffect(() => {
-
-        const myInterval = setInterval(() => {
-            goToNext();
-        }, 5000);
-        return () => clearInterval(myInterval);
-    }, []);
-
-
     const goToPrevious = () => {
         const isFirstSlide = currentIndex === 0;
         const newIndex = isFirstSlide ? slides.length - 1 : currentIndex - 1;
@@ -29,7 +20,7 @@ const ImageSlider = () => {
     }
 
     const goToNext = () => {
-        setCurrentIndex((prevTime) => prevTime === slides.length - 1 ? 0 : prevTime + 1);
+        setCurrentIndex((prevTime) => prevTime === slides.length - 1 ? 0 : prevTime +1);
     }
 
     const goToSlide = (slideIndex) => {
@@ -41,6 +32,15 @@ const ImageSlider = () => {
         setCurrentInfoState(!currentInfoState);
     }
 
+    useEffect(() => {
+
+        const myInterval = setInterval(() => {
+            goToNext();
+        }, 5000);
+        return () => clearInterval(myInterval);
+    
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
 
     const sliderStyles = {

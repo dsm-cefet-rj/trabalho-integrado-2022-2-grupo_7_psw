@@ -1,9 +1,9 @@
 import { BsStarFill } from "react-icons/bs";
-import React, { useState } from "react";
+import React from "react";
 import { useRecoilState } from "recoil";
 import { ratingStateAtom, hoverStateAtom } from "../recoil/atoms/screenLucasState";
-import useRatingState from "../recoil/hooks/useRatingState";
-import useHoverState from "../recoil/hooks/useHoverState";
+// import useRatingState from "../recoil/hooks/useRatingState";
+// import useHoverState from "../recoil/hooks/useHoverState";
 function ScreenLucas() {
   
   const [rating, setRating] = useRecoilState(ratingStateAtom);

@@ -1,5 +1,4 @@
-import { useEffect } from "react";
-import { useRecoilState, useSetRecoilState } from "recoil"
+import { useRecoilState } from "recoil"
 import { slideCounterState } from "../../recoil/atoms/slideState";
 
 const useNewsIndex = () => {
@@ -7,7 +6,7 @@ const useNewsIndex = () => {
    
     const handleCurrentIndex = () => setCurrentIndex();        
     
-    return [currentIndex, handleCurrentIndex];
+    return [currentIndex, handleCurrentIndex]
 }
 
 export default useNewsIndex;
