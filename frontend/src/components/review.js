@@ -7,7 +7,10 @@ export default function review({ numOfstars }) {
   return (
     <div className="d-flex flex-column gap-2 mx-3 mx-md-5 my-5">
       <div className="d-flex gap-3">
-        <img src="https://images.igdb.com/igdb/image/upload/t_cover_small/nocover.png" />
+        <img
+          alt="review"
+          src="https://images.igdb.com/igdb/image/upload/t_cover_small/nocover.png"
+        />
         <div className="d-flex flex-column">
           <div className="d-flex gap-3">
             <h2>Title</h2>

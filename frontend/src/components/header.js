@@ -25,9 +25,12 @@ function header() {
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
-          <span class="navbar-toggler-icon"></span>
+          <span className="navbar-toggler-icon"></span>
         </button>
-        <div className="collapse navbar-collapse mx-3" id="navbarSupportedContent">
+        <div
+          className="collapse navbar-collapse mx-3"
+          id="navbarSupportedContent"
+        >
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
               <Link className="nav-link" to="/reviews">
@@ -47,6 +50,16 @@ function header() {
             <li className="nav-item">
               <Link className="nav-link" to="/lists">
                 Lists
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link" to="/signIn">
+                Sign in
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link" to="/register">
+                Register
               </Link>
             </li>
           </ul>
