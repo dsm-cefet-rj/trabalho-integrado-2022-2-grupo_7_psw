@@ -8,35 +8,35 @@ export default function newList() {
       <div className="d-flex flex-column col-9 mx-auto my-5">
         <h3 className="bg-secondary p-2 m-0">Create new List</h3>
         <form className="bg-dark p-5">
-          <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label">
+          <div className="mb-3">
+            <label for="exampleInputEmail1" className="form-label">
               Name your List
             </label>
             <input
               type="email"
-              class="form-control"
+              className="form-control"
               id="exampleInputEmail1"
               aria-describedby="emailHelp"
             />
-            <div id="emailHelp" class="form-text">
+            <div id="emailHelp" className="form-text">
               Be creative naming it.
             </div>
           </div>
-          <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label">
+          <div className="mb-3">
+            <label for="exampleInputPassword1" className="form-label">
               Description
             </label>
-            <div class="input-group">
+            <div className="input-group">
               <textarea
-                class="form-control"
+                className="form-control"
                 aria-label="With textarea"
               ></textarea>
             </div>
           </div>
 
-          <div class="input-group mb-3">
+          <div className="input-group mb-3">
             <select
-              class="form-select"
+              className="form-select"
               id="inputGroupSelect03"
               aria-label="Example select with button addon"
             >
@@ -52,7 +52,7 @@ export default function newList() {
               Adicionar
             </button>
           </div>
-          <button type="submit" class="btn btn-primary">
+          <button type="submit" className="btn btn-primary">
             Create
           </button>
         </form>

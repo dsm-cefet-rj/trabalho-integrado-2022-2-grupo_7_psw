@@ -8,4 +8,4 @@ export const ratingStateAtom = atom({
 export const hoverStateAtom = atom({
     key: "hoverState",
     default: null,
-  });
+});

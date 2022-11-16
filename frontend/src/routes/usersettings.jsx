@@ -12,25 +12,25 @@ export default function Screen() {
           <div className="mt-5 mx-3">
             <h2 className="text-light">Edit your profile:</h2>
             <form action="">
-              <div class="form-group">
+              <div className="form-group">
                 <label>Username:</label>
                 <input
                   type="text"
-                  class="form-control"
+                  className="form-control"
                   placeholder="Change username"
                 ></input>
               </div>
               <br></br>
-              <div class="form-group">
+              <div className="form-group">
                 <label>Bio:</label>
                 <input
                   type="text"
-                  class="form-control"
+                  className="form-control"
                   placeholder="Change bio"
                 ></input>
               </div>
               <br></br>
-              <button type="submit" class="btn btn-primary">
+              <button type="submit" className="btn btn-primary">
                 Submit
               </button>
             </form>

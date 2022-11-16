@@ -2,7 +2,10 @@ import { BsStarFill } from "react-icons/bs";
 import React, { useState } from "react";
 import { useRecoilState } from "recoil";
 import { ratingStateAtom, hoverStateAtom } from "../recoil/atoms/screenLucasState";
+import useRatingState from "../recoil/hooks/useRatingState";
+import useHoverState from "../recoil/hooks/useHoverState";
 function ScreenLucas() {
+  
   const [rating, setRating] = useRecoilState(ratingStateAtom);
   const [hover, setHover] = useRecoilState(hoverStateAtom);
 
@@ -105,16 +108,16 @@ function ScreenLucas() {
                   );
                 })}
                 </div>
-                <div class="mb-3">
+                <div className="mb-3">
                   <label for="message-text" class="col-form-label text-dark">
                     Drop:
                   </label>
-                  <textarea class="form-control" id="message-text"></textarea>
+                  <textarea className="form-control" id="message-text"></textarea>
                 </div>
-                <div class="mb-3">
-                  <div class="dropdown">
+                <div className="mb-3">
+                  <div className="dropdown">
                     <button
-                      class="btn btn-secondary dropdown-toggle"
+                      className="btn btn-secondary dropdown-toggle"
                       type="button"
                       id="dropdownMenuButton1"
                       data-bs-toggle="dropdown"
@@ -124,23 +127,23 @@ function ScreenLucas() {
                     </button>
 
                     <ul
-                      class="dropdown-menu"
+                      className="dropdown-menu"
                       aria-labelledby="dropdownMenuButton1"
                     >
                       <li>
-                        <a class="dropdown-item" href="#">
+                        <a className="dropdown-item" href="#">
                           Playing
                         </a>
                       </li>
 
                       <li>
-                        <a class="dropdown-item" href="#">
+                        <a className="dropdown-item" href="#">
                           Finished
                         </a>
                       </li>
 
                       <li>
-                        <a class="dropdown-item" href="#">
+                        <a className="dropdown-item" href="#">
                           All achievements
                         </a>
                       </li>
@@ -149,15 +152,15 @@ function ScreenLucas() {
                 </div>
               </form>
             </div>
-            <div class="modal-footer">
+            <div className="modal-footer">
               <button
                 type="button"
-                class="btn btn-secondary"
+                className="btn btn-secondary"
                 data-bs-dismiss="modal"
               >
                 Close
               </button>
-              <button type="button" class="btn btn-primary">
+              <button type="button" className="btn btn-primary">
                 Send message
               </button>
             </div>

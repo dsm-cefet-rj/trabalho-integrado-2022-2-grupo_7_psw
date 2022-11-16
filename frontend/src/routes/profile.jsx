@@ -39,7 +39,7 @@ export default function Profile() {
           <div className="d-flex flex-column align-items-center align-items-md-start">
             <h1 className="text-light">Username</h1>
             <Link className="position-relative inline-block" to="settings">
-              <button type="button" class="btn btn-secondary my-2">
+              <button type="button" className="btn btn-secondary my-2">
                 Edit Profile
               </button>
             </Link>
