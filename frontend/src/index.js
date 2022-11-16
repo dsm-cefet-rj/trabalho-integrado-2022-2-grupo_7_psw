@@ -14,6 +14,12 @@ import NewList from "./routes/newList";
 import DropprUser from "./routes/dropprUser";
 import SignIn from "./routes/signIn";
 import Register from "./routes/register";
+import Overview from "./routes/overview";
+import OverviewUser from "./routes/overviewUser";
+import Allgames from "./routes/allgames";
+import AllgamesUser from "./routes/allgamesUser";
+import Myreviews from "./routes/myreviews";
+import MyreviewsUser from "./routes/myreviewsUser";
 
 const rootElement = document.getElementById("root");
 render(
@@ -21,6 +27,12 @@ render(
     <Routes>
       <Route path="/" element={<App />} />
       <Route path="profile" element={<Profile />} />
+      <Route path="profile/overview" element={<Overview />} />
+      <Route path="dropprUser/overviewUser" element={<OverviewUser />} />
+      <Route path="dropprUser/allgamesUser" element={<AllgamesUser />} />
+      <Route path="dropprUser/myreviewsUser" element={<MyreviewsUser />} />
+      <Route path="profile/allgames" element={<Allgames />} />
+      <Route path="profile/myreviews" element={<Myreviews />} />
       <Route path="friends" element={<Friends />} />
       <Route path="dropprUser" element={<DropprUser />} />
       <Route path="signIn" element={<SignIn />} />

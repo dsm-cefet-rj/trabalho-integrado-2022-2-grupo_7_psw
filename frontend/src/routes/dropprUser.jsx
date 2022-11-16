@@ -4,18 +4,19 @@ import image from "../images/userpicture.png";
 import { GiThreeFriends } from "react-icons/gi";
 import { GiNotebook } from "react-icons/gi";
 import { AiFillStar } from "react-icons/ai";
+import Overview from "./overviewUser";
 
-export default function dropprUser(){
-    return(
-      <>
+export default function dropprUser() {
+  return (
+    <>
       <Header />
 
       <div className="my-5 d-flex flex-column-reverse flex-md-row col-8 col-md-8 mx-auto justify-content-around align-items-center gap-3">
-      <div className="d-flex flex-column align-items-center align-items-md-center">
+        <div className="d-flex flex-column align-items-center align-items-md-center order-1">
           <img className="rounded-circle" size={90} src={image} alt="" />
           <h2 className="text-light">Username</h2>
-      </div>
-      <div className="bg-secondary col-12 col-md-6 my-4">
+        </div>
+        <div className="bg-secondary col-12 col-md-6 my-4  order-2">
           <p className="text-white-50 text-center my-1 p-1">
             <span className="text-light">Activities</span> (These activities are
             automatically updated)
@@ -39,7 +40,8 @@ export default function dropprUser(){
           </div>
         </div>
       </div>
-    <Bio />
+      <Bio />
+      <Overview />
     </>
-    );
+  );
 }

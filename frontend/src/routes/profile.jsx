@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { GiThreeFriends } from "react-icons/gi";
 import { GiNotebook } from "react-icons/gi";
 import { AiFillStar } from "react-icons/ai";
+import Overview from "./overview";
 
 export default function Profile() {
   return (
@@ -12,7 +13,18 @@ export default function Profile() {
       <Header />
 
       <div className="my-5 d-flex flex-column-reverse flex-md-row col-8 col-md-8 mx-auto justify-content-around align-items-center gap-3">
-        <div className="bg-secondary col-12 col-md-6 my-4">
+        <div className="d-flex flex-column flex-md-row gap-3 align-items-center order-1">
+          <img className="rounded-circle" src={image} />
+          <div className="d-flex flex-column align-items-center align-items-md-start">
+            <h1 className="text-light">Username</h1>
+            <Link className="position-relative inline-block" to="settings">
+              <button type="button" class="btn btn-secondary my-2">
+                Edit Profile
+              </button>
+            </Link>
+          </div>
+        </div>
+        <div className="bg-secondary col-12 col-md-6 my-4 order-2">
           <p className="text-white-50 text-center my-1 p-1">
             <span className="text-light">Activities</span> (These activities are
             automatically updated)
@@ -35,20 +47,9 @@ export default function Profile() {
             </div>
           </div>
         </div>
-        <div className="d-flex flex-column flex-md-row gap-3 align-items-center">
-          <img className="rounded-circle" src={image} />
-          <div className="d-flex flex-column align-items-center align-items-md-start">
-            <h1 className="text-light">Username</h1>
-            <Link className="position-relative inline-block" to="settings">
-              <button type="button" class="btn btn-secondary my-2">
-                Edit Profile
-              </button>
-            </Link>
-          </div>
-        </div>
       </div>
-
       <Bio />
+      <Overview origin={"profile"} />
     </>
   );
 }

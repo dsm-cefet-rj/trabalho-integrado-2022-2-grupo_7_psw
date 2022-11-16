@@ -21,7 +21,7 @@ function screenLucas() {
           </h4>
           <button
             type="button"
-            class="btn btn-primary"
+            className="btn btn-primary"
             data-bs-toggle="modal"
             data-bs-target="#exampleModal"
             data-bs-whatever="@mdo"
@@ -31,7 +31,7 @@ function screenLucas() {
         </div>
 
         <div id="Game-Informations">
-          <div class="HeadDescription">
+          <div className="HeadDescription">
             <h2 id="Game-Name">Celeste</h2>
             <h5>Year 2018</h5>
             <h5>Created by Maddy Torson</h5>
@@ -61,28 +61,28 @@ function screenLucas() {
       </div>
 
       <div
-        class="modal fade"
+        className="modal fade"
         id="exampleModal"
         tabindex="-1"
         aria-labelledby="exampleModalLabel"
         aria-hidden="true"
       >
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title text-dark" id="exampleModalLabel">
+        <div className="modal-dialog">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h5 className="modal-title text-dark" id="exampleModalLabel">
                 Give it a Drop!
               </h5>
               <button
                 type="button"
-                class="btn-close"
+               className="btn-close"
                 data-bs-dismiss="modal"
                 aria-label="Close"
               ></button>
             </div>
-            <div class="modal-body">
+            <div className="modal-body">
               <form>
-                <div class="stars">
+                <div className="stars">
                 {[...Array(5)].map((star, i) => {
                   const ratingValue = i + 1;
 
@@ -106,16 +106,16 @@ function screenLucas() {
                   );
                 })}
                 </div>
-                <div class="mb-3">
-                  <label for="message-text" class="col-form-label text-dark">
+                <div className="mb-3">
+                  <label for="message-text" className="col-form-label text-dark">
                     Drop:
                   </label>
-                  <textarea class="form-control" id="message-text"></textarea>
+                  <textarea className="form-control" id="message-text"></textarea>
                 </div>
-                <div class="mb-3">
-                  <div class="dropdown">
+                <div className="mb-3">
+                  <div className="dropdown">
                     <button
-                      class="btn btn-secondary dropdown-toggle"
+                     className="btn btn-secondary dropdown-toggle"
                       type="button"
                       id="dropdownMenuButton1"
                       data-bs-toggle="dropdown"
@@ -125,23 +125,23 @@ function screenLucas() {
                     </button>
 
                     <ul
-                      class="dropdown-menu"
+                     className="dropdown-menu"
                       aria-labelledby="dropdownMenuButton1"
                     >
                       <li>
-                        <a class="dropdown-item" href="#">
+                        <a className="dropdown-item" href="#">
                           Playing
                         </a>
                       </li>
 
                       <li>
-                        <a class="dropdown-item" href="#">
+                        <a className="dropdown-item" href="#">
                           Finished
                         </a>
                       </li>
 
                       <li>
-                        <a class="dropdown-item" href="#">
+                        <a className="dropdown-item" href="#">
                           All achievements
                         </a>
                       </li>
@@ -150,15 +150,15 @@ function screenLucas() {
                 </div>
               </form>
             </div>
-            <div class="modal-footer">
+            <div className="modal-footer">
               <button
                 type="button"
-                class="btn btn-secondary"
+               className="btn btn-secondary"
                 data-bs-dismiss="modal"
               >
                 Close
               </button>
-              <button type="button" class="btn btn-primary">
+              <button type="button" className="btn btn-primary">
                 Send message
               </button>
             </div>
