@@ -1,8 +1,8 @@
-import { useRecoilValue } from "recoil"
-import { newsListState } from "../atoms/slideState"
+import { useRecoilValue } from "recoil";
+import { newsListState } from "../atoms/slideState";
 
-const useNewsList = () =>{
-    return useRecoilValue(newsListState)
-}
+const useNewsList = () => {
+  return useRecoilValue(newsListState);
+};
 
 export default useNewsList;
