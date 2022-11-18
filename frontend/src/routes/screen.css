@@ -4,16 +4,17 @@
   box-sizing: border-box;
 }
 
-h1, li {
+h1,
+li {
   color: black;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-family: Tahoma;
   padding-top: 10px;
   font-weight: 600;
 }
 
 header {
-   opacity: 75%;
+  opacity: 75%;
 }
 
 h2 {
@@ -24,7 +25,7 @@ h2 {
 body {
   width: 100%;
   overflow-x: hidden;
-  background-color: #363945;
+  /*   background-color: #363945; */
   color: snow;
   font-family: Tahoma;
 }
@@ -107,12 +108,12 @@ section img {
 
 #avrgRating {
   font-size: 15px;
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-weight: 300;
 }
 
 p {
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
 }
 
 hr {
@@ -144,14 +145,12 @@ input[type="radio"] {
   font-size: small;
   font-weight: 200;
   letter-spacing: 1px;
-  
 }
 
-#Description:hover  {
+#Description:hover {
   font-weight: 300;
   letter-spacing: 0.95px;
 }
-
 
 @media (max-width: 900px) {
   #Game-Content {
