@@ -25,29 +25,29 @@ import { RecoilRoot } from "recoil";
 const rootElement = document.getElementById("root");
 render(
   <RecoilRoot>
-  <BrowserRouter>
-    <Routes>     
-      <Route path="/" element={<App />} />     
-      <Route path="profile" element={<Profile />} />
-      <Route path="profile/overview" element={<Overview />} />
-      <Route path="dropprUser/overviewUser" element={<OverviewUser />} />
-      <Route path="dropprUser/allgamesUser" element={<AllgamesUser />} />
-      <Route path="dropprUser/myreviewsUser" element={<MyreviewsUser />} />
-      <Route path="profile/allgames" element={<Allgames />} />
-      <Route path="profile/myreviews" element={<Myreviews />} />
-      <Route path="friends" element={<Friends />} />
-      <Route path="dropprUser" element={<DropprUser />} />
-      <Route path="signIn" element={<SignIn />} />
-      <Route path="register" element={<Register />} />
-      <Route path="reviews" element={<Reviews />} />
-      <Route path="lists" element={<Lists />} />
-      <Route path="screen/:id" element={<Screen />} />
-      <Route path="/profile/settings" element={<Settings />} />
-      <Route path="/reviews/popular" element={<Popular />} />
-      <Route path="/reviews/favorites" element={<Favorites />} />
-      <Route path="/lists/new" element={<NewList />} />
-    </Routes>
-  </BrowserRouter>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<App />} />
+        <Route path="profile" element={<Profile />} />
+        <Route path="profile/overview" element={<Overview />} />
+        <Route path="dropprUser/overviewUser" element={<OverviewUser />} />
+        <Route path="dropprUser/allgamesUser" element={<AllgamesUser />} />
+        <Route path="dropprUser/myreviewsUser" element={<MyreviewsUser />} />
+        <Route path="profile/allgames" element={<Allgames />} />
+        <Route path="profile/myreviews" element={<Myreviews />} />
+        <Route path="friends" element={<Friends />} />
+        <Route path="dropprUser" element={<DropprUser />} />
+        <Route path="signIn" element={<SignIn />} />
+        <Route path="register" element={<Register />} />
+        <Route path="reviews" element={<Reviews />} />
+        <Route path="lists" element={<Lists />} />
+        <Route path="screen/:id" element={<Screen />} />
+        <Route path="/profile/settings" element={<Settings />} />
+        <Route path="/reviews/popular" element={<Popular />} />
+        <Route path="/reviews/favorites" element={<Favorites />} />
+        <Route path="/lists/new" element={<NewList />} />
+      </Routes>
+    </BrowserRouter>
   </RecoilRoot>,
   rootElement
 );

@@ -1,10 +1,10 @@
 import { atom } from "recoil";
 
 export const gameListState = atom({
-  key: "gameListState",
+  key: "gameLististState",
   default: [
     {
-      listName: "List Name",
+      listName: "List name",
       games: [],
     },
   ],
