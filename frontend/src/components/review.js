@@ -30,7 +30,6 @@ export default function review({
           <div className="d-flex gap-2">
             <div>
               {arr.map(() => {
-                console.log("OI");
                 return <BsDropletFill color="deepskyblue" />;
               })}
             </div>

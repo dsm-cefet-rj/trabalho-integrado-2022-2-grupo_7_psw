@@ -5,11 +5,36 @@ import {
   ratingStateAtom,
   hoverStateAtom,
 } from "../recoil/atoms/screenLucasState";
+import { reviewState } from "../recoil/atoms/review";
+
+import { useState } from "react";
 // import useRatingState from "../recoil/hooks/useRatingState";
 // import useHoverState from "../recoil/hooks/useHoverState";
 function ScreenLucas() {
+  const [text, setText] = useState("");
   const [rating, setRating] = useRecoilState(ratingStateAtom);
   const [hover, setHover] = useRecoilState(hoverStateAtom);
+  const [reviewList, setReviewList] = useRecoilState(reviewState);
+
+  const createReview = () => {
+    setReviewList((oldReviewList) => [
+      ...reviewList,
+      {
+        numOfstars: rating,
+        text_review: text,
+        game_id: 1,
+        date: "12/02/2003",
+        checkOut: "false",
+        coverReview:
+          "https://images.igdb.com/igdb/image/upload/t_cover_small/nocover.png",
+        titleReview: "Title",
+        yearRelease: 2003,
+        isFavorite: false,
+      },
+    ]);
+    setRating(null);
+    setText("");
+  };
 
   return (
     <>
@@ -125,6 +150,8 @@ function ScreenLucas() {
                     Drop:
                   </label>
                   <textarea
+                    value={text}
+                    onChange={(e) => setText(e.target.value)}
                     className="form-control"
                     id="message-text"
                   ></textarea>
@@ -175,7 +202,11 @@ function ScreenLucas() {
               >
                 Close
               </button>
-              <button type="button" className="btn btn-primary">
+              <button
+                onClick={createReview}
+                type="button"
+                className="btn btn-primary"
+              >
                 Send message
               </button>
             </div>

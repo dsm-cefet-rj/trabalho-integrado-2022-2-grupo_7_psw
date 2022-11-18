@@ -2,10 +2,10 @@ import Header from "../components/header";
 import Review from "../components/review";
 import { Link } from "react-router-dom";
 import { reviewState } from "../recoil/atoms/review";
-import { useRecoilState } from "recoil";
+import { useRecoilValue } from "recoil";
 
 export default function Reviews() {
-  const [review, setReview] = useRecoilState(reviewState);
+  const review = useRecoilValue(reviewState);
   return (
     <>
       <Header />
@@ -25,7 +25,9 @@ export default function Reviews() {
           </Link>
         </div>
       </div>
-
+      {review.length === 0 ? (
+        <h1 className="text-secondary mx-5">No reviews yet.</h1>
+      ) : null}
       {review.map((e) => {
         return (
           <Review
