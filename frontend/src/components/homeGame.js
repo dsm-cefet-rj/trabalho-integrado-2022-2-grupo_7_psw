@@ -39,7 +39,7 @@ function Games({
   return (
     <div
       style={cardStyle}
-      className="d-flex pb-4 pb-md-0 col-8 my-5 flex-column-reverse justify-content flex-md-row position-relative rounded mx-auto mx-md-5"
+      className="d-flex pb-4 pb-md-0 col-11 my-5 flex-column-reverse justify-content flex-md-row position-relative rounded mx-auto mx-md-5"
     >
       <Link
         className=" inline-block me-md-4 mx-auto mx-md-0"

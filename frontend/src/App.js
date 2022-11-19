@@ -22,37 +22,66 @@ export default function App() {
   return (
     <>
       <Header />
-      {/*    <Suspense fallback={<h1 style={{color: "white"}}>Loading...</h1>}>
-        <ImageSlider />
-      </Suspense> */}
-      <ul className="col-lg-8">
-        {gameList.map((e) => {
-          return (
-            <Game
-              key={e.id}
-              myKey={e.id}
-              title={e.name}
-              background_image={e.cover}
-            />
-          );
-        })}
-      </ul>
+      <div className="flex-container flex-row-reverse">
+        <Suspense fallback={<h1 style={{color: "white"}}>Loading...</h1>}>
+          <ImageSlider />
+        </Suspense>
 
-      {display ? (
-        <Footer />
-      ) : (
-        <>
-          <ul className="col-lg-8">
-            <Game />
-            <Game />
-            <Game />
-            <Game />
-            <Game />
-          </ul>
-
-          <Footer />
-        </>
-      )}
+        {display ? (
+        <ul className="col-lg-6">
+          {gameList.map((e) => {
+            return (
+              <Game
+                key={e.id}
+                myKey={e.id}
+                title={e.name}
+                background_image={e.cover}
+              />
+            );
+          })}
+        </ul>          
+        ) : (
+          <>
+            <ul className="col-lg-6">
+              <Game />
+              <Game />
+              <Game />
+              <Game />
+              <Game />
+            </ul>
+          </>
+        )}
+      </div>
+      <Footer />
     </>
   );
 }
+
+ /* <ul className="col-lg-8">
+          {gameList.map((e) => {
+            return (
+              <Game
+                key={e.id}
+                myKey={e.id}
+                title={e.name}
+                background_image={e.cover}
+              />
+            );
+          })}
+        </ul>
+
+        {display ? (
+          <Footer />
+        ) : (
+          <>
+            <ul className="col-lg-8">
+              <Game />
+              <Game />
+              <Game />
+              <Game />
+              <Game />
+            </ul>
+          </>
+        )}
+      </div>
+      <Footer /> */

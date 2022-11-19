@@ -1,7 +1,10 @@
 import React, { useEffect } from "react";
 import "./imageSlider.css";
 import useNewsList from "../../recoil/hooks/useNewsList";
-// import useNewsIndex from "../../recoil/hooks/useNewsIndex";
+import useNewsCurrentIndex from "../../recoil/hooks/useNewsCurrentIndex";
+import useSubtitleState from "../../recoil/hooks/useSubtitleState";
+import useUpdateNewsIndex from "../../recoil/hooks/useUpdateNewsIndex";
+import useToggleSubtitleState from "../../recoil/hooks/useToggleSubtitleState";
 
 
 
@@ -89,10 +92,9 @@ const ImageSlider = () => {
                     ))}
                 </div>
             </div>
-          ))}
-        </div>
-      </div>
-    </div>
+         
+        </div>     
+  
   );
 };
 export default ImageSlider;
