@@ -7,7 +7,7 @@ export default function App() {
   return (
     <>
         <Header />
-        <Suspense>
+        <Suspense fallback={<h1 style={{color: "white"}}>Loading...</h1>}>
           <ImageSlider/>
         </Suspense>
         <Game />

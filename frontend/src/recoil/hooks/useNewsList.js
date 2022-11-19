@@ -1,8 +1,8 @@
 import { useRecoilValue } from "recoil"
-import { newsListState } from "../atoms/slideState"
+import { asyncNewsList } from "../selectors/selector";
 
 const useNewsList = () =>{
-    return useRecoilValue(newsListState)
+    return useRecoilValue(asyncNewsList)
 }
 
 export default useNewsList;

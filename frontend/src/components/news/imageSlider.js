@@ -1,46 +1,47 @@
 import React, { useEffect } from "react";
 import "./imageSlider.css";
-import { useRecoilState } from "recoil";
-import { slideCounterState, slideInfoState } from "../../recoil/atoms/slideState";
 import useNewsList from "../../recoil/hooks/useNewsList";
-// import useNewsIndex from "../../recoil/hooks/useNewsIndex";
+import useUpdateNewsIndex from "../../recoil/hooks/useUpdateNewsIndex";
+import useNewsCurrentIndex from "../../recoil/hooks/useNewsCurrentIndex";
+import useSubtitleState from "../../recoil/hooks/useSubtitleState";
+import useToggleSubtitleState from "../../recoil/hooks/useToggleSubtitleState";
 
 
 
 
 const ImageSlider = () => {
+
     const slides = useNewsList();
-    const [currentIndex, setCurrentIndex] = useRecoilState(slideCounterState);
-    const [currentInfoState, setCurrentInfoState] = useRecoilState(slideInfoState);
+    const currentIndex = useNewsCurrentIndex();
+    const subtitleState = useSubtitleState();
+    
+    const updateIndex = useUpdateNewsIndex();
+    const toggleSubtitleState = useToggleSubtitleState();
+    
 
     const goToPrevious = () => {
         const isFirstSlide = currentIndex === 0;
         const newIndex = isFirstSlide ? slides.length - 1 : currentIndex - 1;
-        setCurrentIndex(newIndex)
+        updateIndex(newIndex)
     }
 
     const goToNext = () => {
-        setCurrentIndex((prevTime) => prevTime === slides.length - 1 ? 0 : prevTime +1);
+        const newIndex = currentIndex === slides.length -1? 0: currentIndex + 1;        
+        updateIndex(newIndex);
     }
 
     const goToSlide = (slideIndex) => {
-        setCurrentIndex(slideIndex);
-    }
-
-
-    const togleInfo = () => {
-        setCurrentInfoState(!currentInfoState);
+        updateIndex(slideIndex);
     }
 
     useEffect(() => {
-
         const myInterval = setInterval(() => {
             goToNext();
         }, 5000);
         return () => clearInterval(myInterval);
     
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    }, [currentIndex]);
 
 
     const sliderStyles = {
@@ -75,14 +76,14 @@ const ImageSlider = () => {
 
     return (
         <div className="container containerStyles">
-            <div style={sliderStyles} className="flex-item " onMouseOver={togleInfo} onMouseOut={togleInfo}>
+            <div style={sliderStyles} className="flex-item " onMouseOver={toggleSubtitleState} onMouseOut={toggleSubtitleState}>
                 <div style={leftArrowStyles} onClick={goToPrevious} className="unselectable arrow">❰</div>
                 <div style={rightArrowStyles} onClick={goToNext} className="unselectable arrow">❱</div>
                 <div style={slideStyles}>
                     <div className="slideInfo flex-card info">
                         <div className="flex-card column margin-10">
                             <h1 className="margin-lr-10" style={titleFont}>{slides[currentIndex].title}</h1>
-                            <p className={`${currentInfoState ? "subtitleFont" : "hidden"}`}>{slides[currentIndex].subtitle}</p>
+                            <p className={`${subtitleState ? "subtitleFont" : "hidden"}`}>{slides[currentIndex].subtitle}</p>
                         </div>
                     </div>
                 </div>
