@@ -7,5 +7,5 @@ export const slideCounterState = atom({
 
 export const slideInfoState = atom({
   key: "slideInfoState",
-  default: false
+  default: false,
 });

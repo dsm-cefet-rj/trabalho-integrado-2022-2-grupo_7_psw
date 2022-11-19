@@ -1,8 +1,11 @@
 import Header from "../components/header";
 import Review from "../components/review";
 import { Link } from "react-router-dom";
+import { reviewState } from "../recoil/atoms/review";
+import { useRecoilState } from "recoil";
 
 export default function Reviews() {
+  const [review, setReview] = useRecoilState(reviewState);
   return (
     <>
       <Header />
@@ -23,8 +26,22 @@ export default function Reviews() {
           </Link>
         </div>
       </div>
-      <Review numOfstars={5} />
-      <Review numOfstars={5} />
+      {review
+        .filter((e) => e.isFavorite)
+        .map((e) => {
+          return (
+            <Review
+              title={e.titleReview}
+              cover={e.coverReview}
+              release={e.yearRelease}
+              text={e.text_review}
+              game_id={e.game_id}
+              date={e.date}
+              checkout={e.checkOut}
+              stars={e.numOfstars}
+            />
+          );
+        })}
     </>
   );
 }

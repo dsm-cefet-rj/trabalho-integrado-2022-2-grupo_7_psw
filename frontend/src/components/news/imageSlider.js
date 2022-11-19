@@ -1,10 +1,7 @@
 import React, { useEffect } from "react";
 import "./imageSlider.css";
 import useNewsList from "../../recoil/hooks/useNewsList";
-import useUpdateNewsIndex from "../../recoil/hooks/useUpdateNewsIndex";
-import useNewsCurrentIndex from "../../recoil/hooks/useNewsCurrentIndex";
-import useSubtitleState from "../../recoil/hooks/useSubtitleState";
-import useToggleSubtitleState from "../../recoil/hooks/useToggleSubtitleState";
+// import useNewsIndex from "../../recoil/hooks/useNewsIndex";
 
 
 
@@ -43,36 +40,35 @@ const ImageSlider = () => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [currentIndex]);
 
+  const sliderStyles = {
+    height: "100%",
+    position: "relative",
+  };
 
-    const sliderStyles = {
-        height: "100%",
-        position: 'relative',
-    };
+  const slideStyles = {
+    width: "100%",
+    height: "100%",
+    backgroundPosition: "center",
+    backgroundSize: "cover",
+    backgroundImage: `url(${slides[currentIndex].url})`,
+  };
 
-    const slideStyles = {
-        width: "100%",
-        height: "100%",
-        backgroundPosition: 'center',
-        backgroundSize: "cover",
-        backgroundImage: `url(${slides[currentIndex].url})`,
-    };
+  const leftArrowStyles = {
+    left: "12px",
+  };
 
-    const leftArrowStyles = {
-        left: "12px",
-    }
+  const rightArrowStyles = {
+    right: "12px",
+  };
 
-    const rightArrowStyles = {
-        right: "12px",
-    }
+  const dotsContainterStyles = {
+    display: "flex",
+    justifyContent: "center",
+  };
 
-    const dotsContainterStyles = {
-        display: "flex",
-        justifyContent: "center"
-    }
-
-    const titleFont = {
-        color: "white",
-    }
+  const titleFont = {
+    color: "white",
+  };
 
     return (
         <div className="container containerStyles">
@@ -93,8 +89,10 @@ const ImageSlider = () => {
                     ))}
                 </div>
             </div>
-
+          ))}
         </div>
-    );
-}
+      </div>
+    </div>
+  );
+};
 export default ImageSlider;
