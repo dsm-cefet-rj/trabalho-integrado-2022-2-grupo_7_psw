@@ -1,14 +1,18 @@
-import { Suspense } from "react";
 import Header from "./components/header";
 import Game from "./components/homeGame";
-import ImageSlider from "./components/news/imageSlider";
 import Footer from "./components/footer";
 import { useState, useEffect } from "react";
+import { BsFillDropletFill } from "react-icons/bs";
+import Review from "./components/review";
+import { reviewState } from "./recoil/atoms/review";
+import { useRecoilValue } from "recoil";
 
 export default function App() {
+  const [gamesList, setGamesList] = useState([]);
   const [page, setPage] = useState(0);
   const [display, setDisplay] = useState(false);
-  const [gameList, setGamesList] = useState([]);
+  const [last5Reviews, setLast5Reviews] = useState([]);
+  const reviews = useRecoilValue(reviewState);
 
   useEffect(() => {
     fetch(`http://localhost:3001/api/list/${page}`).then((res) =>
@@ -17,71 +21,93 @@ export default function App() {
         setDisplay(true);
       })
     );
+    fetch(`http://localhost:3001/getreview`)
+      .then((res) => res.json())
+      .then((data) => setLast5Reviews(data.data.slice(-5)))
+      .catch((error) => console.log(error));
   }, [page]);
 
   return (
     <>
-      <Header />
-      <div className="flex-container flex-row-reverse">
-        <Suspense fallback={<h1 style={{color: "white"}}>Loading...</h1>}>
-          <ImageSlider />
-        </Suspense>
-
-        {display ? (
-        <ul className="col-lg-6">
-          {gameList.map((e) => {
-            return (
-              <Game
-                key={e.id}
-                myKey={e.id}
-                title={e.name}
-                background_image={e.cover}
-              />
-            );
-          })}
-        </ul>          
-        ) : (
-          <>
-            <ul className="col-lg-6">
-              <Game />
-              <Game />
-              <Game />
-              <Game />
-              <Game />
+      <Header /* childToParent={childToParent} */ />
+      <div className="d-flex flex-md-row flex-column-reverse">
+        <div className="col-lg-7">
+          <ul className="m-0 p-0">
+            {gamesList.map((e) => {
+              return (
+                <Game
+                  key={e.id}
+                  myKey={e.id}
+                  background_image={e.cover}
+                  title={e.name}
+                  category={e.category}
+                  genres={e.genres}
+                  platforms={e.platforms}
+                />
+              );
+            })}
+          </ul>
+          {display ? (
+            <div className="col-6 mx-auto">
+              <button
+                onClick={() => {
+                  if (page - 1 < 0) {
+                    return;
+                  }
+                  setPage(page - 1);
+                  window.scrollTo(0, 0);
+                }}
+                type="button"
+                className="btn btn-light btn-lg"
+              >
+                Previous
+              </button>
+              <span className="text-light mx-4">Page:{page}</span>
+              <button
+                onClick={() => {
+                  setPage(page + 1);
+                  window.scrollTo(0, 0);
+                }}
+                type="button"
+                className="btn btn-light btn-lg"
+              >
+                Next
+              </button>
+            </div>
+          ) : (
+            <h1 className="text-light mt-5 fs-4 mx-5">
+              Waiting for the server...
+            </h1>
+          )}
+        </div>
+        <div className="d-flex flex-column align-items-center mx-auto">
+          <h1 className="mt-5 text-light text-center mx-auto">
+            Welcome to Droppr
+          </h1>
+          <BsFillDropletFill color="deepskyblue" size={50} />
+          <div className="my-5">
+            <div className="mx-auto border-bottom border-secondary">
+              <p className="text-secondary fs-6 text-center text-md-start">
+                Recent reviews (last 5 reviews)
+              </p>
+            </div>
+            <ul className="d-flex flex-column-reverse">
+              {reviews.map((e) => {
+                return (
+                  <Review
+                    numOfstars={e.rating}
+                    game_id={e.game_id}
+                    date={e.date}
+                    checkOut={true}
+                  />
+                );
+              })}
             </ul>
-          </>
-        )}
+          </div>
+        </div>
       </div>
-      <Footer />
+
+      {display ? <Footer /> : null}
     </>
   );
 }
-
- /* <ul className="col-lg-8">
-          {gameList.map((e) => {
-            return (
-              <Game
-                key={e.id}
-                myKey={e.id}
-                title={e.name}
-                background_image={e.cover}
-              />
-            );
-          })}
-        </ul>
-
-        {display ? (
-          <Footer />
-        ) : (
-          <>
-            <ul className="col-lg-8">
-              <Game />
-              <Game />
-              <Game />
-              <Game />
-              <Game />
-            </ul>
-          </>
-        )}
-      </div>
-      <Footer /> */
