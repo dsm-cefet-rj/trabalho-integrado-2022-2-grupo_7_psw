@@ -5,13 +5,14 @@ import useNewsCurrentIndex from "../../recoil/hooks/useNewsCurrentIndex";
 import useSubtitleState from "../../recoil/hooks/useSubtitleState";
 import useUpdateNewsIndex from "../../recoil/hooks/useUpdateNewsIndex";
 import useToggleSubtitleState from "../../recoil/hooks/useToggleSubtitleState";
+import useHighlightNews from "../../recoil/hooks/useHighlightNews";
 
 
 
 
 const ImageSlider = () => {
 
-    const slides = useNewsList();
+    const slides = useHighlightNews();
     const currentIndex = useNewsCurrentIndex();
     const subtitleState = useSubtitleState();
     
@@ -74,6 +75,7 @@ const ImageSlider = () => {
   };
 
     return (
+ 
         <div className="container containerStyles">
             <div style={sliderStyles} className="flex-item " onMouseOver={toggleSubtitleState} onMouseOut={toggleSubtitleState}>
                 <div style={leftArrowStyles} onClick={goToPrevious} className="unselectable arrow">❰</div>

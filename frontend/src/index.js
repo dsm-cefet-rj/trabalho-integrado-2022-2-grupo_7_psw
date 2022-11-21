@@ -21,6 +21,7 @@ import AllgamesUser from "./routes/allgamesUser";
 import Myreviews from "./routes/myreviews";
 import MyreviewsUser from "./routes/myreviewsUser";
 import { RecoilRoot } from "recoil";
+import News from "./routes/news";
 
 const rootElement = document.getElementById("root");
 render(
@@ -46,6 +47,7 @@ render(
         <Route path="/reviews/popular" element={<Popular />} />
         <Route path="/reviews/favorites" element={<Favorites />} />
         <Route path="/lists/new" element={<NewList />} />
+        <Route path="/news" element={<News/>} />
       </Routes>
     </BrowserRouter>
   </RecoilRoot>,
