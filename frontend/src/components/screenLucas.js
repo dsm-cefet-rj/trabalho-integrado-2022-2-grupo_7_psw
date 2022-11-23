@@ -6,14 +6,24 @@ import {
   hoverStateAtom,
 } from "../recoil/atoms/screenLucasState";
 import { reviewState } from "../recoil/atoms/review";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 // import useRatingState from "../recoil/hooks/useRatingState";
 // import useHoverState from "../recoil/hooks/useHoverState";
-function ScreenLucas() {
+function ScreenLucas({
+  myCover,
+  myDate,
+  myCreator,
+  myTitle,
+  myDescription,
+  myScreenshot,
+  myRatingAvg,
+}) {
   const [text, setText] = useState("");
   const [rating, setRating] = useRecoilState(ratingStateAtom);
   const [hover, setHover] = useRecoilState(hoverStateAtom);
   const [reviewList, setReviewList] = useRecoilState(reviewState);
+  const [message, setMessage] = useState("");
 
   const createReview = () => {
     setReviewList((oldReviewList) => [
@@ -24,8 +34,7 @@ function ScreenLucas() {
         game_id: 1,
         date: "12/02/2003",
         checkOut: "false",
-        coverReview:
-          "https://images.igdb.com/igdb/image/upload/t_cover_small/nocover.png",
+        coverReview: { myCover },
         titleReview: "Title",
         yearRelease: 2003,
         isFavorite: false,
@@ -35,6 +44,41 @@ function ScreenLucas() {
     setText("");
   };
 
+  const customHeaders = {
+    "Content-Type": "application/json",
+  };
+  const game_id = useParams().id;
+
+  let HandleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      let res = await fetch("http://localhost:3001/review/new", {
+        method: "POST",
+        headers: customHeaders,
+        body: JSON.stringify({
+          text_review: text,
+          game_id: game_id,
+          rating: rating,
+          date: new Date().toLocaleDateString("pt-BR"),
+        }),
+      });
+
+      if (res.status === 200) {
+        setText("");
+        setRating(null);
+        setMessage("Review created successfully");
+      } else {
+        setMessage("Some error occured");
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <>
       <header id="game-background"></header>
@@ -43,11 +87,12 @@ function ScreenLucas() {
           <div id="Poster">
             <img
               className=""
-              src="https://upload.wikimedia.org/wikipedia/commons/1/1c/Celeste_box_art_final.png"
+              src={myCover.replace("t_thumb", "t_cover_big")}
               alt="Game"
             />
             <h4 className="my-3" id="avrgRating">
-              Average rating 4.8
+              Average rating:
+              <span className="text-warning"> {myRatingAvg || "Unknown"}</span>
             </h4>
             <button
               type="button"
@@ -62,31 +107,11 @@ function ScreenLucas() {
 
           <div id="Game-Informations">
             <div className="HeadDescription">
-              <h2 id="Game-Name">Celeste</h2>
-              <h5>Year 2018</h5>
-              <h5>Created by Maddy Torson</h5>
+              <h2 id="Game-Name">{myTitle}</h2>
+              <h5>{myDate}</h5>
+              <h5>Created by {myCreator}</h5>
             </div>
-            <p id="Description">
-              Celeste is a 2018 platform game designed, directed and written by
-              Maddy Thorson and programmed by Thorson and Noel Berry. It is a
-              fully-fledged version of the 2016 PICO-8 game of the same name,
-              which was made in four days solely by Thorson and Berry during a
-              game jam. Set on a fictional version of Mount Celeste, it follows
-              a young woman named Madeline who attempts to climb the mountain,
-              and must face her inner demons in her quest to reach the summit.
-              Celeste was released worldwide independently on January 25, 2018,
-              on Windows, Nintendo Switch, PlayStation 4, Xbox One, macOS, and
-              Linux, followed by a release on Google's Stadia on July 28, 2020.
-              It consists of eight chapters, plus a free downloadable content
-              chapter titled Farewell that acts as an epilogue to the story,
-              released on September 9, 2019. Celeste received critical acclaim
-              upon release, being praised for its story, gameplay, and
-              soundtrack. It won several awards, including the Best Independent
-              Game and Games for Impact awards at The Game Awards 2018, where it
-              was also nominated for Game of the Year. Celeste was also a
-              financial success, selling over a million copies by the end of
-              2019.
-            </p>
+            <p id="Description">{myDescription}</p>
           </div>
         </section>
       </div>
@@ -112,7 +137,7 @@ function ScreenLucas() {
               ></button>
             </div>
             <div className="modal-body">
-              <form>
+              <form /* onSubmit={HandleSubmit} */>
                 <div className="stars">
                   {[...Array(5)].map((star, i) => {
                     const ratingValue = i + 1;

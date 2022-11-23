@@ -95,10 +95,15 @@ export default function App() {
               {reviews.map((e) => {
                 return (
                   <Review
-                    numOfstars={e.rating}
-                    game_id={e.game_id}
+                    stars={e.numOfstars}
+                    title={e.titleReview}
+                    cover={e.coverReview}
+                    release={e.yearRelease}
+                    text={e.text_review}
+                    checkout={false}
                     date={e.date}
-                    checkOut={true}
+                    game_id={e.game_id}
+                    favorited={false}
                   />
                 );
               })}

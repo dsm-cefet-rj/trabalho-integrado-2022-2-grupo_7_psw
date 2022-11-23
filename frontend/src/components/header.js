@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
+import React, { useState } from "react";
 
-function header() {
+function Header() {
+  const [search, setSearch] = useState("");
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
       <div className="container-fluid">
@@ -70,15 +72,33 @@ function header() {
           </ul>
           <form className="d-flex mr-5">
             <input
+              onChange={(e) => {
+                setSearch(e.target.value);
+              }}
               className="form-control me-2"
               type="search"
               placeholder="Search"
               aria-label="Search"
+              onKeyDown={(event) => {
+                if (event.key === "Enter") {
+                  event.preventDefault();
+                  window.location.href = `/search/${search}`;
+                }
+              }}
             />
 
-            <button className="btn btn-outline-light" type="button" id="myBtn">
-              Search
-            </button>
+            <Link
+              className="position-relative inline-block mx-md-4"
+              to={`/search/${search}`}
+            >
+              <button
+                className="btn btn-outline-light"
+                type="button"
+                id="myBtn"
+              >
+                Search
+              </button>
+            </Link>
           </form>
         </div>
       </div>
@@ -86,4 +106,4 @@ function header() {
   );
 }
 
-export default header;
+export default Header;
