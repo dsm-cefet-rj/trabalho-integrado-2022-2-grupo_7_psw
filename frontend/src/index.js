@@ -50,6 +50,7 @@ render(
         <Route path="/reviews/favorites" element={<Favorites />} />
         <Route path="/lists/new" element={<NewList />} />
         <Route path="/news" element={<News/>} />
+        <Route path="/news-page/:id" element={<NewsPage/>}/>
       </Routes>
     </BrowserRouter>
   </RecoilRoot>,

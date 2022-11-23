@@ -19,7 +19,7 @@ const NewsContent = () => {
             <div className="flex column main-container">
                 <div>
                     <h2>{getNews.title}</h2>
-                    <h4>{getNews.subtitle}</h4>
+                    <h4>{getNews.subtite}</h4>
                 </div>
                 <div className="content-container">{results}</div>
             </div>
