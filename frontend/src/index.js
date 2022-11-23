@@ -23,6 +23,7 @@ import MyreviewsUser from "./routes/myreviewsUser";
 import { RecoilRoot } from "recoil";
 import News from "./routes/news";
 import NewsPage from "./routes/newsPage";
+import Search from "./routes/search";
 
 const rootElement = document.getElementById("root");
 render(
@@ -49,7 +50,6 @@ render(
         <Route path="/reviews/favorites" element={<Favorites />} />
         <Route path="/lists/new" element={<NewList />} />
         <Route path="/news" element={<News/>} />
-        <Route path="/news-page/:id" element={<NewsPage/>} />
       </Routes>
     </BrowserRouter>
   </RecoilRoot>,

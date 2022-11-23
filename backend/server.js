@@ -39,10 +39,6 @@ app.get("/api/date/:id", (req, res) => {
     });
 });
 
-// I HAVE TO FIX IT YET
-// Given the game id, the api should have returned the developer. However I am having problems handling the array of games developed.
-// I don't know how to make a condition to check if the array of games developed contains the id of the given game id
-
 app.get("/api/creator/:id", (req, res) => {
   axios({
     url: "https://api.igdb.com/v4/companies",
@@ -52,7 +48,7 @@ app.get("/api/creator/:id", (req, res) => {
       "Client-ID": "dnz1zvhqgyb7pwacm85eu171egtel1",
       Authorization: accessToken,
     },
-    data: `fields name; where developed=${req.params.id};`,
+    data: `fields name; where developed=[${req.params.id}];`,
   })
     .then((response) => {
       res.json({ data: response.data });
