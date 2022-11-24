@@ -10,7 +10,7 @@ export default function News() {
     <>
       <Header />
 
-      {/*       <div className="">
+            <div className="">
         <div className="">
           <Suspense fallback={<h2>loading...</h2>}>
             <ImageSlider />
@@ -22,7 +22,7 @@ export default function News() {
           </Suspense>
         </div>
       </div>
-      <Footer /> */}
+      <Footer />
     </>
   );
 }

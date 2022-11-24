@@ -17,6 +17,10 @@
     cursor: pointer;
 }
 
+.item-card p{
+    color: #ffffff;
+}
+
 .img-container{
     width: 300px;
     height: 180px;

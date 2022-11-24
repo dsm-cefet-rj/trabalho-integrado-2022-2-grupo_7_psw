@@ -1,4 +1,4 @@
-import { selector, useRecoilValue } from "recoil";
+import { selector, selectorFamily, useRecoilValue } from "recoil";
 
 export const asyncNewsList = selector ({
     key: "selector",
@@ -43,12 +43,10 @@ export const highLightsNews = selector ({
             timestamp: event.time,
         }))        
 
-        console.log(listMap)
         listMap.sort((a, b) => {
             return b.time - a.time
         })
-        console.log(listMap)     
-        let filtered = []
+         
         listMap.forEach(() => {            
             if(listMap.length > 4){
                 listMap.pop();
@@ -60,3 +58,22 @@ export const highLightsNews = selector ({
         return  listMap;
     }
 })
+
+
+
+export const getNewsById = selectorFamily({
+
+    key: "getNewsById",
+    get: (id) => async () => {
+        
+        const response = await fetch(`http://localhost:3004/news/${id}`);
+        if(!response.ok){
+            throw new Error(`Error! Status: ${response.status}`)
+        }
+        
+        const result = await response.json();
+        return result
+    }
+
+})
+
