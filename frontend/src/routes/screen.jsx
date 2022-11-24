@@ -47,7 +47,7 @@ export default function Screen() {
       .then((res) => res.json())
       .then((data) => setScreenshot(data.data[0].url))
       .catch((error) => console.log(error));
-  });
+  }, [id]);
   return (
     <>
       <Header />
@@ -57,7 +57,7 @@ export default function Screen() {
         myCreator={creator}
         myTitle={title}
         myDescription={description}
-        myScreenshot={screenshot}
+        myScreenshot={`https:${screenshot}`}
         myRatingAvg={ratingAvg}
       />
       <hr></hr>

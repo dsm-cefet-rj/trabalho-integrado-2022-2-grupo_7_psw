@@ -79,9 +79,38 @@ function ScreenLucas({
     window.scrollTo(0, 0);
   }, []);
 
+  const gameBackground = {
+    backgroundImage: `url(${myScreenshot.replace(
+      "t_thumb",
+      "t_screenshot_big"
+    )})`,
+    backgroundRepeat: "no-repeat",
+    backgroundSize: "cover",
+    backgroundPositionY: "center",
+    display: "inline-block",
+
+    width: "100vw",
+    height: "40vh",
+    opacity: 0.4,
+  };
+
+  const back = {
+    backgroundImage: `url(${myScreenshot.replace(
+      "t_thumb",
+      "t_screenshot_big"
+    )})`,
+    width: "100%",
+    height: 374,
+    opacity: 0.4,
+
+    backgroundSize: "100%",
+    backgroundRepeat: "no-repeat",
+    backgroundPositionY: "center",
+  };
+
   return (
     <>
-      <header id="game-background"></header>
+      <header style={gameBackground} /* id="game-background" */></header>
       <div id="container">
         <section id="Game-Content">
           <div id="Poster">

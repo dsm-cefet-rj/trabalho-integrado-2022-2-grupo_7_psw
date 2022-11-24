@@ -43,7 +43,7 @@ a:hover {
   color: rgb(170, 170, 245);
 }
 
-#game-background {
+/* #game-background {
   background-image: url(https://i.imgur.com/j3yfCgn.png);
   background-repeat: no-repeat;
   background-size: cover;
@@ -52,7 +52,7 @@ a:hover {
 
   width: 100vw;
   height: 40vh;
-}
+} */
 
 #Game-Content {
   position: relative;
@@ -153,10 +153,16 @@ input[type="radio"] {
 }
 
 @media (max-width: 900px) {
+  hr {
+    margin-top: 10vh;
+    margin-bottom: 10vh;
+    border: solid #779ecb;
+  }
   #Game-Content {
     display: flexbox;
     flex-direction: column;
     text-align: center;
+    height: auto;
   }
   .HeadDescription {
     display: flex;
@@ -187,7 +193,7 @@ input[type="radio"] {
     margin-top: 30px;
   }
 
-  #container {
+  /*   #container {
     height: 1000px;
-  }
+  } */
 }
