@@ -2,7 +2,11 @@ import Header from "./components/header";
 import Game from "./components/homeGame";
 import Footer from "./components/footer";
 import { useState, useEffect } from "react";
-import { BsFillDropletFill } from "react-icons/bs";
+import {
+  BsFillDropletFill,
+  BsFillArrowLeftCircleFill,
+  BsFillArrowRightCircleFill,
+} from "react-icons/bs";
 import Review from "./components/review";
 import { reviewState } from "./recoil/atoms/review";
 import { useRecoilValue } from "recoil";
@@ -48,8 +52,10 @@ export default function App() {
             })}
           </ul>
           {display ? (
-            <div className="col-6 mx-auto">
-              <button
+            <div className="col-12 col-md-6 mx-auto d-flex justify-content-center mb-5">
+              <BsFillArrowLeftCircleFill
+                className="homePageArrow"
+                size={40}
                 onClick={() => {
                   if (page - 1 < 0) {
                     return;
@@ -57,22 +63,16 @@ export default function App() {
                   setPage(page - 1);
                   window.scrollTo(0, 0);
                 }}
-                type="button"
-                className="btn btn-light btn-lg"
-              >
-                Previous
-              </button>
+              />
               <span className="text-light mx-4">Page:{page}</span>
-              <button
+              <BsFillArrowRightCircleFill
+                className="homePageArrow"
+                size={40}
                 onClick={() => {
                   setPage(page + 1);
                   window.scrollTo(0, 0);
                 }}
-                type="button"
-                className="btn btn-light btn-lg"
-              >
-                Next
-              </button>
+              />
             </div>
           ) : (
             <h1 className="text-light mt-5 fs-4 mx-5">
@@ -95,7 +95,8 @@ export default function App() {
               {reviews.length == 0 ? (
                 <h4 className="text-secondary my-3">No reviews yet.</h4>
               ) : null}
-              {reviews.map((e) => {
+
+              {reviews.slice(-5).map((e) => {
                 return (
                   <Review
                     stars={e.numOfstars}

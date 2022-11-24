@@ -9,6 +9,10 @@ body {
   transform: scale(1.1);
 }
 
+.homePageArrow:hover {
+  color: gray;
+}
+
 @media (max-width: 608px) {
   body {
     padding-top: 40px;
@@ -25,24 +29,22 @@ body {
   /* cursor: default; */
 }
 
-
-
 /* sobre display flex */
-.flex-container{
+.flex-container {
   display: flex;
 }
-.flex-row-reverse{
+.flex-row-reverse {
   flex-direction: column;
 }
-.flex-space-around{
+.flex-space-around {
   justify-content: space-around;
 }
-.flex-center{
+.flex-center {
   justify-content: center;
 }
 
 @media (max-width: 1000px) {
-  .flex-container{
+  .flex-container {
     display: block;
   }
 }
