@@ -49,8 +49,9 @@ render(
         <Route path="/reviews/popular" element={<Popular />} />
         <Route path="/reviews/favorites" element={<Favorites />} />
         <Route path="/lists/new" element={<NewList />} />
-        <Route path="/news" element={<News/>} />
-        <Route path="/news-page/:id" element={<NewsPage/>}/>
+        <Route path="/news" element={<News />} />
+        <Route path="/news-page/:id" element={<NewsPage />} />
+        <Route path="search/:name" element={<Search />} />
       </Routes>
     </BrowserRouter>
   </RecoilRoot>,
