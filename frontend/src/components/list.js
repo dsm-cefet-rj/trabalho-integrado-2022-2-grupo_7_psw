@@ -1,7 +1,7 @@
 import { BsFillTrashFill } from "react-icons/bs";
 import { AiFillEdit } from "react-icons/ai";
 
-export default function list() {
+export default function list({ listName }) {
   return (
     <div className="my-5 mx-3">
       <div className="d-flex gap-3 flex-column flex-md-row">
@@ -20,7 +20,7 @@ export default function list() {
           />
         </div>
         <div className="mx-2">
-          <h2 className="text-light fs-3">List Name</h2>
+          <h2 className="text-light fs-3">{listName}</h2>
 
           <BsFillTrashFill color="lightgrey" size={20} />
           <AiFillEdit className="mx-2" color="lightgrey" size={20} />

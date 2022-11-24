@@ -3,7 +3,7 @@ import { atom } from "recoil";
 export const reviewState = atom({
   key: "reviewState",
   default: [
-    {
+    /*     {
       numOfstars: 5,
       text_review: "lorem ipsum",
       game_id: 1,
@@ -26,6 +26,6 @@ export const reviewState = atom({
       titleReview: "Title",
       yearRelease: 2003,
       isFavorite: true,
-    },
+    }, */
   ],
 });

@@ -1,6 +1,20 @@
 import Header from "../components/header";
+import { gameListState } from "../recoil/atoms/gameList";
+import { useRecoilValue, useRecoilState } from "recoil";
 
-export default function newList() {
+export default function NewList() {
+  const [myList, setList] = useRecoilState(gameListState);
+  const createList = (e) => {
+    e.preventDefault();
+    setList((oldList) => [
+      ...myList,
+      {
+        listName: "New list name",
+        games: [2],
+      },
+    ]);
+  };
+
   return (
     <>
       <Header />
@@ -52,7 +66,11 @@ export default function newList() {
               Adicionar
             </button>
           </div>
-          <button type="submit" className="btn btn-primary">
+          <button
+            onClick={createList}
+            type="submit"
+            className="btn btn-primary"
+          >
             Create
           </button>
         </form>
