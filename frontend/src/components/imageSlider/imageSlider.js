@@ -6,6 +6,7 @@ import useSubtitleState from "../../recoil/hooks/useSubtitleState";
 import useUpdateNewsIndex from "../../recoil/hooks/useUpdateNewsIndex";
 import useToggleSubtitleState from "../../recoil/hooks/useToggleSubtitleState";
 import useHighlightNews from "../../recoil/hooks/useHighlightNews";
+import { Link } from "react-router-dom";
 
 
 
@@ -80,14 +81,16 @@ const ImageSlider = () => {
             <div style={sliderStyles} className="flex-item " onMouseOver={toggleSubtitleState} onMouseOut={toggleSubtitleState}>
                 <div style={leftArrowStyles} onClick={goToPrevious} className="unselectable arrow">❰</div>
                 <div style={rightArrowStyles} onClick={goToNext} className="unselectable arrow">❱</div>
-                <div style={slideStyles}>
-                    <div className="slideInfo flex-card info">
-                        <div className="flex-card column margin-10">
-                            <h1 className="margin-lr-10" style={titleFont}>{slides[currentIndex].title}</h1>
-                            <p className={`${subtitleState ? "subtitleFont" : "hidden"}`}>{slides[currentIndex].subtitle}</p>
-                        </div>
-                    </div>
-                </div>
+                <Link to={`/news-page/${slides[currentIndex].id}`}>
+                  <div style={slideStyles}>
+                      <div className="slideInfo flex-card info">
+                          <div className="flex-card column margin-10">
+                              <h1 className="margin-lr-10" style={titleFont}>{slides[currentIndex].title}</h1>
+                              <p className={`${subtitleState ? "subtitleFont" : "hidden"}`}>{slides[currentIndex].subtitle}</p>
+                          </div>
+                      </div>
+                  </div>                
+                </Link>
                 <div style={dotsContainterStyles}>
                     {slides.map((slide, slideIndex) => (
                         <div key={slideIndex} className={`${slideIndex === currentIndex ? "activeDotSyles" : "dotStyles"}`} onClick={() => goToSlide(slideIndex)}> ● </div>
