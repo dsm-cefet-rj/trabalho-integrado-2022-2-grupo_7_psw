@@ -86,65 +86,78 @@ export default function Search() {
         >
           Next
         </button> */}
+          {button1 <= pageCount + 1 ? (
+            <button
+              onClick={() => {
+                if (button1 > 1) {
+                  setButton3(button1);
+                  setButton2(button1 - 1);
+                  setButton4(button1 + 1);
+                  setButton5(button1 + 2);
+                  setButton1(button1 - 2);
+                }
+                setPage(button1 - 1);
+                window.scrollTo(0, 0);
+              }}
+              className="btn btn-light btn-lg"
+            >
+              {button1}
+            </button>
+          ) : null}
 
-          <button
-            onClick={() => {
-              if (button1 > 1) {
-                setButton3(button1);
-                setButton2(button1 - 1);
-                setButton4(button1 + 1);
-                setButton5(button1 + 2);
-                setButton1(button1 - 2);
-              }
-              setPage(button1 - 1);
-              window.scrollTo(0, 0);
-            }}
-            className="btn btn-light btn-lg"
-          >
-            {button1}
-          </button>
-          <button
-            onClick={() => {
-              setPage(button2 - 1);
-              window.scrollTo(0, 0);
-            }}
-            className="btn btn-light btn-lg"
-          >
-            {button2}
-          </button>
-          <button
-            onClick={() => {
-              setPage(button3 - 1);
-              window.scrollTo(0, 0);
-            }}
-            className="btn btn-light btn-lg"
-          >
-            {button3}
-          </button>
-          <button
-            onClick={() => {
-              setPage(button4 - 1);
-              window.scrollTo(0, 0);
-            }}
-            className="btn btn-light btn-lg"
-          >
-            {button4}
-          </button>
-          <button
-            onClick={() => {
-              setButton3(button5);
-              setButton2(button5 - 1);
-              setButton1(button5 - 2);
-              setButton4(button5 + 1);
-              setButton5(button5 + 2);
+          {button2 <= pageCount + 1 ? (
+            <button
+              onClick={() => {
+                setPage(button2 - 1);
+                window.scrollTo(0, 0);
+              }}
+              className="btn btn-light btn-lg"
+            >
+              {button2}
+            </button>
+          ) : null}
 
-              setPage(button5 - 1);
-              window.scrollTo(0, 0);
-            }}
-            className="btn btn-light btn-lg"
-          >
-            {button5}
-          </button>
+          {button3 <= pageCount + 1 ? (
+            <button
+              onClick={() => {
+                setPage(button3 - 1);
+                window.scrollTo(0, 0);
+              }}
+              className="btn btn-light btn-lg"
+            >
+              {button3}
+            </button>
+          ) : null}
+
+          {button4 <= pageCount + 1 ? (
+            <button
+              onClick={() => {
+                setPage(button4 - 1);
+                window.scrollTo(0, 0);
+              }}
+              className="btn btn-light btn-lg"
+            >
+              {button4}
+            </button>
+          ) : null}
+
+          {button5 <= pageCount + 1 ? (
+            <button
+              onClick={() => {
+                setButton3(button5);
+                setButton2(button5 - 1);
+                setButton1(button5 - 2);
+                setButton4(button5 + 1);
+                setButton5(button5 + 2);
+
+                setPage(button5 - 1);
+                window.scrollTo(0, 0);
+              }}
+              className="btn btn-light btn-lg"
+            >
+              {button5}
+            </button>
+          ) : null}
         </div>
       ) : null}
     </>
