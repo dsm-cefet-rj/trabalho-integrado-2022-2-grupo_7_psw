@@ -19,7 +19,7 @@ app.listen(port, () => {
   console.log(`server running on port ${port}`);
 });
 
-const uri = process.env.URL_MONGO; // username and password are contained in the uri which is a env variable.
+const uri = process.env.URL_MONGO || "mongodb+srv://empty"; // username and password are contained in the uri which is a env variable.
 
 const client = new MongoClient(uri);
 
