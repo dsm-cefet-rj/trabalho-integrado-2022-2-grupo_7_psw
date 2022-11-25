@@ -87,7 +87,7 @@ export default function App() {
           <BsFillDropletFill color="deepskyblue" size={50} />
           <div className="my-5">
             <div className="mx-auto border-bottom border-secondary">
-              <p className="text-secondary fs-6 text-center text-md-start">
+              <p className="text-secondary fs-6 text-center">
                 Recent reviews (last 5 reviews)
               </p>
             </div>

@@ -15,10 +15,16 @@ export default function review({
   for (let i = 0; i < stars; i++) {
     arr.push("star");
   }
+
+  const heightImage = {
+    height: 128,
+    width: 90,
+  };
   return (
     <div className="d-flex flex-column gap-2 mx-3 mx-md-5 my-5">
       <div className="d-flex gap-3">
         <img
+          style={heightImage}
           alt="review"
           src="https://images.igdb.com/igdb/image/upload/t_cover_small/nocover.png"
         />
