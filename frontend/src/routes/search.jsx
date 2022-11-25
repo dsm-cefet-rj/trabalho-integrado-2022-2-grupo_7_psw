@@ -61,31 +61,6 @@ export default function Search() {
       </ul>
       {pageCount > 0 ? (
         <div className="col-4 mx-auto d-flex gap-2 my-5 flex-wrap">
-          {/*         <button
-          onClick={() => {
-            if (page - 1 < 0) {
-              return;
-            }
-            setPage(page - 1);
-            window.scrollTo(0, 0);
-          }}
-          type="button"
-          className="btn btn-light btn-lg"
-        >
-          Previous
-        </button>
-        <span className="text-light mx-4">Page:{page}</span>
-
-        <button
-          onClick={() => {
-            setPage(page + 1);
-            window.scrollTo(0, 0);
-          }}
-          type="button"
-          className="btn btn-light btn-lg"
-        >
-          Next
-        </button> */}
           {button1 <= pageCount + 1 ? (
             <button
               onClick={() => {

@@ -1,6 +1,6 @@
 import Header from "../components/header";
 import { gameListState } from "../recoil/atoms/gameList";
-import { useRecoilValue, useRecoilState } from "recoil";
+import { useRecoilState } from "recoil";
 
 export default function NewList() {
   const [myList, setList] = useRecoilState(gameListState);

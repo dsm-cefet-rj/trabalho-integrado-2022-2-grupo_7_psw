@@ -26,6 +26,10 @@ export default function Screen() {
                   placeholder="Change bio"
                 ></input>
               </div>
+              <label for="formFileDisabled" class="form-label mt-3">
+                Select a profile picture:
+              </label>
+              <input class="form-control" type="file" />
               <br></br>
               <button type="submit" className="btn btn-primary">
                 Submit

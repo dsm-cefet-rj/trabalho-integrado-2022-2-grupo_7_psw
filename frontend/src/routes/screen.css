@@ -25,7 +25,6 @@ h2 {
 body {
   width: 100%;
   overflow-x: hidden;
-  /*   background-color: #363945; */
   color: snow;
   font-family: Tahoma;
 }
@@ -192,8 +191,4 @@ input[type="radio"] {
     margin: 10px;
     margin-top: 30px;
   }
-
-  /*   #container {
-    height: 1000px;
-  } */
 }

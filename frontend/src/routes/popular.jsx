@@ -3,7 +3,6 @@ import Review from "../components/review";
 import { Link } from "react-router-dom";
 import { reviewState } from "../recoil/atoms/review";
 import { useRecoilState } from "recoil";
-import { BsDropletFill } from "react-icons/bs";
 
 export default function Reviews() {
   const [review, setReview] = useRecoilState(reviewState);
