@@ -5,6 +5,7 @@ const http = require("http");
 const cors = require("cors");
 var bodyParser = require("body-parser");
 const { MongoClient } = require("mongodb");
+require("dotenv").config();
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -18,11 +19,7 @@ app.listen(port, () => {
   console.log(`server running on port ${port}`);
 });
 
-// These 3 variables are the credentials used to access the mongodb database. We'll use dotenv to use environment variables later.
-
-const username = "empty";
-const password = "empty";
-const uri = "mongodb://empty"; // username and password are contained in the uri.
+const uri = process.env.URL_MONGO; // username and password are contained in the uri which is a env variable.
 
 const client = new MongoClient(uri);
 
