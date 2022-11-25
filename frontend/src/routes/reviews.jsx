@@ -3,9 +3,17 @@ import Review from "../components/review";
 import { Link } from "react-router-dom";
 import { reviewState } from "../recoil/atoms/review";
 import { useRecoilValue } from "recoil";
+import { useEffect, useState } from "react";
 
 export default function Reviews() {
   const review = useRecoilValue(reviewState);
+  const [reviewList, setReviewList] = useState([]);
+  useEffect(() => {
+    fetch(`http://localhost:3001/getreview`)
+      .then((res) => res.json())
+      .then((data) => setReviewList(data.data))
+      .catch((error) => console.log(error));
+  }, []);
   return (
     <>
       <Header />
@@ -25,20 +33,16 @@ export default function Reviews() {
           </Link>
         </div>
       </div>
-      {review.length === 0 ? (
+      {reviewList.length === 0 ? (
         <h1 className="text-secondary mx-5">No reviews yet.</h1>
       ) : null}
-      {review.map((e) => {
+      {reviewList.map((e) => {
         return (
           <Review
-            title={e.titleReview}
-            cover={e.coverReview}
-            release={e.yearRelease}
             text={e.text_review}
             game_id={e.game_id}
             date={e.date}
-            checkout={e.checkOut}
-            stars={e.numOfstars}
+            stars={e.rating}
           />
         );
       })}

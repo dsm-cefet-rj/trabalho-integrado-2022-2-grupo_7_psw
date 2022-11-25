@@ -245,22 +245,25 @@ function ScreenLucas({
                     </ul>
                   </div>
                 </div>
+                <button
+                  onClick={createReview}
+                  type="button"
+                  className="btn btn-primary"
+                >
+                  Send message
+                </button>
               </form>
             </div>
             <div className="modal-footer">
+              {message ? (
+                <p className="text-success mx-auto">{message}</p>
+              ) : null}
               <button
                 type="button"
                 className="btn btn-secondary"
                 data-bs-dismiss="modal"
               >
                 Close
-              </button>
-              <button
-                onClick={createReview}
-                type="button"
-                className="btn btn-primary"
-              >
-                Send message
               </button>
             </div>
           </div>

@@ -4,6 +4,7 @@ const app = express();
 const http = require("http");
 const cors = require("cors");
 var bodyParser = require("body-parser");
+const { MongoClient } = require("mongodb");
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -17,7 +18,63 @@ app.listen(port, () => {
   console.log(`server running on port ${port}`);
 });
 
+// These 3 variables are the credentials used to access the mongodb database. We'll use dotenv to use environment variables later.
+
+const username = "empty";
+const password = "empty";
+const uri = "mongodb://empty"; // username and password are contained in the uri.
+
+const client = new MongoClient(uri);
+
 const accessToken = "Bearer ijh5gvzwv8ntxnvxyyijh39kor858t";
+
+app.post("/review/new", (req, res) => {
+  async function run() {
+    try {
+      await client.connect();
+      // database and collection code goes here
+      const db = client.db("Droppr");
+      const coll = db.collection("reviews");
+      // insert code goes here
+      const docs = [req.body];
+      const result = await coll.insertMany(docs);
+      // display the results of your operation
+    } finally {
+      // Ensures that the client will close when you finish/error
+      await client.close();
+    }
+  }
+  run().catch(console.dir);
+
+  console.log(req.body);
+  res.send(req.body);
+});
+
+app.get("/getreview", (req, res) => {
+  const review = [];
+  async function run() {
+    try {
+      await client.connect();
+      // database and collection code goes here
+      const db = client.db("Droppr");
+      const coll = db.collection("reviews");
+      // find code goes here
+      const cursor = coll.find();
+      // iterate code goes here
+      await cursor.forEach((e) => {
+        review.push(e);
+      });
+
+      res.status(200).json({
+        data: review,
+      });
+    } finally {
+      // Ensures that the client will close when you finish/error
+      await client.close();
+    }
+  }
+  run().catch(console.dir);
+});
 
 app.get("/api/date/:id", (req, res) => {
   axios({

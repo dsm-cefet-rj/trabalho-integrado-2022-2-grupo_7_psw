@@ -92,11 +92,11 @@ export default function App() {
               </p>
             </div>
             <ul className="d-flex flex-column-reverse">
-              {reviews.length == 0 ? (
+              {last5Reviews.length == 0 ? (
                 <h4 className="text-secondary my-3">No reviews yet.</h4>
               ) : null}
 
-              {reviews.slice(-5).map((e) => {
+              {last5Reviews.map((e) => {
                 return (
                   <Review
                     stars={e.numOfstars}
