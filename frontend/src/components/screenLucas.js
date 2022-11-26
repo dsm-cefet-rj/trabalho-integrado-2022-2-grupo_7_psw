@@ -26,6 +26,7 @@ function ScreenLucas({
   const [hover, setHover] = useRecoilState(hoverStateAtom);
   const [reviewList, setReviewList] = useRecoilState(reviewState);
   const [message, setMessage] = useState("");
+  const [reviewCheck, setReviewCheck] = useState(isReviewed);
 
   const createReview = () => {
     setReviewList((oldReviewList) => [
@@ -69,6 +70,7 @@ function ScreenLucas({
         setText("");
         setRating(null);
         setMessage("Review created successfully");
+        setReviewCheck(true);
       } else {
         setMessage("Some error occured");
       }
@@ -79,7 +81,7 @@ function ScreenLucas({
 
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, []);
+  }, [reviewCheck]);
 
   const gameBackground = {
     backgroundImage: `url(${myScreenshot.replace(
@@ -125,15 +127,19 @@ function ScreenLucas({
               Average rating:
               <span className="text-warning"> {myRatingAvg || "Unknown"}</span>
             </h4>
-            <button
-              type="button"
-              className="btn btn-primary"
-              data-bs-toggle="modal"
-              data-bs-target="#exampleModal"
-              data-bs-whatever="@mdo"
-            >
-              {isReviewed ? "Reviewed" : "Rate and Review"}
-            </button>
+            {isReviewed ? (
+              <button className="btn btn-secondary">Reviewed</button>
+            ) : (
+              <button
+                type="button"
+                className="btn btn-primary"
+                data-bs-toggle="modal"
+                data-bs-target="#exampleModal"
+                data-bs-whatever="@mdo"
+              >
+                Rate and Review
+              </button>
+            )}
           </div>
 
           <div id="Game-Informations">
@@ -168,7 +174,7 @@ function ScreenLucas({
               ></button>
             </div>
             <div className="modal-body">
-              <form /* onSubmit={HandleSubmit} */>
+              <form onSubmit={HandleSubmit}>
                 <div className="stars">
                   {[...Array(5)].map((star, i) => {
                     const ratingValue = i + 1;
@@ -248,8 +254,8 @@ function ScreenLucas({
                   </div>
                 </div>
                 <button
-                  onClick={createReview}
-                  type="button"
+                  /* onClick={createReview} */
+                  type="submit"
                   className="btn btn-primary"
                 >
                   Send message
