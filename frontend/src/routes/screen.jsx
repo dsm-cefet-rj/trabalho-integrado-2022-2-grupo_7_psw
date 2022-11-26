@@ -71,16 +71,20 @@ export default function Screen() {
       {userReview.length > 0
         ? userReview.map((e) => {
             return (
-              <Review
-                text={e.text_review}
-                game_id={e.game_id}
-                date={e.date}
-                stars={e.rating}
-              />
+              <div className="d-flex justify-content-center justify-content-md-start">
+                <Review
+                  text={e.text_review}
+                  game_id={e.game_id}
+                  date={e.date}
+                  stars={e.rating}
+                />
+              </div>
             );
           })
         : null}
-      <ReviewConfig isReviewed={userReview.length > 0 ? true : false} />
+      <div className="d-flex justify-content-center justify-content-md-start">
+        <ReviewConfig isReviewed={userReview.length > 0 ? true : false} />
+      </div>
     </>
   );
 }
