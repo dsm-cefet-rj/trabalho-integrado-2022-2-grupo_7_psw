@@ -1,11 +1,10 @@
-import { BsStarFill, BsDropletFill } from "react-icons/bs";
+import { BsDropletFill } from "react-icons/bs";
 import React from "react";
 import { useRecoilState } from "recoil";
 import {
   ratingStateAtom,
   hoverStateAtom,
 } from "../recoil/atoms/screenLucasState";
-import { reviewState } from "../recoil/atoms/review";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
@@ -24,28 +23,7 @@ function ScreenLucas({
   const [text, setText] = useState("");
   const [rating, setRating] = useRecoilState(ratingStateAtom);
   const [hover, setHover] = useRecoilState(hoverStateAtom);
-  const [reviewList, setReviewList] = useRecoilState(reviewState);
   const [message, setMessage] = useState("");
-  const [reviewCheck, setReviewCheck] = useState(isReviewed);
-
-  const createReview = () => {
-    setReviewList((oldReviewList) => [
-      ...reviewList,
-      {
-        numOfstars: rating,
-        text_review: text,
-        game_id: 1,
-        date: "12/02/2003",
-        checkOut: "false",
-        coverReview: { myCover },
-        titleReview: "Title",
-        yearRelease: 2003,
-        isFavorite: false,
-      },
-    ]);
-    setRating(null);
-    setText("");
-  };
 
   const customHeaders = {
     "Content-Type": "application/json",
@@ -70,7 +48,6 @@ function ScreenLucas({
         setText("");
         setRating(null);
         setMessage("Review created successfully");
-        setReviewCheck(true);
       } else {
         setMessage("Some error occured");
       }
@@ -81,7 +58,7 @@ function ScreenLucas({
 
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, [reviewCheck]);
+  }, []);
 
   const gameBackground = {
     backgroundImage: `url(${myScreenshot.replace(
@@ -96,20 +73,6 @@ function ScreenLucas({
     width: "100vw",
     height: "40vh",
     opacity: 0.4,
-  };
-
-  const back = {
-    backgroundImage: `url(${myScreenshot.replace(
-      "t_thumb",
-      "t_screenshot_big"
-    )})`,
-    width: "100%",
-    height: 374,
-    opacity: 0.4,
-
-    backgroundSize: "100%",
-    backgroundRepeat: "no-repeat",
-    backgroundPositionY: "center",
   };
 
   return (
@@ -253,11 +216,7 @@ function ScreenLucas({
                     </ul>
                   </div>
                 </div>
-                <button
-                  /* onClick={createReview} */
-                  type="submit"
-                  className="btn btn-primary"
-                >
+                <button type="submit" className="btn btn-primary">
                   Send message
                 </button>
               </form>
