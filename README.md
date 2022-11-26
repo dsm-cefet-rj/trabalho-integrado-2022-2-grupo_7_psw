@@ -22,7 +22,7 @@ npm install
 
 USERNAME_MONGO=<MONGO DATABASE USER'S USERNAME HERE>
 PASSWORD_MONGO=<MONGO DATABASE USER'S PASSWORD HERE>
-URL_MONGO=<DATABASE URL HERE>
+URL_MONGO=mongodb+srv://<username>:<password>@cluster0.sh88dvn.mongodb.net/?retryWrites=true&w=majority
 
 ```
 <p>4-Inicializar o frontend</p>
