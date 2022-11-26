@@ -34,7 +34,6 @@ export default function Search() {
       });
   }, [page, name]);
 
-  console.log(gameCount);
   return (
     <>
       <Header />

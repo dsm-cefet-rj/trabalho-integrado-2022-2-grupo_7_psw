@@ -10,7 +10,7 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-const port = 3001;
+const port = process.env.PORT || 3002;
 
 app.set("port", port);
 const server = http.createServer(app);

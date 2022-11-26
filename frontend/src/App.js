@@ -99,7 +99,7 @@ export default function App() {
               {last5Reviews.map((e) => {
                 return (
                   <Review
-                    stars={e.numOfstars}
+                    stars={e.rating}
                     title={e.titleReview}
                     cover={e.coverReview}
                     release={e.yearRelease}

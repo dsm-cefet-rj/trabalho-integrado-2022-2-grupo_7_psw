@@ -29,13 +29,7 @@ export default function ReviewConfig({ isReviewed }) {
 
       {isReviewed ? (
         <div className="mx-auto w-100 border-bottom d-flex justify-content-center align-items-center pb-3">
-          <button
-            type="button"
-            className="btn btn-dark"
-            data-bs-toggle="modal"
-            data-bs-target="#exampleModal"
-            data-bs-whatever="@mdo"
-          >
+          <button type="button" className="btn btn-dark">
             Edit your review
           </button>
         </div>
