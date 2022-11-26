@@ -3,6 +3,7 @@ import ScreenL from "../components/screenLucas";
 import Review from "../components/review";
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import ReviewConfig from "../components/reviewconfig";
 
 import "./screen.css";
 
@@ -14,6 +15,7 @@ export default function Screen() {
   const [description, setDescription] = useState("");
   const [screenshot, setScreenshot] = useState("");
   const [ratingAvg, setRatingAvg] = useState(0);
+  const [userReview, setUserReview] = useState([]);
 
   const id = useParams().id;
   useEffect(() => {
@@ -47,6 +49,10 @@ export default function Screen() {
       .then((res) => res.json())
       .then((data) => setScreenshot(data.data[0].url))
       .catch((error) => console.log(error));
+    fetch(`http://localhost:3001/getsinglereview/${id}`)
+      .then((res) => res.json())
+      .then((data) => setUserReview(data.data))
+      .catch((error) => console.log(error));
   }, [id]);
   return (
     <>
@@ -59,10 +65,22 @@ export default function Screen() {
         myDescription={description}
         myScreenshot={`https:${screenshot}`}
         myRatingAvg={ratingAvg}
+        isReviewed={userReview.length > 0 ? true : false}
       />
       <hr></hr>
-      <Review />
-      <Review />
+      {userReview.length > 0
+        ? userReview.map((e) => {
+            return (
+              <Review
+                text={e.text_review}
+                game_id={e.game_id}
+                date={e.date}
+                stars={e.rating}
+              />
+            );
+          })
+        : null}
+      <ReviewConfig isReviewed={userReview.length > 0 ? true : false} />
     </>
   );
 }

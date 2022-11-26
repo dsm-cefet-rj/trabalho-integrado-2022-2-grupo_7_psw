@@ -73,6 +73,32 @@ app.get("/getreview", (req, res) => {
   run().catch(console.dir);
 });
 
+app.get("/getsinglereview/:id", (req, res) => {
+  const review = [];
+  async function run() {
+    try {
+      await client.connect();
+      // database and collection code goes here
+      const db = client.db("Droppr");
+      const coll = db.collection("reviews");
+      // find code goes here
+      const cursor = coll.find({ game_id: req.params.id });
+      // iterate code goes here
+      await cursor.forEach((e) => {
+        review.push(e);
+      });
+
+      res.status(200).json({
+        data: review,
+      });
+    } finally {
+      // Ensures that the client will close when you finish/error
+      await client.close();
+    }
+  }
+  run().catch(console.dir);
+});
+
 app.get("/api/date/:id", (req, res) => {
   axios({
     url: "https://api.igdb.com/v4/release_dates",

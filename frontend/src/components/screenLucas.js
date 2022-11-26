@@ -8,6 +8,7 @@ import {
 import { reviewState } from "../recoil/atoms/review";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+
 // import useRatingState from "../recoil/hooks/useRatingState";
 // import useHoverState from "../recoil/hooks/useHoverState";
 function ScreenLucas({
@@ -18,6 +19,7 @@ function ScreenLucas({
   myDescription,
   myScreenshot,
   myRatingAvg,
+  isReviewed,
 }) {
   const [text, setText] = useState("");
   const [rating, setRating] = useRecoilState(ratingStateAtom);
@@ -130,7 +132,7 @@ function ScreenLucas({
               data-bs-target="#exampleModal"
               data-bs-whatever="@mdo"
             >
-              Rate and Review
+              {isReviewed ? "Reviewed" : "Rate and Review"}
             </button>
           </div>
 
