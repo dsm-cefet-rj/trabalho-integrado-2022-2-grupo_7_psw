@@ -216,9 +216,15 @@ function ScreenLucas({
                     </ul>
                   </div>
                 </div>
-                <button type="submit" className="btn btn-primary">
-                  Send message
-                </button>
+                {!message ? (
+                  <button type="submit" className="btn btn-primary">
+                    Send Review
+                  </button>
+                ) : (
+                  <button className="btn btn-secondary" type="button">
+                    Submited
+                  </button>
+                )}
               </form>
             </div>
             <div className="modal-footer">
