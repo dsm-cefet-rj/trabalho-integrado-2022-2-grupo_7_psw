@@ -25,17 +25,45 @@ const client = new MongoClient(uri);
 
 const accessToken = "Bearer ijh5gvzwv8ntxnvxyyijh39kor858t";
 
-app.post("/review/new", (req, res) => {
+app.put("/review/update/:id", (req, res) => {
   async function run() {
     try {
       await client.connect();
       // database and collection code goes here
       const db = client.db("Droppr");
       const coll = db.collection("reviews");
-      // insert code goes here
+
+      // update code goes here
+      const filter = { game_id: req.params.id };
+      const updateDoc = {
+        $set: {
+          text_review: req.body.text_review,
+          rating: req.body.rating,
+          date: req.body.date,
+        },
+      };
+
+      const result = await coll.updateMany(filter, updateDoc);
+    } finally {
+      // Ensures that the client will close when you finish/error
+      await client.close();
+    }
+  }
+  run().catch(console.dir);
+  console.log(req.body);
+  res.send(req.body);
+});
+
+app.post("/review/new", (req, res) => {
+  async function run() {
+    try {
+      await client.connect();
+
+      const db = client.db("Droppr");
+      const coll = db.collection("reviews");
+
       const docs = [req.body];
       const result = await coll.insertMany(docs);
-      // display the results of your operation
     } finally {
       // Ensures that the client will close when you finish/error
       await client.close();
@@ -52,12 +80,12 @@ app.get("/getreview", (req, res) => {
   async function run() {
     try {
       await client.connect();
-      // database and collection code goes here
+
       const db = client.db("Droppr");
       const coll = db.collection("reviews");
-      // find code goes here
+
       const cursor = coll.find();
-      // iterate code goes here
+
       await cursor.forEach((e) => {
         review.push(e);
       });
@@ -78,12 +106,12 @@ app.get("/getsinglereview/:id", (req, res) => {
   async function run() {
     try {
       await client.connect();
-      // database and collection code goes here
+
       const db = client.db("Droppr");
       const coll = db.collection("reviews");
-      // find code goes here
+
       const cursor = coll.find({ game_id: req.params.id });
-      // iterate code goes here
+
       await cursor.forEach((e) => {
         review.push(e);
       });

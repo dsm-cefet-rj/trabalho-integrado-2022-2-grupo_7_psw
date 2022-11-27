@@ -1,7 +1,8 @@
 import React from "react";
 import { useEffect } from "react";
-
-import ReviewForm from "./reviewForm";
+import ReviewForm from "./createReviewForm";
+import { reviewState } from "../recoil/atoms/review";
+import { useRecoilState } from "recoil";
 
 // import useRatingState from "../recoil/hooks/useRatingState";
 // import useHoverState from "../recoil/hooks/useHoverState";
@@ -15,6 +16,7 @@ function ScreenLucas({
   myRatingAvg,
   isReviewed,
 }) {
+  const [review, setReview] = useRecoilState(reviewState);
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -56,7 +58,7 @@ function ScreenLucas({
                 type="button"
                 className="btn btn-primary"
                 data-bs-toggle="modal"
-                data-bs-target="#exampleModal"
+                data-bs-target="#createReview"
                 data-bs-whatever="@mdo"
               >
                 Rate and Review

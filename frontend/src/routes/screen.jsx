@@ -4,6 +4,8 @@ import Review from "../components/review";
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import ReviewConfig from "../components/reviewconfig";
+import { useRecoilState } from "recoil";
+import { reviewState } from "../recoil/atoms/review";
 
 import "./screen.css";
 
@@ -15,7 +17,7 @@ export default function Screen() {
   const [description, setDescription] = useState("");
   const [screenshot, setScreenshot] = useState("");
   const [ratingAvg, setRatingAvg] = useState(0);
-  const [userReview, setUserReview] = useState([]);
+  const [userReview, setUserReview] = useRecoilState(reviewState);
 
   const id = useParams().id;
   useEffect(() => {
@@ -54,6 +56,7 @@ export default function Screen() {
       .then((data) => setUserReview(data.data))
       .catch((error) => console.log(error));
   }, [id]);
+  console.log(userReview);
   return (
     <>
       <Header />

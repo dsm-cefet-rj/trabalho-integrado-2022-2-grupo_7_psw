@@ -6,8 +6,7 @@ import {
 } from "../recoil/atoms/screenLucasState";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
-// import useRatingState from "../recoil/hooks/useRatingState";
-// import useHoverState from "../recoil/hooks/useHoverState";
+import { reviewState } from "../recoil/atoms/review";
 
 export default function ReviewForm() {
   const [rating, setRating] = useRecoilState(ratingStateAtom);
@@ -18,12 +17,13 @@ export default function ReviewForm() {
     "Content-Type": "application/json",
   };
   const game_id = useParams().id;
+  const [review, setReview] = useRecoilState(reviewState);
 
   let HandleSubmit = async (e) => {
     e.preventDefault();
     try {
-      let res = await fetch("http://localhost:3001/review/new", {
-        method: "POST",
+      let res = await fetch(`http://localhost:3001/review/update/${game_id}`, {
+        method: "PUT",
         headers: customHeaders,
         body: JSON.stringify({
           text_review: text,
@@ -34,9 +34,17 @@ export default function ReviewForm() {
       });
 
       if (res.status === 200) {
+        setReview([
+          {
+            text_review: text,
+            game_id: game_id,
+            rating: rating,
+            date: new Date().toLocaleDateString("pt-BR"),
+          },
+        ]);
         setText("");
         setRating(null);
-        setMessage("Review created successfully");
+        setMessage("Review updated successfully");
       } else {
         setMessage("Some error occured");
       }
@@ -48,7 +56,7 @@ export default function ReviewForm() {
     <>
       <div
         className="modal fade"
-        id="exampleModal"
+        id="updateReview"
         tabindex="-1"
         aria-labelledby="exampleModalLabel"
         aria-hidden="true"
