@@ -35,7 +35,7 @@ export default function ReviewForm() {
         }),
       });
 
-      if (res.status === 200) {
+      if (res.status === 201) {
         setReview([
           {
             text_review: text,

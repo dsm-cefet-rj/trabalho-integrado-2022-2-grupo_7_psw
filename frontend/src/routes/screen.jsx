@@ -57,12 +57,6 @@ export default function Screen() {
       .catch((error) => console.log(error));
   }, []);
 
-  {
-    userReview.map((e) => {
-      console.log(e.length);
-    });
-  }
-
   return (
     <>
       <Header />
