@@ -41,6 +41,7 @@ class ReviewsController {
       }
     );
   };
+
   static getById = (req, res) => {
     const id = req.params.id;
 

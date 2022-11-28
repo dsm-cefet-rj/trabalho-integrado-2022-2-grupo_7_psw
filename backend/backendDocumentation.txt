@@ -1,9 +1,0 @@
-Este arquivo apresentará informações relevantes do backend para todos os desenvolvedores do projeto:
-
-Para rodar o backend é necessário baixar as dependências da pasta backend, portanto, dentro de backend rode :
-
-npm install
-node server.js
-
-Após a chamada de node server.js, você deverá ver no terminal a mensagem - server running on port 3001
-Caso vc veja a mensagem, tudo deu certo até aqui. O servidor está rodando na especificada porta.

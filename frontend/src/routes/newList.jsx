@@ -1,6 +1,7 @@
 import Header from "../components/header";
 import { gameListState } from "../recoil/atoms/gameList";
 import { useRecoilState } from "recoil";
+import { useState, useEffect } from "react";
 
 export default function NewList() {
   const [myList, setList] = useRecoilState(gameListState);
@@ -14,6 +15,21 @@ export default function NewList() {
       },
     ]);
   };
+
+  const [inputField, setInputField] = useState("");
+  const [gamesList, setGamesList] = useState([]);
+
+  useEffect(() => {
+    fetch(`http://localhost:3001/api/query/${inputField}/0`).then((res) =>
+      res.json().then((data) => {
+        if (data.data.length > 0) {
+          setGamesList(data.data);
+        }
+      })
+    );
+  }, [inputField]);
+
+  console.log(gamesList);
 
   return (
     <>
@@ -49,16 +65,20 @@ export default function NewList() {
           </div>
 
           <div className="input-group mb-3">
-            <select
-              className="form-select"
-              id="inputGroupSelect03"
-              aria-label="Example select with button addon"
-            >
-              <option selected>Escolha um jogo...</option>
-              <option value="1">The Last Of Us</option>
-              <option value="2">Resident Evil 4</option>
-              <option value="3">Pou</option>
-            </select>
+            <input
+              onChange={(e) => {
+                setInputField(e.target.value);
+              }}
+              class="form-control"
+              list="datalistOptions"
+              id="exampleDataList"
+              placeholder="Type to search..."
+            />
+            <datalist id="datalistOptions">
+              {gamesList.map((e) => {
+                return <option value={e.name} />;
+              })}
+            </datalist>
             <button
               class="btn btn-outline-secondary btn-primary btn-outline-light"
               type="button"

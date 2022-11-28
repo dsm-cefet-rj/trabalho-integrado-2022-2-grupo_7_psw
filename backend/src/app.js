@@ -13,6 +13,6 @@ db.once("open", () => {
   console.log("Conexao com banco feita com sucesso");
 });
 
-app.use(express.json()); //express aprende a ler json
+app.use(express.json());
 
 export default app;
