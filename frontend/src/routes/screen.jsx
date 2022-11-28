@@ -55,8 +55,14 @@ export default function Screen() {
       .then((res) => res.json())
       .then((data) => setUserReview(data.data))
       .catch((error) => console.log(error));
-  }, [id]);
-  console.log(userReview);
+  }, []);
+
+  {
+    userReview.map((e) => {
+      console.log(e.length);
+    });
+  }
+
   return (
     <>
       <Header />

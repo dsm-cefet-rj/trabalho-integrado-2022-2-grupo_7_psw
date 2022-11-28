@@ -9,6 +9,7 @@
 cd frontend
 npm install
 ```
+
 <p>2- Baixar as dependências do folder backend</p>
 
 ```bash
@@ -16,7 +17,8 @@ npm install
 cd backend
 npm install
 ```
-<p>3-Criar um arquivo .env nas pasta backend contendo: </p> 
+
+<p>3-Criar um arquivo .env nas pasta backend contendo: </p>
 
 ```ini
 
@@ -24,8 +26,11 @@ USERNAME_MONGO=<MONGO DATABASE USER'S USERNAME HERE>
 PASSWORD_MONGO=<MONGO DATABASE USER'S PASSWORD HERE>
 URL_MONGO=mongodb+srv://<username>:<password>@cluster0.sh88dvn.mongodb.net/?retryWrites=true&w=majority
 PORT=3001
+ACCESS_IGDB_TOKEN = <IGDB ACCESS TOKEN>
+CLIENT_IGDB_ID = <IGDB CLIENT-ID>
 
 ```
+
 <p>4-Inicializar o frontend</p>
 
 ```bash
