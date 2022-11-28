@@ -24,7 +24,7 @@ npm install
 
 USERNAME_MONGO=<MONGO DATABASE USER'S USERNAME HERE>
 PASSWORD_MONGO=<MONGO DATABASE USER'S PASSWORD HERE>
-URL_MONGO=mongodb+srv://<username>:<password>@cluster0.sh88dvn.mongodb.net/?retryWrites=true&w=majority
+MONGO_URL=mongodb+srv://<username>:<password>@cluster0.sh88dvn.mongodb.net/?retryWrites=true&w=majority
 PORT=3001
 ACCESS_IGDB_TOKEN = <IGDB ACCESS TOKEN>
 CLIENT_IGDB_ID = <IGDB CLIENT-ID>
