@@ -24,6 +24,7 @@ import { RecoilRoot } from "recoil";
 import News from "./routes/news";
 import NewsPage from "./routes/newsPage";
 import Search from "./routes/search";
+import EditList from "./routes/editlist";
 
 const rootElement = document.getElementById("root");
 render(
@@ -52,6 +53,7 @@ render(
         <Route path="/news" element={<News />} />
         <Route path="/news-page/:id" element={<NewsPage />} />
         <Route path="search/:name" element={<Search />} />
+        <Route path="lists/edit" element={<EditList />} />
       </Routes>
     </BrowserRouter>
   </RecoilRoot>,
