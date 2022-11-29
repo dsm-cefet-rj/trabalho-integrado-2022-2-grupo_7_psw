@@ -1,11 +1,15 @@
 import Header from "../components/header";
 import UpdatePicture from "../components/updateProfilePicture";
+import { pictureForm } from "../recoil/atoms/pictureForm";
+import { useRecoilValue } from "recoil";
 
 export default function Screen() {
   const avatarDimension = {
     width: 200,
     height: 200,
   };
+
+  const profilePicture = useRecoilValue(pictureForm);
 
   return (
     <>
@@ -39,7 +43,10 @@ export default function Screen() {
                     alt="profile"
                     className="rounded-circle"
                     style={avatarDimension}
-                    src="https://avatars.dicebear.com/api/female/john.svg?background=%2314181c"
+                    src={
+                      profilePicture ||
+                      "https://avatars.dicebear.com/api/female/john.svg?background=%2314181c"
+                    }
                   />
                   <button
                     type="button"

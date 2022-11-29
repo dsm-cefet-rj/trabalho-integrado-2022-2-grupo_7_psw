@@ -1,6 +1,9 @@
 import React from "react";
 import { useState } from "react";
 import { BsGenderFemale, BsGenderMale } from "react-icons/bs";
+import { useRecoilState } from "recoil";
+import { selectedPicture } from "../recoil/atoms/selectedPicture";
+import { pictureForm } from "../recoil/atoms/pictureForm";
 
 export default function UpdatePicture() {
   const avatarDimension = {
@@ -27,7 +30,9 @@ export default function UpdatePicture() {
 
   const [pictureOptions, setPictureOptions] = useState(makeid(12, 4));
   const [gender, setGender] = useState("male");
-  const [selectedPicture, setSelectedPicture] = useState("");
+  const [selectedPicturee, setSelectedPicture] =
+    useRecoilState(selectedPicture);
+  const [myPictureForm, setMyPictureForm] = useRecoilState(pictureForm);
 
   return (
     <>
@@ -97,22 +102,27 @@ export default function UpdatePicture() {
             >
               Next
             </button>
-            {selectedPicture ? (
+            {selectedPicturee ? (
               <>
                 <h4 className="text-dark text-center mt-4">
                   Selected character
                 </h4>
                 <img
-                  src={selectedPicture}
+                  src={selectedPicturee}
                   alt="profile"
                   style={avatarDimension}
-                  className="mx-auto"
+                  className="mx-auto my-2"
                 />
               </>
             ) : null}
 
             <div className="modal-footer d-flex justify-content-start">
-              <button type="button" className="btn-lg btn-primary">
+              <button
+                onClick={() => setMyPictureForm(selectedPicturee)}
+                type="button"
+                className="btn-lg btn-primary"
+                data-bs-dismiss="modal"
+              >
                 Update
               </button>
             </div>
