@@ -1,10 +1,10 @@
-import { selector, selectorFamily, useRecoilValue } from "recoil";
+import { selector, selectorFamily } from "recoil";
 
 export const asyncNewsList = selector ({
     key: "selector",
     get: async () => {
         
-        const response = await fetch('http://localhost:3004/news');
+        const response = await fetch('http://localhost:3001/news');
         if(!response.ok){
             throw new Error(`Error! Status: ${response.status}`)
         }
@@ -13,11 +13,12 @@ export const asyncNewsList = selector ({
         // console.log(jsonEvent);
         return result.map(event => ({
             ...event,
-            id: event.id,
+            id: event._id,
             url: event.url,
             title: event.title,
             subtitle: event.subtitle,
             contents: event.contents,
+            user: event.user,
             timestamp: event.time,
         }))
     }
@@ -26,7 +27,7 @@ export const asyncNewsList = selector ({
 export const highLightsNews = selector ({
     key: "highLights",
     get: async () => {
-        const response = await fetch('http://localhost:3004/news');
+        const response = await fetch('http://localhost:3001/news');
         if(!response.ok){
             throw new Error(`Error! Status: ${response.status}`)
         }
@@ -35,11 +36,12 @@ export const highLightsNews = selector ({
         const result = await response.json();
         const listMap = result.map(event => ({
             ...event,
-            id: event.id,
+            id: event._id,
             url: event.url,
             title: event.title,
             subtitle: event.subtitle,
             contents: event.contents,
+            user: event.user,
             timestamp: event.time,
         }))        
 
@@ -66,7 +68,7 @@ export const getNewsById = selectorFamily({
     key: "getNewsById",
     get: (id) => async () => {
         
-        const response = await fetch(`http://localhost:3004/news/${id}`);
+        const response = await fetch(`http://localhost:3001/news/${id}`);
         if(!response.ok){
             throw new Error(`Error! Status: ${response.status}`)
         }

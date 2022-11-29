@@ -16,12 +16,12 @@ const NewsList = () => {
             <>
             <Link key={e.id} className="flex-container item-card row justify-center" to={`/news-page/${e.id}`}>
               
-                <img src={e.url} className="img-container"></img>
+                <img alt={e.title} src={e.url} className="img-container"></img>
                 <div className="flex-container column content-card">
                   <h4>{e.title}</h4>
                   <p className="self-end">{e.subtitle}</p>
-                </div>
-                       
+                 </div>
+                                        
             </Link>
             </>
           );

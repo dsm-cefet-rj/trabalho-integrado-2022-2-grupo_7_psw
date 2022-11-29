@@ -6,8 +6,8 @@ const NewsContent = () => {
 
     const {id} = useParams();
     const getNews = useGetNewsById(id);
-    const textParts = getNews.contents.parts;
-    
+    const textParts = getNews.contents.text;
+
     const results = [];
     textParts.forEach((part, index) => {
         //todo: criar logica para verificar imagens ou links externos para youtube.
