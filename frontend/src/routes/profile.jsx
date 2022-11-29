@@ -12,9 +12,13 @@ export default function Profile() {
     <>
       <Header />
 
-      <div className="my-5 d-flex flex-column flex-md-row col-8 col-md-8 mx-auto justify-content-around align-items-center gap-3">
+      <div className="my-5 d-flex flex-column flex-md-row col-8 col-md-10 mx-auto justify-content-around align-items-center gap-3">
         <div className="d-flex flex-column flex-md-row gap-3 align-items-center order-1">
-          <img alt="profile" className="rounded-circle" src={image} />
+          <img
+            alt="profile"
+            className="rounded-circle"
+            src="https://avatars.dicebear.com/api/female/john.svg?background=%2314181c"
+          />
           <div className="d-flex flex-column align-items-center align-items-md-start">
             <h1 className="text-light">Username</h1>
             <Link className="position-relative inline-block" to="settings">
@@ -24,7 +28,7 @@ export default function Profile() {
             </Link>
           </div>
         </div>
-        <div className="bg-secondary col-12 col-md-6 my-4 order-2">
+        <div className="bg-secondary col-12 col-md-4 my-4 order-2">
           <p className="text-white-50 text-center my-1 p-1">
             <span className="text-light">Activities</span> (These activities are
             automatically updated)

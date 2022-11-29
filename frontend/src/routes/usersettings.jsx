@@ -1,6 +1,12 @@
 import Header from "../components/header";
+import UpdatePicture from "../components/updateProfilePicture";
 
 export default function Screen() {
+  const avatarDimension = {
+    width: 200,
+    height: 200,
+  };
+
   return (
     <>
       <Header />
@@ -26,10 +32,27 @@ export default function Screen() {
                   placeholder="Change bio"
                 ></input>
               </div>
-              <label for="formFileDisabled" class="form-label mt-3">
-                Select a profile picture:
-              </label>
-              <input class="form-control" type="file" />
+              <div className="d-flex flex-column align-items-start">
+                <div className="my-4 d-flex flex-column justify-content-center">
+                  <h5 className="d-inline-block">Your profile picture:</h5>
+                  <img
+                    alt="profile"
+                    className="rounded-circle"
+                    style={avatarDimension}
+                    src="https://avatars.dicebear.com/api/female/john.svg?background=%2314181c"
+                  />
+                  <button
+                    type="button"
+                    data-bs-toggle="modal"
+                    data-bs-target="#updatePicture"
+                    data-bs-whatever="@mdo"
+                    className="mb-1"
+                  >
+                    Change it
+                  </button>
+                </div>
+              </div>
+
               <br></br>
               <button type="submit" className="btn btn-primary">
                 Submit
@@ -38,6 +61,7 @@ export default function Screen() {
           </div>
         </div>
       </div>
+      <UpdatePicture />
     </>
   );
 }
