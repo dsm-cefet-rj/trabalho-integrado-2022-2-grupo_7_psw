@@ -52,3 +52,11 @@ npm start
 cd backend
 node server.js
 ```
+
+<P>5- Rodar o servidor node em develop mode acionando nodemon</p>
+
+```bash
+
+cd backend
+npm run dev
+```
