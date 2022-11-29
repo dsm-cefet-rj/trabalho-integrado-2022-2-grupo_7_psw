@@ -31,6 +31,12 @@ CLIENT_IGDB_ID = <IGDB CLIENT-ID>
 
 ```
 
+<p> URL para acesso público:
+
+```ini
+MONGO_URL="mongodb+srv://grupo7:grupo777@cluster0.czeowxy.mongodb.net/drpper-node"
+```
+
 <p>4-Inicializar o frontend</p>
 
 ```bash
