@@ -27,6 +27,7 @@ export default function UpdatePicture() {
 
   const [pictureOptions, setPictureOptions] = useState(makeid(12, 4));
   const [gender, setGender] = useState("male");
+  const [selectedPicture, setSelectedPicture] = useState("");
 
   return (
     <>
@@ -75,7 +76,10 @@ export default function UpdatePicture() {
                   {pictureOptions.map((e) => {
                     return (
                       <img
-                        onClick={() => alert()}
+                        id={e}
+                        onClick={() =>
+                          setSelectedPicture(document.getElementById(e).src)
+                        }
                         alt="profile"
                         className="hover-effect profile-picture"
                         style={avatarDimension}
@@ -93,6 +97,20 @@ export default function UpdatePicture() {
             >
               Next
             </button>
+            {selectedPicture ? (
+              <>
+                <h4 className="text-dark text-center mt-4">
+                  Selected character
+                </h4>
+                <img
+                  src={selectedPicture}
+                  alt="profile"
+                  style={avatarDimension}
+                  className="mx-auto"
+                />
+              </>
+            ) : null}
+
             <div className="modal-footer d-flex justify-content-start">
               <button type="button" className="btn-lg btn-primary">
                 Update
