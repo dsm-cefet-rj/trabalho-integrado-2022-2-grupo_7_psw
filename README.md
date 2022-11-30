@@ -22,12 +22,11 @@ npm install
 
 ```ini
 
-USERNAME_MONGO=<MONGO DATABASE USER'S USERNAME HERE>
-PASSWORD_MONGO=<MONGO DATABASE USER'S PASSWORD HERE>
+
 MONGO_URL=mongodb+srv://<username>:<password>@cluster0.sh88dvn.mongodb.net/?retryWrites=true&w=majority
 PORT=3001
-ACCESS_IGDB_TOKEN = <IGDB ACCESS TOKEN>
-CLIENT_IGDB_ID = <IGDB CLIENT-ID>
+ACCESS_IGDB_TOKEN = "Bearer ijh5gvzwv8ntxnvxyyijh39kor858t"
+CLIENT_IGDB_ID = "dnz1zvhqgyb7pwacm85eu171egtel1"
 
 ```
 
