@@ -10,7 +10,7 @@ export const asyncNewsList = selector ({
         }
 
         const result = await response.json();
-        // console.log(jsonEvent);
+        
         return result.map(event => ({
             ...event,
             id: event._id,

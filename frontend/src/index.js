@@ -23,6 +23,7 @@ import MyreviewsUser from "./routes/myreviewsUser";
 import { RecoilRoot } from "recoil";
 import News from "./routes/news";
 import NewsPage from "./routes/newsPage";
+import NewsEditorPage from "./routes/news-editor-page"
 import Search from "./routes/search";
 import EditList from "./routes/editlist";
 
@@ -52,8 +53,10 @@ render(
         <Route path="/lists/new" element={<NewList />} />
         <Route path="/news" element={<News />} />
         <Route path="/news-page/:id" element={<NewsPage />} />
+        <Route path="/news-editor" element={<NewsEditorPage/>}/>
         <Route path="search/:name" element={<Search />} />
         <Route path="lists/edit" element={<EditList />} />
+        
       </Routes>
     </BrowserRouter>
   </RecoilRoot>,
