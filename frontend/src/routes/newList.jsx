@@ -4,19 +4,31 @@ import { useRecoilState } from "recoil";
 import { useState, useEffect } from "react";
 import Select from "react-select";
 import SmallGame from "../components/smallGameImage";
+import { gameCollectionState } from "../recoil/atoms/gameCollection";
 
 export default function NewList() {
   const [myList, setList] = useRecoilState(gameListState);
+  const [collection, setCollection] = useRecoilState(gameCollectionState);
   const createList = (e) => {
     e.preventDefault();
     setList((oldList) => [
       ...myList,
       {
         listName: "New list name",
-        games: [2],
+        games: collection,
       },
     ]);
   };
+
+  const addToCollection = (e) => {
+    e.preventDefault();
+
+    if (selectedOption && !collection.includes(selectedOption.value)) {
+      setCollection((oldCollection) => [...collection, selectedOption.value]);
+    }
+  };
+
+  console.log(collection);
 
   const [inputField, setInputField] = useState("");
   const [gamesList, setGamesList] = useState([]);
@@ -43,7 +55,7 @@ export default function NewList() {
       ),
     };
   });
-
+  console.log(selectedOption);
   return (
     <>
       <Header />
@@ -88,12 +100,16 @@ export default function NewList() {
             />
 
             <button
+              onClick={addToCollection}
               class="btn btn-outline-secondary btn-primary btn-outline-light"
               type="button"
             >
               Adicionar
             </button>
           </div>
+          {collection.map((e) => {
+            return <p>{e}</p>;
+          })}
           <button
             onClick={createList}
             type="submit"
