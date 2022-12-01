@@ -1,5 +1,4 @@
 import Header from "../components/header";
-import image from "../images/userpicture.png";
 import Bio from "../components/bio";
 import { Link } from "react-router-dom";
 import { GiThreeFriends } from "react-icons/gi";

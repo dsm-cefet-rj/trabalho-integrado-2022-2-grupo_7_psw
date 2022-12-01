@@ -26,7 +26,7 @@ export default function Overview() {
             <div className="col-12 my-5 flex-column-reverse justify-content flex-md-row mx-4 mx-md-3">
               <h3>Favorite from User</h3>
             </div>
-            <div className="row">
+            <div className="d-flex flex-wrap gap-3">
               <div className="col-6 col-md-4 col-lg-2 col-xl-2">
                 <Game gameImage="https://static-cdn.jtvnw.net/ttv-boxart/490147_IGDB-272x380.jpg" />
               </div>
@@ -41,9 +41,6 @@ export default function Overview() {
               </div>
               <div className="col-6 col-md-4 col-lg-2 col-xl-2">
                 <Game gameImage="https://assets-prd.ignimgs.com/2021/12/08/portal2-1638924084230.jpg" />
-              </div>
-              <div className="col-6 col-md-4 col-lg-2 col-xl-2">
-                <Game gameImage="https://upload.wikimedia.org/wikipedia/en/1/15/The_Elder_Scrolls_V_Skyrim_cover.png" />
               </div>
             </div>
           </div>

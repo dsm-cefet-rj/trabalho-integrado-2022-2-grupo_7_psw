@@ -1,18 +1,10 @@
 import Header from "../components/header";
 import Review from "../components/review";
 import { Link } from "react-router-dom";
-import { reviewState } from "../recoil/atoms/review";
-import { useRecoilValue } from "recoil";
+
 import { useEffect, useState } from "react";
 
-/* .get("/getreview", ReviewsController.getAllReviews)
-.get("/getsinglereview/:id", ReviewsController.getById)
-.post("/review/new", ReviewsController.createReview)
-.put("/review/update/:id", ReviewsController.updateReview)
-.delete("/user/:id", ReviewsController.deleteReview); */
-
 export default function Reviews() {
-  const review = useRecoilValue(reviewState);
   const [reviewList, setReviewList] = useState([]);
   useEffect(() => {
     fetch(`http://localhost:3001/getreview`)

@@ -2,6 +2,8 @@ import Header from "../components/header";
 import { gameListState } from "../recoil/atoms/gameList";
 import { useRecoilState } from "recoil";
 import { useState, useEffect } from "react";
+import Select from "react-select";
+import SmallGame from "../components/smallGameImage";
 
 export default function NewList() {
   const [myList, setList] = useRecoilState(gameListState);
@@ -18,6 +20,7 @@ export default function NewList() {
 
   const [inputField, setInputField] = useState("");
   const [gamesList, setGamesList] = useState([]);
+  const [selectedOption, setSelectedOption] = useState(null);
 
   useEffect(() => {
     fetch(`http://localhost:3001/api/query/${inputField}/0`).then((res) =>
@@ -29,7 +32,17 @@ export default function NewList() {
     );
   }, [inputField]);
 
-  console.log(gamesList);
+  const options = gamesList.map((e) => {
+    return {
+      value: e.name,
+      label: (
+        <div className="d-flex justify-content-between">
+          <p className="text-dark">{e.name}</p>
+          <SmallGame background_image={e.cover} />
+        </div>
+      ),
+    };
+  });
 
   return (
     <>
@@ -65,20 +78,15 @@ export default function NewList() {
           </div>
 
           <div className="input-group mb-3">
-            <input
-              onChange={(e) => {
-                setInputField(e.target.value);
-              }}
-              class="form-control"
-              list="datalistOptions"
-              id="exampleDataList"
-              placeholder="Type to search..."
+            <Select
+              className="col-10"
+              defaultValue={selectedOption}
+              options={options}
+              onChange={setSelectedOption}
+              onInputChange={setInputField}
+              inputValue={inputField}
             />
-            <datalist id="datalistOptions">
-              {gamesList.map((e) => {
-                return <option value={e.name} />;
-              })}
-            </datalist>
+
             <button
               class="btn btn-outline-secondary btn-primary btn-outline-light"
               type="button"

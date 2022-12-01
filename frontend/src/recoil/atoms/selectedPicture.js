@@ -1,6 +1,6 @@
 import { atom } from "recoil";
 
-export const selectedPicture = atom({
-  key: "selectedPicture",
+export const selectedPictureState = atom({
+  key: "selectedPictureState",
   default: "",
 });

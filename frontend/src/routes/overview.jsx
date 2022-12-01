@@ -41,9 +41,6 @@ export default function Overview() {
               <div className="col-8 col-md-4 col-lg-2 col-xl-2">
                 <Game gameImage="https://assets-prd.ignimgs.com/2021/12/08/portal2-1638924084230.jpg" />
               </div>
-              <div className="col-8 col-md-4 col-lg-2 col-xl-2">
-                <Game gameImage="https://upload.wikimedia.org/wikipedia/en/1/15/The_Elder_Scrolls_V_Skyrim_cover.png" />
-              </div>
             </div>
           </div>
           <div className="col-1"></div>

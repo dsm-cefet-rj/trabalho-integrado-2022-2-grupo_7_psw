@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { BsGenderFemale, BsGenderMale } from "react-icons/bs";
 import { useRecoilState } from "recoil";
-import { selectedPicture } from "../recoil/atoms/selectedPicture";
+import { selectedPictureState } from "../recoil/atoms/selectedPicture";
 import { pictureForm } from "../recoil/atoms/pictureForm";
 
 export default function UpdatePicture() {
@@ -30,8 +30,8 @@ export default function UpdatePicture() {
 
   const [pictureOptions, setPictureOptions] = useState(makeid(12, 4));
   const [gender, setGender] = useState("male");
-  const [selectedPicturee, setSelectedPicture] =
-    useRecoilState(selectedPicture);
+  const [selectedPicture, setSelectedPicture] =
+    useRecoilState(selectedPictureState);
   const [myPictureForm, setMyPictureForm] = useRecoilState(pictureForm);
 
   return (
@@ -102,13 +102,13 @@ export default function UpdatePicture() {
             >
               Next
             </button>
-            {selectedPicturee ? (
+            {selectedPicture ? (
               <>
                 <h4 className="text-dark text-center mt-4">
                   Selected character
                 </h4>
                 <img
-                  src={selectedPicturee}
+                  src={selectedPicture}
                   alt="profile"
                   style={avatarDimension}
                   className="mx-auto my-2"
@@ -118,7 +118,7 @@ export default function UpdatePicture() {
 
             <div className="modal-footer d-flex justify-content-start">
               <button
-                onClick={() => setMyPictureForm(selectedPicturee)}
+                onClick={() => setMyPictureForm(selectedPicture)}
                 type="button"
                 className="btn-lg btn-primary"
                 data-bs-dismiss="modal"
