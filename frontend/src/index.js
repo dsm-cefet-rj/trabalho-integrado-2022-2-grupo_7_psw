@@ -23,7 +23,7 @@ import MyreviewsUser from "./routes/myreviewsUser";
 import { RecoilRoot } from "recoil";
 import News from "./routes/news";
 import NewsPage from "./routes/newsPage";
-import NewsEditorPage from "./routes/news-editor-page"
+import NewsEditorPage from "./routes/newsEditorPage"
 import Search from "./routes/search";
 import EditList from "./routes/editlist";
 

@@ -13,7 +13,6 @@ const NewsContent = () => {
     const text = [];
     console.log(getNews)
     textParts.forEach((part, index) => {
-        //todo: criar logica para verificar imagens ou links externos para youtube.
         text.push(
             <p key={index}>{part}</p> 
         )

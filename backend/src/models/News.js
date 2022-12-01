@@ -5,9 +5,7 @@ const newsSchema = new mongoose.Schema({
   url: { type: String, required: true },
   title: {type: String, required: true},
   subtitle: {type: String},
-  contents: {text: [{type: String}],
-            images: [{type: String}],
-            videos: [{type: String}]},
+  contents: {type: mongoose.Schema.Types.Mixed}, //entra qualquer objeto
   user: { type: mongoose.Schema.Types.ObjectId, ref: "users", required: true },
   time: { type: Number, required: true}
 });
