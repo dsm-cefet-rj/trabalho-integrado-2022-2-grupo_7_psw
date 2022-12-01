@@ -25,6 +25,16 @@
 
 }
 
+.footer-container{
+    color: #ece7e7;
+    justify-content: space-between;
+    margin-top: 5px;
+}
+
+.space-between{
+    justify-content: space-between;
+}
+
 @media (max-width: 608px) {
 
     .main-container{

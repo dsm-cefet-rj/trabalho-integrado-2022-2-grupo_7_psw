@@ -14,7 +14,7 @@ class NewsController {
 
     news
       .findById(id)
-      .populate("user", "nome")
+      .populate("user", "name")
       .exec((err, news) => {
         if (err) {
           res.status(400).send({
