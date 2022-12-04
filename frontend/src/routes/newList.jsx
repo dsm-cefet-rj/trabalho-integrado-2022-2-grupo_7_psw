@@ -23,12 +23,15 @@ export default function NewList() {
   const addToCollection = (e) => {
     e.preventDefault();
 
-    if (selectedOption && !collection.includes(selectedOption.value)) {
-      setCollection((oldCollection) => [...collection, selectedOption.value]);
+    if (selectedOption && !collection.includes(selectedOption.value[1])) {
+      setCollection((oldCollection) => [
+        ...collection,
+        selectedOption.value[1],
+      ]);
     }
   };
 
-  console.log(collection);
+  console.log(myList);
 
   const [inputField, setInputField] = useState("");
   const [gamesList, setGamesList] = useState([]);
@@ -46,7 +49,7 @@ export default function NewList() {
 
   const options = gamesList.map((e) => {
     return {
-      value: e.name,
+      value: [e.name, e.id],
       label: (
         <div className="d-flex justify-content-between">
           <p className="text-dark">{e.name}</p>
