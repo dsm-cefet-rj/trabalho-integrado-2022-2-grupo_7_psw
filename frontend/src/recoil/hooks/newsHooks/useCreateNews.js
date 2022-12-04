@@ -1,12 +1,7 @@
-import { useRecoilState } from "recoil"
-import { newsContentState, newsSubtitleState, newsTitleState, newsUrlState } from "../../atoms/newsState";
 
-const useCreateNews = () => {
 
-    const {newsTitle} = useRecoilState(newsTitleState);
-    const {newsSubtitle} = useRecoilState(newsSubtitleState);
-    const {newsContent} = useRecoilState(newsContentState);
-    const {newsUrl} = useRecoilState(newsUrlState)
+const useCreateNews = (newsTitle, newsSubtitle, newsContent, newsUrl) => {
+    
     const requestOptions = {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
@@ -19,7 +14,10 @@ const useCreateNews = () => {
                             })
     }
     
-    fetch('http://localhost:3001/news', requestOptions)        
+    fetch('http://localhost:3001/news', requestOptions).then(response => {
+        console.log(response);
+        localStorage.clear();
+    })        
     
   
 }

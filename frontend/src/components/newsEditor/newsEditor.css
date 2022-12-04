@@ -47,13 +47,14 @@ input[type="title"]{
  }
 
  .wrapper-class {
-  padding: 1rem;
-  border: 1px solid #ccc;
+  padding: 8px;
+  /* border: 1px solid #ccc; */
 }
 .editor-class {
-  background-color:lightgray;
+  background-color:rgb(45, 45, 45);
   padding: 1rem;
-  border: 1px solid #ccc;
+  border: 1px solid rgb(152, 152, 152);
+  min-height: 600px;
 }
 .toolbar-class {
   border: 1px solid #ccc;

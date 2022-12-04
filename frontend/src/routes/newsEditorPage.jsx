@@ -4,7 +4,9 @@ import Header from "../components/header";
 import NewsEditor from "../components/newsEditor/newsEditor";
 import '../routes/newsEditorPage.css'
 
-export default function newsEditorPage(){
+export default function NewsEditorPage(){
+
+
     return (
         <>
         <Header/>
@@ -13,6 +15,7 @@ export default function newsEditorPage(){
                     <NewsEditor/>
                 </div>
             </Suspense>
+           
         <div>
             <Footer/>
         </div>

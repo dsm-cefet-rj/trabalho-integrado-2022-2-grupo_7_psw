@@ -5,6 +5,7 @@ import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import './newsEditor.css';
 import {useUpdateContent, useUpdateSubtitle, useUpdateTitle, useUpdateURL} from '../../recoil/hooks/newsHooks/useUpdateNews';
 import { useGetContent, useGetSubtitle, useGetTitle, useGetUrl } from '../../recoil/hooks/newsHooks/useGetNewsElements';
+import useCreateNews from '../../recoil/hooks/newsHooks/useCreateNews';
 const NewsEditor = () => {
 
     const currentTitle = useGetTitle();
@@ -18,9 +19,12 @@ const NewsEditor = () => {
     
     const currentContent = useGetContent();
     const updateContent = useUpdateContent();
-    
-    let _contentState = ContentState.createFromText("exemplo");    
-    const raw = convertToRaw(_contentState)
+
+    const HandleClick = () => {        
+        useCreateNews(currentTitle, currentSubtitle, currentContent, currentUrl);
+    }
+   
+
 
   return (
     <>  
@@ -40,10 +44,9 @@ const NewsEditor = () => {
                 toolbarClassName="toolbar-class"
             />
         </div>
-
-        <div>
-            <button>Publish it!</button>
-        </div>
+        
+        <button onClick={HandleClick}>Publish it!</button>
+       
     </>
   )
 }
