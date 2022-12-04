@@ -16,7 +16,7 @@ export default function News() {
                 
         </div>
         <div className="flex-container column">
-          <Link className="button" style={{color: "aliceblue", textAlign: "center", marginBottom: "10px"}} to="/news-editor">           
+          <Link className="button" style={{color: "aliceblue", textAlign: "center", marginBottom: "10px"}} to="/news-editor/create">           
               Create new article           
           </Link>   
           <Suspense fallback={<h2>loading...</h2>}>

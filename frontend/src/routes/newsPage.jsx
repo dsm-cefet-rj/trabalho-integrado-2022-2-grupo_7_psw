@@ -5,8 +5,6 @@ import Footer from "../components/footer";
 import NewsContent from "../components/newsContent/newsContent";
 
 
-import useGetNewsById from "../recoil/hooks/useGetNewsById";
-import { useEffect } from "react";
 
 export default function NewsPage() {
 

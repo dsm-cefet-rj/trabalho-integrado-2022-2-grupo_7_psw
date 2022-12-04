@@ -1,11 +1,10 @@
 import React, { useEffect } from "react";
 import "./imageSlider.css";
-import useNewsList from "../../recoil/hooks/useNewsList";
-import useNewsCurrentIndex from "../../recoil/hooks/useNewsCurrentIndex";
-import useSubtitleState from "../../recoil/hooks/useSubtitleState";
-import useUpdateNewsIndex from "../../recoil/hooks/useUpdateNewsIndex";
-import useToggleSubtitleState from "../../recoil/hooks/useToggleSubtitleState";
-import useHighlightNews from "../../recoil/hooks/useHighlightNews";
+import useNewsCurrentIndex from "../../recoil/hooks/newsHooks/useNewsCurrentIndex";
+import useSubtitleBooleanState from "../../recoil/hooks/newsHooks/useSubtitleBooleanState";
+import useUpdateNewsIndex from "../../recoil/hooks/newsHooks/useUpdateNewsIndex";
+import useToggleSubtitleState from "../../recoil/hooks/newsHooks/useToggleSubtitleState";
+import useHighlightNews from "../../recoil/hooks/newsHooks/useHighlightNews";
 import { Link } from "react-router-dom";
 
 
@@ -15,7 +14,7 @@ const ImageSlider = () => {
 
     const slides = useHighlightNews();
     const currentIndex = useNewsCurrentIndex();
-    const subtitleState = useSubtitleState();
+    const subtitleState = useSubtitleBooleanState();
     
     const updateIndex = useUpdateNewsIndex();
     const toggleSubtitleState = useToggleSubtitleState();

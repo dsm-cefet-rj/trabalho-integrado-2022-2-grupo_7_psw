@@ -1,5 +1,5 @@
 import { useRecoilValue } from "recoil"
-import { getNewsById } from "../selectors/selector";
+import { getNewsById } from "../../selectors/selector";
 
 const useGetNewsById = (id) => {  
 

@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import useNewsList from "../../recoil/hooks/useNewsList";
+import useNewsList from "../../recoil/hooks/newsHooks/useNewsList";
 import "./newsList.css";
 
 

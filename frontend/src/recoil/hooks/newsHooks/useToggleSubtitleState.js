@@ -1,5 +1,5 @@
 import { useRecoilState } from "recoil"
-import { slideInfoState } from "../atoms/slideState"
+import { slideInfoState } from "../../atoms/slideState"
 
 const useToggleSubtitleState = () => {
     const [currentToggle, setCurrentInfoState] = useRecoilState(slideInfoState);

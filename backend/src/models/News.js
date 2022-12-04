@@ -2,12 +2,12 @@ import mongoose from "mongoose";
 
 const newsSchema = new mongoose.Schema({
   id: { type: String },
-  url: { type: String, required: true },
-  title: {type: String, required: true},
+  url: { type: String}, //url de imagem
+  title: {type: String},
   subtitle: {type: String},
   contents: {type: mongoose.Schema.Types.Mixed}, //entra qualquer objeto
-  user: { type: mongoose.Schema.Types.ObjectId, ref: "users", required: true },
-  time: { type: Number, required: true}
+  user: { type: mongoose.Schema.Types.ObjectId, ref: "users"},
+  time: { type: Number}
 });
 
 const news = mongoose.model("news", newsSchema);

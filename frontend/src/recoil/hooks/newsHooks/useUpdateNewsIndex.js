@@ -1,5 +1,5 @@
 import { useRecoilState } from "recoil"
-import { slideCounterState } from "../atoms/slideState";
+import { slideCounterState } from "../../atoms/slideState";
 
 const useUpdateNewsIndex = () => {
     const [, setCurrentIndex] = useRecoilState(slideCounterState);    

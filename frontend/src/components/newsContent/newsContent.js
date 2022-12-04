@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import useGetNewsById from "../../recoil/hooks/useGetNewsById";
+import useGetNewsById from "../../recoil/hooks/newsHooks/useGetNewsById";
 import { timeToDate } from "../../shared/dateTools";
 import "./newsContent.css"
 
@@ -11,7 +11,6 @@ const NewsContent = () => {
     const date = new Date(getNews.time * 1000);
     const formatedDate = timeToDate(date, "BR")
     const text = [];
-    console.log(getNews)
     textParts.forEach((part, index) => {
         text.push(
             <p key={index}>{part}</p> 

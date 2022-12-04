@@ -53,7 +53,7 @@ render(
         <Route path="/lists/new" element={<NewList />} />
         <Route path="/news" element={<News />} />
         <Route path="/news-page/:id" element={<NewsPage />} />
-        <Route path="/news-editor" element={<NewsEditorPage/>}/>
+        <Route path="/news-editor/create" element={<NewsEditorPage/>}/>
         <Route path="search/:name" element={<Search />} />
         <Route path="lists/edit" element={<EditList />} />
         
