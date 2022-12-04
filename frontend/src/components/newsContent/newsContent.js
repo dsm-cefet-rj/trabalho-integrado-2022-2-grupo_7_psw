@@ -7,15 +7,29 @@ const NewsContent = () => {
 
     const {id} = useParams();
     const getNews = useGetNewsById(id);
-    const textParts = getNews.contents.text;
+    const textParts = getNews.contents.blocks;
+    const images = getNews.contents.entityMap
     const date = new Date(getNews.time * 1000);
     const formatedDate = timeToDate(date, "BR")
     const text = [];
+    let image = null;
     textParts.forEach((part, index) => {
+
         text.push(
-            <p key={index}>{part}</p> 
+            <p key={index}>{part.text}</p>
         )
+
+        images[index] != undefined? text.push(
+            <div className="image-area">
+                <img src={images[index].data.src} style={{width:"100%"}}/>
+            </div>
+        ) : image = null;
+
+
     })
+    console.log(images[0].data.src)
+    
+    
 
     return (
         <>
