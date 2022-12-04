@@ -8,6 +8,6 @@ router
   .get("/getsinglereview/:id", ReviewsController.getById)
   .post("/review/new", ReviewsController.createReview)
   .put("/review/update/:id", ReviewsController.updateReview)
-  .delete("/user/:id", ReviewsController.deleteReview);
+  .delete("/review/:id", ReviewsController.deleteReview);
 
 export default router;
