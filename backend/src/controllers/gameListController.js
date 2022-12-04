@@ -1,4 +1,4 @@
-import gameLists from "../models/gameLists";
+import gameLists from "../models/gameLists.js";
 
 class gameListController {
   static getAllGameLists = (req, res) => {
@@ -9,15 +9,15 @@ class gameListController {
     });
   };
   static createGameList = (req, res) => {
-    let newReview = new gameLists(req.body);
+    let newList = new gameLists(req.body);
 
-    newReview.save((err) => {
+    newList.save((err) => {
       if (err) {
         res
           .status(500)
           .send({ messege: `${err.messege} - falha ao criar gameList` });
       } else {
-        res.status(201).send(newReview.toJSON());
+        res.status(201).send(newList.toJSON());
       }
     });
   };

@@ -1,6 +1,5 @@
 import express from "express";
 import gameListController from "../controllers/gameListController.js";
-
 const router = express.Router();
 
 router
