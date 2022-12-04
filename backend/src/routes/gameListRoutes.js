@@ -4,10 +4,10 @@ import gameListController from "../controllers/gameListController.js";
 const router = express.Router();
 
 router
-  .get("/getreview", gameListController.getAllReviews)
-  .get("/getsinglereview/:id", gameListController.getById)
-  .post("/review/new", gameListController.createReview)
-  .put("/review/update/:id", gameListController.updateReview)
-  .delete("/review/:id", gameListController.deleteReview);
+  .get("/getlist", gameListController.getAllGameLists)
+  .get("/getsinglelist/:id", gameListController.getById)
+  .post("/list/new", gameListController.createGameList)
+  .put("/list/update/:id", gameListController.updateGameList)
+  .delete("/list/:id", gameListController.deleteGameList);
 
 export default router;

@@ -5,6 +5,8 @@ import { useState, useEffect } from "react";
 import Select from "react-select";
 import SmallGame from "../components/smallGameImage";
 import { gameCollectionState } from "../recoil/atoms/gameCollection";
+import GameListElement from "../components/gameListElement";
+import { CiCircleRemove } from "react-icons/ci";
 
 export default function NewList() {
   const [myList, setList] = useRecoilState(gameListState);
@@ -58,7 +60,7 @@ export default function NewList() {
       ),
     };
   });
-  console.log(selectedOption);
+
   return (
     <>
       <Header />
@@ -110,8 +112,23 @@ export default function NewList() {
               Adicionar
             </button>
           </div>
-          {collection.map((e) => {
+          {/*          {collection.map((e) => {
             return <p>{e}</p>;
+          })} */}
+          {collection.map((e) => {
+            return (
+              <div className="d-flex align-items-center gap-3 mb-5">
+                <GameListElement game_id={e} />
+                <CiCircleRemove
+                  onClick={(event) => {
+                    event.preventDefault();
+                    setCollection(collection.filter((a) => e !== a));
+                  }}
+                  size={30}
+                  color="red"
+                />
+              </div>
+            );
           })}
           <button
             onClick={createList}
