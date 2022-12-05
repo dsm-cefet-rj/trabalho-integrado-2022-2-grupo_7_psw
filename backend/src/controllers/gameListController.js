@@ -45,7 +45,7 @@ class gameListController {
   static getById = (req, res) => {
     const id = req.params.id;
 
-    gameLists.find({ game_id: id }, (err, gameList) => {
+    gameLists.findById(id, (err, gameList) => {
       if (err) {
         res.status(400).json({
           data: "Error",

@@ -57,7 +57,7 @@ render(
         <Route path="/news-editor/create" element={<NewsEditorPage />} />
         <Route path="search/:name" element={<Search />} />
         <Route path="lists/edit" element={<EditList />} />
-        <Route path="list" element={<IndividualList />} />
+        <Route path="list/:id" element={<IndividualList />} />
       </Routes>
     </BrowserRouter>
   </RecoilRoot>,
