@@ -109,6 +109,7 @@ export default function NewList() {
               className="form-control"
               id="exampleInputEmail1"
               aria-describedby="emailHelp"
+              required
             />
             <div id="emailHelp" className="form-text">
               Be creative naming it.
@@ -120,6 +121,7 @@ export default function NewList() {
             </label>
             <div className="input-group">
               <textarea
+                required
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
                 className="form-control"
@@ -130,6 +132,7 @@ export default function NewList() {
 
           <div className="input-group mb-3">
             <Select
+              required
               className="col-10"
               defaultValue={selectedOption}
               options={options}

@@ -23,9 +23,10 @@ import MyreviewsUser from "./routes/myreviewsUser";
 import { RecoilRoot } from "recoil";
 import News from "./routes/news";
 import NewsPage from "./routes/newsPage";
-import NewsEditorPage from "./routes/newsEditorPage"
+import NewsEditorPage from "./routes/newsEditorPage";
 import Search from "./routes/search";
 import EditList from "./routes/editlist";
+import IndividualList from "./routes/individualListPage";
 
 const rootElement = document.getElementById("root");
 render(
@@ -53,10 +54,10 @@ render(
         <Route path="/lists/new" element={<NewList />} />
         <Route path="/news" element={<News />} />
         <Route path="/news-page/:id" element={<NewsPage />} />
-        <Route path="/news-editor/create" element={<NewsEditorPage/>}/>
+        <Route path="/news-editor/create" element={<NewsEditorPage />} />
         <Route path="search/:name" element={<Search />} />
         <Route path="lists/edit" element={<EditList />} />
-        
+        <Route path="list" element={<IndividualList />} />
       </Routes>
     </BrowserRouter>
   </RecoilRoot>,

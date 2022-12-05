@@ -6,20 +6,22 @@ export default function list({ listName }) {
   return (
     <div className="my-5 mx-3">
       <div className="d-flex gap-3 flex-column flex-md-row">
-        <div className="d-flex">
-          <img
-            alt="game"
-            src="https://images.igdb.com/igdb/image/upload/t_cover_small/nocover.png"
-          />
-          <img
-            alt="game"
-            src="https://images.igdb.com/igdb/image/upload/t_cover_small/nocover.png"
-          />
-          <img
-            alt="game"
-            src="https://images.igdb.com/igdb/image/upload/t_cover_small/nocover.png"
-          />
-        </div>
+        <Link to="/list">
+          <div className="d-flex">
+            <img
+              alt="game"
+              src="https://images.igdb.com/igdb/image/upload/t_cover_small/nocover.png"
+            />
+            <img
+              alt="game"
+              src="https://images.igdb.com/igdb/image/upload/t_cover_small/nocover.png"
+            />
+            <img
+              alt="game"
+              src="https://images.igdb.com/igdb/image/upload/t_cover_small/nocover.png"
+            />
+          </div>
+        </Link>
 
         <div className="mx-2">
           <h2 className="text-light fs-3">{listName}</h2>
