@@ -147,7 +147,7 @@ export default function App() {
             <div className="col-2" />
           </div>
 
-          <div className="d-flex flex-md-row flex-column-reverse mt-5">
+          <div className="d-flex flex-row mt-md-5">
             <div className="col-6">
               <BsShareFill size={35} />
               <h3 className="benefits m-3">
@@ -155,11 +155,11 @@ export default function App() {
               </h3>
             </div>
             <div className="col-6">
-              <VscPreview size={40} />
+              <VscPreview size={35} />
               <h3 className="benefits m-3">Review the games that you love</h3>
             </div>
           </div>
-          <div className="d-flex flex-md-row flex-column-reverse mt-5">
+          <div className="d-flex flex-md-row mt-md-5">
             <div className="col-6">
               <CgGames size={35} />
               <h3 className="benefits m-3">

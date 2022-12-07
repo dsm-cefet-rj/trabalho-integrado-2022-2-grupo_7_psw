@@ -1,4 +1,4 @@
-import { React, useEffect } from 'react';
+import { React, useEffect, useState } from 'react';
 import { Editor } from 'react-draft-wysiwyg';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import './newsEditor.css';
@@ -14,9 +14,8 @@ const NewsEditor = () => {
     let {id} = useParams();
     var getNews  = useGetNewsById(id);
     let haveId = false;
+    const [currentTitle, setCurrentTitle] = useState(getNews.title); 
 
-
-    let currentTitle = useGetTitle();
     const updateTitle = useUpdateTitle();
     
     let currentSubtitle = useGetSubtitle();
@@ -31,16 +30,15 @@ const NewsEditor = () => {
     function loadData()  {
         
         if(getNews !== undefined){      
-            currentTitle = getNews.title;
+            
             currentSubtitle = getNews.subtitle;
             currentImageUrl = getNews.url;
             currentContent = JSON.parse(getNews.contents);
+            console.log(currentTitle);
             haveId = true;            
         }
         console.log(haveId)
     }
-
-   
 
     useEffect(() => {
         //Carrega apenas uma vez durante inicialização, mas o problema é que
@@ -67,7 +65,7 @@ const NewsEditor = () => {
     <>  
         
         <div className="title-area">                    
-            <input type="title" placeholder="Title" value={currentTitle} onChange={ev => updateTitle(ev.target.value)}/>
+            <input type="title" placeholder="Title" value={currentTitle} onChange={ev => setCurrentTitle(ev.target.value)}/>
             <input type="text" placeholder="Subtitle" value={currentSubtitle} onChange={ev => updateSubtitle(ev.target.value)} />
             <input type="text" placeholder="Main image URL" value={currentImageUrl} onChange={ev => updateUrl(ev.target.value)}/>            
         </div>

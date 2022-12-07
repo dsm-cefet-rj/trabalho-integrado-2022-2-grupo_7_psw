@@ -4,9 +4,13 @@ import {
   ratingStateAtom,
   hoverStateAtom,
 } from "../recoil/atoms/screenLucasState";
+import { AiFillHeart } from "react-icons/ai";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { reviewState } from "../recoil/atoms/review";
+
+import cn from "classnames";
+
 // import useRatingState from "../recoil/hooks/useRatingState";
 // import useHoverState from "../recoil/hooks/useHoverState";
 
@@ -20,6 +24,8 @@ export default function ReviewForm() {
   };
   const game_id = useParams().id;
   const [review, setReview] = useRecoilState(reviewState);
+
+  const [favorite, setFavorite] = useState(null);
 
   let HandleSubmit = async (e) => {
     e.preventDefault();
@@ -78,34 +84,78 @@ export default function ReviewForm() {
             </div>
             <div className="modal-body">
               <form onSubmit={HandleSubmit}>
-                <div className="stars">
-                  {[...Array(5)].map((star, i) => {
-                    const ratingValue = i + 1;
 
-                    return (
-                      <label>
-                        <input
-                          type="radio"
-                          name="rating"
-                          value={ratingValue}
-                          onClick={() => setRating(ratingValue)}
-                        />
-                        <BsDropletFill
-                          className="star"
-                          color={
-                            ratingValue <= (hover || rating)
-                              ? "0077b6"
-                              : "e4e5e9"
-                          }
-                          size={50}
-                          onMouseEnter={() => setHover(ratingValue)}
-                          onMouseLeave={() => setHover(null)}
-                        />
-                        ;
+
+                <div class="container-fluid p-0">
+
+                  <div clasName="row d-flex">
+
+                    <div className="col-8">
+                      <label
+                        for="message-text"
+                        className="col-form-label text-dark"
+                      >
+                        Rating:
                       </label>
-                    );
-                  })}
+                      <div className="stars">
+                        {[...Array(5)].map((star, i) => {
+                          const ratingValue = i + 1;
+
+                          return (
+                            <label>
+                              <input
+                                type="radio"
+                                name="rating"
+                                value={ratingValue}
+                                onClick={() => setRating(ratingValue)}
+                              />
+                              <BsDropletFill
+                                className="star"
+                                color={
+                                  ratingValue <= (hover || rating)
+                                    ? "0077b6"
+                                    : "e4e5e9"
+                                }
+                                size={50}
+                                onMouseEnter={() => setHover(ratingValue)}
+                                onMouseLeave={() => setHover(null)}
+                              />
+                              ;
+                            </label>
+                          );
+                        })}
+                      </div>
+                    </div>
+                    <div className="col-4 ms-auto d-flex justify-content-center">
+                      
+                      <div className="favorite">
+                        <button
+                          onClick={() => setFavorite(!favorite)}
+                          //onAnimationEnd={() => setClicked(false)}
+                          className={cn("like-button-wrapper", {
+                            favorite,
+                          })}
+                        >
+                          <div className="like-button">
+                            <AiFillHeart />
+                            <span>Like</span>
+                          </div>
+                        </button>
+                        );
+
+
+                        <label className="text-dark">
+                          <AiFillHeart
+                            size={50}
+                          />
+                        </label>
+                      </div>
+
+                    </div>
+                  </div>
                 </div>
+
+
                 <div className="mb-3">
                   <label
                     for="message-text"
@@ -137,22 +187,31 @@ export default function ReviewForm() {
                       aria-labelledby="dropdownMenuButton1"
                     >
                       <li>
-                        <p className="dropdown-item" href="#">
+                        <p className="dropdown-item" href="#" value="Playing">
                           Playing
                         </p>
                       </li>
 
                       <li>
-                        <p className="dropdown-item" href="#">
+                        <p className="dropdown-item" href="#" value="Finished">
                           Finished
                         </p>
                       </li>
 
+
                       <li>
-                        <p classNameName="dropdown-item" href="#">
+                        <p className="dropdown-item" href="#" value="Paused">
+                          Paused
+                        </p>
+                      </li>
+
+                      <li>
+                        <p className="dropdown-item" href="#" value="All achievements">
                           All achievements
                         </p>
                       </li>
+
+
                     </ul>
                   </div>
                 </div>
@@ -171,13 +230,6 @@ export default function ReviewForm() {
               {message ? (
                 <p className="text-success mx-auto">{message}</p>
               ) : null}
-              <button
-                type="button"
-                className="btn btn-secondary"
-                data-bs-dismiss="modal"
-              >
-                Close
-              </button>
             </div>
           </div>
         </div>

@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 function games({ gameImage }) {
   const imgStyle = {
-    width: 192,
+    width: 200,
     height: 288,
   };
 
