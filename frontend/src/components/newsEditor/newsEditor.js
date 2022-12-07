@@ -1,27 +1,64 @@
-import React, { useState } from 'react';
-import { ContentState, convertToRaw } from 'draft-js';
+import { React, useEffect } from 'react';
 import { Editor } from 'react-draft-wysiwyg';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import './newsEditor.css';
-import {useUpdateContent, useUpdateSubtitle, useUpdateTitle, useUpdateURL} from '../../recoil/hooks/newsHooks/useUpdateNews';
+import {useUpdateContent, useUpdateSubtitle, useUpdateTitle, useUpdateURL} from '../../recoil/hooks/newsHooks/useUpdateNewsState';
 import { useGetContent, useGetSubtitle, useGetTitle, useGetUrl } from '../../recoil/hooks/newsHooks/useGetNewsElements';
 import useCreateNews from '../../recoil/hooks/newsHooks/useCreateNews';
-const NewsEditor = () => {
+import { useParams } from 'react-router-dom';
+import useGetNewsById from '../../recoil/hooks/newsHooks/useGetNewsById';
+import useUpdateNews from '../../recoil/hooks/newsHooks/useUpdateNews';
 
-    const currentTitle = useGetTitle();
+const NewsEditor = () => {
+    
+    let {id} = useParams();
+    var getNews  = useGetNewsById(id);
+    let haveId = false;
+
+
+    let currentTitle = useGetTitle();
     const updateTitle = useUpdateTitle();
     
-    const currentSubtitle = useGetSubtitle();
+    let currentSubtitle = useGetSubtitle();
     const updateSubtitle = useUpdateSubtitle();
     
-    const currentUrl = useGetUrl();
+    let currentImageUrl = useGetUrl();
     const updateUrl = useUpdateURL();
     
-    const currentContent = useGetContent();
+    let currentContent = useGetContent();
     const updateContent = useUpdateContent();
 
-    const HandleClick = () => {        
-        useCreateNews(currentTitle, currentSubtitle, currentContent, currentUrl);
+    function loadData()  {
+        
+        if(getNews !== undefined){      
+            currentTitle = getNews.title;
+            currentSubtitle = getNews.subtitle;
+            currentImageUrl = getNews.url;
+            currentContent = JSON.parse(getNews.contents);
+            haveId = true;            
+        }
+        console.log(haveId)
+    }
+
+   
+
+    useEffect(() => {
+        //Carrega apenas uma vez durante inicialização, mas o problema é que
+        //não altera nenhum atributo solicitado. 
+        loadData()
+    }, [] )
+
+
+    const HandleSaveClick = () => {        
+        useCreateNews(currentTitle, currentSubtitle, currentContent, currentImageUrl);
+        currentTitle = null;
+        currentSubtitle = null;
+        currentImageUrl = null;
+        currentContent = null;
+    }
+
+    const HandleUpdateClick = () => {
+        useUpdateNews(id, currentTitle, currentSubtitle, currentContent, currentImageUrl)
     }
    
 
@@ -32,7 +69,7 @@ const NewsEditor = () => {
         <div className="title-area">                    
             <input type="title" placeholder="Title" value={currentTitle} onChange={ev => updateTitle(ev.target.value)}/>
             <input type="text" placeholder="Subtitle" value={currentSubtitle} onChange={ev => updateSubtitle(ev.target.value)} />
-            <input type="text" placeholder="Main image URL" value={currentUrl} onChange={ev => updateUrl(ev.target.value)}/>            
+            <input type="text" placeholder="Main image URL" value={currentImageUrl} onChange={ev => updateUrl(ev.target.value)}/>            
         </div>
 
         <div className="App">        
@@ -44,8 +81,15 @@ const NewsEditor = () => {
                 toolbarClassName="toolbar-class"
             />
         </div>
-        
-        <button onClick={HandleClick}>Publish it!</button>
+        <div>
+            {
+                haveId? (
+                    <button key={"opt2"} className="button-editor" onClick={HandleUpdateClick}>Edit it!</button>
+                    ) : (
+                    <button key={"opt1"} className="button-editor" onClick={HandleSaveClick}>Publish it!</button>
+                )
+            }
+        </div>
        
     </>
   )

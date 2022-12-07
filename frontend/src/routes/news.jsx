@@ -7,24 +7,24 @@ import "./news.css";
 import { Link } from "react-router-dom";
 
 export default function News() {
+  
   return (
     <>
       <Header />
-
       <div style={{marginTop: "50px"}}>
         <div >
                 
         </div>
         <div className="flex-container column">
-          <Link className="button" style={{color: "aliceblue", textAlign: "center", marginBottom: "10px"}} to="/news-editor/create">           
-              Create new article           
-          </Link>   
+          <Link className="button" onClick={localStorage.clear()} style={{color: "aliceblue", textAlign: "center", marginBottom: "10px"}} to="/news-editor/create">           
+              New article
+          </Link>
           <Suspense fallback={<h2>loading...</h2>}>
             <ImageSlider />
           </Suspense>
         </div>
         <div className="margin-top">
-          <Suspense>
+          <Suspense fallback={<h2>loading...</h2>}>
             <NewsList />
           </Suspense>
         </div>

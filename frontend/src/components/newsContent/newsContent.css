@@ -35,6 +35,21 @@
     justify-content: space-between;
 }
 
+.edit-button{
+    border: #ccc solid 1px ;
+    background-color: #212529;
+    width: 70px;
+    font-size: 20px;
+    text-align: center;
+    margin-top: 20px;
+    color: #ccc;
+    transition: all 0.2s;
+}
+
+.edit-button:hover{
+    color: #fff;
+}
+
 @media (max-width: 608px) {
 
     .main-container{

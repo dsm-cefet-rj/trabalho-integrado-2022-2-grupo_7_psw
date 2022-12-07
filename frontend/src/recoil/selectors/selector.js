@@ -70,12 +70,18 @@ export const getNewsById = selectorFamily({
         
         const response = await fetch(`http://localhost:3001/news/${id}`);
         if(!response.ok){
-            throw new Error(`Error! Status: ${response.status}`)
+            console.log(response.status)
+            return undefined;
         }
         
         const result = await response.json();
+        console.log(response.status)
         return result
     }
 
+})
+
+export const updateNews = selectorFamily({
+    key: "updateNews",
 })
 

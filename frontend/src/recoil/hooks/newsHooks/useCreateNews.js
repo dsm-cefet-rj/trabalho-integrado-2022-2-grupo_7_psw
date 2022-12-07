@@ -1,5 +1,3 @@
-
-
 const useCreateNews = (newsTitle, newsSubtitle, newsContent, newsUrl) => {
     
     const requestOptions = {
@@ -7,8 +5,9 @@ const useCreateNews = (newsTitle, newsSubtitle, newsContent, newsUrl) => {
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({url: newsUrl,
                             title: newsTitle,
+                            mode: 'cors',
                             subtitle: newsSubtitle,
-                            contents: newsContent,
+                            contents: JSON.stringify(newsContent),
                             user: '63878b2808e0595a559716dc', //precisa ser implementado user pra isso ser concluido.
                             time: new Date().getTime().toString()
                             })
