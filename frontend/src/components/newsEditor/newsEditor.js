@@ -33,10 +33,14 @@ const NewsEditor = () => {
         currentSubtitle = null;
         currentUrl = null;
         currentContent = null;
+        setTimeout(() => {
+            window.location.href = "http://localhost:3000/news"            
+        }, 200);
     }
 
     const HandleUpdateClick = () => {
-        useUpdateNews(id, currentTitle, currentSubtitle, currentContent, currentUrl)
+        useUpdateNews(id, currentTitle, currentSubtitle, currentContent, currentUrl);
+        window.location.href = `http://localhost:3000/news-page/${id}`
     }
 
 return (
@@ -60,6 +64,7 @@ return (
         <div>
             {
                 haveId? (
+
                     <button key={"opt2"} className="button-editor" onClick={HandleUpdateClick}>Edit it!</button>
                     ) : (
                     <button key={"opt1"} className="button-editor" onClick={HandleSaveClick}>Publish it!</button>
