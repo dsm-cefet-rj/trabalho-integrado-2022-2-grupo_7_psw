@@ -1,9 +1,7 @@
-import { React, useEffect, useState } from 'react';
+import { React,  useState } from 'react';
 import { Editor } from 'react-draft-wysiwyg';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import './newsEditor.css';
-import {useUpdateContent, useUpdateSubtitle, useUpdateTitle, useUpdateURL} from '../../recoil/hooks/newsHooks/useUpdateNewsState';
-import { useGetContent, useGetSubtitle, useGetTitle, useGetUrl } from '../../recoil/hooks/newsHooks/useGetNewsElements';
 import useCreateNews from '../../recoil/hooks/newsHooks/useCreateNews';
 import { useParams } from 'react-router-dom';
 import useGetNewsById from '../../recoil/hooks/newsHooks/useGetNewsById';
@@ -14,66 +12,46 @@ const NewsEditor = () => {
     let {id} = useParams();
     var getNews  = useGetNewsById(id);
     let haveId = false;
-    const [currentTitle, setCurrentTitle] = useState(getNews.title); 
-
-    const updateTitle = useUpdateTitle();
     
-    let currentSubtitle = useGetSubtitle();
-    const updateSubtitle = useUpdateSubtitle();
-    
-    let currentImageUrl = useGetUrl();
-    const updateUrl = useUpdateURL();
-    
-    let currentContent = useGetContent();
-    const updateContent = useUpdateContent();
-
-    function loadData()  {
+    if(getNews !== undefined){
         
-        if(getNews !== undefined){      
-            
-            currentSubtitle = getNews.subtitle;
-            currentImageUrl = getNews.url;
-            currentContent = JSON.parse(getNews.contents);
-            console.log(currentTitle);
-            haveId = true;            
-        }
-        console.log(haveId)
+        var title = getNews.title;
+        var subtitle = getNews.subtitle;
+        var imageUrl = getNews.url;
+        var content = JSON.parse(getNews.contents);
+        haveId = true;            
     }
 
-    useEffect(() => {
-        //Carrega apenas uma vez durante inicialização, mas o problema é que
-        //não altera nenhum atributo solicitado. 
-        loadData()
-    }, [] )
-
+    var [currentTitle, setCurrentTitle] = useState(title);
+    var [currentSubtitle, setCurrentSubtitle] = useState(subtitle);
+    var [currentUrl, setCurrentUrl] = useState(imageUrl);
+    var [currentContent, setCurrentContent] = useState(content);
 
     const HandleSaveClick = () => {        
-        useCreateNews(currentTitle, currentSubtitle, currentContent, currentImageUrl);
+        useCreateNews(currentTitle, currentSubtitle, currentContent, currentUrl);
         currentTitle = null;
         currentSubtitle = null;
-        currentImageUrl = null;
+        currentUrl = null;
         currentContent = null;
     }
 
     const HandleUpdateClick = () => {
-        useUpdateNews(id, currentTitle, currentSubtitle, currentContent, currentImageUrl)
+        useUpdateNews(id, currentTitle, currentSubtitle, currentContent, currentUrl)
     }
-   
 
-
-  return (
+return (
     <>  
         
         <div className="title-area">                    
             <input type="title" placeholder="Title" value={currentTitle} onChange={ev => setCurrentTitle(ev.target.value)}/>
-            <input type="text" placeholder="Subtitle" value={currentSubtitle} onChange={ev => updateSubtitle(ev.target.value)} />
-            <input type="text" placeholder="Main image URL" value={currentImageUrl} onChange={ev => updateUrl(ev.target.value)}/>            
+            <input type="text" placeholder="Subtitle" value={currentSubtitle} onChange={ev => setCurrentSubtitle(ev.target.value)} />
+            <input type="text" placeholder="Main image URL" value={currentUrl} onChange={ev => setCurrentUrl(ev.target.value)}/>            
         </div>
 
         <div className="App">        
             <Editor
                 defaultContentState={currentContent}
-                onContentStateChange={updateContent}
+                onContentStateChange={setCurrentContent}
                 wrapperClassName="wrapper-class"
                 editorClassName="editor-class"
                 toolbarClassName="toolbar-class"
