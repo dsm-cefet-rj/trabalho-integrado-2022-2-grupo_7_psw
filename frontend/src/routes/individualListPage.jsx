@@ -2,20 +2,37 @@ import Header from "../components/header";
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { SelectionState } from "draft-js";
+import { gameListState } from "../recoil/atoms/gameList";
+import { useRecoilState } from "recoil";
+import ImageGameList from "../components/imageGameList";
 export default function IndividualList() {
   const imgSize = {
     width: 50,
     height: 50,
   };
   const id = useParams().id;
-  const [mylist, setList] = useState(null);
+  const [mylist, setList] = useRecoilState(gameListState);
+  const [cover, setCover] = useState([]);
+  const [element, setElement] = useState("(11500, 11501, 11502)");
 
   useEffect(() => {
     fetch(`http://localhost:3001/getsinglelist/${id}`)
       .then((res) => res.json())
-      .then((data) => setList(data.data))
-      .catch((error) => console.log(error));
+      .then((data) => {
+        setList(data.data);
+      });
   }, []);
+
+  console.log(cover);
+
+  /*   fetch(
+    `http://localhost:3001/api/cover/${"(" + mylist.games.toString() + ")"}`
+  )
+    .then((res) => res.json())
+    .then((data) => {
+      setCover(data.data);
+    })
+    .catch((error) => console.log(error)); */
 
   return (
     <>
@@ -38,42 +55,9 @@ export default function IndividualList() {
             {mylist ? mylist.description : "Description"}
           </p>
           <div className="d-flex flex-wrap gap-3 my-5">
-            <img
-              alt="game"
-              src="https://images.igdb.com/igdb/image/upload/t_cover_small/co1u9s.jpg"
-            />
-            <img
-              alt="game"
-              src="https://images.igdb.com/igdb/image/upload/t_cover_small/co1u9s.jpg"
-            />
-            <img
-              alt="game"
-              src="https://images.igdb.com/igdb/image/upload/t_cover_small/co1u9s.jpg"
-            />
-            <img
-              alt="game"
-              src="https://images.igdb.com/igdb/image/upload/t_cover_small/co1u9s.jpg"
-            />
-            <img
-              alt="game"
-              src="https://images.igdb.com/igdb/image/upload/t_cover_small/co1u9s.jpg"
-            />
-            <img
-              alt="game"
-              src="https://images.igdb.com/igdb/image/upload/t_cover_small/co1u9s.jpg"
-            />
-            <img
-              alt="game"
-              src="https://images.igdb.com/igdb/image/upload/t_cover_small/co1u9s.jpg"
-            />
-            <img
-              alt="game"
-              src="https://images.igdb.com/igdb/image/upload/t_cover_small/co1u9s.jpg"
-            />
-            <img
-              alt="game"
-              src="https://images.igdb.com/igdb/image/upload/t_cover_small/co1u9s.jpg"
-            />
+            {mylist.games.map((e) => {
+              return <ImageGameList id={e} />;
+            })}
           </div>
         </div>
       </div>

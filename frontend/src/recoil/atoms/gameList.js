@@ -4,8 +4,11 @@ export const gameListState = atom({
   key: "gameLististState",
   default: [
     {
-      listName: "",
-      games: null,
+      _id: "",
+      games: [],
+      title: "",
+      description: "",
+      __V: 0,
     },
   ],
 });
