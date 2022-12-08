@@ -1,38 +1,26 @@
 import Header from "../components/header";
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { SelectionState } from "draft-js";
+import ImageGameList from "../components/imageGameList";
 import { gameListState } from "../recoil/atoms/gameList";
 import { useRecoilState } from "recoil";
-import ImageGameList from "../components/imageGameList";
 export default function IndividualList() {
   const imgSize = {
     width: 50,
     height: 50,
   };
   const id = useParams().id;
+  const [cover, setCover] = useState({ games: [] });
   const [mylist, setList] = useRecoilState(gameListState);
-  const [cover, setCover] = useState([]);
-  const [element, setElement] = useState("(11500, 11501, 11502)");
 
   useEffect(() => {
     fetch(`http://localhost:3001/getsinglelist/${id}`)
       .then((res) => res.json())
       .then((data) => {
+        setCover(data.data);
         setList(data.data);
       });
   }, []);
-
-  console.log(cover);
-
-  /*   fetch(
-    `http://localhost:3001/api/cover/${"(" + mylist.games.toString() + ")"}`
-  )
-    .then((res) => res.json())
-    .then((data) => {
-      setCover(data.data);
-    })
-    .catch((error) => console.log(error)); */
 
   return (
     <>
@@ -55,9 +43,13 @@ export default function IndividualList() {
             {mylist ? mylist.description : "Description"}
           </p>
           <div className="d-flex flex-wrap gap-3 my-5">
-            {mylist.games.map((e) => {
-              return <ImageGameList id={e} />;
-            })}
+            {cover.games.length > 0 ? (
+              cover.games.map((e) => {
+                return <ImageGameList id={e} />;
+              })
+            ) : (
+              <h3 className="text-light">No games added to your list yet...</h3>
+            )}
           </div>
         </div>
       </div>
