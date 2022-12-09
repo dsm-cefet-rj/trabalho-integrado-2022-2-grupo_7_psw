@@ -8,14 +8,14 @@ const NewsContent = () => {
 
     const {id} = useParams();
     const getNews = useGetNewsById(id);
-    const toObject = JSON.parse(getNews.contents);
-    const textParts = toObject.blocks    
+    const contentObject = JSON.parse(getNews.contents);
+    const textParts = contentObject.blocks    
     const date = new Date(getNews.time);
     const formatedDate = timeToDate(date, "BR", true);
     const deleteNews = useDeleteNews;
 
     const text = [];
-    let images = getNews.contents.entityMap;
+    let images = contentObject.entityMap;
     let image = null;
 
     textParts.forEach((part, index) => {
@@ -23,11 +23,14 @@ const NewsContent = () => {
             <p key={index}>{part.text}</p>
         )
         images != undefined? images[index] != undefined? text.push(
+            
             <div className="image-area">
                 <img src={images[index].data.src} style={{width:"100%"}}/>
             </div>
         ) : image = null : images = undefined;
     })
+
+    console.log(text)
    
     function deleteHandler() {
         deleteNews(id)
