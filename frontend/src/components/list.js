@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { gameListState } from "../recoil/atoms/gameList";
-import { useRecoilState } from "recoil";
+import { RecoilLoadable, useRecoilState } from "recoil";
 
 export default function List({ title, games, id }) {
   const [cover, setCover] = useState([]);
@@ -20,7 +20,6 @@ export default function List({ title, games, id }) {
         .catch((error) => console.log(error));
     });
   }, []);
-  console.log(cover);
 
   const imgSize = {
     width: 270,
@@ -30,9 +29,7 @@ export default function List({ title, games, id }) {
   const handleDelete = () => {
     axios.delete(`http://localhost:3001/list/${id}`).then(() => {
       setList(list.filter((a) => a._id !== id));
-      console.log(list);
     });
-    console.log(list);
   };
 
   return (
@@ -65,7 +62,7 @@ export default function List({ title, games, id }) {
             />
           </Link>
 
-          <Link to="/lists/edit">
+          <Link to={`/lists/edit/${id}`}>
             <AiFillEdit className="mx-2" color="lightgrey" size={30} />
           </Link>
         </div>

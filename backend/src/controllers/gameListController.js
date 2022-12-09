@@ -23,8 +23,8 @@ class gameListController {
   };
   static updateGameList = (req, res) => {
     const id = req.params.id;
-    gameLists.findOneAndUpdate(
-      { game_id: id },
+    gameLists.findByIdAndUpdate(
+      id,
       {
         $set: {
           title: req.body.title,

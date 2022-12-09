@@ -2,23 +2,21 @@ import Header from "../components/header";
 import List from "../components/list";
 import NoLists from "../components/noLists";
 import { Link } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { gameListState } from "../recoil/atoms/gameList";
 import { useRecoilState } from "recoil";
 
 export default function Lists() {
-  const [gameLists, setGameLists] = useState([]);
   const [list, setList] = useRecoilState(gameListState);
 
   useEffect(() => {
     fetch(`http://localhost:3001/getlist`)
       .then((res) => res.json())
       .then((data) => {
-        setGameLists(data.data);
         setList(data.data);
       })
       .catch((error) => console.log(error));
-  }, []);
+  }, [list]);
 
   return (
     <>
