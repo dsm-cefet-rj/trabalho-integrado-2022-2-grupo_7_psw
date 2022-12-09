@@ -59,7 +59,7 @@ class gameListController {
   };
   static deleteGameList = (req, res) => {
     const id = req.params.id;
-    gameLists.deleteOne({ game_id: id }, (err) => {
+    gameLists.findByIdAndDelete(id, (err) => {
       if (!err) {
         res.status(200).send({ messege: "Review deleted successfuly" });
       }
