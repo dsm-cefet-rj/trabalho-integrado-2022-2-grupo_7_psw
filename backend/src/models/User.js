@@ -6,7 +6,8 @@ const userSchema = new mongoose.Schema(
     name: { type: String },
     email: { type: String },
     password: { type: String },
-    level: { type: Number }
+    level: { type: Number },
+    
   }
 );
 
