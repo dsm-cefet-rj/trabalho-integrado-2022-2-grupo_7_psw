@@ -1,4 +1,5 @@
 import users from "../models/User.js";
+import bcrypt from "bcryptjs"
 
 class UserController {
   static getAllUser = (req, res) => {
@@ -9,15 +10,24 @@ class UserController {
   static createUser = (req, res) => {
     let newUser = new users(req.body);
 
-    newUser.save((err) => {
-      if (err) {
-        res
-          .status(500)
-          .send({ messege: `${err.messege} - falha ao criar user` });
-      } else {
-        res.status(201).send(newUser.toJSON());
-      }
-    });
+    bcrypt.genSalt(10, function(err, salt) {
+      bcrypt.hash(newUser.password, salt, function(err, hash) {
+        newUser.password = hash;
+
+        newUser.save((erro) => {
+          if (erro) {
+            res
+              .status(500)
+              .send({ messege: `${erro.messege} - falha ao criar user` });
+          } else {
+            res.status(201).send(newUser.toJSON());
+          }
+        });
+
+      });
+
+  });
+
   };
   static updateUser = (req, res) => {
     const id = req.params.id;
