@@ -40,6 +40,9 @@ export default function EditList() {
         }
       })
     );
+  }, [inputField]);
+
+  useEffect(() => {
     fetch(`http://localhost:3001/getsinglelist/${listId}`)
       .then((res) => res.json())
       .then((data) => {
@@ -47,7 +50,7 @@ export default function EditList() {
         setTitle(data.data.title);
         setDescription(data.data.description);
       });
-  }, [inputField]);
+  }, []);
 
   const options = gamesList.map((e) => {
     return {

@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { gameListState } from "../recoil/atoms/gameList";
-import { useRecoilState } from "recoil";
+import { RecoilLoadable, useRecoilState } from "recoil";
 
 export default function List({ title, games, id }) {
   const [cover, setCover] = useState([]);
@@ -20,7 +20,6 @@ export default function List({ title, games, id }) {
         .catch((error) => console.log(error));
     });
   }, []);
-  console.log(cover);
 
   const imgSize = {
     width: 270,
