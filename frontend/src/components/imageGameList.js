@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 function ImageGameList({ id }) {
   const imgStyle = {
@@ -24,7 +25,11 @@ function ImageGameList({ id }) {
       });
   });
 
-  return <img style={imgStyle} src={cover} />;
+  return (
+    <Link to={`/screen/${id}`}>
+      <img style={imgStyle} src={cover} />
+    </Link>
+  );
 }
 
 export default ImageGameList;
