@@ -10,18 +10,35 @@ export default function List({ title, games, id }) {
       fetch(`http://localhost:3001/api/cover/${element}`)
         .then((res) => res.json())
         .then((data) => {
-          setCover(cover.concat(data.data[0].url));
+          setCover((cover) => cover.concat(data.data));
         })
         .catch((error) => console.log(error));
     });
   }, []);
   console.log(cover);
+
+  const imgSize = {
+    width: 270,
+    height: 120,
+  };
   return (
     <div className="my-5 mx-3">
       <div className="d-flex gap-3 flex-column flex-md-row">
         <Link to={`/list/${id}`}>
-          <div className="d-flex">
-            <img
+          <div className="d-flex border">
+            {cover.length > 0 ? (
+              cover.slice(-3).map((e) => {
+                return <img alt="game" src={`https:${e.url}`} />;
+              })
+            ) : (
+              <img
+                style={imgSize}
+                alt="game"
+                src="https://images.igdb.com/igdb/image/upload/t_cover_small/nocover.png"
+              />
+            )}
+
+            {/*          <img
               alt="game"
               src="https://images.igdb.com/igdb/image/upload/t_cover_small/nocover.png"
             />
@@ -32,10 +49,7 @@ export default function List({ title, games, id }) {
             <img
               alt="game"
               src="https://images.igdb.com/igdb/image/upload/t_cover_small/nocover.png"
-            />
-            {/*     {cover.map((e) => {
-              return <img alt="game" src={`https:${e}`} />;
-            })} */}
+            /> */}
           </div>
         </Link>
 

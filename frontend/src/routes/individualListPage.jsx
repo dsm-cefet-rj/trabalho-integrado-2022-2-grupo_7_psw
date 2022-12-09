@@ -39,7 +39,7 @@ export default function IndividualList() {
         </div>
         <div className="mx-4 mx-md-5">
           <h3 className="text-light">{mylist ? mylist.title : "Title"}</h3>
-          <p className="text-light">
+          <p className="text-light my-4">
             {mylist ? mylist.description : "Description"}
           </p>
           <div className="d-flex flex-wrap gap-3 my-5">
