@@ -10,8 +10,10 @@ import { CiCircleRemove } from "react-icons/ci";
 import { useParams } from "react-router-dom";
 export default function EditList() {
   const [myList, setList] = useRecoilState(gameListState);
-  const [collection, setCollection] = useRecoilState(gameCollectionState);
+  /* const [collection, setCollection] = useRecoilState(gameCollectionState); */
   const [message, setMessage] = useState("");
+  const [collection, setCollection] = useState([]);
+  const listId = useParams().id;
 
   const addToCollection = (e) => {
     e.preventDefault();
@@ -38,6 +40,13 @@ export default function EditList() {
         }
       })
     );
+    fetch(`http://localhost:3001/getsinglelist/${listId}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setCollection(data.data.games);
+        setTitle(data.data.title);
+        setDescription(data.data.description);
+      });
   }, [inputField]);
 
   const options = gamesList.map((e) => {
@@ -54,7 +63,6 @@ export default function EditList() {
   const customHeaders = {
     "Content-Type": "application/json",
   };
-  const listId = useParams().id;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
