@@ -1,7 +1,7 @@
 export const useCreateUser = (userName, userEmail, userPassword, userPassword2, userLevel) => {
 
     const requestOptions = {
-        mothod: 'POST',
+        method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({
                             name: userName,

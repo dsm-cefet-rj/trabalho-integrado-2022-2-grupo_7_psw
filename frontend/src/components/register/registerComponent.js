@@ -31,7 +31,7 @@ const RegisterComponent = () => {
                 <div className="mt-5 mx-3">
                 <h5 className="text-light">New in Droppr?</h5>
                 <h2 className="text-light">Register</h2>
-                <div className="form-container" >
+                <form className="form-container" action="/" >
                     <div className="form-group">
                     <label>Nome</label>
                     <input
@@ -75,11 +75,11 @@ const RegisterComponent = () => {
                     ></input>
                     </div>
                     <div className="button-container">
-                    <button className="btn btn-primary self-end" onClick={HandleSaveClick}>
+                    <button type="submit" className="btn btn-primary self-end" onClick={HandleSaveClick}>
                         Register
                     </button>              
                     </div>
-                </div>
+                </form>
                 </div>
             </div>
         </>
