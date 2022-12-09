@@ -13,7 +13,6 @@ import Popular from "./routes/popular";
 import NewList from "./routes/newList";
 import DropprUser from "./routes/dropprUser";
 import SignIn from "./routes/signIn";
-import Register from "./routes/register";
 import Overview from "./routes/overview";
 import OverviewUser from "./routes/overviewUser";
 import Allgames from "./routes/allgames";
@@ -27,6 +26,7 @@ import NewsEditorPage from "./routes/newsEditorPage";
 import Search from "./routes/search";
 import EditList from "./routes/editlist";
 import IndividualList from "./routes/individualListPage";
+import RegisterPage from "./routes/registerPage";
 
 const rootElement = document.getElementById("root");
 render(
@@ -44,7 +44,7 @@ render(
         <Route path="friends" element={<Friends />} />
         <Route path="dropprUser" element={<DropprUser />} />
         <Route path="signIn" element={<SignIn />} />
-        <Route path="register" element={<Register />} />
+        <Route path="register" element={<RegisterPage />} />
         <Route path="reviews" element={<Reviews />} />
         <Route path="lists" element={<Lists />} />
         <Route path="screen/:id" element={<Screen />} />
