@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 
 function ImageGameList({ id }) {
   const imgStyle = {
-    width: 90,
-    height: 120,
+    width: 160,
+    height: 240,
   };
 
   const [cover, setCover] = useState(
@@ -27,7 +27,7 @@ function ImageGameList({ id }) {
 
   return (
     <Link to={`/screen/${id}`}>
-      <img style={imgStyle} src={cover} />
+      <img style={imgStyle} src={cover}  className="hover-effect m-0 m-md-2 rounded shadowEffect" />
     </Link>
   );
 }

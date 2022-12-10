@@ -5,7 +5,7 @@ function friend() {
   return (
     <>
       <div>
-        <div className="col-4 d-flex flex-column mx-2">
+        <div className="col-4 d-flex flex-column m-3">
           <div className="d-flex align-items-center gap-3 col-12 col-lg-5">
             <Link className="position-relative" to="/dropprUser">
               <img
