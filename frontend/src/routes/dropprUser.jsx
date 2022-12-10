@@ -32,9 +32,7 @@ export default function dropprUser() {
 
   return (
     <>
-      <Header />
-
-    
+      <Header />    
       <div className="my-5 d-flex flex-column flex-md-row col-8 col-md-8 mx-auto justify-content-around align-items-center gap-3">
         <div className="d-flex flex-column align-items-center align-items-md-center order-1">
           <img className="rounded-circle" size={90} src={image} alt="" />

@@ -45,13 +45,31 @@ class UserController {
     users.findById(id, (err, user) => {
       if (err) {
         res.status(400).send({
-          message: `${err.message} - Not found any user by id requested`,
+          message: `${err.message} - Found any user by id requested`,
         });
       } else {
         res.status(200).send(user);
       }
     });
   };
+
+  static getByEmail = (req, res) => {
+    const email = req.query.email
+      users.find({"email": email}, {}, (err, user) => {
+        if(!err){
+          res.status(200).send(user);
+
+        }else{
+          res.status(400).send({
+            message: `${err.message} - Found any user by email requested`
+          })
+        }
+      })
+   
+    
+  }
+
+
   static deleteUser = (req, res) => {
     const id = req.params.id;
     users.findByIdAndDelete(id, (err) => {

@@ -1,3 +1,6 @@
+import { useRecoilValue } from "recoil";
+import { asyncAllUsers, asyncGetUserByEmail, asyncGetUserById } from "../../selectors/userSelector";
+
 export const useCreateUser = (userName, userEmail, userPassword, userPassword2, userLevel) => {
     const requestOptions = {
         method: 'POST',
@@ -22,5 +25,13 @@ export const useCreateUser = (userName, userEmail, userPassword, userPassword2, 
 }
 
 export const useGetAllUsers = () => {
-    
+    return useRecoilValue(asyncAllUsers)
+}
+
+export const useGetUserById = (id) => {
+    return useRecoilValue(asyncGetUserById(id))
+}
+
+export const useGetUserByEmail = (email) => {
+    return useRecoilValue(asyncGetUserByEmail(email))
 }
