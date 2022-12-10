@@ -1,5 +1,4 @@
 export const useCreateUser = (userName, userEmail, userPassword, userPassword2, userLevel) => {
-
     const requestOptions = {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
@@ -20,4 +19,8 @@ export const useCreateUser = (userName, userEmail, userPassword, userPassword2, 
     }else{
         alert("Passwords do not match")
     }
-}  
+}
+
+export const useGetAllUsers = () => {
+    
+}

@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { gameListState } from "../recoil/atoms/gameList";
-import { RecoilLoadable, useRecoilState } from "recoil";
+import { useRecoilState } from "recoil";
 
 export default function List({ title, games, id }) {
   const [cover, setCover] = useState([]);
@@ -20,11 +20,6 @@ export default function List({ title, games, id }) {
         .catch((error) => console.log(error));
     });
   }, []);
-
-  const imgSize = {
-    width: 270,
-    height: 120,
-  };
 
   const handleDelete = () => {
     axios.delete(`http://localhost:3001/list/${id}`).then(() => {
@@ -42,11 +37,20 @@ export default function List({ title, games, id }) {
                 return <img alt="game" src={`https:${e.url}`} />;
               })
             ) : (
-              <img
-                style={imgSize}
-                alt="game"
-                src="https://images.igdb.com/igdb/image/upload/t_cover_small/nocover.png"
-              />
+              <>
+                <img
+                  alt="game"
+                  src="https://images.igdb.com/igdb/image/upload/t_cover_small/nocover.png"
+                />
+                <img
+                  alt="game"
+                  src="https://images.igdb.com/igdb/image/upload/t_cover_small/nocover.png"
+                />
+                <img
+                  alt="game"
+                  src="https://images.igdb.com/igdb/image/upload/t_cover_small/nocover.png"
+                />
+              </>
             )}
           </div>
         </Link>

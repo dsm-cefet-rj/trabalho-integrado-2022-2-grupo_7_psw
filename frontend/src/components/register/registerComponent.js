@@ -36,7 +36,7 @@ const RegisterComponent = () => {
                     <label>Nome</label>
                     <input
                         type="text"
-                        className="form-control margin-bot"
+                        className="form-control mb-4 mt-1"
                         placeholder="Enter your username"
                         value={currentName}
                         onChange={ev => setCurrentName(ev.target.value)}                       
@@ -46,7 +46,7 @@ const RegisterComponent = () => {
                     <label>Email</label>
                     <input
                         type="text"
-                        className="form-control margin-bot"
+                        className="form-control mb-4 mt-1"
                         placeholder="Enter your username"
                         value={currentEmail}
                         onChange={ev => setCurrentEmail(ev.target.value)}
@@ -57,7 +57,7 @@ const RegisterComponent = () => {
                     <label>Password</label>
                     <input
                         type="password"
-                        className="form-control margin-bot"
+                        className="form-control mb-4 mt-1"
                         placeholder="********"
                         value={currentPassword}
                         onChange={ev => setCurrentPassword(ev.target.value)}
@@ -68,7 +68,7 @@ const RegisterComponent = () => {
                     <label>Repeat your password</label>
                     <input
                         type="password"
-                        className="form-control margin-bot"
+                        className="form-control mb-4 mt-1"
                         placeholder="********"
                         value={currentPassword2}
                         onChange={ev => setCurrentPassword2(ev.target.value)}

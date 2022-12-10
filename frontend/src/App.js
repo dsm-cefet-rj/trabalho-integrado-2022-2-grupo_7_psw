@@ -133,7 +133,7 @@ export default function App() {
     return (
       <>
         <Header /* childToParent={childToParent} */ />
-        <div className="ConvincingMessage container text-center mt-5">
+        <div className="ConvincingMessage container-fluid text-center mt-5">
           <div class="row align-items-center">
             <div className="col-2" />
             <div className="LoginMessageContent col-8 m-5">
@@ -180,7 +180,7 @@ export default function App() {
 
         <hr className="divisao"></hr>
 
-        <div className="container mt-5">
+        <div className="container-fluid mt-5">
           <div className="col-12 mt-5">
             <ul className="m-0 p-0">
               {gamesList.map((e) => {
@@ -226,6 +226,7 @@ export default function App() {
               </h1>
             )}
           </div>
+          <Footer />
         </div>
       </>
     );

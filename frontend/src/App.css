@@ -1,43 +1,44 @@
 .LoginMessageSecond {
-    opacity: 0.5;
-    font-size: 20px;
+  opacity: 0.5;
+  font-size: 20px;
 }
 
 .LoginMessage {
-    font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
 .benefits {
-    font-size: 17px;
-    font-weight: 300;
+  font-size: 17px;
+  font-weight: 300;
 }
 
 .ConvincingMessage {
-    font-family: 'Poppins', sans-serif;
-    border-radius: 5%;
+  font-family: "Poppins", sans-serif;
+  border-radius: 5%;
+  height: auto;
 }
 
 .divisao {
-    margin-top: 200px;
+  margin-top: 200px;
 }
 
 .botao {
-    background: none;
+  background: none;
 
-    color: #FF851B;
-    border: 2px solid;
+  color: #ff851b;
+  border: 2px solid;
 
-    font-size: 1em;
+  font-size: 1em;
 
-    padding: 1em 2em;
+  padding: 1em 2em;
 
-    transition-duration: 0.2s;
+  transition-duration: 0.2s;
 }
 
-.botao:hover{
-    border-color: #ffd500;
-    color: white;
-    box-shadow: 0px 0.5em 0.5em  -0.4em  #ffd500;
-    transform: translateY(-0.25em);
-    cursor: pointer;
+.botao:hover {
+  border-color: #ffd500;
+  color: white;
+  box-shadow: 0px 0.5em 0.5em -0.4em #ffd500;
+  transform: translateY(-0.25em);
+  cursor: pointer;
 }

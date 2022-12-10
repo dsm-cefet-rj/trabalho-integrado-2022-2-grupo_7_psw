@@ -1,4 +1,4 @@
-const useCreateNews = (newsTitle, newsSubtitle, newsContent, newsUrl) => {
+export const useCreateNews = (newsTitle, newsSubtitle, newsContent, newsUrl) => {
     
     const requestOptions = {
         method: 'POST',
@@ -8,7 +8,7 @@ const useCreateNews = (newsTitle, newsSubtitle, newsContent, newsUrl) => {
                             // mode: 'cors',
                             subtitle: newsSubtitle,
                             contents: JSON.stringify(newsContent),
-                            user: '63878b2808e0595a559716dc', //precisa ser implementado user pra isso ser concluido.
+                            user: '6393c0b2a83fb3639802a5e0', //precisa ser implementado user pra isso ser concluido.
                             time: new Date().getTime().toString()
                             })
     }

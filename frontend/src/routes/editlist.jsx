@@ -85,6 +85,13 @@ export default function EditList() {
         setTitle("");
         setDescription("");
         setMessage("List updated successfully");
+        setList(myList.filter((a) => a._id !== listId));
+        setList(...myList, {
+          title: title,
+          description: description,
+          games: collection,
+          _id: listId,
+        });
       } else {
         setMessage("Some error occured");
       }
@@ -167,12 +174,8 @@ export default function EditList() {
               </div>
             );
           })}
-          <button
-            /*   onClick={createList} */
-            type="submit"
-            className="btn btn-primary"
-          >
-            Create
+          <button type="submit" className="btn btn-primary">
+            Edit
           </button>
           {message ? <h4 className="mt-4 text-success">{message}</h4> : null}
         </form>
