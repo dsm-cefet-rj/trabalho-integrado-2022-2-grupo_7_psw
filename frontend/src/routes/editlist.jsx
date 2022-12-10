@@ -85,6 +85,13 @@ export default function EditList() {
         setTitle("");
         setDescription("");
         setMessage("List updated successfully");
+        setList(myList.filter((a) => a._id !== listId));
+        setList(...myList, {
+          title: title,
+          description: description,
+          games: collection,
+          _id: listId,
+        });
       } else {
         setMessage("Some error occured");
       }
