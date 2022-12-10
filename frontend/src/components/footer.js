@@ -17,10 +17,10 @@ export default function Footer() {
       </div>
 
       <div className="d-flex flex-column flex-md-row justify-content-around col-7 align-items-center gap-5 gap-md-3 mx-auto">
-        <Developer name={"Lucas Rocha"} />
-        <Developer name={"Vinicius Kayo"} />
-        <Developer name={"Raphael Monteiro"} />
-        <Developer name={"Raul Gomes"} />
+        <Developer name={"Lucas Rocha"} gitHub={"https://github.com/houkaita"} linkedin={"https://www.linkedin.com/in/lucas-rocha-de-oliveira-rodrigues-691193213/"}/>
+        <Developer name={"Vinicius Kayo"} gitHub={"https://github.com/vkskayo"} />
+        <Developer name={"Raphael Monteiro"} gitHub={"https://github.com/RaphaelMS07"} />
+        <Developer name={"Raul Gomes"} gitHub={"https://github.com/RaulMartino"} />
       </div>
       <p className="text-center mx-auto">Copyright © 2022 Droppr, Inc.</p>
     </footer>

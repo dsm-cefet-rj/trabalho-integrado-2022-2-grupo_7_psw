@@ -25,7 +25,7 @@ export default function App() {
   const reviews = useRecoilValue(reviewState);
 
   //MUDE ESSA VARIÁVEL PARA TRUE PARA VER A TELA NORMAL E FALSE SE QUISER VÊ-LA COMO UM USUÁRIO NÃO LOGADO
-  const logado = false;
+  const logado = true;
 
   useEffect(() => {
     fetch(`http://localhost:3001/api/list/${page}`).then((res) =>
