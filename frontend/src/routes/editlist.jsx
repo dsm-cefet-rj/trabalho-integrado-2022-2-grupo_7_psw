@@ -167,12 +167,8 @@ export default function EditList() {
               </div>
             );
           })}
-          <button
-            /*   onClick={createList} */
-            type="submit"
-            className="btn btn-primary"
-          >
-            Create
+          <button type="submit" className="btn btn-primary">
+            Edit
           </button>
           {message ? <h4 className="mt-4 text-success">{message}</h4> : null}
         </form>
