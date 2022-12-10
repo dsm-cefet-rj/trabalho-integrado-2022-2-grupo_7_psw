@@ -1,4 +1,4 @@
-const useCreateNews = (newsTitle, newsSubtitle, newsContent, newsUrl) => {
+export const useCreateNews = (newsTitle, newsSubtitle, newsContent, newsUrl) => {
     
     const requestOptions = {
         method: 'POST',
