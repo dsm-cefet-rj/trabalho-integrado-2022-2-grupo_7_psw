@@ -1,11 +1,13 @@
 import { Link } from "react-router-dom";
 import React, { useState } from "react";
+import { login } from "../recoil/atoms/login";
+import { useRecoilValue } from "recoil";
 
 function Header() {
   const [search, setSearch] = useState("");
 
-  // Variável que vai definir os items da nav, baseando-se no estado logado ou não logado do usuário.
-  const [login, setLogin] = useState(false);
+  // Essa variável representa o valor do estado global de login. Que é true quando um usuário está logado e false caso contrário
+  const mylogin = useRecoilValue(login);
 
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
@@ -38,7 +40,7 @@ function Header() {
           id="navbarSupportedContent"
         >
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-            {login ? (
+            {mylogin ? (
               <>
                 <li className="nav-item">
                   <Link className="nav-link fs-6" to="/reviews">
