@@ -30,7 +30,7 @@ const RegisterComponent = () => {
             <div className="register-container">
                 <div className="mt-5 mx-3">
                 <h5 className="text-light">New in Droppr?</h5>
-                <h2 className="text-light">Register</h2>
+                <h2 className="text-light">Sign up!</h2>
                 <form className="form-container" action="/" >
                     <div className="form-group">
                     <label>Nome</label>

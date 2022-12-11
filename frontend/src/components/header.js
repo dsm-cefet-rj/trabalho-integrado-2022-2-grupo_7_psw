@@ -88,7 +88,7 @@ function Header() {
                 </li>
                 <li className="nav-item">
                   <Link className="nav-link fs-6" to="/register">
-                    REGISTER
+                    SIGN UP
                   </Link>
                 </li>
               </>

@@ -3,6 +3,7 @@ import db from "./config/dbConnet.js";
 import routes from "./routes/index.js";
 import cors from "cors";
 import encrypt from "./security/encrypt.mjs";
+import UserController from "./controllers/userController.js";
 
 const app = express();
 app.use(express.json());
@@ -13,6 +14,7 @@ db.on("error", console.log.bind(console, "Erro de conexao"));
 db.once("open", () => {
   console.log("Conexao com banco feita com sucesso");
 });
+
 
 app.use(express.json());
 

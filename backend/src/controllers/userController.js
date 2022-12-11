@@ -8,26 +8,35 @@ class UserController {
     });
   };
   static createUser = (req, res) => {
-    let newUser = new users(req.body);
 
-    bcrypt.genSalt(10, function(err, salt) {
-      bcrypt.hash(newUser.password, salt, function(err, hash) {
-        newUser.password = hash;
-
-        newUser.save((erro) => {
-          if (erro) {
-            res
-              .status(500)
-              .send({ messege: `${erro.messege} - falha ao criar user` });
-          } else {
-            res.status(201).send(newUser.toJSON());
-          }
+    users.findOne({"email": req.body.email}, (err, userWithSameEmail) => {
+      if(err){
+        res.status(400).json({
+          message: 'Error getting email try gain',
         });
 
-      });
+      }else if(userWithSameEmail){
+        res.status(400).json({ message: 'This email is taken' });
+      }else{
+        let newUser = new users(req.body);
 
-  });
-
+        bcrypt.genSalt(10, function(err, salt) {
+          bcrypt.hash(newUser.password, salt, function(err, hash) {
+            newUser.password = hash;
+    
+            newUser.save((erro) => {
+              if (erro) {
+                res
+                  .status(500)
+                  .send({ messege: `${erro.messege} - falha ao criar user` });
+              } else {
+                res.status(201).send(newUser.toJSON());
+              }
+            });
+          });
+        });
+      }
+    }) 
   };
   static updateUser = (req, res) => {
     const id = req.params.id;
@@ -64,11 +73,9 @@ class UserController {
             message: `${err.message} - Found any user by email requested`
           })
         }
-      })
-   
+      }) 
     
   }
-
 
   static deleteUser = (req, res) => {
     const id = req.params.id;
