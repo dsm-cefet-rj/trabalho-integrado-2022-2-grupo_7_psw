@@ -1,7 +1,6 @@
 import Header from "./components/header";
 import Game from "./components/homeGame";
 import Footer from "./components/footer";
-import GlobalHeader from "./components/globalHeader";
 import { useState, useEffect } from "react";
 import {
   BsFillDropletFill,
@@ -44,7 +43,7 @@ export default function App() {
   if (logado) {
     return (
       <>
-        <Header /* childToParent={childToParent} */ />
+        <Header />
         <div className="d-flex flex-md-row flex-column-reverse">
           <div className="col-lg-7">
             <ul className="m-0 p-0">
@@ -133,7 +132,7 @@ export default function App() {
   } else {
     return (
       <>
-        <GlobalHeader />
+        <Header />
         <div className="ConvincingMessage container-fluid text-center mt-5">
           <div class="row align-items-center">
             <div className="col-2" />

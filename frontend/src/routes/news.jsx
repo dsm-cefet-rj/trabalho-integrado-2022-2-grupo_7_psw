@@ -9,7 +9,6 @@ import { Link } from "react-router-dom";
 export default function News() {
   return (
     <>
-      {/* Haveria uma condição. Caso o usuário esteja logado renderiza Header. Caso não, renderiza GlobalHeader */}
       <Header />
       <div style={{ marginTop: "50px" }}>
         <div></div>

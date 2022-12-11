@@ -1,13 +1,13 @@
 import { Suspense } from "react";
 import Footer from "../components/footer";
-import GlobalHeader from "../components/globalHeader";
+import Header from "../components/header";
 import RegisterComponent from "../components/register/registerComponent";
 import "./register.css";
 
 const RegisterPage = () => {
   return (
     <>
-      <GlobalHeader />
+      <Header />
       <Suspense>
         <RegisterComponent />
       </Suspense>

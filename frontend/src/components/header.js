@@ -3,6 +3,10 @@ import React, { useState } from "react";
 
 function Header() {
   const [search, setSearch] = useState("");
+
+  // Variável que vai definir os items da nav, baseando-se no estado logado ou não logado do usuário.
+  const [login, setLogin] = useState(false);
+
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
       <div className="container-fluid">
@@ -34,31 +38,59 @@ function Header() {
           id="navbarSupportedContent"
         >
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-            <li className="nav-item">
-              <Link className="nav-link fs-6" to="/reviews">
-                REVIEWS
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link fs-6" to="/profile">
-                PROFILE
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link fs-6" to="/community">
-                COMMUNITY
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link fs-6" to="/lists">
-                LISTS
-              </Link>
-            </li>
-            <li>
-              <Link className="nav-link fs-6" to="/news">
-                NEWS
-              </Link>
-            </li>
+            {login ? (
+              <>
+                <li className="nav-item">
+                  <Link className="nav-link fs-6" to="/reviews">
+                    REVIEWS
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link className="nav-link fs-6" to="/profile">
+                    PROFILE
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link className="nav-link fs-6" to="/community">
+                    COMMUNITY
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link className="nav-link fs-6" to="/lists">
+                    LISTS
+                  </Link>
+                </li>
+                <li>
+                  <Link className="nav-link fs-6" to="/news">
+                    NEWS
+                  </Link>
+                </li>
+              </>
+            ) : (
+              <>
+                {" "}
+                <li>
+                  <Link className="nav-link fs-6" to="/news">
+                    NEWS
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link className="nav-link fs-6" to="/community">
+                    COMMUNITY
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link className="nav-link fs-6" to="/signIn">
+                    SIGN IN
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link className="nav-link fs-6" to="/register">
+                    REGISTER
+                  </Link>
+                </li>
+              </>
+            )}
           </ul>
           <form className="d-flex mr-5">
             <input

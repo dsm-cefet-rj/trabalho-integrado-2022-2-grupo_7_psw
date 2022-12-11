@@ -1,4 +1,3 @@
-import GlobalHeader from "../components/globalHeader";
 import Header from "../components/header";
 import Friend from "../components/friend";
 
@@ -12,7 +11,8 @@ export default function Community() {
   };
   return (
     <>
-      <GlobalHeader />
+      {/* Haveria uma condição. Caso o usuário esteja logado renderiza Header. Caso não, renderiza GlobalHeader */}
+      <Header />
       <h1 className="mb-5">a</h1>
       <div>
         <h3 style={textColor} className="text-center my-5 mx-3">

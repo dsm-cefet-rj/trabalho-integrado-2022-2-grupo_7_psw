@@ -27,7 +27,11 @@ function ImageGameList({ id }) {
 
   return (
     <Link to={`/screen/${id}`}>
-      <img style={imgStyle} src={cover}  className="hover-effect m-0 m-md-2 rounded shadowEffect" />
+      <img
+        style={imgStyle}
+        src={cover}
+        className="hover-effect m-0 m-md-2 rounded shadowEffect"
+      />
     </Link>
   );
 }
