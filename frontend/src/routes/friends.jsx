@@ -5,7 +5,7 @@ export default function Friends() {
   return (
     <>
       <Header />
-      <div className="d-flex flex-column my-5 container fundo">
+      <div className="d-flex flex-column my-5 container-fluid fundo">
         <Friend />
         <Friend />
         <Friend />

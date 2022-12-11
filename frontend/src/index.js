@@ -27,6 +27,7 @@ import Search from "./routes/search";
 import EditList from "./routes/editlist";
 import IndividualList from "./routes/individualListPage";
 import RegisterPage from "./routes/registerPage";
+import Community from "./routes/community";
 
 const rootElement = document.getElementById("root");
 render(
@@ -59,6 +60,7 @@ render(
         <Route path="search/:name" element={<Search />} />
         <Route path="lists/edit/:id" element={<EditList />} />
         <Route path="list/:id" element={<IndividualList />} />
+        <Route path="community" element={<Community />} />
       </Routes>
     </BrowserRouter>
   </RecoilRoot>,

@@ -34,29 +34,25 @@ function Header() {
           id="navbarSupportedContent"
         >
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-            <li className="nav-item">
-              <Link className="nav-link fs-6" to="/reviews">
-                REVIEWS
+            <li>
+              <Link className="nav-link fs-6" to="/news">
+                NEWS
               </Link>
             </li>
-            <li className="nav-item">
-              <Link className="nav-link fs-6" to="/profile">
-                PROFILE
-              </Link>
-            </li>
+
             <li className="nav-item">
               <Link className="nav-link fs-6" to="/community">
                 COMMUNITY
               </Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link fs-6" to="/lists">
-                LISTS
+              <Link className="nav-link fs-6" to="/signIn">
+                SIGN IN
               </Link>
             </li>
-            <li>
-              <Link className="nav-link fs-6" to="/news">
-                NEWS
+            <li className="nav-item">
+              <Link className="nav-link fs-6" to="/register">
+                REGISTER
               </Link>
             </li>
           </ul>

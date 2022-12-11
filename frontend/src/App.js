@@ -1,6 +1,7 @@
 import Header from "./components/header";
 import Game from "./components/homeGame";
 import Footer from "./components/footer";
+import GlobalHeader from "./components/globalHeader";
 import { useState, useEffect } from "react";
 import {
   BsFillDropletFill,
@@ -25,7 +26,7 @@ export default function App() {
   const reviews = useRecoilValue(reviewState);
 
   //MUDE ESSA VARIÁVEL PARA TRUE PARA VER A TELA NORMAL E FALSE SE QUISER VÊ-LA COMO UM USUÁRIO NÃO LOGADO
-  const logado = true;
+  const logado = false;
 
   useEffect(() => {
     fetch(`http://localhost:3001/api/list/${page}`).then((res) =>
@@ -132,7 +133,7 @@ export default function App() {
   } else {
     return (
       <>
-        <Header /* childToParent={childToParent} */ />
+        <GlobalHeader />
         <div className="ConvincingMessage container-fluid text-center mt-5">
           <div class="row align-items-center">
             <div className="col-2" />

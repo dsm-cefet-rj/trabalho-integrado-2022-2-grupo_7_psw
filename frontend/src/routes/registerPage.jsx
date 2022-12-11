@@ -1,21 +1,19 @@
 import { Suspense } from "react";
 import Footer from "../components/footer";
-import Header from "../components/header";
+import GlobalHeader from "../components/globalHeader";
 import RegisterComponent from "../components/register/registerComponent";
-import "./register.css"
+import "./register.css";
 
-const  RegisterPage = () => {
-  
+const RegisterPage = () => {
   return (
     <>
-      <Header />
+      <GlobalHeader />
       <Suspense>
-        <RegisterComponent/>
+        <RegisterComponent />
       </Suspense>
-      <Footer/>
-   
+      <Footer />
     </>
   );
-}
+};
 
 export default RegisterPage;

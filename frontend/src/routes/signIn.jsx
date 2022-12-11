@@ -1,15 +1,15 @@
 import { Suspense } from "react";
 import Footer from "../components/footer";
-import Header from "../components/header";
+import GlobalHeader from "../components/globalHeader";
 import SinginComponent from "../components/singin/singinComponent";
 function signIn() {
   return (
     <>
-      <Header />
+      <GlobalHeader />
       <Suspense>
-        <SinginComponent/>
+        <SinginComponent />
       </Suspense>
-      <Footer/>
+      <Footer />
     </>
   );
 }
