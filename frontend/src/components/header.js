@@ -9,6 +9,11 @@ function Header() {
   // Essa variável representa o valor do estado global de login. Que é true quando um usuário está logado e false caso contrário
   const mylogin = useRecoilValue(login);
 
+  const imgSize = {
+    width: 50,
+    height: 50,
+  };
+
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
       <div className="container-fluid">
@@ -42,26 +47,52 @@ function Header() {
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             {mylogin ? (
               <>
-                <li className="nav-item">
-                  <Link className="nav-link fs-6" to="/reviews">
-                    REVIEWS
-                  </Link>
-                </li>
-                <li className="nav-item">
-                  <Link className="nav-link fs-6" to="/profile">
-                    PROFILE
-                  </Link>
+                <li class="nav-item dropdown my-md-0 my-4 mx-0 mx-md-3">
+                  <div data-bs-toggle="dropdown" className="d-flex gap-2">
+                    <img
+                      style={imgSize}
+                      alt="profile"
+                      className="rounded-circle"
+                      src="https://avatars.dicebear.com/api/female/john.svg?background=%2314181c"
+                    />
+                    <Link className="nav-link dropdown-toggle">username</Link>
+                  </div>
+
+                  <ul
+                    class="dropdown-menu bg-dark"
+                    aria-labelledby="navbarDropdown"
+                  >
+                    <li>
+                      <Link className="text-center nav-link fs-6" to="/profile">
+                        Profile
+                      </Link>
+                    </li>
+                    <li>
+                      <Link className="text-center nav-link fs-6" to="/reviews">
+                        Reviews
+                      </Link>
+                    </li>
+                    <li>
+                      <Link className="text-center nav-link fs-6" to="/lists">
+                        Lists
+                      </Link>
+                    </li>
+                    <li>
+                      <hr class="dropdown-divider" />
+                    </li>
+                    <li>
+                      <Link className="text-center nav-link fs-6" to="/signIn">
+                        Logout
+                      </Link>
+                    </li>
+                  </ul>
                 </li>
                 <li className="nav-item">
                   <Link className="nav-link fs-6" to="/community">
                     COMMUNITY
                   </Link>
                 </li>
-                <li className="nav-item">
-                  <Link className="nav-link fs-6" to="/lists">
-                    LISTS
-                  </Link>
-                </li>
+
                 <li>
                   <Link className="nav-link fs-6" to="/news">
                     NEWS
@@ -70,7 +101,6 @@ function Header() {
               </>
             ) : (
               <>
-                {" "}
                 <li>
                   <Link className="nav-link fs-6" to="/news">
                     NEWS
@@ -94,6 +124,7 @@ function Header() {
               </>
             )}
           </ul>
+
           <form className="d-flex mr-5">
             <input
               onChange={(e) => {

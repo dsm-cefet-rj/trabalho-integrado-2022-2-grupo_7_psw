@@ -24,10 +24,9 @@ export default function App() {
   const [display, setDisplay] = useState(false);
   const [last5Reviews, setLast5Reviews] = useState([]);
   const reviews = useRecoilValue(reviewState);
-  const mylogin = useRecoilValue(login);
 
-  //MUDE ESSA VARIÁVEL PARA TRUE PARA VER A TELA NORMAL E FALSE SE QUISER VÊ-LA COMO UM USUÁRIO NÃO LOGADO
-  const logado = false;
+  // Essa variável representa o valor do estado global de login. Que é true quando um usuário está logado e false caso contrário
+  const mylogin = useRecoilValue(login);
 
   useEffect(() => {
     fetch(`http://localhost:3001/api/list/${page}`).then((res) =>
