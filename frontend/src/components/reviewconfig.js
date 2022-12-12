@@ -5,12 +5,13 @@ import {
   BsBookmarkCheck,
 } from "react-icons/bs";
 import UpdateReviewForm from "./updateReviewForm";
+import AddToList from "./addToListForm";
 import { reviewState } from "../recoil/atoms/review";
 import { useRecoilState } from "recoil";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 
-export default function ReviewConfig({ isReviewed }) {
+export default function ReviewConfig({ isReviewed, myList }) {
   let id = useParams().id;
   const [review, setReview] = useRecoilState(reviewState);
 
@@ -69,12 +70,19 @@ export default function ReviewConfig({ isReviewed }) {
           </>
         ) : null}
         <div className="mx-auto w-100  d-flex justify-content-center align-items-center pb-3">
-          <button type="button" className="btn btn-dark">
+          <button
+            type="button"
+            data-bs-toggle="modal"
+            data-bs-target="#addToList"
+            data-bs-whatever="@mdo"
+            className="btn btn-dark"
+          >
             Add to lists
           </button>
         </div>
       </div>
       <UpdateReviewForm />
+      <AddToList list={myList} />
     </>
   );
 }

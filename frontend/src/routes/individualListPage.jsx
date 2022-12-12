@@ -38,7 +38,7 @@ export default function IndividualList() {
               List by<span className="fw-bold"> Username</span>{" "}
             </p>
           </div>
-          <div className="mx-1 mx-md-5">
+          <div className="mx-1 mx-md-5 pb-5">
             <h3 className="text-light">{mylist ? mylist.title : "Title"}</h3>
             <p className="text-light my-4 opacity-50">
               {mylist ? mylist.description : "Description"}

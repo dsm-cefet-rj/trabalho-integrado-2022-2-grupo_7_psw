@@ -5,9 +5,11 @@ import { Link } from "react-router-dom";
 import { useEffect } from "react";
 import { gameListState } from "../recoil/atoms/gameList";
 import { useRecoilState } from "recoil";
+import { useState } from "react";
 
 export default function Lists() {
   const [list, setList] = useRecoilState(gameListState);
+  const [cover, setCover] = useState([]);
 
   useEffect(() => {
     fetch(`http://localhost:3001/getlist`)
@@ -16,8 +18,8 @@ export default function Lists() {
         setList(data.data);
       })
       .catch((error) => console.log(error));
-  }, [list]);
-
+  }, []);
+  console.log(cover);
   return (
     <>
       <Header />

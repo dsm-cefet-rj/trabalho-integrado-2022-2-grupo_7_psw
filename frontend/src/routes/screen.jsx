@@ -18,6 +18,7 @@ export default function Screen() {
   const [screenshot, setScreenshot] = useState("");
   const [ratingAvg, setRatingAvg] = useState(0);
   const [userReview, setUserReview] = useRecoilState(reviewState);
+  const [list, setList] = useState([]);
 
   const id = useParams().id;
   useEffect(() => {
@@ -55,6 +56,13 @@ export default function Screen() {
       .then((res) => res.json())
       .then((data) => setUserReview(data.data))
       .catch((error) => console.log(error));
+
+    fetch(`http://localhost:3001/getlist`)
+      .then((res) => res.json())
+      .then((data) => {
+        setList(data.data);
+      })
+      .catch((error) => console.log(error));
   }, []);
 
   return (
@@ -86,7 +94,10 @@ export default function Screen() {
           })
         : null}
       <div className="d-flex justify-content-center justify-content-md-start">
-        <ReviewConfig isReviewed={userReview.length > 0 ? true : false} />
+        <ReviewConfig
+          myList={list}
+          isReviewed={userReview.length > 0 ? true : false}
+        />
       </div>
     </>
   );
