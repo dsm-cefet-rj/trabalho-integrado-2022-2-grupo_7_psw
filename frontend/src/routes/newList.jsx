@@ -161,6 +161,7 @@ export default function NewList() {
                   }}
                   size={30}
                   color="red"
+                  className="ms-auto"
                 />
               </div>
             );

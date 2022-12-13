@@ -58,7 +58,7 @@ export default function List({ title, games, id }) {
         <div className="mx-2">
           <h2 className="text-light fs-3">{title}</h2>
 
-          <Link>
+          <Link className="ms-auto">
             <BsFillTrashFill
               onClick={handleDelete}
               color="lightgrey"
