@@ -1,5 +1,5 @@
 import users from "../models/User.js";
-import bcrypt from "bcryptjs"
+import bcrypt from "bcryptjs";
 
 class UserController {
   static getAllUser = (req, res) => {
@@ -8,22 +8,20 @@ class UserController {
     });
   };
   static createUser = (req, res) => {
-
-    users.findOne({"email": req.body.email}, (err, userWithSameEmail) => {
-      if(err){
+    users.findOne({ email: req.body.email }, (err, userWithSameEmail) => {
+      if (err) {
         res.status(400).json({
-          message: 'Error getting email try gain',
+          message: "Error getting email try gain",
         });
-
-      }else if(userWithSameEmail){
-        res.status(400).json({ message: 'This email is taken' });
-      }else{
+      } else if (userWithSameEmail) {
+        res.status(400).json({ message: "This email is taken" });
+      } else {
         let newUser = new users(req.body);
 
-        bcrypt.genSalt(10, function(err, salt) {
-          bcrypt.hash(newUser.password, salt, function(err, hash) {
+        bcrypt.genSalt(10, function (err, salt) {
+          bcrypt.hash(newUser.password, salt, function (err, hash) {
             newUser.password = hash;
-    
+
             newUser.save((erro) => {
               if (erro) {
                 res
@@ -36,7 +34,7 @@ class UserController {
           });
         });
       }
-    }) 
+    });
   };
   static updateUser = (req, res) => {
     const id = req.params.id;
@@ -63,19 +61,17 @@ class UserController {
   };
 
   static getByEmail = (req, res) => {
-    const email = req.query.email
-      users.find({"email": email}, {}, (err, user) => {
-        if(!err){
-          res.status(200).send(user);
-
-        }else{
-          res.status(400).send({
-            message: `${err.message} - Found any user by email requested`
-          })
-        }
-      }) 
-    
-  }
+    const email = req.query.email;
+    users.find({ email: email }, {}, (err, user) => {
+      if (!err) {
+        res.status(200).send(user);
+      } else {
+        res.status(400).send({
+          message: `${err.message} - Found any user by email requested`,
+        });
+      }
+    });
+  };
 
   static deleteUser = (req, res) => {
     const id = req.params.id;
@@ -84,6 +80,10 @@ class UserController {
         res.status(200).send({ messege: "User deleted successfuly" });
       }
     });
+  };
+
+  static loginUser = (err, req, res, next) => {
+    if (err) next(err);
   };
 }
 
