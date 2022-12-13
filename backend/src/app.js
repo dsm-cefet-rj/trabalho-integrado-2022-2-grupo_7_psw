@@ -20,7 +20,7 @@ app.use(cors());
 passport.use(
   new LocalStrategy(function (username, password, cb) {
     users
-      .findOne({ name: username })
+      .findOne({ username: username })
       .then((user) => {
         if (!user) {
           return cb(null, false);
@@ -62,8 +62,7 @@ app.use(
     resave: false,
     saveUninitialized: true,
     store: MongoStore.create({
-      mongoUrl:
-        "mongodb+srv://droppradmin:mtVnIizYYoGOghoE@cluster0.sh88dvn.mongodb.net/?retryWrites=true&w=majority",
+      mongoUrl: process.env.MONGO_URL,
     }),
     cookie: {
       maxAge: 1000 * 60 * 60 * 24, // Equals 1 day (1 day * 24 hr/1 day * 60 min/1 hr * 60 sec/1 min * 1000 ms / 1 sec)
