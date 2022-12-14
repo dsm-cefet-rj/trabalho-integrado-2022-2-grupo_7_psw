@@ -6,10 +6,16 @@ import { useEffect } from "react";
 import { gameListState } from "../recoil/atoms/gameList";
 import { useRecoilState } from "recoil";
 import { useState } from "react";
+import { AiOutlinePlus } from "react-icons/ai";
+import "./lists.css"
 
 export default function Lists() {
   const [list, setList] = useRecoilState(gameListState);
   const [cover, setCover] = useState([]);
+
+  const fontStyle = {
+    fontSize: 20
+  };
 
   useEffect(() => {
     fetch(`http://localhost:3001/getlist`)
@@ -24,13 +30,15 @@ export default function Lists() {
     <>
       <Header />
       <div className="mx-3 mx-md-5">
-        {list.length > 0 ? (
-          <Link to="/lists/new">
-            <button type="button" class="btn btn-success p-2 fs-6 mt-5 mx-3">
-              Create new list
-            </button>
-          </Link>
-        ) : null}
+        <div className="d-flex justify-content-center">
+          {list.length > 0 ? (
+            <Link to="/lists/new">
+              <button type="button" class="btn botaozao p-2 fs-6 mt-5 mx-3">
+                <AiOutlinePlus size={20} /><span style={fontStyle}> Create new list </span>
+              </button>
+            </Link>
+          ) : null}
+        </div>
         {list.length > 0 ? (
           list.map((e) => {
             return <List id={e._id} games={e.games} title={e.title} />;
