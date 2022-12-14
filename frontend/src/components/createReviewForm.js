@@ -26,6 +26,7 @@ export default function ReviewForm() {
   const [review, setReview] = useRecoilState(reviewState);
 
   const [favorite, setFavorite] = useState(null);
+  const [hoverFavorite, setHoverFavorite] = useState(null);
 
   let HandleSubmit = async (e) => {
     e.preventDefault();
@@ -38,6 +39,7 @@ export default function ReviewForm() {
           game_id: game_id,
           rating: rating,
           date: new Date().toLocaleDateString("pt-BR"),
+          favorite: favorite,
         }),
       });
 
@@ -90,13 +92,13 @@ export default function ReviewForm() {
 
                   <div clasName="row d-flex">
 
-                    <div className="col-8">
                       <label
                         for="message-text"
                         className="col-form-label text-dark"
                       >
                         Rating:
                       </label>
+                    <div className="d-flex m-2">
                       <div className="stars">
                         {[...Array(5)].map((star, i) => {
                           const ratingValue = i + 1;
@@ -125,31 +127,34 @@ export default function ReviewForm() {
                           );
                         })}
                       </div>
-                    </div>
-                    <div className="col-4 ms-auto d-flex justify-content-center">
-                      
-                      <div className="favorite">
-                        <button
-                          onClick={() => setFavorite(!favorite)}
-                          //onAnimationEnd={() => setClicked(false)}
-                          className={cn("like-button-wrapper", {
-                            favorite,
-                          })}
-                        >
-                          <div className="like-button">
-                            <AiFillHeart />
-                            <span>Like</span>
-                          </div>
-                        </button>
-                        );
+                    <div className="favorites ms-auto">
+                        {[...Array(1)].map((favorites, i) => {
+                          const heart = i + 1;
 
-
-                        <label className="text-dark">
-                          <AiFillHeart
-                            size={50}
-                          />
-                        </label>
+                          return (
+                            <label>
+                              <input
+                                type="radio"
+                                name="heart"
+                                value={heart}
+                                onClick={() => setFavorite(heart)}
+                              />
+                              <AiFillHeart
+                                className="star"
+                                color={
+                                  heart <= (hoverFavorite || favorite)
+                                    ? "DC143C"
+                                    : "e4e5e9"
+                                }
+                                size={50}
+                                onMouseEnter={() => setHoverFavorite(heart)}
+                                onMouseLeave={() => setHoverFavorite(null)}
+                              />
+                            </label>
+                          );
+                        })}
                       </div>
+
 
                     </div>
                   </div>

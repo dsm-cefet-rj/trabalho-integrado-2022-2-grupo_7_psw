@@ -19,6 +19,9 @@ export default function ReviewForm() {
   const game_id = useParams().id;
   const [review, setReview] = useRecoilState(reviewState);
 
+  const [favorite, setFavorite] = useState(null);
+  const [hoverFavorite, setHoverFavorite] = useState(null);
+
   let HandleSubmit = async (e) => {
     e.preventDefault();
     try {

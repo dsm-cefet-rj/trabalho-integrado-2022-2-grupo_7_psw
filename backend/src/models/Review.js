@@ -7,6 +7,7 @@ const newsSchema = new mongoose.Schema({
   rating: { type: Number },
   date: { type: String },
   game_id: { type: Number },
+  favorite: { type: Boolean },
 });
 
 const reviews = mongoose.model("reviews", newsSchema);

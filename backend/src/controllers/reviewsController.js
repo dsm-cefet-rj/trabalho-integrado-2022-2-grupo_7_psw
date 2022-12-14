@@ -8,6 +8,15 @@ class ReviewsController {
       });
     });
   };
+
+  static getFavorite = (req, res) => {
+    reviews.find( {favorite: true}, (err, review) => {
+      res.status(200).json({
+        data: review,
+      });
+    });
+  };
+
   static createReview = (req, res) => {
     let newReview = new reviews(req.body);
 
