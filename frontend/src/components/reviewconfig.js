@@ -26,7 +26,7 @@ export default function ReviewConfig({ isReviewed, myList }) {
   return (
     <>
       <div className="bg-secondary mx-5 my-5 d-flex flex-column mw-50 mw-md-50 p-3 gap-3 col-7 col-md-5 col-lg-3">
-        <div className="d-flex justify-content-around border-bottom flex-column flex-md-row">
+        {/*<div className="d-flex justify-content-around border-bottom flex-column flex-md-row">
           <div className="d-flex flex-column align-items-center">
             <BsHeart size={30} />
             <p>Like</p>
@@ -43,7 +43,7 @@ export default function ReviewConfig({ isReviewed, myList }) {
             <BsCartDash size={30} />
             <p>Wish</p>
           </div>
-        </div>
+        </div>*/}
 
         {isReviewed ? (
           <>

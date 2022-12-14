@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 function games({ gameImage }) {
   const imgStyle = {
     width: 200,
-    height: 288,
+    height: 250,
   };
 
   return (

@@ -1,8 +1,18 @@
 import Header from "../components/header";
 import Review from "../components/review";
 import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
 
 export default function Overview({ origem }) {
+  const [review, setReview] = useState([])
+
+  useEffect(() => {
+    fetch(`http://localhost:3001/getreview`)
+      .then((res) => res.json())
+      .then((data) => setReview(data.data))
+      .catch((error) => console.log(error));
+  }, []);
+
   return (
     <>
       <Header />
@@ -23,9 +33,20 @@ export default function Overview({ origem }) {
           </div>
         </div>
       </div>
-      <Review />
-      <Review />
-      <Review />
+      {review.map((e) => {
+        return (
+          <Review
+            stars={e.rating}
+            title={e.titleReview}
+            cover={e.coverReview}
+            release={e.yearRelease}
+            text={e.text_review}
+            checkout={false}
+            date={e.date}
+            game_id={e.game_id}
+          />
+        );
+      })}
     </>
   );
 }

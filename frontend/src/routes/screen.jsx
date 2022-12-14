@@ -65,6 +65,11 @@ export default function Screen() {
       .catch((error) => console.log(error));
   }, []);
 
+  const reviewStyle = {
+    height: 310,
+    width: 1200.
+  };
+
   return (
     <>
       <Header />
@@ -81,23 +86,25 @@ export default function Screen() {
       <hr></hr>
       {userReview.length > 0
         ? userReview.map((e) => {
-            return (
-              <div className="d-flex justify-content-center justify-content-md-start">
-                <Review
-                  text={e.text_review}
-                  game_id={e.game_id}
-                  date={e.date}
-                  stars={e.rating}
-                />
-              </div>
-            );
-          })
+          return (
+            <div className="d-flex justify-content-center justify-content-md-start">
+              <Review
+                text={e.text_review}
+                game_id={e.game_id}
+                date={e.date}
+                stars={e.rating}
+              />
+            </div>
+          );
+        })
         : null}
-      <div className="d-flex justify-content-center justify-content-md-start">
-        <ReviewConfig
-          myList={list}
-          isReviewed={userReview.length > 0 ? true : false}
-        />
+      <div className="d-flex justify-content-center">
+        <div className="d-flex justify-content-center" style={reviewStyle}>
+          <ReviewConfig
+            myList={list}
+            isReviewed={userReview.length > 0 ? true : false}
+          />
+        </div>
       </div>
     </>
   );

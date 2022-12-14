@@ -1,8 +1,17 @@
 import Header from "../components/header";
-import Game from "../components/homeGame";
+import Game from "../components/imageGameList";
 import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
 
 export default function Overview() {
+  const [id, setId] = useState([])
+  
+  useEffect(() => {
+    fetch("http://localhost:3001/getreview")
+    .then((res) => res.json())
+    .then((data) => setId(data.data));
+  }, []);
+  
   return (
     <>
       <Header />
@@ -22,8 +31,13 @@ export default function Overview() {
           </Link>
         </div>
       </div>
-      <Game />
-      <Game />
+      <div className="container">
+
+      {id.map((jogosDoUsuario) => {
+        return <Game id={jogosDoUsuario.game_id}/>;
+      })}
+      </div>
+
     </>
   );
 }

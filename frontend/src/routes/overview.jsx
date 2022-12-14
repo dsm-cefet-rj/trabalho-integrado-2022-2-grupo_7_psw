@@ -1,7 +1,6 @@
-import Game from "../components/game";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
-import SmallGame from "../components/imageGameList";
+import Game from "../components/imageGameList";
 
 export default function Overview() {
   const [id, setId] = useState([]);
@@ -37,8 +36,8 @@ export default function Overview() {
             </div>
           </div>
           <div className="d-flex flex-wrap gap-5">
-            {id.map((bananas) => {
-              return <SmallGame id={bananas.game_id} />;
+            {id.map((jogosFavoritos) => {
+              return <Game id={jogosFavoritos.game_id} />;
             })}
           </div>
         </div>
