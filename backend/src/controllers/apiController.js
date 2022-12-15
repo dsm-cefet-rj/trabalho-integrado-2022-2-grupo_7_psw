@@ -18,7 +18,7 @@ class ApiController {
         res.json({ data: response.data });
       })
       .catch((err) => {
-        console.error(err);
+        // console.error(err);
         res.send("Error");
       });
   };
@@ -38,7 +38,7 @@ class ApiController {
         res.json({ data: response.data });
       })
       .catch((err) => {
-        console.error(err);
+        // console.error(err);
         res.send("Error");
       });
   };
@@ -58,7 +58,7 @@ class ApiController {
         res.json({ data: response.data });
       })
       .catch((err) => {
-        console.error(err);
+        // console.error(err);
         res.send("Error");
       });
   };
@@ -96,7 +96,7 @@ class ApiController {
         res.json({ data: response.data });
       })
       .catch((err) => {
-        console.error(err);
+        // console.error(err);
         res.send("Error");
       });
   };
@@ -115,7 +115,7 @@ class ApiController {
         res.json({ data: response.data });
       })
       .catch((err) => {
-        console.error(err);
+        // console.error(err);
         res.send("Error");
       });
   };
@@ -136,7 +136,7 @@ class ApiController {
         res.json({ data: response.data });
       })
       .catch((err) => {
-        console.error(err);
+        // console.error(err);
         res.send("Error");
       });
   };
@@ -157,7 +157,7 @@ class ApiController {
         res.json({ data: response.data });
       })
       .catch((err) => {
-        console.error(err);
+        // console.error(err);
         res.send("Error");
       });
   };
@@ -178,7 +178,7 @@ class ApiController {
         res.json({ data: response.data });
       })
       .catch((err) => {
-        console.error(err);
+        // console.error(err);
         res.send("Error");
       });
   };
@@ -198,7 +198,7 @@ class ApiController {
         res.json({ data: response.data });
       })
       .catch((err) => {
-        console.error(err);
+        // console.error(err);
         res.send("Error");
       });
   };

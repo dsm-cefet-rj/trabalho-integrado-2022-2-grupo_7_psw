@@ -1,4 +1,6 @@
 import mongoose from "mongoose";
+import passportLocalMongoose  from "passport-local-mongoose"
+
 
 const userSchema = new mongoose.Schema({
   id: { type: String },
@@ -8,6 +10,8 @@ const userSchema = new mongoose.Schema({
   level: { type: Number },
 });
 
-const users = mongoose.model("users", userSchema);
 
-export default users;
+userSchema.plugin(passportLocalMongoose);
+const User = mongoose.model("users", userSchema);
+
+export default User;
