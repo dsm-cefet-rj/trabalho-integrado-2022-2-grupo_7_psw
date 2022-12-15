@@ -28,6 +28,8 @@ export default function ReviewForm() {
   const [favorite, setFavorite] = useState(null);
   const [hoverFavorite, setHoverFavorite] = useState(null);
 
+  const [status, setStatus] = useState(null);
+
   let HandleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -40,6 +42,7 @@ export default function ReviewForm() {
           rating: rating,
           date: new Date().toLocaleDateString("pt-BR"),
           favorite: favorite,
+          status: status,
         }),
       });
 
@@ -183,6 +186,7 @@ export default function ReviewForm() {
                       id="dropdownMenuButton1"
                       data-bs-toggle="dropdown"
                       aria-expanded="false"
+                      onChange={(e) => setStatus(e.target.value)}
                     >
                       Status
                     </button>
@@ -192,7 +196,7 @@ export default function ReviewForm() {
                       aria-labelledby="dropdownMenuButton1"
                     >
                       <li>
-                        <p className="dropdown-item" href="#" value="Playing">
+                        <p className="dropdown-item" href="#" value="Playing" >
                           Playing
                         </p>
                       </li>

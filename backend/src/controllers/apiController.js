@@ -62,6 +62,25 @@ class ApiController {
         res.send("Error");
       });
   };
+  static getGenres = (req, res) => {
+    axios({
+      url: "https://api.igdb.com/v4/genres",
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Client-ID": process.env.CLIENT_IGDB_ID,
+        Authorization: process.env.ACCESS_IGDB_TOKEN,
+      },
+      data: `fields checksum,created_at,name,slug,updated_at,url; where id=${req.params.id};`,
+    })
+      .then((response) => {
+        res.json({ data: response.data });
+      })
+      .catch((err) => {
+        console.error(err);
+        res.send("Error");
+      });
+  };
   static getCover = (req, res) => {
     axios({
       url: "https://api.igdb.com/v4/covers",

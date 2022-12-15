@@ -12,6 +12,7 @@ router
   .get("/api/screenshot/:id", ApiController.getScreenshot)
   .get("/api/list/:id", ApiController.getList)
   .get("/api/query/:name/:id", ApiController.getQuery)
-  .get("/api/count/:name", ApiController.getCount);
+  .get("/api/count/:name", ApiController.getCount)
+  .get("/api/genre/:id", ApiController.getGenres);
 
 export default router;

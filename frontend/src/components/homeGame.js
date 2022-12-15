@@ -22,6 +22,8 @@ function Games({
     "https://images.igdb.com/igdb/image/upload/t_cover_big/nocover.png"
   );
 
+  const [generos, setGenero] = useState([])
+
   useEffect(() => {
     fetch(`http://localhost:3001/api/capa/${background_image}`)
       .then((res) =>
@@ -34,6 +36,10 @@ function Games({
       .catch((err) => {
         console.log(err);
       });
+
+      fetch(`http://localhost:3001/api/genre/${genres}`)
+        .then((res) => res.json())
+        .then((data) => setGenero(data.data));
   });
 
   return (
@@ -55,9 +61,15 @@ function Games({
       <div className="mx-auto mx-md-0 d-flex d-md-block flex-column align-items-center">
         <h2 className="text-light mt-md-2 fs-3 fs-md-2 m-4 m-md-0">{title}</h2>
 
-        <h5 className="p-1 bg-secondary rounded mt-3 d-inline-block fw-bold text-light fs-6 mb-4 text-center">
-          Main Game
-        </h5>
+        {generos.map((genreName) => {
+          return <>
+            <h5 className="p-1 bg-secondary rounded mt-3 d-inline-block fw-bold text-light fs-6 mb-4 text-center">
+              {genreName.name}
+            </h5>
+          </>;
+        })}
+
+
       </div>
     </div>
   );

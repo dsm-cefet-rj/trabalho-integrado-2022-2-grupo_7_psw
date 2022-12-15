@@ -35,7 +35,7 @@ export default function Overview() {
               <h3>Favorite from User</h3>
             </div>
           </div>
-          <div className="d-flex flex-wrap gap-5">
+          <div className="d-flex flex-wrap gap-5 justify-content-center">
             {id.map((jogosFavoritos) => {
               return <Game id={jogosFavoritos.game_id} />;
             })}
