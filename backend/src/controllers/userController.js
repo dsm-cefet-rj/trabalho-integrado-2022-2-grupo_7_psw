@@ -11,9 +11,10 @@ class UserController {
   };
   static createUser = (req, res, next) => {
     // console.log(req.body)
-    User.register(new User({username: req.body.username}), req.body.password, (err, user) => {
+    User.register(new User({username: req.body.username, email: req.body.email, level: req.body.level }),
+      req.body.password,
+      (err, user) => {
       if (err) {
-        console.log(err)
         res
           .status(500)
           .setHeader('Content-Type', 'application/json')
@@ -74,7 +75,11 @@ class UserController {
   };
 
   static loginUser = (err, req, res, next) => {
-    if (err) next(err);
+    passport.authenticate('local'), (req, res) => {
+      res.statusCode = 200;
+      res.setHeader('Content-Type', 'application/json')
+      res.json({success: true, status: "You are successfully logged in"});
+    }
   };
 }
 

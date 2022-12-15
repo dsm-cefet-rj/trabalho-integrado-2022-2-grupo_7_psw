@@ -11,13 +11,10 @@ router
   .post("/user", UserController.createUser)
   .put("/user/:id", UserController.updateUser)
   .delete("/user/:id", UserController.deleteUser)
-  .post(
-    "/login",
-    passport.authenticate("local", {
-      failureRedirect: "/login-failure",
-      successRedirect: "login-success",
-    }),
-    UserController.loginUser
-  );
+  .post("/login", passport.authenticate('local'), (req, res) => {
+    res.statusCode = 200;
+    res.setHeader('Content-Type', 'application/json')
+    res.json({success: true, status: "You are successfully logged in"});
+  });
 
 export default router;

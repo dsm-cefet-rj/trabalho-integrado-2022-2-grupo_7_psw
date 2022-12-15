@@ -9,12 +9,10 @@ import { useGetUserEmail } from "../../recoil/hooks/userHooks/useGetUserElements
 import "./singinComponent.css";
 
 const SinginComponent = () => {
-  let { email } = useParams();
 
-  let [currentEmail, setCurrentEmail] = useState();
   let [currentPassword, setCurrentPassword] = useState();
+  let [currentUserName, setCurrentUserName] = useState();
 
-  // let user = useGetUserByEmail(currentEmail);
   const customHeaders = {
     "Content-Type": "application/json",
   };
@@ -25,21 +23,20 @@ const SinginComponent = () => {
         method: "POST",
         headers: customHeaders,
         body: JSON.stringify({
-          name: "testando",
+          username: currentUserName,
+          password: currentPassword
         }),
       });
 
-      if (res.status === 201) {
-        alert("post");
+      if (res.status === 200) {
+        alert(res.status);
       } else {
-        alert("post error");
+        alert(res.status);
       }
     } catch (err) {
       console.log(err);
     }
   };
-
-  // console.log(currentEmail)
 
   return (
     <>
@@ -54,8 +51,8 @@ const SinginComponent = () => {
                 class="form-control mt-1"
                 placeholder="Username"
                 required="true"
-                value={currentEmail}
-                onChange={(ev) => setCurrentEmail(ev.target.value)}
+                value={currentUserName}
+                onChange={(ev) => setCurrentUserName(ev.target.value)}
               ></input>
             </div>
             <div class="form-group mt-4">
@@ -64,6 +61,8 @@ const SinginComponent = () => {
                 type="password"
                 class="form-control mt-1"
                 placeholder="********"
+                value={currentPassword}
+                onChange={(ev) => setCurrentPassword(ev.target.value)}
               ></input>
             </div>
             <div className="button-container">

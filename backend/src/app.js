@@ -12,41 +12,44 @@ import crypto from "crypto";
 import { Strategy as LocalStrategy } from "passport-local";
 import users from "./models/User.js";
 import MongoStore from "connect-mongo";
+import User from "./models/User.js";
 
 const app = express();
 app.use(express.json());
 app.use(cors());
 
-passport.use(
-  new LocalStrategy(function (username, password, cb) {
-    users
-      .findOne({ username: username })
-      .then((user) => {
-        if (!user) {
-          return cb(null, false);
-        }
+// passport.use(
+//   new LocalStrategy(function (username, password, cb) {
+//     User
+//       .findOne({ username: username })
+//       .then((user) => {
+//         // console.log("USER = " + user)
+//         if (!user) {
+//           return cb(null, false);
+//         }
 
-        // Function defined at bottom of app.js
-        /*  const isValid = validPassword(password, user.hash, user.salt); */
+//         // Function defined at bottom of app.js
+//         /*  const isValid = validPassword(password, user.hash, user.salt); */
 
-        if (true) {
-          return cb(null, user);
-        } else {
-          return cb(null, false);
-        }
-      })
-      .catch((err) => {
-        cb(err);
-      });
-  })
-);
+//         if (true) {
+//           return cb(null, user);
+//         } 
+//       })
+//       .catch((err) => {
+//         cb(err);
+//       });
+//   })
+// );
+passport.use(new LocalStrategy(User.authenticate()))
 
 passport.serializeUser(function (user, cb) {
+  // console.log(user._id)
   cb(null, user._id);
 });
 
 passport.deserializeUser(function (id, cb) {
   users.findById(id, function (err, user) {
+    // console.log(user)
     if (err) {
       return cb(err);
     }
