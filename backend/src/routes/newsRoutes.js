@@ -1,11 +1,12 @@
 import express from "express";
 import NewsController from "../controllers/newsController.js";
+import { verifyUser } from "../security/auth.js";
 
 const router = express.Router();
 
 //fazer rotas sempre da mais especifica pra menos especifica para evitar conflitos.
 router
-  .get("/news", NewsController.getAllNews)
+  .get("/news",NewsController.getAllNews)
   .get("/news/search", NewsController.getNewsByUser) //mais especifica
   .get("/news/:id", NewsController.getById) //menos especifica
   .post("/news", NewsController.createNew)
