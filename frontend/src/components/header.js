@@ -2,6 +2,10 @@ import { Link } from "react-router-dom";
 import React, { useState } from "react";
 import { login } from "../recoil/atoms/login";
 import { useRecoilValue } from "recoil";
+import logo from "../images/Logo_Droppr.svg";
+import nome_droppr from "../images/Nome_Droppr.png";
+import "./header.css";
+import "./card_effect.js";
 
 function Header() {
   const [search, setSearch] = useState("");
@@ -18,16 +22,18 @@ function Header() {
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
       <div className="container-fluid">
         <div className="mx-3 mx-md-5">
-          <Link className="navbar-brand fs-4" to="/">
-            Droppr
-          </Link>
-          <br />
-          <i
+          <div className="tilt-box-wrap">
+            <Link className="navbar-brand" to="/">
+              <img src={logo} className="logo" alt="Logo"/>
+              <img src={nome_droppr} className="nome_droppr" alt="Droppr"/>
+            </Link>
+          </div>
+          {/* <i
             style={{
               color: "#fff",
             }}
             className="fa-solid fa-lg fa-droplet drop"
-          ></i>
+          ></i> */}
         </div>
         <button
           className="navbar-toggler"
