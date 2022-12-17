@@ -6,7 +6,7 @@ import api from "./apiRoutes.js";
 import gamelists from "./gameListRoutes.js";
 import passport from "passport";
 import User from "../models/User.js";
-import { auth1, verifyUser } from "../security/auth.js";
+// import { auth1, verifyUser } from "../security/auth.js";
 
 // const auth =  (req, res, next) => {
 //   console.log(req.user)
@@ -18,6 +18,10 @@ import { auth1, verifyUser } from "../security/auth.js";
 //     next();
 //   }
 // }
+// const verifyUser = (next) => {
+//   // console.log("verifyer")
+  
+// }
 
 
 const routes = (app) => {
@@ -25,11 +29,11 @@ const routes = (app) => {
     res.status(200).send({ titulo: "teste de node" });
   });
   
-  app.use(express.json(), news, users, api);
+  app.use(express.json(), users, api, gamelists, reviews);
   // auth1(User)
-  app.use(verifyUser)
-  app.use(reviews, gamelists);
-  // app.use(auth)
+  // app.use(verifyUser)
+  // app.use(passport.authenticate('jwt', {session: false}))
+  app.use(news);
 };
 
 export default routes;

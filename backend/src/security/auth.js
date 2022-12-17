@@ -43,11 +43,11 @@ export const auth1 = (User) => {
 }
 
 export const getToken = (user) => {
-    return jwt.sign(user, process.env.JWT_SECRET, {expiresIn: 36000})
+    return jwt.sign(user, process.env.JWT_SECRET, {expiresIn: 600000})
 }
 
-export const verifyUser = () => {
-    console.log("verifyer")
-    // passport.authenticate('jwt', {session: false})
-    next()
+export const verifyUser = (next) => {
+    // console.log("verifyer")
+    passport.authenticate('jwt', {session: false})
+    // next()
 }

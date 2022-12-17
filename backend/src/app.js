@@ -68,8 +68,8 @@ passport.deserializeUser(User.deserializeUser())
 
 let opts = {};
 opts.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
-opts.secretOrKey = "process.env.JWT_SECRET"
-
+opts.secretOrKey = process.env.JWT_SECRET
+console.log(opts)
 passport.use(new JwtStrategy(opts, function (jwt_payload, done){
   console.log("jwt payload:" + jwt_payload);
   User.findOne({_id: jwt_payload._id}, (err, user) => {
@@ -83,6 +83,8 @@ passport.use(new JwtStrategy(opts, function (jwt_payload, done){
       }
   })
 }))
+
+
 
 
 // app.use(
