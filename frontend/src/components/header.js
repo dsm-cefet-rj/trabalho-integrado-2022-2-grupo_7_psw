@@ -6,6 +6,8 @@ import logo from "../images/Logo_Droppr.svg";
 import nome_droppr from "../images/Nome_Droppr.png";
 import "./header.css";
 import "./card_effect.js";
+import Tilt from 'react-parallax-tilt';
+
 
 function Header() {
   const [search, setSearch] = useState("");
@@ -23,11 +25,14 @@ function Header() {
       <div className="container-fluid">
         <div className="mx-3 mx-md-5">
           <div className="tilt-box-wrap">
-            <Link className="navbar-brand" to="/">
+          <Tilt>
+            <Link className="navbar-brand" to="/" >            
               <img src={logo} className="logo" alt="Logo"/>
-              <img src={nome_droppr} className="nome_droppr" alt="Droppr"/>
+              <img src={nome_droppr} className="nome_droppr" alt="Droppr"/>    
             </Link>
+          </Tilt>
           </div>
+          
           {/* <i
             style={{
               color: "#fff",
@@ -163,6 +168,7 @@ function Header() {
           </form>
         </div>
       </div>
+    <script type="text/javascript" src="vanilla-tilt.js"></script>
     </nav>
   );
 }
