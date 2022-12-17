@@ -27,6 +27,7 @@ MONGO_URL=mongodb+srv://<username>:<password>@cluster0.sh88dvn.mongodb.net/?retr
 PORT=3001
 ACCESS_IGDB_TOKEN = "Bearer ijh5gvzwv8ntxnvxyyijh39kor858t"
 CLIENT_IGDB_ID = "dnz1zvhqgyb7pwacm85eu171egtel1"
+JWT_SECRET = "mongodb+srv://grupo7:grupo777@cluster0.czeowxy.mongodb.net/drpper-node"
 
 ```
 
