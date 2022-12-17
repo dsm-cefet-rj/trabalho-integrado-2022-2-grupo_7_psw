@@ -1,4 +1,6 @@
+// import { response } from "express";
 import { useRecoilValue } from "recoil";
+import { authAtom } from "../../atoms/userState";
 import { asyncAllUsers, asyncGetUserByEmail, asyncGetUserById } from "../../selectors/userSelector";
 
 export const useCreateUser = (userName, userEmail, userPassword, userPassword2, userLevel) => {
@@ -17,7 +19,7 @@ export const useCreateUser = (userName, userEmail, userPassword, userPassword2, 
     if(userPassword === userPassword2){
         fetch('http://localhost:3001/user', requestOptions).then(response => {
             console.log(response);
-            localStorage.clear();
+            // localStorage.clear();
          })        
     }else{
         alert("Passwords do not match")
@@ -34,4 +36,20 @@ export const useGetUserById = (id) => {
 
 export const useGetUserByEmail = (email) => {
     return useRecoilValue(asyncGetUserByEmail(email))
+}
+
+export const useUpdateUser = (userId, userName, userEmail) => {
+    const currentAuth = useRecoilValue(authAtom)
+    const requestOptions = {
+        method: 'POST',
+        Authorization: 'Basic '+ currentAuth, 
+        Headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({
+            username: userName,
+            email: userEmail
+        })
+    }
+    fetch('http://localhost:3001/user', requestOptions).then(response => {
+        console.log(response)
+    })
 }

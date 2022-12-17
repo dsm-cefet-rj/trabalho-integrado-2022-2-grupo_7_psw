@@ -8,7 +8,7 @@ const router = express.Router();
 router  
   .get("/news/search", NewsController.getNewsByUser) //mais especifica
   .get("/news/:id", NewsController.getById) //menos especifica
-  .get("/news",  NewsController.getAllNews)
+  .get("/news", NewsController.getAllNews)
   .post("/news", passport.authenticate('jwt', {session: false}), NewsController.createNew)
   .put("/news/:id", passport.authenticate('jwt', {session: false}), NewsController.updateNews)
   .delete("/news/:id", passport.authenticate('jwt', {session: false}), NewsController.deleteNews);

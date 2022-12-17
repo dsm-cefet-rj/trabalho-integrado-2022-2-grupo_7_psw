@@ -15,7 +15,7 @@ export default function News() {
         <div className="flex-container column">
           <Link
             className="button"
-            onClick={localStorage.clear()}
+            // onClick={localStorage.clear()}
             style={{
               color: "aliceblue",
               textAlign: "center",

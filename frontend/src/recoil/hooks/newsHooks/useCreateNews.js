@@ -1,8 +1,12 @@
-export const useCreateNews = (newsTitle, newsSubtitle, newsContent, newsUrl) => {
-    
+import { useRecoilValue } from "recoil";
+import { authAtom } from "../../atoms/userState";
+
+export const useCreateNews = (newsTitle, newsSubtitle, newsContent, newsUrl, currentAuth) => {
     const requestOptions = {
         method: 'POST',
-        headers: {'Content-Type': 'application/json'},
+        headers: {'Content-Type': 'application/json',
+                'Authorization' : "Bearer " + currentAuth},
+        // Authorization: 'Bearer '+ currentAuth,
         body: JSON.stringify({url: newsUrl,
                             title: newsTitle,
                             // mode: 'cors',
@@ -14,8 +18,8 @@ export const useCreateNews = (newsTitle, newsSubtitle, newsContent, newsUrl) => 
     }
     
     fetch('http://localhost:3001/news', requestOptions).then(response => {
-        console.log(response);
-        localStorage.clear();
+        console.log(requestOptions);
+        // localStorage.removeItem();
     })
 }
 

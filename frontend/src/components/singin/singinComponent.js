@@ -1,11 +1,14 @@
 import { useState } from "react";
-import { useParams } from "react-router-dom";
-import {
-  useGetAllUsers,
-  useGetUserByEmail,
-  useGetUserById,
-} from "../../recoil/hooks/userHooks/useCRUDUser";
-import { useGetUserEmail } from "../../recoil/hooks/userHooks/useGetUserElements";
+import { useRecoilValue, useSetRecoilState } from "recoil";
+import { authAtom } from "../../recoil/atoms/userState";
+// import { authAtom } from "../../recoil/atoms/authAtom";
+// import { useParams } from "react-router-dom";
+// import {
+//   useGetAllUsers,
+//   useGetUserByEmail,
+//   useGetUserById,
+// } from "../../recoil/hooks/userHooks/useCRUDUser";
+// import { useGetUserEmail } from "../../recoil/hooks/userHooks/useGetUserElements";
 import "./singinComponent.css";
 
 const SinginComponent = () => {
@@ -13,37 +16,40 @@ const SinginComponent = () => {
   let [currentPassword, setCurrentPassword] = useState();
   let [currentUserName, setCurrentUserName] = useState();
 
+  let setAuth = useSetRecoilState(authAtom)
+  let currentAuth = useRecoilValue(authAtom)
+
   const customHeaders = {
     "Content-Type": "application/json",
   };
 
-  const HandleLoginClick = async (e) => {
-    try {
-      let res = await fetch("http://localhost:3001/login", {
-        method: "POST",
-        headers: customHeaders,
-        body: JSON.stringify({
-          username: currentUserName,
-          password: currentPassword
-        }),
-      });
-
-      if (res.status === 200) {
-        alert(res.status);
-      } else {
-        alert(res.status);
-      }
-    } catch (err) {
-      console.log(err);
+  const HandleLoginClick = () => {
+    const requestOptions = {
+      method: "POST",
+      headers: customHeaders,
+      body: JSON.stringify({
+        username: currentUserName,
+        password: currentPassword
+      }),
     }
+
+    fetch("http://localhost:3001/login", requestOptions)
+    .then(response => response.json())
+    .then(data => {
+      // localStorage.setItem('token', data.token)
+      setAuth(data.token)
+      
+    })
+    
   };
+  console.log(currentAuth)
 
   return (
     <>
       <div className="login-container">
         <div className="mt-5 mx-3">
           <h2 className="text-light">Sign In</h2>
-          <form className="form-container">
+          <form className="form-container" action="/">
             <div class="form-group mt-3">
               <label>Email</label>
               <input

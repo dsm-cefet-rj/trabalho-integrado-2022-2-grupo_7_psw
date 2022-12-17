@@ -13,6 +13,14 @@ const localStorageEffect = key => ({setSelf, onSet}) => {
     });
   };
 
+  export const userState = atom({
+    key: "userState",
+    default: "",
+    effects: [
+      localStorageEffect('current_user')
+    ]
+  })
+
   export const userNameState = atom({
     key: "userNameState",
     default: "",
@@ -28,6 +36,15 @@ const localStorageEffect = key => ({setSelf, onSet}) => {
         localStorageEffect('current_email')
     ]
   });
+
+  export const authAtom = atom({
+    key: "auth",
+    default: "",
+    effects: [
+      localStorageEffect('current_auth')
+    ]
+    
+})
 
   export const userPasswordState = atom({
     key: "userPasswordState",
