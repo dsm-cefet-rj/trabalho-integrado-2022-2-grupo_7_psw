@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import React, { useState, useEffect } from "react";
+import Tilt from 'react-parallax-tilt';
 
 function Games({
   background_image,
@@ -51,12 +52,14 @@ function Games({
         className=" inline-block me-md-4 mx-auto mx-md-0"
         to={`/screen/${myKey}`}
       >
+        <Tilt>
         <img
           style={imgStyle}
           src={cover}
           className="img-fluid hover-effect rounded"
           alt="..."
         />
+        </Tilt>
       </Link>
       <div className="mx-auto mx-md-0 d-flex d-md-block flex-column align-items-center">
         <h2 className="text-light mt-md-2 fs-3 fs-md-2 m-4 m-md-0">{title}</h2>
