@@ -12,23 +12,23 @@ const SinginComponent = () => {
 
   let setAuth = useSetRecoilState(authAtom)
   let currentAuth = useRecoilValue(authAtom)
-  
+
   let setUser = useSetRecoilState(userAtom)
   // let currentUser = useRecoilValue(userAtom)
 
-  
+
   // if(currentAuth){
   //   var userId = jwtDecode(currentAuth)._id;
   // }
-  
+
   // let user = useGetUserById(currentAuth)
-  
- 
+
+
 
   const customHeaders = {
     "Content-Type": "application/json",
   };
-  
+
   const HandleLoginClick = () => {
     const requestOptions = {
       method: "POST",
@@ -39,22 +39,25 @@ const SinginComponent = () => {
       }),
     }
     // let decodeToken = "not decoded yet";
-    
+
     fetch("http://localhost:3001/login", requestOptions)
-    .then(response => response.json())
-    .then(data => {
-      setAuth(data.token);
-      setUser(jwtDecode(data.token));
-    })
+      .then(response => response.json())
+      .then(data => {
+        setAuth(data.token);
+        setUser(jwtDecode(data.token));
+      })
+    setTimeout(() => {
+      window.location.href = "http://localhost:3000"
+    }, 200);
   };
   return (
     <>
       <div className="login-container">
-        <div className="mt-5 mx-3">
-          <h2 className="text-light">Sign In</h2>
-          <div className="form-container">
+          <h2 className="text-light mt-5 mx-3 ">Sign In</h2>
+        <div className="form-container">
+          <form className="">
             <div class="form-group mt-3">
-              <label>Email</label>
+              <label>Username</label>
               <input
                 type="text"
                 class="form-control mt-1"
@@ -74,11 +77,11 @@ const SinginComponent = () => {
                 onChange={(ev) => setCurrentPassword(ev.target.value)}
               ></input>
             </div>
-            <div className="button-container">
-              <button class="btn btn-primary mt-4" onClick={HandleLoginClick}>
-                Sign In
-              </button>
-            </div>
+          </form>
+          <div className="button-container">
+            <button class="btn btn-primary mt-4" type="submit" onClick={HandleLoginClick}>
+              Sign In
+            </button>
           </div>
         </div>
       </div>

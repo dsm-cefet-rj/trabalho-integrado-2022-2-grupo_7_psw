@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import React, { useState } from "react";
+import React, { Suspense, useState } from "react";
 import { login } from "../recoil/atoms/login";
 import { useRecoilValue } from "recoil";
 import logo from "../images/Logo_Droppr.svg";
@@ -23,8 +23,13 @@ function Header() {
   };
 
   const HandleLogout = () => {
-    // localStorage.clear()    
+    localStorage.clear()
+    setTimeout(() => {
+      window.location.href = "http://localhost:3000/"            
+    }, 200);
+       
   }
+ 
 
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
@@ -62,7 +67,7 @@ function Header() {
           id="navbarSupportedContent"
         >
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-            {mylogin ? (
+            {myProfile ? (
               <>
                 <li class="nav-item dropdown my-md-0 my-4 mx-0 mx-md-3">
                   <div data-bs-toggle="dropdown" className="d-flex gap-2">
@@ -98,7 +103,7 @@ function Header() {
                       <hr class="dropdown-divider" />
                     </li>
                     <li>
-                      <Link className="text-center nav-link fs-6" to="/signIn" onClick={HandleLogout}>
+                      <Link className="text-center nav-link fs-6" onClick={HandleLogout}>
                         Logout
                       </Link>
                     </li>
