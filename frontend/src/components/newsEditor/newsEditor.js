@@ -44,7 +44,7 @@ const NewsEditor = () => {
     }
 
     const HandleUpdateClick = () => {
-        useUpdateNews(id, currentTitle, currentSubtitle, currentContent, currentUrl);
+        useUpdateNews(id, currentTitle, currentSubtitle, currentContent, currentUrl, currentAuth);
         window.location.href = `http://localhost:3000/news-page/${id}`
     }
 

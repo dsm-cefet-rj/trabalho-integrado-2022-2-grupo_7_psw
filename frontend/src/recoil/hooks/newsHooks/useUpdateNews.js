@@ -1,9 +1,10 @@
 
-const useUpdateNews = (newsId, newsTitle, newsSubtitle, newsContent, newsUrl) => {
+const useUpdateNews = (newsId, newsTitle, newsSubtitle, newsContent, newsUrl, currentAuth) => {
     
     const requestOptions = {
         method: 'PUT',
-        headers: {'Content-Type': 'application/json'},
+        headers: {'Content-Type': 'application/json',
+                'Authorization' : "Bearer " + currentAuth},
         body: JSON.stringify({
             id: newsId,
             url: newsUrl,
