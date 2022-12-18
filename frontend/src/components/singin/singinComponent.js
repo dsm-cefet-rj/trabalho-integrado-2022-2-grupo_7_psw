@@ -14,21 +14,21 @@ const SinginComponent = () => {
   let currentAuth = useRecoilValue(authAtom)
   
   let setUser = useSetRecoilState(userAtom)
-  let currentUser = useRecoilValue(userAtom)
+  // let currentUser = useRecoilValue(userAtom)
 
   
-  if(currentAuth){
-    var userId = jwtDecode(currentAuth)._id;
-  }
+  // if(currentAuth){
+  //   var userId = jwtDecode(currentAuth)._id;
+  // }
   
-  let loggedUser = useGetUserById(userId)
+  // let user = useGetUserById(currentAuth)
   
-  setUser(loggedUser)
+ 
 
   const customHeaders = {
     "Content-Type": "application/json",
   };
-
+  
   const HandleLoginClick = () => {
     const requestOptions = {
       method: "POST",
@@ -39,19 +39,20 @@ const SinginComponent = () => {
       }),
     }
     // let decodeToken = "not decoded yet";
-
+    
     fetch("http://localhost:3001/login", requestOptions)
     .then(response => response.json())
     .then(data => {
-      setAuth(data.token)
-    })    
+      setAuth(data.token);
+      setUser(jwtDecode(data.token));
+    })
   };
   return (
     <>
       <div className="login-container">
         <div className="mt-5 mx-3">
           <h2 className="text-light">Sign In</h2>
-          <form className="form-container" action="/">
+          <div className="form-container">
             <div class="form-group mt-3">
               <label>Email</label>
               <input
@@ -78,7 +79,7 @@ const SinginComponent = () => {
                 Sign In
               </button>
             </div>
-          </form>
+          </div>
         </div>
       </div>
     </>

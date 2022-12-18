@@ -22,6 +22,10 @@ function Header() {
     height: 50,
   };
 
+  const HandleLogout = () => {
+    // localStorage.clear()    
+  }
+
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
       <div className="container-fluid">
@@ -94,7 +98,7 @@ function Header() {
                       <hr class="dropdown-divider" />
                     </li>
                     <li>
-                      <Link className="text-center nav-link fs-6" to="/signIn">
+                      <Link className="text-center nav-link fs-6" to="/signIn" onClick={HandleLogout}>
                         Logout
                       </Link>
                     </li>

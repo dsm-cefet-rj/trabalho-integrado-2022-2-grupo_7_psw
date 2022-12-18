@@ -26,7 +26,7 @@ import User from "../models/User.js";
 
 const routes = (app) => {
   app.route("/").get((req, res) => {
-    res.status(200).send({ titulo: "teste de node" });
+    res.status(200).send({ title: "You probably did the logout thing..." });
   });
   
   app.use(express.json(), users, api, gamelists, reviews);
