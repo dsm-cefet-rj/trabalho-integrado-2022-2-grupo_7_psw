@@ -1,15 +1,9 @@
+import "./singinComponent.css";
 import { useState } from "react";
 import { useRecoilValue, useSetRecoilState } from "recoil";
-import { authAtom } from "../../recoil/atoms/userState";
-// import { authAtom } from "../../recoil/atoms/authAtom";
-// import { useParams } from "react-router-dom";
-// import {
-//   useGetAllUsers,
-//   useGetUserByEmail,
-//   useGetUserById,
-// } from "../../recoil/hooks/userHooks/useCRUDUser";
-// import { useGetUserEmail } from "../../recoil/hooks/userHooks/useGetUserElements";
-import "./singinComponent.css";
+import { authAtom, userAtom } from "../../recoil/atoms/userState";
+import { useGetUserById } from "../../recoil/hooks/userHooks/useCRUDUser";
+import jwtDecode from "jwt-decode";
 
 const SinginComponent = () => {
 
@@ -18,6 +12,18 @@ const SinginComponent = () => {
 
   let setAuth = useSetRecoilState(authAtom)
   let currentAuth = useRecoilValue(authAtom)
+  
+  let setUser = useSetRecoilState(userAtom)
+  let currentUser = useRecoilValue(userAtom)
+
+  
+  if(currentAuth){
+    var userId = jwtDecode(currentAuth)._id;
+  }
+  
+  let loggedUser = useGetUserById(userId)
+  
+  setUser(loggedUser)
 
   const customHeaders = {
     "Content-Type": "application/json",
@@ -32,24 +38,20 @@ const SinginComponent = () => {
         password: currentPassword
       }),
     }
+    // let decodeToken = "not decoded yet";
 
     fetch("http://localhost:3001/login", requestOptions)
     .then(response => response.json())
     .then(data => {
-      // localStorage.setItem('token', data.token)
       setAuth(data.token)
-      
-    })
-    
+    })    
   };
-  console.log(currentAuth)
-
   return (
     <>
       <div className="login-container">
         <div className="mt-5 mx-3">
           <h2 className="text-light">Sign In</h2>
-          <form className="form-container" action="/">
+          <div className="form-container">
             <div class="form-group mt-3">
               <label>Email</label>
               <input
@@ -76,7 +78,7 @@ const SinginComponent = () => {
                 Sign In
               </button>
             </div>
-          </form>
+          </div>
         </div>
       </div>
     </>

@@ -13,8 +13,8 @@ const localStorageEffect = key => ({setSelf, onSet}) => {
     });
   };
 
-  export const userState = atom({
-    key: "userState",
+  export const userAtom = atom({
+    key: "userAtom",
     default: null,
     effects: [
       localStorageEffect('current_user')
