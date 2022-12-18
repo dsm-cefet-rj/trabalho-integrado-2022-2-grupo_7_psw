@@ -51,7 +51,7 @@ const SinginComponent = () => {
       <div className="login-container">
         <div className="mt-5 mx-3">
           <h2 className="text-light">Sign In</h2>
-          <div className="form-container">
+          <form className="form-container" action="/">
             <div class="form-group mt-3">
               <label>Email</label>
               <input
@@ -78,7 +78,7 @@ const SinginComponent = () => {
                 Sign In
               </button>
             </div>
-          </div>
+          </form>
         </div>
       </div>
     </>

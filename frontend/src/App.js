@@ -17,6 +17,7 @@ import { useRecoilValue } from "recoil";
 import { login } from "./recoil/atoms/login";
 
 import "./App.css";
+import { authAtom } from "./recoil/atoms/userState";
 
 export default function App() {
   const [gamesList, setGamesList] = useState([]);
@@ -26,7 +27,7 @@ export default function App() {
   const reviews = useRecoilValue(reviewState);
 
   // Essa variável representa o valor do estado global de login. Que é true quando um usuário está logado e false caso contrário
-  const mylogin = useRecoilValue(login);
+  const mylogin = useRecoilValue(authAtom);
 
   useEffect(() => {
     fetch(`http://localhost:3001/api/list/${page}`).then((res) =>

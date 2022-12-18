@@ -7,13 +7,15 @@ import nome_droppr from "../images/Nome_Droppr.png";
 import "./header.css";
 import "./card_effect.js";
 import Tilt from 'react-parallax-tilt';
+import { authAtom, userAtom } from "../recoil/atoms/userState";
 
 
 function Header() {
   const [search, setSearch] = useState("");
 
   // Essa variável representa o valor do estado global de login. Que é true quando um usuário está logado e false caso contrário
-  const mylogin = useRecoilValue(login);
+  const mylogin = useRecoilValue(authAtom);
+  const myProfile = useRecoilValue(userAtom)
 
   const imgSize = {
     width: 50,
@@ -66,7 +68,7 @@ function Header() {
                       className="rounded-circle"
                       src="https://avatars.dicebear.com/api/female/john.svg?background=%2314181c"
                     />
-                    <Link className="nav-link dropdown-toggle">username</Link>
+                    <Link className="nav-link dropdown-toggle">{myProfile.username}</Link>
                   </div>
 
                   <ul
