@@ -1,6 +1,8 @@
-const useDeleteNews = (newsId) => {
+const useDeleteNews = (newsId, currentAuth) => {
     const requestOptions = {
-        method: 'DELETE'    
+        method: 'DELETE',
+        headers: {'Content-Type': 'application/json',
+                'Authorization' : "Bearer " + currentAuth}    
     }
 
     fetch(`http://localhost:3001/news/${newsId}`, requestOptions).then(() => {

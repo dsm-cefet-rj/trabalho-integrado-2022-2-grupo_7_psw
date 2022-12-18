@@ -12,7 +12,7 @@ export const useCreateNews = (newsTitle, newsSubtitle, newsContent, newsUrl, cur
                             // mode: 'cors',
                             subtitle: newsSubtitle,
                             contents: JSON.stringify(newsContent),
-                            user: '6393c0b2a83fb3639802a5e0', //precisa ser implementado user pra isso ser concluido.
+                            user: '6393c0b2a83fb3639802a5e0', //decodificar token para pegar id de user.
                             time: new Date().getTime().toString()
                             })
     }

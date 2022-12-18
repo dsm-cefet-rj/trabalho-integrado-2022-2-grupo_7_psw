@@ -1,11 +1,13 @@
 import { Link, useParams } from "react-router-dom";
+import { useRecoilValue } from "recoil";
+import { authAtom } from "../../recoil/atoms/userState";
 import useDeleteNews from "../../recoil/hooks/newsHooks/useDeleteNews";
 import useGetNewsById from "../../recoil/hooks/newsHooks/useGetNewsById";
 import { timeToDate } from "../../shared/dateTools";
 import "./newsContent.css"
 
 const NewsContent = () => {
-
+    const currentAuth = useRecoilValue(authAtom)
     const {id} = useParams();
     const getNews = useGetNewsById(id);
     const contentObject = JSON.parse(getNews.contents);
@@ -33,7 +35,7 @@ const NewsContent = () => {
     console.log(getNews)
    
     function deleteHandler() {
-        deleteNews(id)
+        deleteNews(id, currentAuth)
     }
 
     return (
