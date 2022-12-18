@@ -52,11 +52,11 @@ function Games({
         className=" inline-block me-md-4 mx-auto mx-md-0"
         to={`/screen/${myKey}`}
       >
-        <Tilt>
+        <Tilt glareEnable={true} glareMaxOpacity={0.5} glarePosition="all" glareBorderRadius="3px" scale="1.1" glareColor="#0e3da1">
         <img
           style={imgStyle}
           src={cover}
-          className="img-fluid hover-effect rounded"
+          className="img-fluid rounded"
           alt="..."
         />
         </Tilt>
