@@ -149,7 +149,7 @@ class ApiController {
         "Client-ID": process.env.CLIENT_IGDB_ID,
         Authorization: process.env.ACCESS_IGDB_TOKEN,
       },
-      data: `search "${req.params.name}"; fields name,cover; limit 15; offset ${
+      data: `search "${req.params.name}"; fields name,cover,genres; limit 15; offset ${
         req.params.id * 15
       };`,
     })

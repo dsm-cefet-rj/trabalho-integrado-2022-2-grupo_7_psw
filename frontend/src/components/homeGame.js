@@ -23,7 +23,7 @@ function Games({
     "https://images.igdb.com/igdb/image/upload/t_cover_big/nocover.png"
   );
 
-  const [generos, setGenero] = useState([])
+  const [generos, setGenero] = useState([]);
 
   useEffect(() => {
     fetch(`http://localhost:3001/api/capa/${background_image}`)
@@ -38,10 +38,17 @@ function Games({
         console.log(err);
       });
 
-      fetch(`http://localhost:3001/api/genre/${genres}`)
-        .then((res) => res.json())
-        .then((data) => setGenero(data.data));
+    if (typeof genres !== "undefined") {
+      genres.map((i) => {
+        fetch(`http://localhost:3001/api/genre/${i}`)
+          .then((res) => res.json())
+          .then((data) => setGenero(data.data))
+          .catch(error => console.error('Unable to get items.', error));
+      })
+    }
   });
+  
+  console.log(generos);
 
   return (
     <div
@@ -53,12 +60,12 @@ function Games({
         to={`/screen/${myKey}`}
       >
         <Tilt glareEnable={true} glareMaxOpacity={0.5} glarePosition="all" glareBorderRadius="3px" scale="1.1" glareColor="#0e3da1">
-        <img
-          style={imgStyle}
-          src={cover}
-          className="img-fluid rounded"
-          alt="..."
-        />
+          <img
+            style={imgStyle}
+            src={cover}
+            className="img-fluid rounded"
+            alt="..."
+          />
         </Tilt>
       </Link>
       <div className="mx-auto mx-md-0 d-flex d-md-block flex-column align-items-center">
@@ -66,7 +73,7 @@ function Games({
 
         {generos.map((genreName) => {
           return <>
-            <h5 className="p-1 bg-secondary rounded mt-3 d-inline-block fw-bold text-light fs-6 mb-4 text-center">
+            <h5 className="p-1 bg-secondary rounded mt-3 d-inline-block fw-bold text-light fs-6 mb-4 text-center" key={genreName.name + " " + myKey}>
               {genreName.name}
             </h5>
           </>;

@@ -111,6 +111,7 @@ export default function App() {
                 {last5Reviews.map((e) => {
                   return (
                     <Review
+                      key={e.game_id}
                       stars={e.rating}
                       title={e.titleReview}
                       cover={e.coverReview}

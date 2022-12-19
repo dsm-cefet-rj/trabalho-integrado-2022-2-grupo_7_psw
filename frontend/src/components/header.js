@@ -68,7 +68,7 @@ function Header() {
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             {myProfile ? (
               <>
-                <li class="nav-item dropdown my-md-0 my-4 mx-0 mx-md-3">
+                <li className="nav-item dropdown my-md-0 my-4 mx-0 mx-md-3">
                   <div data-bs-toggle="dropdown" className="d-flex gap-2">
                     <img
                       style={imgSize}
@@ -80,7 +80,7 @@ function Header() {
                   </div>
 
                   <ul
-                    class="dropdown-menu bg-dark"
+                    className="dropdown-menu bg-dark"
                     aria-labelledby="navbarDropdown"
                   >
                     <li>
