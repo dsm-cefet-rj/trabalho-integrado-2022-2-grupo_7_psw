@@ -17,7 +17,11 @@ const useUpdateNews = (newsId, newsTitle, newsSubtitle, newsContent, newsUrl, cu
     }
 
     fetch(`http://localhost:3001/news/${newsId}`, requestOptions).then(response => {
-        console.log(response);
+        console.log(response.status)
+        if(response.status == 401){
+            localStorage.removeItem("current_auth")
+            localStorage.removeItem("current_user")
+        }
     })
 }
 

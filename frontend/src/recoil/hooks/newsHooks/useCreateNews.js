@@ -18,7 +18,10 @@ export const useCreateNews = (newsTitle, newsSubtitle, newsContent, newsUrl, cur
     }
     
     fetch('http://localhost:3001/news', requestOptions).then(response => {
-        console.log(requestOptions);
+        if(response.status == 401){
+            localStorage.removeItem("current_auth")
+            localStorage.removeItem("current_user")
+        }
         // localStorage.removeItem();
     })
 }

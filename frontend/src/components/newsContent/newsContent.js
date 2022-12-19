@@ -19,9 +19,10 @@ const NewsContent = () => {
     const deleteNews = useDeleteNews;
 
     let authorized = false;
- 
-    if(loggedUser.level == 1 || loggedUser._id == getNews.user._id){
-        authorized = true;
+    if(loggedUser){
+        if(loggedUser.level == 1 || loggedUser._id == getNews.user._id){
+            authorized = true;
+        }
     }
 
 
