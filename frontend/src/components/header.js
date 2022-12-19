@@ -13,7 +13,7 @@ function Header() {
   const [search, setSearch] = useState("");
 
   // Essa variável representa o valor do estado global de login. Que é true quando um usuário está logado e false caso contrário
-  const mylogin = useRecoilValue(authAtom);
+  // const mylogin = useRecoilValue(authAtom);
   const myProfile = useRecoilValue(userAtom)
 
   const imgSize = {

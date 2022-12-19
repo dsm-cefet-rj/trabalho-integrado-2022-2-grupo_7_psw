@@ -12,7 +12,6 @@ const useUpdateNews = (newsId, newsTitle, newsSubtitle, newsContent, newsUrl, cu
             mode: 'cors',
             subtitle: newsSubtitle,
             contents: JSON.stringify(newsContent),
-            user: '63878b2808e0595a559716dc',
             time: new Date().getTime().toString()
         })
     }

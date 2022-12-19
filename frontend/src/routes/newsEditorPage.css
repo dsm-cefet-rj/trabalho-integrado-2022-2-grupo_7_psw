@@ -4,3 +4,9 @@
     margin: auto;
 
 }
+
+@media (max-width: 608px) {
+    .editor-container{
+        width: 380px;        
+    }
+}

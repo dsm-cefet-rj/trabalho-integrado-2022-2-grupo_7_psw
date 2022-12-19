@@ -7,11 +7,12 @@ import { useParams } from 'react-router-dom';
 import useGetNewsById from '../../recoil/hooks/newsHooks/useGetNewsById';
 import useUpdateNews from '../../recoil/hooks/newsHooks/useUpdateNews';
 import { useRecoilValue } from 'recoil';
-import { authAtom } from '../../recoil/atoms/userState';
+import { authAtom, userAtom } from '../../recoil/atoms/userState';
 
 const NewsEditor = () => {
     
     var currentAuth = useRecoilValue(authAtom)
+    var loggedUser = useRecoilValue(userAtom)
 
     let {id} = useParams();
     var getNews  = useGetNewsById(id);
@@ -33,7 +34,7 @@ const NewsEditor = () => {
     
 
     const HandleSaveClick = () => {        
-        useCreateNews(currentTitle, currentSubtitle, currentContent, currentUrl, currentAuth);
+        useCreateNews(currentTitle, currentSubtitle, currentContent, currentUrl, currentAuth, loggedUser);
         currentTitle = null;
         currentSubtitle = null;
         currentUrl = null;

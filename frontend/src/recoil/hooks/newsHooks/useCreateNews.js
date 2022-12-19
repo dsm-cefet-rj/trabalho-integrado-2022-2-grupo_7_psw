@@ -1,7 +1,7 @@
 import { useRecoilValue } from "recoil";
 import { authAtom } from "../../atoms/userState";
 
-export const useCreateNews = (newsTitle, newsSubtitle, newsContent, newsUrl, currentAuth) => {
+export const useCreateNews = (newsTitle, newsSubtitle, newsContent, newsUrl, currentAuth, currentUser) => {
     const requestOptions = {
         method: 'POST',
         headers: {'Content-Type': 'application/json',
@@ -12,7 +12,7 @@ export const useCreateNews = (newsTitle, newsSubtitle, newsContent, newsUrl, cur
                             // mode: 'cors',
                             subtitle: newsSubtitle,
                             contents: JSON.stringify(newsContent),
-                            user: '6393c0b2a83fb3639802a5e0', //decodificar token para pegar id de user.
+                            user: currentUser._id,
                             time: new Date().getTime().toString()
                             })
     }

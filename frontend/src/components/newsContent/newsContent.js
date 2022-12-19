@@ -1,12 +1,14 @@
 import { Link, useParams } from "react-router-dom";
 import { useRecoilValue } from "recoil";
-import { authAtom } from "../../recoil/atoms/userState";
+import { authAtom, userAtom } from "../../recoil/atoms/userState";
 import useDeleteNews from "../../recoil/hooks/newsHooks/useDeleteNews";
 import useGetNewsById from "../../recoil/hooks/newsHooks/useGetNewsById";
 import { timeToDate } from "../../shared/dateTools";
 import "./newsContent.css"
 
 const NewsContent = () => {
+    const loggedUser = useRecoilValue(userAtom)
+
     const currentAuth = useRecoilValue(authAtom)
     const {id} = useParams();
     const getNews = useGetNewsById(id);
@@ -15,6 +17,13 @@ const NewsContent = () => {
     const date = new Date(getNews.time);
     const formatedDate = timeToDate(date, "BR", true);
     const deleteNews = useDeleteNews;
+
+    let authorized = false;
+ 
+    if(loggedUser.level == 1 || loggedUser._id == getNews.user._id){
+        authorized = true;
+    }
+
 
     const text = [];
     let images = contentObject.entityMap;
@@ -32,7 +41,6 @@ const NewsContent = () => {
         ) : image = null : images = undefined;
     })
 
-    console.log(getNews)
    
     function deleteHandler() {
         deleteNews(id, currentAuth)
@@ -50,10 +58,17 @@ const NewsContent = () => {
                     {/* <div>By {getNews.user.username}</div> */}
                     <div>{formatedDate}</div>
                 </div>
-                <div className="flex space-between">
+                { authorized? (
+                    <div className="flex space-between">
                     <Link className="edit-button" to={`/news-editor/update/${id}`}> Edit </Link>
                     <div className="delete-button" onClick={deleteHandler}>Delete</div>                    
                 </div>
+                ): (
+                    <div></div>
+                )
+
+                }
+                
                 
                 
             </div>

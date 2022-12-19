@@ -30,7 +30,8 @@ input[type="title"]{
 }
 
 .button-editor{
-  margin: auto;
+  margin-left: 8px;
+  margin-top: 10px;
   width: 80px;
   height: 30px;
   background-color: #212529;
@@ -73,6 +74,10 @@ input[type="title"]{
 }
 .toolbar-class {
   border: 1px solid #ccc;
+}
+
+@media (max-width: 608px) {
+  
 }
 
   
