@@ -1,10 +1,23 @@
 
+import { useState } from "react";
+import { useRecoilValue } from "recoil";
+import { userAtom } from "../../recoil/atoms/userState";
 import { useCreateUser } from "../../recoil/hooks/userHooks/useCRUDUser";
 import { useGetPassword, useGetPassword2, useGetUserEmail, useGetUserLevel, useGetUserName } from "../../recoil/hooks/userHooks/useGetUserElements";
 import { useSetUserEmail, useSetUserLevel, useSetUserName, useSetUserPassword, useSetUserPassword2 } from "../../recoil/hooks/userHooks/useSetUserElements";
 
 const RegisterComponent = () => {
-    
+    let loggeduser = useRecoilValue(userAtom)
+    let authorized = false;
+
+    let [currentLevel, setCurrentLevel] = useState("4");
+    if(loggeduser){
+        if(loggeduser.level == 1){
+            authorized = true;
+        }
+    }
+
+
     let currentName = useGetUserName();
     let currentEmail = useGetUserEmail();
     let currentPassword = useGetPassword(); 
@@ -15,13 +28,17 @@ const RegisterComponent = () => {
     const setCurrentPassword = useSetUserPassword();
     const setCurrentPassword2 = useSetUserPassword2();
 
+    
+
+    
+
     const  HandleSaveClick = () => {
         //1 = admin
         //2 = creator
         //3 = mod
         //4 = common
         //5 = banned
-        useCreateUser(currentName, currentEmail, currentPassword, currentPassword2, 1)
+        useCreateUser(currentName, currentEmail, currentPassword, currentPassword2, currentLevel)
     }
 
     return (
@@ -29,8 +46,15 @@ const RegisterComponent = () => {
         <>        
             <div className="register-container">
                 <div className="mt-5 mx-3">
-                <h5 className="text-light">New in Droppr?</h5>
-                <h2 className="text-light">Sign up!</h2>
+                {authorized? (
+                    <h3 lassName="text-light">Create new user</h3>
+                ): (
+                    <>
+                        <h5 className="text-light">New in Droppr?</h5>
+                        <h2 className="text-light">Sign up!</h2>
+                    </>
+                )
+                }
                 <form className="form-container" action="/" >
                     <div className="form-group">
                     <label>Nome</label>
@@ -74,6 +98,22 @@ const RegisterComponent = () => {
                         onChange={ev => setCurrentPassword2(ev.target.value)}
                     ></input>
                     </div>
+                    {authorized? (
+                        <div>
+                            <label>Access level</label>
+                             <input
+                             type="level"
+                             className="form-control mb-4 mt-1"
+                             placeholder="1 = admin, 2 = content creator, 3 = moderator, 4 normal user"
+                             onChange={ev => setCurrentLevel(ev.target.value)}
+                         ></input>
+                        </div>
+
+                    ): (
+                        <div></div>
+                    )
+
+                    }
                     <div className="button-container">
                     <button type="submit" className="btn btn-primary self-end" onClick={HandleSaveClick}>
                         Register

@@ -11,7 +11,6 @@ import { userAtom } from "../recoil/atoms/userState";
 export default function News() {
   const loggedUser = useRecoilValue(userAtom)
   let authorized = false;
-  console.log(loggedUser)
   if(loggedUser.level <= 2){
     authorized = true;
   }

@@ -10,7 +10,6 @@ const userSchema = new mongoose.Schema({
   level: { type: Number },
 });
 
-
 userSchema.plugin(passportLocalMongoose);
 const User = mongoose.model("users", userSchema);
 

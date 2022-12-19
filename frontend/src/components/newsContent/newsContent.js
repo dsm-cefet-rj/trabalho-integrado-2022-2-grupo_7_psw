@@ -46,6 +46,8 @@ const NewsContent = () => {
         deleteNews(id, currentAuth)
     }
 
+    console.log(getNews)
+
     return (
         <>
             <div className="flex column main-container">
@@ -55,7 +57,7 @@ const NewsContent = () => {
                 </div>
                 <div className="content-container">{text}</div>
                 <div className="flex footer-container">
-                    {/* <div>By {getNews.user.username}</div> */}
+                    <div>By {getNews.user.username}</div>
                     <div>{formatedDate}</div>
                 </div>
                 { authorized? (
