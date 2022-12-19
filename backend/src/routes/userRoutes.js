@@ -7,7 +7,7 @@ import { getToken } from "../security/auth.js";
 const router  = express.Router();
 
 router
-  .get("/user", passport.authenticate('jwt', {session: false}) ,UserController.getAllUser)
+  .get("/user", UserController.getAllUser)
   .get("/user/search", UserController.getByEmail)
   .get("/user/:id", UserController.getById)
   .post("/user", UserController.createUser)

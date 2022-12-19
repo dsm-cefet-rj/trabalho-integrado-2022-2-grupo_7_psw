@@ -11,7 +11,9 @@ export const useCreateUser = (userName, userEmail, userPassword, userPassword2, 
                             username: userName,
                             email: userEmail,
                             password: userPassword,
-                            level: userLevel
+                            level: userLevel,
+                            bio: "Change your bio",
+                            pictureUrl: "https://avatars.dicebear.com/api/female/john.svg?background=%2314181c"
         })
 
     }

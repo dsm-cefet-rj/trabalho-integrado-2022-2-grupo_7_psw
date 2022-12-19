@@ -8,6 +8,9 @@ const userSchema = new mongoose.Schema({
   email: { type: String },
   password: { type: String },
   level: { type: Number },
+  bio: {type: String},
+  pictureUrl: {type: String},
+  friends: [{user: {type: mongoose.Schema.Types.ObjectId, ref: "users"}}]
 });
 
 userSchema.plugin(passportLocalMongoose);

@@ -11,7 +11,14 @@ class UserController {
   };
   static createUser = (req, res, next) => {
     // console.log(req.body)
-    User.register(new User({username: req.body.username, email: req.body.email, level: req.body.level }),
+    User.register(new User({
+      username: req.body.username,
+      email: req.body.email,
+      level: req.body.level,
+      bio: req.body.bio,
+      pictureUrl: req.body.pictureUrl,
+      friends: [req.body.user]
+    }),
       req.body.password,
       (err, user) => {
       if (err) {
