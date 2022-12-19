@@ -8,6 +8,7 @@ import { AiFillHeart } from "react-icons/ai";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { reviewState } from "../recoil/atoms/review";
+import Select from 'react-select';
 
 import cn from "classnames";
 
@@ -28,7 +29,14 @@ export default function ReviewForm() {
   const [favorite, setFavorite] = useState(null);
   const [hoverFavorite, setHoverFavorite] = useState(null);
 
-  const [status, setStatus] = useState(null);
+  const [status, setStatus] = useState('status');
+
+  const options = [
+    { value: 'playing', label: <p className="text-dark">Playing</p> },
+    { value: 'finished', label: <p className="text-dark">Finished</p>},
+    { value: 'paused', label: <p className="text-dark">Paused</p> },
+    { value: 'all_achievements', label: <p className="text-dark">All achievements</p> },
+  ];
 
   let HandleSubmit = async (e) => {
     e.preventDefault();
@@ -42,7 +50,7 @@ export default function ReviewForm() {
           rating: rating,
           date: new Date().toLocaleDateString("pt-BR"),
           favorite: favorite,
-          status: status,
+          status: status.value,
         }),
       });
 
@@ -180,7 +188,13 @@ export default function ReviewForm() {
                 </div>
                 <div className="mb-3">
                   <div className="dropdown">
-                    <button
+                    {
+                    <Select
+                      defaultValue = {status}
+                      onChange = {setStatus}
+                      options = {options}
+                    />
+                    /* <button
                       className="btn btn-secondary dropdown-toggle"
                       type="button"
                       id="dropdownMenuButton1"
@@ -189,7 +203,7 @@ export default function ReviewForm() {
                       onChange={(e) => setStatus(e.target.value)}
                     >
                       Status
-                    </button>
+                    </button> */}
 
                     <ul
                       className="dropdown-menu"

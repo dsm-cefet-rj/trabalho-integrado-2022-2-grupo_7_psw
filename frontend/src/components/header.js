@@ -5,7 +5,6 @@ import { useRecoilValue } from "recoil";
 import logo from "../images/Logo_Droppr.svg";
 import nome_droppr from "../images/Nome_Droppr.png";
 import "./header.css";
-import "./card_effect.js";
 import Tilt from 'react-parallax-tilt';
 import { authAtom, userAtom } from "../recoil/atoms/userState";
 
