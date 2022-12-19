@@ -2,6 +2,8 @@ import Header from "../components/header";
 import Game from "../components/imageGameList";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
+import Select from 'react-select';
+import "./allgames.css";
 
 export default function Overview() {
   const [id, setId] = useState([])
@@ -11,7 +13,17 @@ export default function Overview() {
     .then((res) => res.json())
     .then((data) => setId(data.data));
   }, []);
+
+  const options = [
+    { value: 'all_games', label: <p className="text-dark">All games</p> },
+    { value: 'playing', label: <p className="text-dark">Playing</p> },
+    { value: 'finished', label: <p className="text-dark">Finished</p>},
+    { value: 'paused', label: <p className="text-dark">Paused</p> },
+    { value: 'all_achievements', label: <p className="text-dark">All achievements</p> },
+  ];
   
+  const [status, setStatus] = useState(null);
+
   return (
     <>
       <Header />
@@ -32,6 +44,12 @@ export default function Overview() {
         </div>
       </div>
       <div className="container">
+        <Select className="select-status"
+          defaultValue = {status}
+          onChange = "null"
+          options = {options}
+        />
+      <br></br>
 
       {id.map((jogosDoUsuario) => {
         return <Game id={jogosDoUsuario.game_id}/>;

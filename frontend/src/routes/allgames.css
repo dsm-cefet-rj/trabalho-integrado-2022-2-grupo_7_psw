@@ -1,0 +1,6 @@
+.select-status{
+    margin-left: 8px;
+    max-width: 94%;
+    display: flex;
+    flex-direction: column;
+}
