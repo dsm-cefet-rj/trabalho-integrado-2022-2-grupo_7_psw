@@ -1,3 +1,5 @@
+import "./userSettingsComponent.css"
+
 import { useRecoilValue } from "recoil";
 import { pictureForm } from "../../recoil/atoms/pictureForm";
 
@@ -7,14 +9,14 @@ const UserSettingsComponent = () => {
         height: 200,
       };
     
-      const profilePicture = useRecoilValue(pictureForm);
+      const profilePicture = useRecoilValue(pictureForm); //vai vim do user depois.
     
     return (
         <div id="settings-area">
-        <div className="container">
+        <div className="edit-container">
           <div className="mt-5 mx-3">
-            <h2 className="text-light">Edit your profile:</h2>
-            <form action="">
+            <h2 className="text-light mt-5">Edit your profile:</h2>
+            <form className="form-container" action="">
               <div className="form-group">
                 <label>Username:</label>
                 <input
@@ -26,11 +28,11 @@ const UserSettingsComponent = () => {
               <br></br>
               <div className="form-group">
                 <label>Bio:</label>
-                <input
+                <textarea
                   type="text"
                   className="form-control"
                   placeholder="Change bio"
-                ></input>
+                ></textarea>
               </div>
               <div className="d-flex flex-column align-items-start">
                 <div className="my-4 d-flex flex-column justify-content-center">
@@ -57,10 +59,12 @@ const UserSettingsComponent = () => {
               </div>
 
               <br></br>
+            </form>
+            <div className="button-container mt-3">
               <button type="submit" className="btn btn-primary">
                 Submit
               </button>
-            </form>
+            </div>
           </div>
         </div>
       </div>

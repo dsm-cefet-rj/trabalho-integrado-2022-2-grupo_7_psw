@@ -5,8 +5,12 @@ import { GiThreeFriends } from "react-icons/gi";
 import { GiNotebook } from "react-icons/gi";
 import { AiFillStar } from "react-icons/ai";
 import Overview from "./overview";
+import { useRecoilValue } from "recoil";
+import { userAtom } from "../recoil/atoms/userState";
 
 export default function Profile() {
+  const loggedUser = useRecoilValue(userAtom)
+
   return (
     <>
       <Header />
@@ -19,7 +23,7 @@ export default function Profile() {
             src="https://avatars.dicebear.com/api/female/john.svg?background=%2314181c"
           />
           <div className="d-flex flex-column align-items-center align-items-md-start">
-            <h1 className="text-light">Username</h1>
+            <h1 className="text-light">{loggedUser.username}</h1>
             <Link className="position-relative inline-block" to="settings">
               <button type="button" class="btn btn-secondary my-2">
                 Edit Profile
