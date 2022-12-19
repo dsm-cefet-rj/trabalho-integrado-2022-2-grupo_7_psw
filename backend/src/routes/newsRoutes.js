@@ -1,7 +1,8 @@
 import express from "express";
 import passport from "passport";
 import NewsController from "../controllers/newsController.js";
-import passportCuston from 'passport-custom'
+// import passportCuston from 'passport-custom'
+// import jwtDecode from "jwt-decode";
 
 // const customStrategy = passportCuston.Strategy;
 
