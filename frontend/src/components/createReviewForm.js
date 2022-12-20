@@ -13,6 +13,13 @@ import Select from "react-select";
 import cn from "classnames";
 import { authAtom, userAtom } from "../recoil/atoms/userState";
 
+import "react-notifications/lib/notifications.css";
+import {
+  NotificationContainer,
+  NotificationManager,
+} from "react-notifications";
+
+
 // import useRatingState from "../recoil/hooks/useRatingState";
 // import useHoverState from "../recoil/hooks/useHoverState";
 
@@ -44,6 +51,16 @@ export default function ReviewForm() {
       label: <p className="text-dark">All achievements</p>,
     },
   ];
+
+  const handleClick = (e) => {
+    if (userCurrent == null) {
+      NotificationManager.error(
+        "You must have an account to create an review",
+        "Error",
+        3000
+      );
+    }
+  };
 
   let HandleSubmit = async (e) => {
     e.preventDefault();
@@ -247,7 +264,7 @@ export default function ReviewForm() {
                   </div>
                 </div>
                 {!message ? (
-                  <button type="submit" className="btn btn-primary">
+                  <button type="submit" className="btn btn-primary" onClickCapture={handleClick}>
                     Send Review
                   </button>
                 ) : (
@@ -265,6 +282,7 @@ export default function ReviewForm() {
           </div>
         </div>
       </div>
+      <NotificationContainer/>
     </>
   );
 }

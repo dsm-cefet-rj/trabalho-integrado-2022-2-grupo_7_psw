@@ -2,7 +2,8 @@ import React from "react";
 import { useEffect } from "react";
 import ReviewForm from "./createReviewForm";
 import { reviewState } from "../recoil/atoms/review";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { userAtom } from "../recoil/atoms/userState";
 
 // import useRatingState from "../recoil/hooks/useRatingState";
 // import useHoverState from "../recoil/hooks/useHoverState";
@@ -17,6 +18,8 @@ function ScreenLucas({
   isReviewed,
 }) {
   const [review, setReview] = useRecoilState(reviewState);
+
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
