@@ -4,7 +4,7 @@ import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import { pictureForm } from "../../recoil/atoms/pictureForm";
 import { authAtom, userAtom, userPictureState } from "../../recoil/atoms/userState";
 import { useState } from "react";
-import { useUpdateUser } from "../../recoil/hooks/userHooks/useCRUDUser";
+import { useDeleteUser, useUpdateUser } from "../../recoil/hooks/userHooks/useCRUDUser";
 
 const UserSettingsComponent = () => {
 
@@ -33,7 +33,8 @@ const UserSettingsComponent = () => {
   }
 
   const HandleClickOnDelete = () => {
-    console.log("deletado!!!")
+    window.confirm("Delete account?")
+    // useDeleteUser(loggedUser._id, currentAuth)
   }
 
 
