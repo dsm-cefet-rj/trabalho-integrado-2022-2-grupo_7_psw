@@ -9,8 +9,7 @@ import useUpdateNews from '../../recoil/hooks/newsHooks/useUpdateNews';
 import { useRecoilValue } from 'recoil';
 import { authAtom, userAtom } from '../../recoil/atoms/userState';
 
-const NewsEditor = () => {
-    
+const NewsEditor = () => {    
     var currentAuth = useRecoilValue(authAtom)
     var loggedUser = useRecoilValue(userAtom)
 

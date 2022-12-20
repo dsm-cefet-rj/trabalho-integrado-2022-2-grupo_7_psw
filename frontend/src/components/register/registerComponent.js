@@ -87,7 +87,7 @@ const RegisterComponent = () => {
                     </>
                 )
                 }
-                <form className="form-container" onSubmit={handleSubmit} >
+                <form className="form-container" onSubmit={handleSubmit} action="/signin">
                     <div className="form-group">
                     <label>Nome</label>
                     <input

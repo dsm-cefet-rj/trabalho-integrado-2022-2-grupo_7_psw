@@ -1,7 +1,7 @@
 import "./singinComponent.css";
 import { useState } from "react";
-import { useRecoilValue, useSetRecoilState } from "recoil";
-import { authAtom, userAtom } from "../../recoil/atoms/userState";
+import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
+import { authAtom, userAtom, userNameState } from "../../recoil/atoms/userState";
 import { useGetUserById } from "../../recoil/hooks/userHooks/useCRUDUser";
 import jwtDecode from "jwt-decode";
 import { useLoginUser } from "../../recoil/hooks/userHooks/useLoginUser";
@@ -10,7 +10,7 @@ import {NotificationContainer} from 'react-notifications';
 const SinginComponent = () => {
 
   let [currentPassword, setCurrentPassword] = useState();
-  let [currentUserName, setCurrentUserName] = useState();
+  let [currentUserName, setCurrentUserName] = useRecoilState(userNameState);
 
   let setAuth = useSetRecoilState(authAtom)
 
