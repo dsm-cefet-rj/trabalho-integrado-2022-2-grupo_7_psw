@@ -25,7 +25,10 @@ export default function Overview() {
     },
   ];
 
-  const [status, setStatus] = useState(null);
+  const [status, setStatus] = useState({
+    value: "all_games",
+    label: <p className="text-dark">All games</p>,
+  });
 
   return (
     <>
@@ -49,21 +52,22 @@ export default function Overview() {
         </div>
       </div>
       <div className="container">
+        <p className="text-secondary">&nbsp;&nbsp;Filter games by status</p>
         <Select
           className="select-status"
           defaultValue={status}
           onChange={setStatus}
           options={options}
+          isSearchable={false}
         />
         <br></br>
-
         {id.map((jogosDoUsuario) => {
-          if (status) {
-            if (status.value === "all_games") {
-              return <Game id={jogosDoUsuario.game_id} />;
-            } else if (jogosDoUsuario.status === status.value) {
-              return <Game id={jogosDoUsuario.game_id} />;
-            }
+          if (status.value === undefined) {
+            return <Game id={jogosDoUsuario.game_id} />;
+          } else if (status.value === "all_games") {
+            return <Game id={jogosDoUsuario.game_id} />;
+          } else if (jogosDoUsuario.status === status.value) {
+            return <Game id={jogosDoUsuario.game_id} />;
           }
         })}
       </div>
