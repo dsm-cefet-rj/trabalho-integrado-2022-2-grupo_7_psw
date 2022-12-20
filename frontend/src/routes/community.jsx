@@ -2,6 +2,7 @@ import Header from "../components/header";
 import Friend from "../components/friend";
 import { BiGame } from "react-icons/bi";
 import { Suspense } from "react";
+import { useEffect, useState } from "react";
 
 export default function Community() {
   const textColor = {
@@ -14,6 +15,13 @@ export default function Community() {
   const marginTop = {
     marginTop: 100,
   };
+
+  const [users, setUsers] = useState([]);
+  useEffect(() => {
+    fetch("http://localhost:3001/user")
+      .then((res) => res.json())
+      .then((data) => setUsers(data));
+  }, []);
   return (
     <>
       {/* Haveria uma condição. Caso o usuário esteja logado renderiza Header. Caso não, renderiza GlobalHeader */}
@@ -55,18 +63,9 @@ export default function Community() {
             </button>
           </form>
         </div>
-        <Friend />
-        <Friend />
-        <Friend />
-        <Friend />
-        <Friend />
-        <Friend />
-        <Friend />
-        <Friend />
-        <Friend />
-        <Friend />
-        <Friend />
-        <Friend />
+        {users.map((user) => {
+          return <Friend username={user.username} url={user.pictureUrl} />;
+        })}
       </div>
     </>
   );

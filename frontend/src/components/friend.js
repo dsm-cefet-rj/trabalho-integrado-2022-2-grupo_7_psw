@@ -4,7 +4,7 @@ import image from "../images/userpicture.png";
 import { useEffect } from "react";
 import { useState } from "react";
 
-function Friend() {
+function Friend({ username, url }) {
   const [follow, setFolow] = useState(false);
   const [change, setChange] = useState(true);
   const [buttonClass, setButtonClass] = useState("btn btn-primary");
@@ -40,10 +40,10 @@ function Friend() {
                 alt="profile"
                 className="rounded-circle img-fluid"
                 style={imgStyle}
-                src={image}
+                src={url || image}
               />
             </Link>
-            <h4 className="fs-5 fs-md-4">Username</h4>
+            <h4 className="fs-5 fs-md-4">{username}</h4>
             <button
               type="button"
               className={buttonClass + " ms-auto btn-sm"}
