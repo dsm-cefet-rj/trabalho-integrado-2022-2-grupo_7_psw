@@ -4,6 +4,7 @@ import { BsGenderFemale, BsGenderMale } from "react-icons/bs";
 import { useRecoilState } from "recoil";
 import { selectedPictureState } from "../recoil/atoms/selectedPicture";
 import { pictureForm } from "../recoil/atoms/pictureForm";
+import { userPictureState } from "../recoil/atoms/userState";
 
 export default function UpdatePicture() {
   const avatarDimension = {
@@ -31,8 +32,9 @@ export default function UpdatePicture() {
   const [pictureOptions, setPictureOptions] = useState(makeid(12, 4));
   const [gender, setGender] = useState("male");
   const [selectedPicture, setSelectedPicture] =
-    useRecoilState(selectedPictureState);
-  const [myPictureForm, setMyPictureForm] = useRecoilState(pictureForm);
+    useRecoilState(userPictureState);
+  // const [myPictureForm, setMyPictureForm] = useRecoilState(pictureForm);
+  const  [myPictureForm, setMyPictureForm] = useRecoilState(userPictureState)
 
   return (
     <>

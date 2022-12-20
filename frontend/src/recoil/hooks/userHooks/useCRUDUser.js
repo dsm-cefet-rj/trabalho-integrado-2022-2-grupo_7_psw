@@ -41,7 +41,7 @@ export const useGetUserByEmail = (email) => {
 }
 
 export const useUpdateUser = (userId, userName, userPicture, userBio, currentAuth) => {
-    
+
     const requestOptions = {
         method: 'PUT',
         headers: {
@@ -56,14 +56,20 @@ export const useUpdateUser = (userId, userName, userPicture, userBio, currentAut
     }
     console.log(requestOptions)
     fetch(`http://localhost:3001/user/${userId}`, requestOptions).then(response => {
-        alert(response.status)
-        if(response.status == 401){
+        if (response.status == 401) {
+            alert("Login timeout. Sign in again!")
             localStorage.removeItem("current_auth")
             localStorage.removeItem("current_user")
+            setTimeout(() => {
+                window.location.href = "http://localhost:3000"
+            }, 200);
+        } else if (response.ok) {
+            window.location.href = "http://localhost:3000/profile"
+        } else {
+            window.location.href = "http://localhost:3000"
         }
 
     })
 }
 
-export default useUpdateUser;
 

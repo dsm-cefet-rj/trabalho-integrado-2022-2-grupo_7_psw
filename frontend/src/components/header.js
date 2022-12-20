@@ -1,12 +1,12 @@
 import { Link } from "react-router-dom";
 import React, { Suspense, useEffect, useState } from "react";
 import { login } from "../recoil/atoms/login";
-import { useRecoilValue, useSetRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import logo from "../images/Logo_Droppr.svg";
 import nome_droppr from "../images/Nome_Droppr.png";
 import "./header.css";
 import Tilt from 'react-parallax-tilt';
-import { authAtom, userAtom } from "../recoil/atoms/userState";
+import { authAtom, userAtom, userPictureState } from "../recoil/atoms/userState";
 import { useGetUserById } from "../recoil/hooks/userHooks/useCRUDUser";
 
 
@@ -15,8 +15,10 @@ function Header() {
 
   const myProfile = useRecoilValue(userAtom)
   const setProfile = useSetRecoilState(userAtom)
+
+  const [currentPicture, setCurrentPicture] = useRecoilState(userPictureState)
   
-  var id = undefined;
+  let id = undefined;
 
   if(myProfile){
     id = myProfile._id
@@ -27,7 +29,7 @@ function Header() {
   useEffect(() => {
     if(user){
       setProfile(user)
-      console.log(user)
+      setCurrentPicture(user.pictureUrl)
     }
   }, [user, myProfile])
   
@@ -91,7 +93,7 @@ function Header() {
                       style={imgSize}
                       alt="profile"
                       className="rounded-circle"
-                      src={myProfile.pictureUrl}
+                      src={currentPicture}
                     />
                     <Link className="nav-link dropdown-toggle">{myProfile.username}</Link>
                   </div>

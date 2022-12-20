@@ -10,7 +10,7 @@ opts.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
 opts.secretOrKey = process.env.JWT_SECRET
 
 export const getToken = (user) => {
-    return jwt.sign(user, process.env.JWT_SECRET, {expiresIn: 60*60})
+    return jwt.sign(user, process.env.JWT_SECRET, {expiresIn: 60*60*12})
 }
 
 export const verifyUser = (next) => {
