@@ -37,13 +37,6 @@ function Games({
       .catch((err) => {
         console.log(err);
       });
-
-    if (typeof genres !== "undefined") {
-      fetch(`http://localhost:3001/api/genre/${genres[0]}`)
-        .then((res) => res.json())
-        .then((data) => setGenero(data.data))
-        .catch((error) => console.error("Unable to get items.", error));
-    }
   });
 
   console.log(generos);
@@ -75,19 +68,6 @@ function Games({
       </Link>
       <div className="mx-auto mx-md-0 d-flex d-md-block flex-column align-items-center">
         <h2 className="text-light mt-md-2 fs-3 fs-md-2 m-4 m-md-0">{title}</h2>
-
-        {generos.map((genreName) => {
-          return (
-            <>
-              <h5
-                className="p-1 bg-secondary rounded mt-3 d-inline-block fw-bold text-light fs-6 mb-4 text-center"
-                key={genreName.name + " " + myKey}
-              >
-                {genreName.name}
-              </h5>
-            </>
-          );
-        })}
       </div>
     </div>
   );

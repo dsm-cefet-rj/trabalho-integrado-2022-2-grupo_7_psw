@@ -5,7 +5,7 @@ class ReviewsController {
     reviews.find((err, review) => {
       res.status(200).json({
         data: review,
-      });
+      })
     });
   };
 

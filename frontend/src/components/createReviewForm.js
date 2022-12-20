@@ -1,5 +1,5 @@
 import { BsDropletFill } from "react-icons/bs";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import {
   ratingStateAtom,
   hoverStateAtom,
@@ -8,9 +8,10 @@ import { AiFillHeart } from "react-icons/ai";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { reviewState } from "../recoil/atoms/review";
-import Select from 'react-select';
+import Select from "react-select";
 
 import cn from "classnames";
+import { authAtom, userAtom } from "../recoil/atoms/userState";
 
 // import useRatingState from "../recoil/hooks/useRatingState";
 // import useHoverState from "../recoil/hooks/useHoverState";
@@ -29,13 +30,19 @@ export default function ReviewForm() {
   const [favorite, setFavorite] = useState(null);
   const [hoverFavorite, setHoverFavorite] = useState(null);
 
-  const [status, setStatus] = useState('status');
+  const [status, setStatus] = useState("status");
+
+  const currentAuth = useRecoilValue(authAtom)
+  const userCurrent = useRecoilValue(userAtom)
 
   const options = [
-    { value: 'playing', label: <p className="text-dark">Playing</p> },
-    { value: 'finished', label: <p className="text-dark">Finished</p>},
-    { value: 'paused', label: <p className="text-dark">Paused</p> },
-    { value: 'all_achievements', label: <p className="text-dark">All achievements</p> },
+    { value: "playing", label: <p className="text-dark">Playing</p> },
+    { value: "finished", label: <p className="text-dark">Finished</p> },
+    { value: "paused", label: <p className="text-dark">Paused</p> },
+    {
+      value: "all_achievements",
+      label: <p className="text-dark">All achievements</p>,
+    },
   ];
 
   let HandleSubmit = async (e) => {
@@ -43,7 +50,10 @@ export default function ReviewForm() {
     try {
       let res = await fetch("http://localhost:3001/review/new", {
         method: "POST",
-        headers: customHeaders,
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + currentAuth,
+        },
         body: JSON.stringify({
           text_review: text,
           game_id: game_id,
@@ -51,6 +61,7 @@ export default function ReviewForm() {
           date: new Date().toLocaleDateString("pt-BR"),
           favorite: favorite,
           status: status.value,
+          user: userCurrent._id,
         }),
       });
 
@@ -97,18 +108,14 @@ export default function ReviewForm() {
             </div>
             <div className="modal-body">
               <form onSubmit={HandleSubmit}>
-
-
                 <div class="container-fluid p-0">
-
                   <div clasName="row d-flex">
-
-                      <label
-                        for="message-text"
-                        className="col-form-label text-dark"
-                      >
-                        Rating:
-                      </label>
+                    <label
+                      for="message-text"
+                      className="col-form-label text-dark"
+                    >
+                      Rating:
+                    </label>
                     <div className="d-flex m-2">
                       <div className="stars">
                         {[...Array(5)].map((star, i) => {
@@ -138,7 +145,7 @@ export default function ReviewForm() {
                           );
                         })}
                       </div>
-                    <div className="favorites ms-auto">
+                      <div className="favorites ms-auto">
                         {[...Array(1)].map((favorites, i) => {
                           const heart = i + 1;
 
@@ -165,12 +172,9 @@ export default function ReviewForm() {
                           );
                         })}
                       </div>
-
-
                     </div>
                   </div>
                 </div>
-
 
                 <div className="mb-3">
                   <label
@@ -189,12 +193,12 @@ export default function ReviewForm() {
                 <div className="mb-3">
                   <div className="dropdown">
                     {
-                    <Select
-                      defaultValue = {status}
-                      onChange = {setStatus}
-                      options = {options}
-                    />
-                    /* <button
+                      <Select
+                        defaultValue={status}
+                        onChange={setStatus}
+                        options={options}
+                      />
+                      /* <button
                       className="btn btn-secondary dropdown-toggle"
                       type="button"
                       id="dropdownMenuButton1"
@@ -203,14 +207,15 @@ export default function ReviewForm() {
                       onChange={(e) => setStatus(e.target.value)}
                     >
                       Status
-                    </button> */}
+                    </button> */
+                    }
 
                     <ul
                       className="dropdown-menu"
                       aria-labelledby="dropdownMenuButton1"
                     >
                       <li>
-                        <p className="dropdown-item" href="#" value="Playing" >
+                        <p className="dropdown-item" href="#" value="Playing">
                           Playing
                         </p>
                       </li>
@@ -221,7 +226,6 @@ export default function ReviewForm() {
                         </p>
                       </li>
 
-
                       <li>
                         <p className="dropdown-item" href="#" value="Paused">
                           Paused
@@ -229,12 +233,14 @@ export default function ReviewForm() {
                       </li>
 
                       <li>
-                        <p className="dropdown-item" href="#" value="All achievements">
+                        <p
+                          className="dropdown-item"
+                          href="#"
+                          value="All achievements"
+                        >
                           All achievements
                         </p>
                       </li>
-
-
                     </ul>
                   </div>
                 </div>
