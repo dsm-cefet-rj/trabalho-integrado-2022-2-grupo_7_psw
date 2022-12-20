@@ -11,7 +11,7 @@ export default function List({ title, games, id }) {
   const [list, setList] = useRecoilState(gameListState);
 
   useEffect(() => {
-    games.forEach((element) => {
+    games.slice(-3).forEach((element) => {
       fetch(`http://localhost:3001/api/cover/${element}`)
         .then((res) => res.json())
         .then((data) => {
@@ -33,7 +33,7 @@ export default function List({ title, games, id }) {
         <Link to={`/list/${id}`}>
           <div className="d-inline-block border">
             {cover.length > 0 ? (
-              cover.slice(-3).map((e) => {
+              cover.map((e) => {
                 return <img alt="game" src={`https:${e.url}`} />;
               })
             ) : (
