@@ -5,6 +5,8 @@ import { userAtom } from "../../recoil/atoms/userState";
 import { useCreateUser } from "../../recoil/hooks/userHooks/useCRUDUser";
 import { useGetPassword, useGetPassword2, useGetUserEmail, useGetUserLevel, useGetUserName } from "../../recoil/hooks/userHooks/useGetUserElements";
 import { useSetUserEmail, useSetUserLevel, useSetUserName, useSetUserPassword, useSetUserPassword2 } from "../../recoil/hooks/userHooks/useSetUserElements";
+import 'react-notifications/lib/notifications.css';
+import {NotificationContainer, NotificationManager} from 'react-notifications';
 
 const RegisterComponent = () => {
     let loggeduser = useRecoilValue(userAtom)
@@ -17,7 +19,6 @@ const RegisterComponent = () => {
         }
     }
 
-
     let currentName = useGetUserName();
     let currentEmail = useGetUserEmail();
     let currentPassword = useGetPassword(); 
@@ -29,8 +30,41 @@ const RegisterComponent = () => {
     const setCurrentPassword2 = useSetUserPassword2();
 
     
-
     
+    const handleSubmit = (e) => {  
+        let validRegistration = true;
+        
+        const data = new FormData(e.target);
+        console.log(Object.fromEntries(data.entries()))
+
+        if(!Object.fromEntries(data.entries()).Name.match(/^[a-zA-Z]+$/)){
+            console.log("Entrei")
+            NotificationManager.error('User must have only letters', 'Username error', 3000);
+            validRegistration = false;
+        }
+        console.log(Object.fromEntries(data.entries()).Email.indexOf("@"))
+        if(Object.fromEntries(data.entries()).Email.indexOf("@")===-1 ||  Object.fromEntries(data.entries()).Email.indexOf(".com")===-1) {
+            NotificationManager.error('Your email is invalid', 'Email error', 3000);
+            validRegistration = false;
+        }
+
+        if(Object.fromEntries(data.entries()).Name==="" ||  Object.fromEntries(data.entries()).Email==="" ||  Object.fromEntries(data.entries()).Password==="" ||  Object.fromEntries(data.entries()).Password2==="") {
+            NotificationManager.error('You must fill all fields', 'An error occured', 3000);
+            validRegistration = false;
+        }
+
+        if(Object.fromEntries(data.entries()).Password!==Object.fromEntries(data.entries()).Password2) {
+            NotificationManager.error('Passwords do not match', 'Password error', 3000);
+            validRegistration = false;
+        }
+
+        if(validRegistration) {
+            NotificationManager.success('You have succefully been signed up', 'Congratulations', 3000);
+        }
+        if(!validRegistration) {
+            e.preventDefault()
+        }
+    };
 
     const  HandleSaveClick = () => {
         //1 = admin
@@ -55,13 +89,14 @@ const RegisterComponent = () => {
                     </>
                 )
                 }
-                <form className="form-container" action="/" >
+                <form className="form-container" action="/" onSubmit={handleSubmit} >
                     <div className="form-group">
                     <label>Nome</label>
                     <input
                         type="text"
                         className="form-control mb-4 mt-1"
-                        placeholder="Enter your username"
+                        name="Name"
+                        placeholder="Username"
                         value={currentName}
                         onChange={ev => setCurrentName(ev.target.value)}                       
                     ></input>
@@ -71,7 +106,8 @@ const RegisterComponent = () => {
                     <input
                         type="text"
                         className="form-control mb-4 mt-1"
-                        placeholder="Enter your email"
+                        placeholder="example@gmail.com"
+                        name="Email"
                         value={currentEmail}
                         onChange={ev => setCurrentEmail(ev.target.value)}
                     ></input>
@@ -82,7 +118,8 @@ const RegisterComponent = () => {
                     <input
                         type="password"
                         className="form-control mb-4 mt-1"
-                        placeholder="********"
+                        placeholder="Password"
+                        name="Password"
                         value={currentPassword}
                         onChange={ev => setCurrentPassword(ev.target.value)}
                     ></input>
@@ -93,7 +130,8 @@ const RegisterComponent = () => {
                     <input
                         type="password"
                         className="form-control mb-4 mt-1"
-                        placeholder="********"
+                        name="Password2"
+                        placeholder="Confirm your password"
                         value={currentPassword2}
                         onChange={ev => setCurrentPassword2(ev.target.value)}
                     ></input>
@@ -122,6 +160,7 @@ const RegisterComponent = () => {
                 </form>
                 </div>
             </div>
+            <NotificationContainer/>
         </>
     )
 }
