@@ -2,7 +2,7 @@ import "./userSettingsComponent.css"
 
 import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import { pictureForm } from "../../recoil/atoms/pictureForm";
-import { authAtom, userAtom } from "../../recoil/atoms/userState";
+import { authAtom, userAtom, userPictureState } from "../../recoil/atoms/userState";
 import { useState } from "react";
 import { useUpdateUser } from "../../recoil/hooks/userHooks/useCRUDUser";
 
@@ -11,17 +11,9 @@ const UserSettingsComponent = () => {
   const loggedUser = useRecoilValue(userAtom)
   const currentAuth = useRecoilValue(authAtom)
 
-  const [currentUrl, setCurrentUrl] = useState(loggedUser.pictureUrl)
+  const [currentUrl, setCurrentUrl] = useRecoilState(userPictureState)
   const [currentUsername, setCurrentUsername] = useState(loggedUser.username)
   const [currentBio, setCurrentBio] = useState(loggedUser.bio)
-
-  const avatarDimension = {
-    width: "200px",
-    height: "200px",
-  };
-
-  const profilePicture = useRecoilValue(pictureForm);
-  // const setProfilePicture = useSetRecoilState(pictureForm)
 
   const [currentCustonPicture, setCurrentCurton] = useState(true)
   const [currentFrase, setCurrentFrase] = useState("Use character generator!")
@@ -29,31 +21,32 @@ const UserSettingsComponent = () => {
 
   const HandleSwitch = () => {
     setCurrentCurton(!currentCustonPicture)
-
     if (currentFrase === "Use character generator!") {
       setCurrentFrase("Send your own URL picture!")
-      setCurrentUrl(profilePicture)
     } else {
       setCurrentFrase("Use character generator!")
-      setCurrentUrl(loggedUser.pictureUrl)
-
-
     }
   }
 
   const HandleClickOnUpdate = () => {
     useUpdateUser(loggedUser._id, currentUsername, currentUrl, currentBio, currentAuth);
-    setTimeout(() => {
-      window.location.href = "http://localhost:3000/profile"
-    }, 200);
   }
 
+  const HandleClickOnDelete = () => {
+    console.log("deletado!!!")
+  }
+
+
+  const avatarDimension = {
+    width: "200px",
+    height: "200px",
+  };
   return (
     <div id="settings-area">
       <div className="edit-container">
         <div className="mt-5 mx-3">
           <h2 className="text-light mt-5">Edit your profile:</h2>
-          <form className="form-container">
+          <div className="form-container">
             <div className="form-group">
               <label>Username:</label>
               <input
@@ -106,7 +99,7 @@ const UserSettingsComponent = () => {
                     className="rounded-circle"
                     style={avatarDimension}
                     src={
-                      profilePicture
+                      currentUrl
                     }
                   />
                   <button
@@ -123,12 +116,16 @@ const UserSettingsComponent = () => {
               )
               }
             </div>
-          </form>
+          </div>
 
-          <div className="button-container mt-3">
+          <div className="button-container mt-2">
             <button className="btn btn-primary" type="submit" onClick={HandleClickOnUpdate}>
               Submit
             </button>
+            <p>
+              <span className="opacity-50"></span>
+              <a className="warning-link" style={{cursor: "pointer"}} onClick={HandleClickOnDelete}>Delete account</a>
+            </p>
           </div>
         </div>
       </div>

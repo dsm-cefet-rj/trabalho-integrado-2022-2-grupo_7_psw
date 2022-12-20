@@ -12,12 +12,9 @@ import useGetNewsById from "../recoil/hooks/newsHooks/useGetNewsById";
 
 export default function Profile() {
   const loggedUser = useRecoilValue(userAtom)
-
-  
-  // const loadUser = useGetNewsById(loggedUser._id)
   const avatarDimension = {
-    width: "200px",
-    height: "200px",
+    width: "250px",
+    height: "250px",
   };
 
   return (

@@ -12,7 +12,7 @@ router
   .get("/user/:id", UserController.getById)
   .post("/user", UserController.createUser)
   .put("/user/:id", passport.authenticate('jwt', {session: false}), UserController.updateUser)
-  .delete("/user/:id", UserController.deleteUser)
+  .delete("/user/:id", passport.authenticate('local', {session: false}), UserController.deleteUser)
   .post("/login", passport.authenticate('local', {session: false}), (req, res) => {
     res.statusCode = 200;
     res.setHeader('Content-Type', 'application/json');

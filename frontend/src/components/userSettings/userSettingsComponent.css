@@ -35,6 +35,9 @@
 .button-container{
     flex-direction: row-reverse;
     display: flex;
+    justify-content: space-between;
+    align-content: flex-start;
+    align-items: flex-start;
 }
 
 .switch-button {
@@ -48,6 +51,14 @@
     color: #ccc;
     transition: all 0.2s;
     
+}
+
+.warning-link {
+    color: #ff6347;
+}
+
+.warning-link:hover {
+    color: #ff2e1f;
 }
 
 .switch-button:hover {

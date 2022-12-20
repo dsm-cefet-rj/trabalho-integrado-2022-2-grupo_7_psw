@@ -60,3 +60,13 @@ const localStorageEffect = key => ({setSelf, onSet}) => {
     key: "userLevelState",
     default: ""
   })
+
+  export const userPictureState = atom({
+    key: "userPictureState",
+    default:  "https://avatars.dicebear.com/api/female/john.svg?background=%2314181c"
+  })
+
+  export const userBioState= atom({
+    key: "userBioState",
+    default: ""
+  })
