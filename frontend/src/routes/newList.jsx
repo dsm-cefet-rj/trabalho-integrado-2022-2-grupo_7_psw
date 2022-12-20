@@ -7,6 +7,7 @@ import SmallGame from "../components/smallGameImage";
 import { gameCollectionState } from "../recoil/atoms/gameCollection";
 import GameListElement from "../components/gameListElement";
 import { CiCircleRemove } from "react-icons/ci";
+import { TiDeleteOutline } from "react-icons/ti";
 
 export default function NewList() {
   const [myList, setList] = useRecoilState(gameListState);
@@ -40,6 +41,7 @@ export default function NewList() {
   const [selectedOption, setSelectedOption] = useState(null);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+  const [deleta, setDeleta] = useState(true)
 
   useEffect(() => {
     fetch(`http://localhost:3001/api/query/${inputField}/0`).then((res) =>
@@ -152,17 +154,26 @@ export default function NewList() {
             </button>
           </div>
 
-          {collection.map((e) => {
+          {collection.map((e, i) => {
+            const valor = i + 1;
             return (
               <div className="d-flex align-items-center gap-3 mb-5">
                 <GameListElement game_id={e} />
-                <CiCircleRemove
+                <TiDeleteOutline
                   onClick={(event) => {
                     event.preventDefault();
                     setCollection(collection.filter((a) => e !== a));
                   }}
-                  size={30}
-                  color="red"
+                  value={valor}
+                  size={35}
+                  key={e}
+                  color={
+                    valor === (deleta)
+                    ? "#C41E3A"
+                    : "white"
+                  }
+                  onMouseEnter={() => setDeleta(valor)}
+                  onMouseLeave={() => setDeleta(null)}
                   className="ms-auto"
                 />
               </div>
