@@ -1,4 +1,6 @@
 import jwtDecode from "jwt-decode";
+import 'react-notifications/lib/notifications.css';
+import {NotificationContainer, NotificationManager} from 'react-notifications';
 
 
 export const useLoginUser = (currentUserName, currentPassword, setUser, setAuth) => {
@@ -20,16 +22,15 @@ export const useLoginUser = (currentUserName, currentPassword, setUser, setAuth)
         .then(data => {
             setAuth(data.token);
             setUser(jwtDecode(data.token));
+            setTimeout(() => {
+                window.location.href = "http://localhost:3000/"
+            }, 300);
         })
         .catch(err => {
             if(err == `SyntaxError: Unexpected token 'U', "Unauthorized" is not valid JSON`){
-                alert("Unauthorized. Incorrect username or password")
+                NotificationManager.error('Username or password incorrect', 'Unathorized', 3000);
             }else{
-                alert("ERRO")
+                NotificationManager.error('An error occurred', 'Error', 3000);
             }
-            window.location.href = "http://localhost:3000/signin" 
         })
-    setTimeout(() => {
-        window.location.href = "http://localhost:3000/"
-    }, 300);
 };

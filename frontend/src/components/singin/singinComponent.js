@@ -4,6 +4,8 @@ import { useRecoilValue, useSetRecoilState } from "recoil";
 import { authAtom, userAtom } from "../../recoil/atoms/userState";
 import { useGetUserById } from "../../recoil/hooks/userHooks/useCRUDUser";
 import jwtDecode from "jwt-decode";
+import { useLoginUser } from "../../recoil/hooks/userHooks/useLoginUser";
+import {NotificationContainer} from 'react-notifications';
 
 const SinginComponent = () => {
 
@@ -15,30 +17,9 @@ const SinginComponent = () => {
   let setUser = useSetRecoilState(userAtom)
 
   const HandleLoginClick = () => {
-    const customHeaders = {
-      "Content-Type": "application/json",
-    };
-    const requestOptions = {
-      method: "POST",
-      headers: customHeaders,
-      body: JSON.stringify({
-        username: currentUserName,
-        password: currentPassword
-      }),
-    }
-    // let decodeToken = "not decoded yet";
-
-    fetch("http://localhost:3001/login", requestOptions)
-      .then(response => response.json())
-      .then(data => {
-        setAuth(data.token);
-        setUser(jwtDecode(data.token));
-      })
-
-    setTimeout(() => {
-        window.location.href = "http://localhost:3000"
-    }, 300);
+   useLoginUser(currentUserName, currentPassword, setUser, setAuth)
   };
+
   return (
     <>
       <div className="login-container">
@@ -61,7 +42,7 @@ const SinginComponent = () => {
               <input
                 type="password"
                 class="form-control mt-1"
-                placeholder="********"
+                placeholder="Password"
                 value={currentPassword}
                 onChange={(ev) => setCurrentPassword(ev.target.value)}
               ></input>
@@ -75,6 +56,7 @@ const SinginComponent = () => {
           </div>
         </div>
       </div>
+      <NotificationContainer/>
     </>
   );
 };

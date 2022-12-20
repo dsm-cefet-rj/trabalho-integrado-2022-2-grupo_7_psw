@@ -20,11 +20,8 @@ export const useCreateUser = (userName, userEmail, userPassword, userPassword2, 
 
     if (userPassword === userPassword2) {
         fetch('http://localhost:3001/user', requestOptions).then(response => {
-            console.log(response);
             // localStorage.clear();
         })
-    } else {
-        alert("Passwords do not match")
     }
 }
 

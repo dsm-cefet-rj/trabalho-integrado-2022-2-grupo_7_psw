@@ -28,8 +28,6 @@ const RegisterComponent = () => {
     const setCurrentEmail = useSetUserEmail();
     const setCurrentPassword = useSetUserPassword();
     const setCurrentPassword2 = useSetUserPassword2();
-
-    
     
     const handleSubmit = (e) => {  
         let validRegistration = true;
@@ -89,7 +87,7 @@ const RegisterComponent = () => {
                     </>
                 )
                 }
-                <form className="form-container" action="/" onSubmit={handleSubmit} >
+                <form className="form-container" onSubmit={handleSubmit} >
                     <div className="form-group">
                     <label>Nome</label>
                     <input
