@@ -4,9 +4,13 @@ import { Link } from "react-router-dom";
 import { useState, useEffect, Suspense } from "react";
 import Select from "react-select";
 import "./allgames.css";
+import { authAtom, userAtom } from "../recoil/atoms/userState";
+import { useRecoilValue } from "recoil"
 
 export default function Overview() {
   const [id, setId] = useState([]);
+
+  const userCurrent = useRecoilValue(userAtom);
 
   useEffect(() => {
     fetch("http://localhost:3001/getreview")
@@ -62,6 +66,7 @@ export default function Overview() {
         />
         <br></br>
         {id.map((jogosDoUsuario) => {
+          if(jogosDoUsuario.user===userCurrent._id)
           if (status.value === undefined) {
             return <Game id={jogosDoUsuario.game_id} />;
           } else if (status.value === "all_games") {

@@ -1,9 +1,14 @@
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import Game from "../components/imageGameList";
+import { authAtom, userAtom } from "../recoil/atoms/userState";
+import { useRecoilValue } from "recoil"
 
 export default function Overview() {
   const [id, setId] = useState([]);
+  const userCurrent = useRecoilValue(userAtom);
+
+  console.log(userCurrent)
 
   useEffect(() => {
     fetch("http://localhost:3001/getfavorite")
@@ -37,7 +42,8 @@ export default function Overview() {
           </div>
           <div className="d-flex flex-wrap gap-5 justify-content-center">
             {id.map((jogosFavoritos) => {
-              return <Game id={jogosFavoritos.game_id} />;
+              if(jogosFavoritos.user===userCurrent._id)
+              {return <Game id={jogosFavoritos.game_id} />;}
             })}
           </div>
         </div>

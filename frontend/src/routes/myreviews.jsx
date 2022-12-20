@@ -2,9 +2,13 @@ import Header from "../components/header";
 import Review from "../components/review";
 import { Link } from "react-router-dom";
 import { useState, useEffect, Suspense } from "react";
+import { authAtom, userAtom } from "../recoil/atoms/userState";
+import { useRecoilValue } from "recoil"
 
 export default function Overview({ origem }) {
   const [review, setReview] = useState([]);
+
+  const userCurrent = useRecoilValue(userAtom);
 
   useEffect(() => {
     fetch(`http://localhost:3001/getreview`)
@@ -36,7 +40,8 @@ export default function Overview({ origem }) {
         </div>
       </div>
       {review.map((e) => {
-        return (
+        if(e.user===userCurrent._id)
+        {return (
           <Review
             stars={e.rating}
             title={e.titleReview}
@@ -50,7 +55,7 @@ export default function Overview({ origem }) {
             user_id={e.user}
             profilePicture={e.profilePicture}
           />
-        );
+        );}
       })}
     </>
   );
