@@ -71,7 +71,7 @@ class ApiController {
         "Client-ID": process.env.CLIENT_IGDB_ID,
         Authorization: process.env.ACCESS_IGDB_TOKEN,
       },
-      data: `fields checksum,created_at,name,slug,updated_at,url; where id=${req.params.id};`,
+      data: `fields name,slug; where id=${req.params.id};`,
     })
       .then((response) => {
         res.json({ data: response.data });
@@ -128,7 +128,7 @@ class ApiController {
         "Client-ID": process.env.CLIENT_IGDB_ID,
         Authorization: process.env.ACCESS_IGDB_TOKEN,
       },
-      data: `fields name, summary, platforms, genres, category, cover; limit 5; offset ${
+      data: `fields name, summary, platforms, genres, category, cover, rating_count; limit 5; where rating_count > 100; offset ${
         req.params.id * 15
       };`,
     })

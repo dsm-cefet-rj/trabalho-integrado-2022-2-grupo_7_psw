@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import React, { useState, useEffect } from "react";
-import Tilt from 'react-parallax-tilt';
+import Tilt from "react-parallax-tilt";
 
 function Games({
   background_image,
@@ -39,15 +39,13 @@ function Games({
       });
 
     if (typeof genres !== "undefined") {
-      genres.map((i) => {
-        fetch(`http://localhost:3001/api/genre/${i}`)
-          .then((res) => res.json())
-          .then((data) => setGenero(data.data))
-          .catch(error => console.error('Unable to get items.', error));
-      })
+      fetch(`http://localhost:3001/api/genre/${genres[0]}`)
+        .then((res) => res.json())
+        .then((data) => setGenero(data.data))
+        .catch((error) => console.error("Unable to get items.", error));
     }
   });
-  
+
   console.log(generos);
 
   return (
@@ -59,7 +57,14 @@ function Games({
         className=" inline-block me-md-4 mx-auto mx-md-0"
         to={`/screen/${myKey}`}
       >
-        <Tilt glareEnable={true} glareMaxOpacity={0.5} glarePosition="all" glareBorderRadius="3px" scale="1.1" glareColor="#0e3da1">
+        <Tilt
+          glareEnable={true}
+          glareMaxOpacity={0.5}
+          glarePosition="all"
+          glareBorderRadius="3px"
+          scale="1.1"
+          glareColor="#0e3da1"
+        >
           <img
             style={imgStyle}
             src={cover}
@@ -72,14 +77,17 @@ function Games({
         <h2 className="text-light mt-md-2 fs-3 fs-md-2 m-4 m-md-0">{title}</h2>
 
         {generos.map((genreName) => {
-          return <>
-            <h5 className="p-1 bg-secondary rounded mt-3 d-inline-block fw-bold text-light fs-6 mb-4 text-center" key={genreName.name + " " + myKey}>
-              {genreName.name}
-            </h5>
-          </>;
+          return (
+            <>
+              <h5
+                className="p-1 bg-secondary rounded mt-3 d-inline-block fw-bold text-light fs-6 mb-4 text-center"
+                key={genreName.name + " " + myKey}
+              >
+                {genreName.name}
+              </h5>
+            </>
+          );
         })}
-
-
       </div>
     </div>
   );

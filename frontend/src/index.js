@@ -1,7 +1,7 @@
 import React from "react";
 import App from "./App";
 import { render } from "react-dom";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Switch, redirect } from "react-router-dom";
 import Profile from "./routes/profile";
 import Friends from "./routes/friends";
 import Reviews from "./routes/reviews";
