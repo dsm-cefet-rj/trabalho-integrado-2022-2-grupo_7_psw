@@ -22,7 +22,7 @@ export default function Overview() {
     { value: 'all_achievements', label: <p className="text-dark">All achievements</p> },
   ];
 
-  const [status, setStatus] = useState(null);
+  const [status, setStatus] = useState("null");
 
   return (
     <>
@@ -45,23 +45,23 @@ export default function Overview() {
         </div>
       </div>
       <div className="container">
+        <p className="text-secondary">&nbsp;&nbsp;Filter games by status</p>
         <Select className="select-status"
-          defaultValue={status}
+          defaultValue="all_games"
           onChange={setStatus}
           options={options}
         />
         <br></br>
-
         {id.map((jogosDoUsuario) => {
-          if(status.value==="all_games"){
+          if(status.value===undefined){
             return <Game id={jogosDoUsuario.game_id} />;
-          } else if (jogosDoUsuario.status===status.value) {
+          } else if(status.value==="all_games"){
+            return <Game id={jogosDoUsuario.game_id} />;  
+          } else if (jogosDoUsuario.status===status.value){
             return <Game id={jogosDoUsuario.game_id} />;
           }
-
         })}
       </div>
-
     </>
   );
 }
