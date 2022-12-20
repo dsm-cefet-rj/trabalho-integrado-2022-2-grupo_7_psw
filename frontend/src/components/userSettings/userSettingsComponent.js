@@ -33,8 +33,10 @@ const UserSettingsComponent = () => {
   }
 
   const HandleClickOnDelete = () => {
-    window.confirm("Delete account?")
-    // useDeleteUser(loggedUser._id, currentAuth)
+    if(window.confirm("Delete account?")){
+      var id = loggedUser._id;
+    }
+    useDeleteUser(id, currentAuth)
   }
 
 

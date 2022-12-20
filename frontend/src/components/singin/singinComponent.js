@@ -1,44 +1,23 @@
 import "./singinComponent.css";
 import { useState } from "react";
-import { useRecoilValue, useSetRecoilState } from "recoil";
-import { authAtom, userAtom } from "../../recoil/atoms/userState";
+import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
+import { authAtom, userAtom, userNameState } from "../../recoil/atoms/userState";
 import { useGetUserById } from "../../recoil/hooks/userHooks/useCRUDUser";
 import jwtDecode from "jwt-decode";
+import { useLoginUser } from "../../recoil/hooks/userHooks/useLoginUser";
 
 const SinginComponent = () => {
 
   let [currentPassword, setCurrentPassword] = useState();
-  let [currentUserName, setCurrentUserName] = useState();
+  let [currentUserName, setCurrentUserName] = useRecoilState(userNameState);
 
   let setAuth = useSetRecoilState(authAtom)
-
   let setUser = useSetRecoilState(userAtom)
 
   const HandleLoginClick = () => {
-    const customHeaders = {
-      "Content-Type": "application/json",
-    };
-    const requestOptions = {
-      method: "POST",
-      headers: customHeaders,
-      body: JSON.stringify({
-        username: currentUserName,
-        password: currentPassword
-      }),
-    }
-    // let decodeToken = "not decoded yet";
-
-    fetch("http://localhost:3001/login", requestOptions)
-      .then(response => response.json())
-      .then(data => {
-        setAuth(data.token);
-        setUser(jwtDecode(data.token));
-      })
-
-    setTimeout(() => {
-        window.location.href = "http://localhost:3000"
-    }, 300);
-  };
+    useLoginUser(currentUserName, currentPassword, setUser, setAuth)
+  }
+  
   return (
     <>
       <div className="login-container">

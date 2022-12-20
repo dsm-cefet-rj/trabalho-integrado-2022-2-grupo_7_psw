@@ -2,8 +2,9 @@
 import { useRecoilValue } from "recoil";
 import { authAtom } from "../../atoms/userState";
 import { asyncAllUsers, asyncGetUserByEmail, asyncGetUserById } from "../../selectors/userSelector";
+import { useLoginUser } from "./useLoginUser";
 
-export const useCreateUser = (userName, userEmail, userPassword, userPassword2, userLevel) => {
+export async function useCreateUser(userName, userEmail, userPassword, userPassword2, userLevel) {
     const requestOptions = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -18,14 +19,13 @@ export const useCreateUser = (userName, userEmail, userPassword, userPassword2, 
 
     }
 
-    if (userPassword === userPassword2) {
-        fetch('http://localhost:3001/user', requestOptions).then(response => {
-            console.log(response);
-            // localStorage.clear();
-        })
-    } else {
-        alert("Passwords do not match")
-    }
+    fetch('http://localhost:3001/user', requestOptions).then(response => {
+
+    })
+    setTimeout(() => {
+        window.location.href = "http://localhost:3000/signin"
+    }, 300);
+
 }
 
 export const useGetAllUsers = () => {

@@ -4,7 +4,7 @@ class NewsController {
   static getAllNews = (req, res) => {
     news
       .find()
-      .populate("user")
+      .populate("user", "username")
       .exec((err, news) => {
         res.status(200).json(news);
       });
