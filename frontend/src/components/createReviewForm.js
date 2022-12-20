@@ -62,6 +62,8 @@ export default function ReviewForm() {
           favorite: favorite,
           status: status.value,
           user: userCurrent._id,
+          username: userCurrent.username,
+          profilePicture: userCurrent.pictureUrl,
         }),
       });
 

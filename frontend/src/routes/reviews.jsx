@@ -43,6 +43,9 @@ export default function Reviews() {
             game_id={e.game_id}
             date={e.date}
             stars={e.rating}
+            username={e.username}
+            user_id={e.user}
+            profilePicture={e.profilePicture}
           />
         );
       })}

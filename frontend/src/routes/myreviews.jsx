@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { useState, useEffect, Suspense } from "react";
 
 export default function Overview({ origem }) {
-  const [review, setReview] = useState([])
+  const [review, setReview] = useState([]);
 
   useEffect(() => {
     fetch(`http://localhost:3001/getreview`)
@@ -46,6 +46,9 @@ export default function Overview({ origem }) {
             checkout={false}
             date={e.date}
             game_id={e.game_id}
+            username={e.username}
+            user_id={e.user}
+            profilePicture={e.profilePicture}
           />
         );
       })}
