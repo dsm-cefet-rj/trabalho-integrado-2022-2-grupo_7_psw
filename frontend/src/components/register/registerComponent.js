@@ -71,7 +71,7 @@ const RegisterComponent = () => {
                     <input
                         type="text"
                         className="form-control mb-4 mt-1"
-                        placeholder="Enter your username"
+                        placeholder="Enter your email"
                         value={currentEmail}
                         onChange={ev => setCurrentEmail(ev.target.value)}
                     ></input>

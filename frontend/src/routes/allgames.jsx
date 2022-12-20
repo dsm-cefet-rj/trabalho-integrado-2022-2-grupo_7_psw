@@ -47,13 +47,18 @@ export default function Overview() {
       <div className="container">
         <Select className="select-status"
           defaultValue={status}
-          onChange="null"
+          onChange={setStatus}
           options={options}
         />
         <br></br>
 
         {id.map((jogosDoUsuario) => {
-          return <Game id={jogosDoUsuario.game_id} />;
+          if(status.value==="all_games"){
+            return <Game id={jogosDoUsuario.game_id} />;
+          } else if (jogosDoUsuario.status===status.value) {
+            return <Game id={jogosDoUsuario.game_id} />;
+          }
+
         })}
       </div>
 
