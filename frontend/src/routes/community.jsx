@@ -16,12 +16,30 @@ export default function Community() {
     marginTop: 100,
   };
 
+  const [searchUser, setSearchUser] = useState("");
+
   const [users, setUsers] = useState([]);
   useEffect(() => {
     fetch("http://localhost:3001/user")
       .then((res) => res.json())
       .then((data) => setUsers(data));
   }, []);
+
+  function matchInput(searchUser, user) {
+    const inputLength = searchUser.length;
+    const userLength = user.length;
+    if (inputLength > userLength) {
+      return false;
+    }
+
+    for (let i = 0; i < inputLength; i++) {
+      if (searchUser[i] !== user[i]) {
+        return false;
+      }
+    }
+
+    return true;
+  }
   return (
     <>
       {/* Haveria uma condição. Caso o usuário esteja logado renderiza Header. Caso não, renderiza GlobalHeader */}
@@ -51,21 +69,26 @@ export default function Community() {
       </div>
       <div className="d-flex flex-column my-5 container-fluid fundo col-12 col-md-6">
         <div class="container-fluid my-3">
-          <form class="d-flex">
-            <input
-              class="form-control me-2"
-              type="search"
-              placeholder="Search a user"
-              aria-label="Search"
-            />
-            <button class="btn btn-outline-light" type="submit">
-              Search
-            </button>
-          </form>
+          <input
+            class="form-control me-2"
+            type="search"
+            placeholder="Search a user"
+            aria-label="Search"
+            value={searchUser}
+            onChange={(e) => setSearchUser(e.target.value)}
+          />
         </div>
-        {users.map((user) => {
-          return <Friend username={user.username} url={user.pictureUrl} />;
-        })}
+        {!searchUser
+          ? users.map((user) => {
+              return <Friend username={user.username} url={user.pictureUrl} />;
+            })
+          : users.map((user) => {
+              if (matchInput(searchUser, user.username)) {
+                return (
+                  <Friend username={user.username} url={user.pictureUrl} />
+                );
+              }
+            })}
       </div>
     </>
   );
