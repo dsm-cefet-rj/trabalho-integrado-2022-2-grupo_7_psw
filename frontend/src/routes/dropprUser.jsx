@@ -1,5 +1,4 @@
 import Header from "../components/header";
-import Bio from "../components/bio";
 import image from "../images/userpicture.png";
 import { GiThreeFriends } from "react-icons/gi";
 import { GiNotebook } from "react-icons/gi";
@@ -7,6 +6,7 @@ import { AiFillStar } from "react-icons/ai";
 import Overview from "./overviewUser";
 import { Suspense, useEffect } from "react";
 import { useState } from "react";
+import { useParams } from "react-router-dom";
 
 export default function DropprUser() {
   const [follow, setFolow] = useState(false);
@@ -14,7 +14,7 @@ export default function DropprUser() {
   const [buttonClass, setButtonClass] = useState("btn btn-primary");
   const [buttonMessage, setButtonMessage] = useState("Follow");
 
-  useEffect(() => {
+  /*   useEffect(() => {
     if (follow) {
       console.log("entrei");
       setChange(false);
@@ -27,7 +27,20 @@ export default function DropprUser() {
       setButtonMessage("Follow");
       setChange(true);
     }
-  }, [follow]);
+  }, [follow]); */
+
+  const username = useParams().username;
+  const [userInfo, setUserInfo] = useState({});
+  const avatarDimension = {
+    width: "250px",
+    height: "250px",
+  };
+
+  useEffect(() => {
+    fetch(`http://localhost:3001/findusername/${username}`)
+      .then((res) => res.json())
+      .then((data) => setUserInfo(data));
+  }, []);
 
   return (
     <>
@@ -36,8 +49,14 @@ export default function DropprUser() {
       </Suspense>
       <div className="my-5 d-flex flex-column flex-md-row col-8 col-md-8 mx-auto justify-content-around align-items-center gap-3">
         <div className="d-flex flex-column align-items-center align-items-md-center order-1">
-          <img className="rounded-circle" size={90} src={image} alt="" />
-          <h2 className="text-light">Username</h2>
+          <img
+            className="rounded-circle"
+            style={avatarDimension}
+            size={90}
+            src={userInfo.pictureUrl || image}
+            alt=""
+          />
+          <h2 className="text-light">{userInfo.username}</h2>
           <button
             type="button"
             className={buttonClass}
@@ -70,7 +89,14 @@ export default function DropprUser() {
           </div>
         </div>
       </div>
-      <Bio />
+      <div className="col-11 mx-auto">
+        <div className="col-11 mx-auto border-bottom border-secondary">
+          <p className="font-weight-light">BIO</p>
+        </div>
+        <p className="text-secondary col-11 mx-auto my-3">
+          {userInfo.bio || "To be done"}
+        </p>
+      </div>
       <Overview />
     </>
   );

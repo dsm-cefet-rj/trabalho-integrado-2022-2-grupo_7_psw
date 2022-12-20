@@ -4,7 +4,7 @@ import image from "../images/userpicture.png";
 import { useEffect } from "react";
 import { useState } from "react";
 
-function Friend({ username, url }) {
+function Friend({ username, url, id }) {
   const [follow, setFolow] = useState(false);
   const [change, setChange] = useState(true);
   const [buttonClass, setButtonClass] = useState("btn btn-primary");
@@ -35,7 +35,7 @@ function Friend({ username, url }) {
       <div>
         <div className="col-11 d-flex flex-column m-3">
           <div className="d-flex align-items-center gap-3">
-            <Link className="position-relative" to="/dropprUser">
+            <Link className="position-relative" to={`/dropprUser/${username}`}>
               <img
                 alt="profile"
                 className="rounded-circle img-fluid"
