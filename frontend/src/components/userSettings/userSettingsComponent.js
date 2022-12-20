@@ -2,12 +2,14 @@ import "./userSettingsComponent.css"
 
 import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import { pictureForm } from "../../recoil/atoms/pictureForm";
-import { userAtom } from "../../recoil/atoms/userState";
+import { authAtom, userAtom } from "../../recoil/atoms/userState";
 import { useState } from "react";
 import { useUpdateUser } from "../../recoil/hooks/userHooks/useCRUDUser";
 
 const UserSettingsComponent = () => {
+
   const loggedUser = useRecoilValue(userAtom)
+  const currentAuth = useRecoilValue(authAtom)
 
   const [currentUrl, setCurrentUrl] = useState(loggedUser.pictureUrl)
   const [currentUsername, setCurrentUsername] = useState(loggedUser.username)
@@ -39,25 +41,19 @@ const UserSettingsComponent = () => {
     }
   }
 
-  const HandleUpdateClick = () => {
-
-    console.log(currentUrl)
-
-
-    // useUpdateUser(loggedUser._id, currentUsername, currentUrl, currentBio)
-    // setTimeout(() => {
-    //   window.location.href = "http://localhost:3000/profile"
-    // }, 200);
+  const HandleClickOnUpdate = () => {
+    useUpdateUser(loggedUser._id, currentUsername, currentUrl, currentBio, currentAuth);
+    setTimeout(() => {
+      window.location.href = "http://localhost:3000/profile"
+    }, 200);
   }
-
-
 
   return (
     <div id="settings-area">
       <div className="edit-container">
         <div className="mt-5 mx-3">
           <h2 className="text-light mt-5">Edit your profile:</h2>
-          <div className="form-container">
+          <form className="form-container">
             <div className="form-group">
               <label>Username:</label>
               <input
@@ -77,7 +73,6 @@ const UserSettingsComponent = () => {
                 placeholder="Change bio"
                 value={currentBio}
                 onChange={ev => setCurrentBio(ev.target.value)}
-
               ></textarea>
             </div>
             <div id="profile_picture_area" className="image-container">
@@ -104,9 +99,6 @@ const UserSettingsComponent = () => {
                     onChange={ev => setCurrentUrl(ev.target.value)}
                   ></input>
                 </>
-
-
-
               ) : (
                 <>
                   <img
@@ -131,13 +123,10 @@ const UserSettingsComponent = () => {
               )
               }
             </div>
-
-
-
-          </div>
+          </form>
 
           <div className="button-container mt-3">
-            <button className="btn btn-primary" onClick={HandleUpdateClick}>
+            <button className="btn btn-primary" type="submit" onClick={HandleClickOnUpdate}>
               Submit
             </button>
           </div>

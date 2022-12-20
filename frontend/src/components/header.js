@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import React, { Suspense, useState } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import { login } from "../recoil/atoms/login";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import logo from "../images/Logo_Droppr.svg";
@@ -7,7 +7,6 @@ import nome_droppr from "../images/Nome_Droppr.png";
 import "./header.css";
 import Tilt from 'react-parallax-tilt';
 import { authAtom, userAtom } from "../recoil/atoms/userState";
-import jwtDecode from "jwt-decode";
 import { useGetUserById } from "../recoil/hooks/userHooks/useCRUDUser";
 
 
@@ -16,18 +15,23 @@ function Header() {
 
   const myProfile = useRecoilValue(userAtom)
   const setProfile = useSetRecoilState(userAtom)
+  
+  var id = undefined;
 
-  const token = useRecoilValue(authAtom)
-  
-  const user = useGetUserById(id)
-  
-  if(token){
-    var id = jwtDecode(token)._id
-    console.log(user)
-    // setProfile(user)
+  if(myProfile){
+    id = myProfile._id
   }
   
+  var user = useGetUserById(id)
   
+  useEffect(() => {
+    if(user){
+      setProfile(user)
+      console.log(user)
+    }
+  }, [user, myProfile])
+  
+
 
   const imgSize = {
     width: 50,
@@ -87,7 +91,7 @@ function Header() {
                       style={imgSize}
                       alt="profile"
                       className="rounded-circle"
-                      src="https://avatars.dicebear.com/api/female/john.svg?background=%2314181c"
+                      src={myProfile.pictureUrl}
                     />
                     <Link className="nav-link dropdown-toggle">{myProfile.username}</Link>
                   </div>

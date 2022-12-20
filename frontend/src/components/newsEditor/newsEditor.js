@@ -70,7 +70,6 @@ return (
         <div>
             {
                 haveId? (
-
                     <button key={"opt2"} className="button-editor" onClick={HandleUpdateClick}>Edit it!</button>
                     ) : (
                     <button key={"opt1"} className="button-editor" onClick={HandleSaveClick}>Publish it!</button>

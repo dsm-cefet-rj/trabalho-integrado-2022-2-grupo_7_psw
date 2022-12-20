@@ -8,9 +8,17 @@ import Overview from "./overview";
 import { useRecoilValue } from "recoil";
 import { userAtom } from "../recoil/atoms/userState";
 import { Suspense } from "react";
+import useGetNewsById from "../recoil/hooks/newsHooks/useGetNewsById";
 
 export default function Profile() {
   const loggedUser = useRecoilValue(userAtom)
+
+  
+  // const loadUser = useGetNewsById(loggedUser._id)
+  const avatarDimension = {
+    width: "200px",
+    height: "200px",
+  };
 
   return (
     <>
@@ -21,9 +29,10 @@ export default function Profile() {
       <div className="my-5 d-flex flex-column flex-md-row col-8 col-md-10 mx-auto justify-content-around align-items-center gap-3">
         <div className="d-flex flex-column flex-md-row gap-3 align-items-center order-1">
           <img
+            style={avatarDimension}
             alt="profile"
             className="rounded-circle"
-            src="https://avatars.dicebear.com/api/female/john.svg?background=%2314181c"
+            src={loggedUser.pictureUrl}
           />
           <div className="d-flex flex-column align-items-center align-items-md-start">
             <h1 className="text-light">{loggedUser.username}</h1>
