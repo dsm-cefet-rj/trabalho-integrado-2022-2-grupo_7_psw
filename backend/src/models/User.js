@@ -1,6 +1,5 @@
 import mongoose from "mongoose";
-import passportLocalMongoose  from "passport-local-mongoose"
-
+import passportLocalMongoose from "passport-local-mongoose";
 
 const userSchema = new mongoose.Schema({
   id: { type: String },
@@ -8,9 +7,9 @@ const userSchema = new mongoose.Schema({
   email: { type: String },
   password: { type: String },
   level: { type: Number },
-  bio: {type: String},
-  pictureUrl: {type: String},
-  friends: [{user: {type: mongoose.Schema.Types.ObjectId, ref: "users"}}]
+  bio: { type: String },
+  pictureUrl: { type: String },
+  friends: [{ user: { type: mongoose.Schema.Types.ObjectId, ref: "users" } }],
 });
 
 userSchema.plugin(passportLocalMongoose);
