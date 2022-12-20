@@ -25,7 +25,7 @@ export const asyncGetUserById = selectorFamily ({
     get: (id) => async () => {
         const response = await fetch(`http://localhost:3001/user/${id}`)
         if(!response.ok){
-            console.log(response.status)
+            // console.log(response.status)
             return null;
         }
 

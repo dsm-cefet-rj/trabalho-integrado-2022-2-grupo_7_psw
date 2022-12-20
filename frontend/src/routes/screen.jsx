@@ -1,7 +1,7 @@
 import Header from "../components/header";
 import ScreenL from "../components/screenLucas";
 import Review from "../components/review";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Suspense } from "react";
 import { useParams } from "react-router-dom";
 import ReviewConfig from "../components/reviewconfig";
 import { useRecoilState } from "recoil";
@@ -72,7 +72,9 @@ export default function Screen() {
 
   return (
     <>
-      <Header />
+      <Suspense fallback={<h2>loading...</h2>}>
+        <Header />
+      </Suspense>
       <ScreenL
         myCover={`https:${cover}`}
         myDate={date}

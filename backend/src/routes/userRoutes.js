@@ -22,7 +22,10 @@ router
         _id: req.user._id,
         level: req.user.level,
         username: req.user.username,
-        email:req.user.email}),
+        email:req.user.email,
+        bio: req.user.bio,
+        pictureUrl: req.user.pictureUrl
+      }),
       status: "You are successfully logged in"});
   });
 

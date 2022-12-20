@@ -1,7 +1,7 @@
 import Header from "./components/header";
 import Game from "./components/homeGame";
 import Footer from "./components/footer";
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import {
   BsFillDropletFill,
   BsFillArrowLeftCircleFill,
@@ -45,7 +45,9 @@ export default function App() {
   if (mylogin) {
     return (
       <>
-        <Header />
+        <Suspense fallback={<h2>loading...</h2>}>
+          <Header />
+        </Suspense>
         <div className="d-flex flex-md-row flex-column-reverse">
           <div className="col-lg-7">
             <ul className="m-0 p-0">
@@ -135,7 +137,9 @@ export default function App() {
   } else {
     return (
       <>
-        <Header />
+        <Suspense fallback={<h2>loading...</h2>}>
+          <Header />
+        </Suspense>
         <div className="ConvincingMessage container-fluid text-center mt-5">
           <div class="row align-items-center">
             <div className="col-2" />

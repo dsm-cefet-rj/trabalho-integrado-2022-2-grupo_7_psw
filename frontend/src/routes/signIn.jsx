@@ -5,7 +5,9 @@ import SinginComponent from "../components/singin/singinComponent";
 function signIn() {
   return (
     <>
-      <Header />
+      <Suspense fallback={<h2>loading...</h2>}>
+        <Header />
+      </Suspense>
       <Suspense>
         <SinginComponent />
       </Suspense>

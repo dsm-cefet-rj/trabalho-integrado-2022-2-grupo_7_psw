@@ -11,25 +11,13 @@ const SinginComponent = () => {
   let [currentUserName, setCurrentUserName] = useState();
 
   let setAuth = useSetRecoilState(authAtom)
-  let currentAuth = useRecoilValue(authAtom)
 
   let setUser = useSetRecoilState(userAtom)
-  // let currentUser = useRecoilValue(userAtom)
-
-
-  // if(currentAuth){
-  //   var userId = jwtDecode(currentAuth)._id;
-  // }
-
-  // let user = useGetUserById(currentAuth)
-
-
-
-  const customHeaders = {
-    "Content-Type": "application/json",
-  };
 
   const HandleLoginClick = () => {
+    const customHeaders = {
+      "Content-Type": "application/json",
+    };
     const requestOptions = {
       method: "POST",
       headers: customHeaders,
@@ -46,14 +34,15 @@ const SinginComponent = () => {
         setAuth(data.token);
         setUser(jwtDecode(data.token));
       })
+
     setTimeout(() => {
-      window.location.href = "http://localhost:3000"
+        window.location.href = "http://localhost:3000"
     }, 200);
   };
   return (
     <>
       <div className="login-container">
-          <h2 className="text-light mt-5 mx-3 ">Sign In</h2>
+        <h2 className="text-light mt-5 mx-3 ">Sign In</h2>
         <div className="form-container">
           <form className="">
             <div class="form-group mt-3">

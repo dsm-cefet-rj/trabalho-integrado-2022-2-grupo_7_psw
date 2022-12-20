@@ -5,7 +5,7 @@ import { GiThreeFriends } from "react-icons/gi";
 import { GiNotebook } from "react-icons/gi";
 import { AiFillStar } from "react-icons/ai";
 import Overview from "./overviewUser";
-import { useEffect } from "react";
+import { Suspense, useEffect } from "react";
 import { useState } from "react";
 
 export default function DropprUser() {
@@ -31,7 +31,9 @@ export default function DropprUser() {
 
   return (
     <>
-      <Header />
+      <Suspense fallback={<h2>loading...</h2>}>
+        <Header />
+      </Suspense>
       <div className="my-5 d-flex flex-column flex-md-row col-8 col-md-8 mx-auto justify-content-around align-items-center gap-3">
         <div className="d-flex flex-column align-items-center align-items-md-center order-1">
           <img className="rounded-circle" size={90} src={image} alt="" />

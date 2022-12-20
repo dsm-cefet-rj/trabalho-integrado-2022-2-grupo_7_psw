@@ -7,7 +7,9 @@ import "./register.css";
 const RegisterPage = () => {
   return (
     <>
-      <Header />
+      <Suspense fallback={<h2>loading...</h2>}>
+        <Header />
+      </Suspense>
       <Suspense>
         <RegisterComponent />
       </Suspense>

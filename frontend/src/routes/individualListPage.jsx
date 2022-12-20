@@ -1,6 +1,6 @@
 import Header from "../components/header";
 import { useParams } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import ImageGameList from "../components/imageGameList";
 import { gameListState } from "../recoil/atoms/gameList";
 import { useRecoilState } from "recoil";
@@ -24,7 +24,9 @@ export default function IndividualList() {
 
   return (
     <>
-      <Header />
+      <Suspense fallback={<h2>loading...</h2>}>
+        <Header />
+      </Suspense>
       <div className="container">
         <div className="col-12">
           <div className="d-flex gap-2 align-items-center mx-4 mx-md-5 my-5">

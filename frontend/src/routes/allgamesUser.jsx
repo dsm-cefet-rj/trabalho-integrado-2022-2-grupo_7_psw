@@ -1,12 +1,14 @@
 import Header from "../components/header";
 import Game from "../components/homeGame";
 import { Link } from "react-router-dom";
+import { Suspense } from "react";
 
 export default function Overview() {
   return (
     <>
-      <Header />
-      <div className="my-5">
+      <Suspense fallback={<h2>loading...</h2>}>
+        <Header />
+      </Suspense>      <div className="my-5">
         <div className="col-11 mx-auto border-bottom border-secondary d-flex gap-4">
           <Link to="/dropprUser">
             <p className="text-light fs-6">Overview</p>

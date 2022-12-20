@@ -3,7 +3,7 @@ import Review from "../components/review";
 import { Link } from "react-router-dom";
 import { reviewState } from "../recoil/atoms/review";
 import { useRecoilValue } from "recoil";
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 
 export default function Overview() {
   const [last5Reviews, setLast5Reviews] = useState([]);
@@ -17,7 +17,9 @@ export default function Overview() {
 
   return (
     <>
-      <Header />
+      <Suspense fallback={<h2>loading...</h2>}>
+        <Header />
+      </Suspense>
       <div className="my-5">
         <div className="col-11 mx-auto border-bottom border-secondary d-flex gap-4">
           <Link to="/dropprUser">

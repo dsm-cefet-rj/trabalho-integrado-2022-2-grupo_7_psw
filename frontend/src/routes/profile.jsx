@@ -7,13 +7,16 @@ import { AiFillStar } from "react-icons/ai";
 import Overview from "./overview";
 import { useRecoilValue } from "recoil";
 import { userAtom } from "../recoil/atoms/userState";
+import { Suspense } from "react";
 
 export default function Profile() {
   const loggedUser = useRecoilValue(userAtom)
 
   return (
     <>
-      <Header />
+      <Suspense fallback={<h2>loading...</h2>}>
+        <Header />
+      </Suspense>
 
       <div className="my-5 d-flex flex-column flex-md-row col-8 col-md-10 mx-auto justify-content-around align-items-center gap-3">
         <div className="d-flex flex-column flex-md-row gap-3 align-items-center order-1">

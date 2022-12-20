@@ -1,5 +1,5 @@
 import Header from "../components/header";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Suspense } from "react";
 import { useParams } from "react-router-dom";
 import Game from "../components/homeGame";
 
@@ -36,7 +36,9 @@ export default function Search() {
 
   return (
     <>
-      <Header />
+      <Suspense fallback={<h2>loading...</h2>}>
+        <Header />
+      </Suspense>
       <h5 className="mt-5 mx-5 text-secondary">
         Encontrado {gameCount} jogos para sua busca:{" "}
       </h5>

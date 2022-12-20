@@ -2,7 +2,7 @@ import Header from "../components/header";
 import List from "../components/list";
 import NoLists from "../components/noLists";
 import { Link } from "react-router-dom";
-import { useEffect } from "react";
+import { Suspense, useEffect } from "react";
 import { gameListState } from "../recoil/atoms/gameList";
 import { useRecoilState } from "recoil";
 import { useState } from "react";
@@ -28,7 +28,9 @@ export default function Lists() {
   console.log(cover);
   return (
     <>
-      <Header />
+      <Suspense fallback={<h2>loading...</h2>}>
+        <Header />
+      </Suspense>
       <div className="mx-3 mx-md-5">
         <div className="d-flex justify-content-center">
           {list.length > 0 ? (

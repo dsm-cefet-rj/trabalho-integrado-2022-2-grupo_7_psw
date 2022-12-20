@@ -2,7 +2,7 @@ import Header from "../components/header";
 import Review from "../components/review";
 import { Link } from "react-router-dom";
 
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 
 export default function Reviews() {
   const [reviewList, setReviewList] = useState([]);
@@ -14,7 +14,9 @@ export default function Reviews() {
   }, []);
   return (
     <>
-      <Header />
+      <Suspense fallback={<h2>loading...</h2>}>
+        <Header />
+      </Suspense>
       <div className="my-5">
         <div className="col-11 mx-auto border-bottom border-secondary d-flex gap-4">
           <div className=" border-bottom border-light">

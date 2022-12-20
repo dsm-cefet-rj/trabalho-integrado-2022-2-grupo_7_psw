@@ -1,7 +1,7 @@
 import Header from "../components/header";
 import Review from "../components/review";
 import { Link } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 
 export default function Overview({ origem }) {
   const [review, setReview] = useState([])
@@ -15,7 +15,9 @@ export default function Overview({ origem }) {
 
   return (
     <>
-      <Header />
+      <Suspense fallback={<h2>loading...</h2>}>
+        <Header />
+      </Suspense>
       <div className="my-5">
         <div className="col-11 mx-auto border-bottom border-secondary d-flex gap-4">
           <Link to="/profile">

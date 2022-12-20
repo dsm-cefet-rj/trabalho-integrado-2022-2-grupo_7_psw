@@ -1,20 +1,33 @@
 import { Link } from "react-router-dom";
 import React, { Suspense, useState } from "react";
 import { login } from "../recoil/atoms/login";
-import { useRecoilValue } from "recoil";
+import { useRecoilValue, useSetRecoilState } from "recoil";
 import logo from "../images/Logo_Droppr.svg";
 import nome_droppr from "../images/Nome_Droppr.png";
 import "./header.css";
 import Tilt from 'react-parallax-tilt';
 import { authAtom, userAtom } from "../recoil/atoms/userState";
+import jwtDecode from "jwt-decode";
+import { useGetUserById } from "../recoil/hooks/userHooks/useCRUDUser";
 
 
 function Header() {
   const [search, setSearch] = useState("");
 
-  // Essa variável representa o valor do estado global de login. Que é true quando um usuário está logado e false caso contrário
-  // const mylogin = useRecoilValue(authAtom);
   const myProfile = useRecoilValue(userAtom)
+  const setProfile = useSetRecoilState(userAtom)
+
+  const token = useRecoilValue(authAtom)
+  
+  const user = useGetUserById(id)
+  
+  if(token){
+    var id = jwtDecode(token)._id
+    console.log(user)
+    // setProfile(user)
+  }
+  
+  
 
   const imgSize = {
     width: 50,
@@ -30,7 +43,7 @@ function Header() {
   }
  
 
-  return (
+  return (    
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
       <div className="container-fluid">
         <div className="mx-3 mx-md-5">
@@ -181,6 +194,7 @@ function Header() {
     <script type="text/javascript" src="vanilla-tilt.js"></script>
     </nav>
   );
+  
 }
 
 export default Header;

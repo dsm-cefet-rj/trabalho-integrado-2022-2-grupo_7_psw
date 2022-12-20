@@ -1,7 +1,7 @@
 import Header from "../components/header";
 import { gameListState } from "../recoil/atoms/gameList";
 import { useRecoilState } from "recoil";
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import Select from "react-select";
 import SmallGame from "../components/smallGameImage";
 import { gameCollectionState } from "../recoil/atoms/gameCollection";
@@ -93,7 +93,9 @@ export default function NewList() {
 
   return (
     <>
-      <Header />
+      <Suspense fallback={<h2>loading...</h2>}>
+        <Header />
+      </Suspense>
 
       <div className="d-flex flex-column col-9 mx-auto my-5">
         <h3 className="bg-secondary p-2 m-0">Create new List</h3>

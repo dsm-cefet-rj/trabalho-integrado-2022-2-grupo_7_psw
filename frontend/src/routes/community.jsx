@@ -1,6 +1,7 @@
 import Header from "../components/header";
 import Friend from "../components/friend";
 import { BiGame } from "react-icons/bi";
+import { Suspense } from "react";
 
 export default function Community() {
   const textColor = {
@@ -16,8 +17,9 @@ export default function Community() {
   return (
     <>
       {/* Haveria uma condição. Caso o usuário esteja logado renderiza Header. Caso não, renderiza GlobalHeader */}
-      <Header />
-
+      <Suspense fallback={<h2>loading...</h2>}>
+        <Header />
+      </Suspense>
       <div
         style={marginTop}
         className="d-flex col-8 col-md-6 mx-auto align-items-center gap-3"

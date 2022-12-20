@@ -40,7 +40,7 @@ export const useGetUserByEmail = (email) => {
     return useRecoilValue(asyncGetUserByEmail(email))
 }
 
-export const useUpdateUser = (userId, userName, userEmail) => {
+export const useUpdateUser = (userId, userName, userPicture, userBio) => {
     const currentAuth = useRecoilValue(authAtom)
     const requestOptions = {
         method: 'POST',
@@ -48,10 +48,11 @@ export const useUpdateUser = (userId, userName, userEmail) => {
         Headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({
             username: userName,
-            email: userEmail
+            pictureUrl: userPicture,
+            bio: userBio
         })
     }
-    fetch('http://localhost:3001/user', requestOptions).then(response => {
+    fetch(`http://localhost:3001/user${userId}`, requestOptions).then(response => {
         console.log(response)
     })
 }

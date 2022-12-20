@@ -8,10 +8,26 @@
 
 
 .form-container {
+    display: flex;
+    flex-direction: column;
     padding: 20px;
     background-color: rgb(33,37,41)
+    
 }
 
+.image-container {
+    border-radius: 5px;
+    margin: 20px auto ;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 280px;
+    height: 330px;
+    align-items: center;
+    background-color: #111;
+    padding: 10px 10px;
+}
 .self-end{
  justify-self: end;
 }
@@ -19,6 +35,24 @@
 .button-container{
     flex-direction: row-reverse;
     display: flex;
+}
+
+.switch-button {
+    width: 260px;
+    height: 40px;
+    border-radius: 5px;
+    border: #ccc solid 1px;
+    background-color: #212529;
+    font-size: 20px;
+    text-align: center;
+    color: #ccc;
+    transition: all 0.2s;
+    
+}
+
+.switch-button:hover {
+    color: #fff;
+    border: #fff solid 1px;
 }
 
 @media (max-width: 608px) {

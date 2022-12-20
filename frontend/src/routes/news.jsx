@@ -19,7 +19,9 @@ export default function News() {
 
   return (
     <>
-      <Header />
+      <Suspense fallback={<h2>loading...</h2>}>
+        <Header />
+      </Suspense>
       <div style={{ marginTop: "50px" }}>
 
         <div className="flex-container column flex-end">
