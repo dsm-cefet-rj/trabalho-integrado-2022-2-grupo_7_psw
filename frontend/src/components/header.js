@@ -5,35 +5,36 @@ import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import logo from "../images/Logo_Droppr.svg";
 import nome_droppr from "../images/Nome_Droppr.png";
 import "./header.css";
-import Tilt from 'react-parallax-tilt';
-import { authAtom, userAtom, userPictureState } from "../recoil/atoms/userState";
+import Tilt from "react-parallax-tilt";
+import {
+  authAtom,
+  userAtom,
+  userPictureState,
+} from "../recoil/atoms/userState";
 import { useGetUserById } from "../recoil/hooks/userHooks/useCRUDUser";
-
 
 function Header() {
   const [search, setSearch] = useState("");
 
-  const myProfile = useRecoilValue(userAtom)
-  const setProfile = useSetRecoilState(userAtom)
+  const myProfile = useRecoilValue(userAtom);
+  const setProfile = useSetRecoilState(userAtom);
 
-  const [currentPicture, setCurrentPicture] = useRecoilState(userPictureState)
-  
+  const [currentPicture, setCurrentPicture] = useRecoilState(userPictureState);
+
   let id = undefined;
 
-  if(myProfile){
-    id = myProfile._id
+  if (myProfile) {
+    id = myProfile._id;
   }
-  
-  var user = useGetUserById(id)
-  
-  useEffect(() => {
-    if(user){
-      setProfile(user)
-      setCurrentPicture(user.pictureUrl)
-    }
-  }, [user, myProfile])
-  
 
+  var user = useGetUserById(id);
+
+  useEffect(() => {
+    if (user) {
+      setProfile(user);
+      setCurrentPicture(user.pictureUrl);
+    }
+  }, [user, myProfile]);
 
   const imgSize = {
     width: 50,
@@ -41,27 +42,25 @@ function Header() {
   };
 
   const HandleLogout = () => {
-    localStorage.clear()
+    localStorage.clear();
     setTimeout(() => {
-      window.location.href = "http://localhost:3000/"            
+      window.location.href = "http://localhost:3000/";
     }, 200);
-       
-  }
- 
+  };
 
-  return (    
+  return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
       <div className="container-fluid">
         <div className="mx-3 mx-md-5">
           <div className="tilt-box-wrap">
-          <Tilt>
-            <Link className="navbar-brand" to="/" >            
-              <img src={logo} className="logo" alt="Logo"/>
-              <img src={nome_droppr} className="nome_droppr" alt="Droppr"/>    
-            </Link>
-          </Tilt>
+            <Tilt>
+              <Link className="navbar-brand" to="/">
+                <img src={logo} className="logo" alt="Logo" />
+                <img src={nome_droppr} className="nome_droppr" alt="Droppr" />
+              </Link>
+            </Tilt>
           </div>
-          
+
           {/* <i
             style={{
               color: "#fff",
@@ -95,7 +94,9 @@ function Header() {
                       className="rounded-circle"
                       src={currentPicture}
                     />
-                    <Link className="nav-link dropdown-toggle">{myProfile.username}</Link>
+                    <Link className="nav-link dropdown-toggle">
+                      {myProfile.username}
+                    </Link>
                   </div>
 
                   <ul
@@ -121,7 +122,10 @@ function Header() {
                       <hr class="dropdown-divider" />
                     </li>
                     <li>
-                      <Link className="text-center nav-link fs-6" onClick={HandleLogout}>
+                      <Link
+                        className="text-center nav-link fs-6"
+                        onClick={HandleLogout}
+                      >
                         Logout
                       </Link>
                     </li>
@@ -154,11 +158,6 @@ function Header() {
                 <li className="nav-item">
                   <Link className="nav-link fs-6" to="/signIn">
                     SIGN IN
-                  </Link>
-                </li>
-                <li className="nav-item">
-                  <Link className="nav-link fs-6" to="/register">
-                    SIGN UP
                   </Link>
                 </li>
               </>
@@ -197,10 +196,9 @@ function Header() {
           </form>
         </div>
       </div>
-    <script type="text/javascript" src="vanilla-tilt.js"></script>
+      <script type="text/javascript" src="vanilla-tilt.js"></script>
     </nav>
   );
-  
 }
 
 export default Header;
