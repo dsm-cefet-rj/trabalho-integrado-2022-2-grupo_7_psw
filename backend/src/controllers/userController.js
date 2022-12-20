@@ -74,6 +74,7 @@ class UserController {
 
   static deleteUser = (req, res) => {
     const id = req.params.id;
+    // console.log(req.headers)
     User.findByIdAndDelete(id, (err) => {
       if (!err) {
         res.status(200).send({ messege: "User deleted successfuly" });

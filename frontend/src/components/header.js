@@ -156,11 +156,6 @@ function Header() {
                     SIGN IN
                   </Link>
                 </li>
-                <li className="nav-item">
-                  <Link className="nav-link fs-6" to="/register">
-                    SIGN UP
-                  </Link>
-                </li>
               </>
             )}
           </ul>

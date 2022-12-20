@@ -54,7 +54,6 @@ export const useUpdateUser = (userId, userName, userPicture, userBio, currentAut
             bio: userBio
         })
     }
-    console.log(requestOptions)
     fetch(`http://localhost:3001/user/${userId}`, requestOptions).then(response => {
         if (response.status == 401) {
             alert("Login timeout. Sign in again!")
@@ -70,6 +69,36 @@ export const useUpdateUser = (userId, userName, userPicture, userBio, currentAut
         }
 
     })
+}
+
+export const useDeleteUser = (userId, currentAuth) => {
+    const requestOptions = {
+        method: 'DELETE',
+        headers: {
+            'Authorization': "Bearer " + currentAuth
+        }
+    }
+    fetch(`http://localhost:3001/user/${userId}`, requestOptions).then(response => {
+        alert(response.status)
+        if (response.status == 401) {
+            alert("Login timeout. Sign in again!")
+            localStorage.removeItem("current_auth")
+            localStorage.removeItem("current_user")
+            setTimeout(() => {
+                window.location.href = "http://localhost:3000"
+            }, 200);
+        } else if (response.ok) {
+            localStorage.removeItem("current_auth")
+            localStorage.removeItem("current_user")
+            setTimeout(() => {
+                window.location.href = "http://localhost:3000"
+            }, 200);
+        } else {
+            window.location.href = "http://localhost:3000"
+        }
+
+    })
+
 }
 
 
