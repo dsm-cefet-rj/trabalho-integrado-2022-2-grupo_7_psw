@@ -9,19 +9,12 @@ import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { reviewState } from "../recoil/atoms/review";
 import Select from "react-select";
-
-import cn from "classnames";
 import { authAtom, userAtom } from "../recoil/atoms/userState";
-
 import "react-notifications/lib/notifications.css";
 import {
   NotificationContainer,
   NotificationManager,
 } from "react-notifications";
-
-
-// import useRatingState from "../recoil/hooks/useRatingState";
-// import useHoverState from "../recoil/hooks/useHoverState";
 
 export default function ReviewForm() {
   const [rating, setRating] = useRecoilState(ratingStateAtom);
@@ -39,8 +32,8 @@ export default function ReviewForm() {
 
   const [status, setStatus] = useState("status");
 
-  const currentAuth = useRecoilValue(authAtom)
-  const userCurrent = useRecoilValue(userAtom)
+  const currentAuth = useRecoilValue(authAtom);
+  const userCurrent = useRecoilValue(userAtom);
 
   const options = [
     { value: "playing", label: <p className="text-dark">Playing</p> },
@@ -217,16 +210,6 @@ export default function ReviewForm() {
                         onChange={setStatus}
                         options={options}
                       />
-                      /* <button
-                      className="btn btn-secondary dropdown-toggle"
-                      type="button"
-                      id="dropdownMenuButton1"
-                      data-bs-toggle="dropdown"
-                      aria-expanded="false"
-                      onChange={(e) => setStatus(e.target.value)}
-                    >
-                      Status
-                    </button> */
                     }
 
                     <ul
@@ -264,7 +247,11 @@ export default function ReviewForm() {
                   </div>
                 </div>
                 {!message ? (
-                  <button type="submit" className="btn btn-primary" onClickCapture={handleClick}>
+                  <button
+                    type="submit"
+                    className="btn btn-primary"
+                    onClickCapture={handleClick}
+                  >
                     Send Review
                   </button>
                 ) : (
@@ -282,7 +269,7 @@ export default function ReviewForm() {
           </div>
         </div>
       </div>
-      <NotificationContainer/>
+      <NotificationContainer />
     </>
   );
 }

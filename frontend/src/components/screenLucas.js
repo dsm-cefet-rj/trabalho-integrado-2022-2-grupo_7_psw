@@ -18,7 +18,7 @@ function ScreenLucas({
   isReviewed,
 }) {
   const [review, setReview] = useRecoilState(reviewState);
-
+  const user = useRecoilValue(userAtom);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -54,7 +54,7 @@ function ScreenLucas({
               Average rating:
               <span className="text-warning"> {myRatingAvg || "Unknown"}</span>
             </h4>
-            {isReviewed ? (
+            {isReviewed && user ? (
               <button className="btn btn-secondary">Reviewed</button>
             ) : (
               <button
