@@ -21,6 +21,10 @@
     display: flex;
 }
 
+.linkar {
+    color: #CF9FFF;
+}
+
 @media (max-width: 608px) {
     .login-container {       
         width: 375px;        

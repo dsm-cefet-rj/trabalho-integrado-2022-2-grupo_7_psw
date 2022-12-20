@@ -67,8 +67,9 @@ const SinginComponent = () => {
               ></input>
             </div>
           </form>
+          <p className="mt-2"><span className="opacity-50">Don't have an account yet? Sign up </span><a className="linkar"href="http://localhost:3000/register">here!</a></p>
           <div className="button-container">
-            <button class="btn btn-primary mt-4" type="submit" onClick={HandleLoginClick}>
+            <button class="btn btn-primary mt-1" type="submit" onClick={HandleLoginClick}>
               Sign In
             </button>
           </div>
