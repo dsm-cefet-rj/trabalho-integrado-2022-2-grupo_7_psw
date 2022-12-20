@@ -49,7 +49,7 @@ render(
         <Route path="profile/allgames" element={<Allgames />} />
         <Route path="profile/myreviews" element={<Myreviews />} />
         <Route path="friends" element={<Friends />} />
-        <Route path="dropprUser" element={<DropprUser />} />
+        <Route path="dropprUser/:username" element={<DropprUser />} />
         <Route path="signIn" element={<SignIn />} />
         <Route path="register" element={<RegisterPage />} />
         <Route path="reviews" element={<Reviews />} />

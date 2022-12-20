@@ -80,12 +80,23 @@ export default function Community() {
         </div>
         {!searchUser
           ? users.map((user) => {
-              return <Friend username={user.username} url={user.pictureUrl} />;
+              return (
+                <Friend
+                  key={user._id}
+                  username={user.username}
+                  url={user.pictureUrl}
+                />
+              );
             })
           : users.map((user) => {
               if (matchInput(searchUser, user.username)) {
                 return (
-                  <Friend username={user.username} url={user.pictureUrl} />
+                  <Friend
+                    key={user._id}
+                    username={user.username}
+                    url={user.pictureUrl}
+                    id={user._id}
+                  />
                 );
               }
             })}

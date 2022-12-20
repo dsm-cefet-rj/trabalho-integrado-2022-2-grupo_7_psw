@@ -11,29 +11,31 @@ class UserController {
   };
   static createUser = (req, res, next) => {
     // console.log(req.body)
-    User.register(new User({
-      username: req.body.username,
-      email: req.body.email,
-      level: req.body.level,
-      bio: req.body.bio,
-      pictureUrl: req.body.pictureUrl,
-      friends: [req.body.user]
-    }),
+    User.register(
+      new User({
+        username: req.body.username,
+        email: req.body.email,
+        level: req.body.level,
+        bio: req.body.bio,
+        pictureUrl: req.body.pictureUrl,
+        friends: [req.body.user],
+      }),
       req.body.password,
       (err, user) => {
-      if (err) {
-        res
-          .status(500)
-          .setHeader('Content-Type', 'application/json')
-          .send({ messege: `${err.messege} - falha ao criar user` });
-      } else {
-        passport.authenticate('local')(req, res, () => {
-          res.statusCode = 200;
-          res.setHeader('content-type' , 'application/json');
-          res.json({success: true, status: 'Registration Successful'});
-        })
-      }            
-    })
+        if (err) {
+          res
+            .status(500)
+            .setHeader("Content-Type", "application/json")
+            .send({ messege: `${err.messege} - falha ao criar user` });
+        } else {
+          passport.authenticate("local")(req, res, () => {
+            res.statusCode = 200;
+            res.setHeader("content-type", "application/json");
+            res.json({ success: true, status: "Registration Successful" });
+          });
+        }
+      }
+    );
   };
   static updateUser = (req, res) => {
     const id = req.params.id;
@@ -52,6 +54,20 @@ class UserController {
       if (err) {
         res.status(400).send({
           message: `${err.message} - Found any user by id requested`,
+        });
+      } else {
+        res.status(200).send(user);
+      }
+    });
+  };
+
+  static getByUsername = (req, res) => {
+    const username = req.params.username;
+
+    User.findOne({ username: username }, (err, user) => {
+      if (err) {
+        res.status(400).send({
+          message: `${err.message} - Found any user by username requested`,
         });
       } else {
         res.status(200).send(user);
@@ -83,11 +99,12 @@ class UserController {
   };
 
   static loginUser = (err, req, res, next) => {
-    passport.authenticate('local'), (req, res) => {
-      res.statusCode = 200;
-      res.setHeader('Content-Type', 'application/json')
-      res.json({success: true, status: "You are successfully logged in"});
-    }
+    passport.authenticate("local"),
+      (req, res) => {
+        res.statusCode = 200;
+        res.setHeader("Content-Type", "application/json");
+        res.json({ success: true, status: "You are successfully logged in" });
+      };
   };
 }
 
