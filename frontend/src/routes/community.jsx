@@ -58,7 +58,7 @@ export default function Community() {
 
       <div>
         <h3 style={textColor} className="text-center my-5 mx-3">
-          Gamers, pro players and friends. Find popular game related things.
+          Gamers, pro players and friends. All of them are <strong>here</strong>.
         </h3>
         <div
           style={textColor2}
