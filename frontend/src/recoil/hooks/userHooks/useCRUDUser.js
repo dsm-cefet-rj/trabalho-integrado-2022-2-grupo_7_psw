@@ -66,6 +66,37 @@ export const useUpdateUser = (userId, userName, userPicture, userBio, currentAut
     })
 }
 
+export const useUpdateUserFriends = (userId, currentFriendList, currentFriend, currentAuth) => {
+
+    let updatedFriends = currentFriendList.push(currentFriend)
+
+    const requestOptions = {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': "Bearer " + currentAuth
+        }, body: JSON.stringify({
+            _id: userId,
+            friends: updatedFriends
+        })
+    }
+    fetch(`http://localhost:3001/user/${userId}`, requestOptions).then(response => {
+        if (response.status == 401) {
+            alert("Login timeout. Sign in again!")
+            localStorage.removeItem("current_auth")
+            localStorage.removeItem("current_user")
+            // setTimeout(() => {
+            //     window.location.href = "http://localhost:3000"
+            // }, 200);
+        } else if (response.ok) {
+            // window.location.href = "http://localhost:3000/profile"
+        } else {
+            // window.location.href = "http://localhost:3000"
+        }
+
+    })
+}
+
 export const useDeleteUser = (userId, currentAuth) => {
     const requestOptions = {
         method: 'DELETE',
