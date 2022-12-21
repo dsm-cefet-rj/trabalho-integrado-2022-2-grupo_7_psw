@@ -84,7 +84,9 @@ export default function Review({
               style={imgStyle}
               src={profilePicture || image}
             />
-            <h5 className="mb-0">{username}</h5>
+            <Link to={`/dropprUser/${username}`}>
+            <h5 className="mb-0 text-white">{username}</h5>
+            </Link>
           </div>
           <div className="d-flex gap-3">
             <h2>{titleReview}</h2>

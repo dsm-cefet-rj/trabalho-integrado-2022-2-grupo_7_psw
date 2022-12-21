@@ -7,6 +7,10 @@ import Overview from "./overviewUser";
 import { Suspense, useEffect } from "react";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
+import { authAtom, userAtom } from "../recoil/atoms/userState";
+import { useRecoilValue, useRecoilState } from "recoil"
+
+import { useUpdateUserFriends } from "../recoil/hooks/userHooks/useCRUDUser";
 
 export default function DropprUser() {
   const [follow, setFolow] = useState(false);
@@ -14,9 +18,11 @@ export default function DropprUser() {
   const [buttonClass, setButtonClass] = useState("btn btn-primary");
   const [buttonMessage, setButtonMessage] = useState("Follow");
 
+  const userCurrent = useRecoilValue(userAtom)
+  const currentAuth = useRecoilValue(authAtom)
+
   useEffect(() => {
     if (follow) {
-      console.log("entrei");
       setChange(false);
       setButtonClass("btn btn-secondary");
       setButtonMessage("Followed");
@@ -42,6 +48,8 @@ export default function DropprUser() {
       .then((data) => setUserInfo(data));
   }, []);
 
+
+
   return (
     <>
       <Suspense fallback={<h2>loading...</h2>}>
@@ -57,20 +65,20 @@ export default function DropprUser() {
             alt=""
           />
           <h2 className="text-light">{userInfo.username}</h2>
-          <button
+          {/*<button
             type="button"
             className={buttonClass}
             onClick={() => setFolow(change)}
           >
             {buttonMessage}
-          </button>
+  </button>*/}
         </div>
-        <div className="bg-secondary col-12 col-md-6 my-4  order-2">
+        {/*<div className="bg-secondary col-12 col-md-6 my-4  order-2">
           <p className="text-white-50 text-center my-1 p-1">
             <span className="text-light">Activities</span> (These activities are
             automatically updated)
           </p>
-          <div className="d-flex flex-column flex-md-row justify-content-around align-items-center mytable">
+          {<div className="d-flex flex-column flex-md-row justify-content-around align-items-center mytable">
             <div className="d-flex flex-column align-items-center my-4">
               <GiThreeFriends className="mb-3" size={40} color="deepskyblue" />
               <h4 className="">Friends</h4>
@@ -86,8 +94,8 @@ export default function DropprUser() {
               <h4 className="">Rated</h4>
               <p>0 games</p>
             </div>
-          </div>
-        </div>
+          </div>}
+            </div>*/}
       </div>
       <div className="col-11 mx-auto">
         <div className="col-11 mx-auto border-bottom border-secondary">

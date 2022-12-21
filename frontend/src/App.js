@@ -106,7 +106,7 @@ export default function App() {
                   Recent reviews (last 5 reviews)
                 </p>
               </div>
-              <ul className="d-flex flex-column-reverse">
+              <ul className="flex-column-reverse last-rev-container">
                 {last5Reviews.length == 0 ? (
                   <h4 className="text-secondary my-3">No reviews yet.</h4>
                 ) : null}
