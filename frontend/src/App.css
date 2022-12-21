@@ -12,6 +12,13 @@
   font-weight: 300;
 }
 
+.game-list-container {
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  width: 1500px;
+}
+
 .ConvincingMessage {
   font-family: "Poppins", sans-serif;
   border-radius: 5%;
@@ -41,4 +48,11 @@
   box-shadow: 0px 0.5em 0.5em -0.4em #ffd500;
   transform: translateY(-0.25em);
   cursor: pointer;
+}
+
+@media (max-width: 600px) {
+  .game-list-container {
+   
+    width: 300px;
+  }
 }
