@@ -3,15 +3,15 @@ import Review from "../components/review";
 import { Link } from "react-router-dom";
 import { useState, useEffect, Suspense } from "react";
 import { authAtom, userAtom } from "../recoil/atoms/userState";
-import { useRecoilValue } from "recoil"
+import { useRecoilValue } from "recoil";
 
-export default function Overview({ origem }) {
+export default function Overview() {
   const [review, setReview] = useState([]);
 
   const userCurrent = useRecoilValue(userAtom);
 
   useEffect(() => {
-    fetch(`http://localhost:3001/getreview`)
+    fetch(`http://localhost:3001/getreviewbyuser/${userCurrent.username}`)
       .then((res) => res.json())
       .then((data) => setReview(data.data))
       .catch((error) => console.log(error));
@@ -40,9 +40,9 @@ export default function Overview({ origem }) {
         </div>
       </div>
       {review.map((e) => {
-        if(e.user===userCurrent._id)
-        {return (
+        return (
           <Review
+            key={e._id}
             stars={e.rating}
             title={e.titleReview}
             cover={e.coverReview}
@@ -55,7 +55,7 @@ export default function Overview({ origem }) {
             user_id={e.user}
             profilePicture={e.profilePicture}
           />
-        );}
+        );
       })}
     </>
   );
