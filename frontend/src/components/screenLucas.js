@@ -21,14 +21,21 @@ function ScreenLucas({
 }) {
   const [review, setReview] = useRecoilState(reviewState);
   const user = useRecoilValue(userAtom);
-  const queryParameters = `${gameId}/${user._id}`;
-  const reviewContext = useGetreviewByGameAndUser(queryParameters);
-
   const [isReviewedUser, setIsReviewedUser] = useRecoilState(isReviewed);
 
-  if (reviewContext[0].length > 0) {
-    setIsReviewedUser(true);
+  function HandleHook() {
+    const queryParameters = `${gameId}/${user._id}`;
+    const reviewContext = useGetreviewByGameAndUser(queryParameters || null);
+
+    if (reviewContext[0].length > 0) {
+      setIsReviewedUser(true);
+    }
   }
+
+  if (user) {
+    HandleHook();
+  }
+
   // if(reviewContext){
   //   reviewd = true;
   // }
