@@ -6,9 +6,11 @@ import { useParams } from "react-router-dom";
 import ReviewConfig from "../components/reviewconfig";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { reviewState } from "../recoil/atoms/review";
+import useGetreviewByGameAndUser from "../recoil/hooks/reviewHooks/getReviewByGameAndUser";
+import { userAtom } from "../recoil/atoms/userState";
+import { isReviewed } from "../recoil/atoms/isReviewed";
 
 import "./screen.css";
-
 
 export default function Screen() {
   const [cover, setCover] = useState([]);
@@ -22,6 +24,17 @@ export default function Screen() {
   const [list, setList] = useState([]);
   const id = useParams().id;
 
+  const isReviewedUser = useRecoilValue(isReviewed);
+
+  /*   const user = useRecoilValue(userAtom);
+
+  const queryParameters = `${id}/${user._id}`;
+  const reviewContext = useGetreviewByGameAndUser(queryParameters);
+
+  let reviewd = false;
+  if (reviewContext[0].length > 0) {
+    reviewd = true;
+  } */
 
   useEffect(() => {
     fetch(`http://localhost:3001/api/cover/${id}`)
@@ -71,7 +84,7 @@ export default function Screen() {
     height: 310,
     width: 1200,
   };
-
+  console.log(userReview);
   return (
     <>
       <Suspense fallback={<h2>loading...</h2>}>
@@ -86,10 +99,8 @@ export default function Screen() {
           myDescription={description}
           myScreenshot={`https:${screenshot}`}
           myRatingAvg={ratingAvg}
-          isReviewed={userReview.length > 0 ? true : false}
           gameId={id}
         />
-
       </Suspense>
       <hr></hr>
       {userReview.length > 0
@@ -109,11 +120,12 @@ export default function Screen() {
             );
           })
         : null}
+
       <div className="d-flex justify-content-center">
         <div className="d-flex justify-content-center" style={reviewStyle}>
           <ReviewConfig
             myList={list}
-            isReviewed={userReview.length > 0 ? true : false}
+            isReviewed={isReviewedUser ? true : false}
           />
         </div>
       </div>

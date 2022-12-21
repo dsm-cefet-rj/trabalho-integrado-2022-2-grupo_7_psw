@@ -1,5 +1,5 @@
 import { BsDropletFill } from "react-icons/bs";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import {
   ratingStateAtom,
   hoverStateAtom,
@@ -7,7 +7,8 @@ import {
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { reviewState } from "../recoil/atoms/review";
-import Select from 'react-select';
+import Select from "react-select";
+import { userAtom } from "../recoil/atoms/userState";
 
 export default function ReviewForm() {
   const [rating, setRating] = useRecoilState(ratingStateAtom);
@@ -23,40 +24,67 @@ export default function ReviewForm() {
   const [favorite, setFavorite] = useState(null);
   const [hoverFavorite, setHoverFavorite] = useState(null);
 
-  const [status, setStatus] = useState('status');
+  const [status, setStatus] = useState("status");
+  const user = useRecoilValue(userAtom);
 
   const options = [
-    { value: 'playing', label: <p className="text-dark">Playing</p> },
-    { value: 'finished', label: <p className="text-dark">Finished</p>},
-    { value: 'paused', label: <p className="text-dark">Paused</p> },
-    { value: 'all_achievements', label: <p className="text-dark">All achievements</p> },
-  ];  
+    { value: "playing", label: <p className="text-dark">Playing</p> },
+    { value: "finished", label: <p className="text-dark">Finished</p> },
+    { value: "paused", label: <p className="text-dark">Paused</p> },
+    {
+      value: "all_achievements",
+      label: <p className="text-dark">All achievements</p>,
+    },
+  ];
 
   let HandleSubmit = async (e) => {
     e.preventDefault();
     try {
-      let res = await fetch(`http://localhost:3001/review/update/${game_id}`, {
-        method: "PUT",
-        headers: customHeaders,
-        body: JSON.stringify({
-          text_review: text,
-          game_id: game_id,
-          rating: rating,
-          date: new Date().toLocaleDateString("pt-BR"),
-          favorite: favorite,
-          status: status.value,
-        }),
-      });
-
-      if (res.status === 200) {
-        setReview([
-          {
+      let res = await fetch(
+        `http://localhost:3001/review/update/${game_id}/${user._id}`,
+        {
+          method: "PUT",
+          headers: customHeaders,
+          body: JSON.stringify({
             text_review: text,
-            game_id: game_id,
             rating: rating,
             date: new Date().toLocaleDateString("pt-BR"),
+            favorite: favorite,
+            status: status.value,
+          }),
+        }
+      );
+
+      if (res.status === 200) {
+        /*        setReview([
+          ...review,
+          {
+            text_review: text,
+            rating: rating,
+            game_id: game_id,
+            date: new Date().toLocaleDateString("pt-BR"),
+            favorite: favorite,
+            status: status.value,
+            user: user._id,
           },
-        ]);
+        ]); */
+        console.log(review);
+        setReview(
+          review.map((a) => {
+            if (a.user == user._id) {
+              return {
+                text_review: text,
+                rating: rating,
+                game_id: game_id,
+                date: new Date().toLocaleDateString("pt-BR"),
+                favorite: favorite,
+                status: status.value,
+                user: user._id,
+              };
+            }
+            return a;
+          })
+        );
         setText("");
         setRating(null);
         setMessage("Review updated successfully");
@@ -136,13 +164,13 @@ export default function ReviewForm() {
                 <div className="mb-3">
                   <div className="dropdown">
                     {
-                    <Select
-                      defaultValue = {status}
-                      onChange = {setStatus}
-                      options = {options}
-                    />
-                    
-                    /* <button
+                      <Select
+                        defaultValue={status}
+                        onChange={setStatus}
+                        options={options}
+                      />
+
+                      /* <button
                       className="btn btn-secondary dropdown-toggle"
                       type="button"
                       id="dropdownMenuButton1"
@@ -150,7 +178,8 @@ export default function ReviewForm() {
                       aria-expanded="false"
                     >
                       Status
-                    </button> */}
+                    </button> */
+                    }
 
                     <ul
                       className="dropdown-menu"

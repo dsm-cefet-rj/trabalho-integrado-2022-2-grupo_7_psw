@@ -8,16 +8,13 @@ class ReviewsController {
       .exec((err, review) => {
         res.status(200).json({
           data: review,
-        })
-      })
-
-
-
+        });
+      });
   };
 
   static getFavorite = (req, res) => {
     const id = req.params.id;
-    reviews.find( {favorite: true, username : id}, (err, review) => {
+    reviews.find({ favorite: true, username: id }, (err, review) => {
       res.status(200).json({
         data: review,
       });
@@ -27,18 +24,19 @@ class ReviewsController {
   static getByGameIdAndUserId = (req, res) => {
     const gameId = req.params.gameId;
     const userId = req.params.userId;
-    reviews.find({ game_id: gameId })
-    .where('user').equals(userId) //userId tem risco de quebrar
-    .exec((err, review) => {
-        console.log(gameId, userId)
+    reviews
+      .find({ game_id: gameId })
+      .where("user")
+      .equals(userId) //userId tem risco de quebrar
+      .exec((err, review) => {
+        console.log(gameId, userId);
         if (!err) {
-          res.status(200).send(review)
+          res.status(200).send(review);
         } else {
-          res.status(400).send(err.message)
+          res.status(400).send(err.message);
         }
-      }
-    )
-  }
+      });
+  };
 
   static createReview = (req, res) => {
     let newReview = new reviews(req.body);
@@ -55,13 +53,16 @@ class ReviewsController {
   };
   static updateReview = (req, res) => {
     const id = req.params.id;
+    const userid = req.params.userid;
     reviews.findOneAndUpdate(
-      { game_id: id },
+      { game_id: id, user: userid },
       {
         $set: {
           text_review: req.body.text_review,
           rating: req.body.rating,
           date: req.body.date,
+          favorite: req.body.favorite,
+          status: req.body.status,
         },
       },
       (err) => {
@@ -93,7 +94,7 @@ class ReviewsController {
   static getByUser = (req, res) => {
     const id = req.params.id;
 
-    reviews.find({ username : id }, (err, review) => {
+    reviews.find({ username: id }, (err, review) => {
       if (err) {
         res.status(400).json({
           data: "Error",
@@ -108,7 +109,8 @@ class ReviewsController {
 
   static deleteReview = (req, res) => {
     const id = req.params.id;
-    reviews.deleteOne({ game_id: id }, (err) => {
+    const userid = req.params.userid;
+    reviews.findOneAndDelete({ game_id: id, user: userid }, (err) => {
       if (!err) {
         res.status(200).send({ messege: "Review deleted successfuly" });
       }

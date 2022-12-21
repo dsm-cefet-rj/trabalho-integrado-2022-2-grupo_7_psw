@@ -15,6 +15,7 @@ import {
   NotificationContainer,
   NotificationManager,
 } from "react-notifications";
+import { isReviewed } from "../recoil/atoms/isReviewed";
 
 export default function ReviewForm() {
   const [rating, setRating] = useRecoilState(ratingStateAtom);
@@ -34,6 +35,8 @@ export default function ReviewForm() {
 
   const currentAuth = useRecoilValue(authAtom);
   const userCurrent = useRecoilValue(userAtom);
+
+  const [isReviewedUser, setIsReviewedUser] = useRecoilState(isReviewed);
 
   const options = [
     { value: "playing", label: <p className="text-dark">Playing</p> },
@@ -79,16 +82,23 @@ export default function ReviewForm() {
 
       if (res.status === 201) {
         setReview([
+          ...review,
           {
             text_review: text,
             game_id: game_id,
             rating: rating,
             date: new Date().toLocaleDateString("pt-BR"),
+            favorite: favorite,
+            status: status.value,
+            user: userCurrent._id,
+            username: userCurrent.username,
+            profilePicture: userCurrent.pictureUrl,
           },
         ]);
         setText("");
         setRating(null);
         setMessage("Review created successfully");
+        setIsReviewedUser(true);
       } else {
         setMessage("Some error occured");
       }

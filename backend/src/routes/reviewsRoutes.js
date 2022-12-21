@@ -10,10 +10,12 @@ router
   .get("/getreviewbyuser/:id", ReviewsController.getByUser)
   .get("/getreview", ReviewsController.getAllReviews)
   .get("/getsinglereview/:id", ReviewsController.getById)
-  .post("/review/new", passport.authenticate('jwt', { session: false }), ReviewsController.createReview)
-  .put("/review/update/:id", ReviewsController.updateReview)
-  .delete("/review/:id", ReviewsController.deleteReview)
+  .post(
+    "/review/new",
+    passport.authenticate("jwt", { session: false }),
+    ReviewsController.createReview
+  )
+  .put("/review/update/:id/:userid", ReviewsController.updateReview)
+  .delete("/review/:id/:userid", ReviewsController.deleteReview);
 
 export default router;
-
-
