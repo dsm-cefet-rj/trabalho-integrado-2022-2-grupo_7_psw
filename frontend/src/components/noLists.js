@@ -9,7 +9,7 @@ export default function noLists() {
     <div className="mt-5 mx-3">
       <h5 className="text-light">No lists available, why not create one?</h5>
       <Link to="/lists/new">
-        <button type="button" class="btn botaozao p-2 fs-6 mt-5 mx-3">
+        <button type="button" className="btn botaozao p-2 fs-6 mt-5 mx-3">
           <AiOutlinePlus size={20} />
           <span style={fontStyle}> Create new list </span>
         </button>

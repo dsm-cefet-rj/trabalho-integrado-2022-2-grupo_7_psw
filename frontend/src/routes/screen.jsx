@@ -118,6 +118,7 @@ export default function Screen() {
                   username={e.username}
                   user_id={e.user}
                   profilePicture={e.profilePicture}
+                  key={e._id}
                 />
               </div>
             );

@@ -29,22 +29,22 @@ const SinginComponent = () => {
         <h2 className="text-light mt-5 mx-3 ">Sign In</h2>
         <div className="form-container">
           <form className="">
-            <div class="form-group mt-3">
+            <div className="form-group mt-3">
               <label>Username</label>
               <input
                 type="text"
-                class="form-control mt-1"
+                className="form-control mt-1"
                 placeholder="Username"
                 required="true"
                 value={currentUserName}
                 onChange={(ev) => setCurrentUserName(ev.target.value)}
               ></input>
             </div>
-            <div class="form-group mt-4">
+            <div className="form-group mt-4">
               <label>Password</label>
               <input
                 type="password"
-                class="form-control mt-1"
+                className="form-control mt-1"
                 placeholder="Password"
                 value={currentPassword}
                 onChange={(ev) => setCurrentPassword(ev.target.value)}
@@ -61,7 +61,7 @@ const SinginComponent = () => {
           </p>
           <div className="button-container">
             <button
-              class="btn btn-primary mt-1"
+              className="btn btn-primary mt-1"
               type="submit"
               onClick={HandleLoginClick}
             >

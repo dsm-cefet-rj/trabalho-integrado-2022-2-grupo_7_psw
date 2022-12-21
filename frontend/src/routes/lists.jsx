@@ -38,7 +38,7 @@ export default function Lists() {
         <div className="d-flex justify-content-center d-block">
           {list.length > 0 ? (
             <Link to="/lists/new">
-              <button type="button" class="btn botaozao p-2 fs-6 mt-3 mx-3">
+              <button type="button" className="btn botaozao p-2 fs-6 mt-3 mx-3">
                 <AiOutlinePlus size={20} /><span style={fontStyle}> Create new list </span>
               </button>
             </Link>

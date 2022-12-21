@@ -78,7 +78,7 @@ export default function UpdatePicture() {
               ></button>
             </div>
             <div className="modal-body">
-              <div class="container-fluid">
+              <div className="container-fluid">
                 <div className="d-flex flex-column align-items-center d-md-block">
                   {pictureOptions.map((e) => {
                     return (

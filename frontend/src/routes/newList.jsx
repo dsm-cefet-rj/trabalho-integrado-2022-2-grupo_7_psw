@@ -147,7 +147,7 @@ export default function NewList() {
 
             <button
               onClick={addToCollection}
-              class="btn btn-outline-secondary btn-primary btn-outline-light"
+              className="btn btn-outline-secondary btn-primary btn-outline-light"
               type="button"
             >
               Adicionar

@@ -145,7 +145,7 @@ export default function App() {
           <Header />
         </Suspense>
         <div className="ConvincingMessage container-fluid text-center mt-5">
-          <div class="row align-items-center">
+          <div className="row align-items-center">
             <div className="col-2" />
             <div className="LoginMessageContent col-8 m-5">
               <h2 className="LoginMessage">
@@ -162,7 +162,7 @@ export default function App() {
             <div className="col-6">
               <BsShareFill size={35} />
               <h3 className="benefits m-3">
-                Share yours favorites games with your friends
+                Share your favorite games with your friends
               </h3>
             </div>
             <div className="col-6">

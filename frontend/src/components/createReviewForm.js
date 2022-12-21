@@ -133,7 +133,7 @@ export default function ReviewForm() {
             </div>
             <div className="modal-body">
               <form onSubmit={HandleSubmit}>
-                <div class="container-fluid p-0">
+                <div className="container-fluid p-0">
                   <div clasName="row d-flex">
                     <label
                       for="message-text"
