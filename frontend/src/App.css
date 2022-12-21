@@ -19,6 +19,13 @@
   width: 1500px;
 }
 
+.last-rev-container {
+  max-width: 750px;
+  display: flex;
+  flex-direction: column;
+
+}
+
 .ConvincingMessage {
   font-family: "Poppins", sans-serif;
   border-radius: 5%;
@@ -54,5 +61,13 @@
   .game-list-container {
    
     width: 300px;
+  }
+  .last-rev-container {
+    /* background-color: #ff851b; */
+    margin: auto;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+  
   }
 }
