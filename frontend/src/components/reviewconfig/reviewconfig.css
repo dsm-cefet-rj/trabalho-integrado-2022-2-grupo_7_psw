@@ -1,0 +1,24 @@
+.options-container{
+    margin-right: 360px;
+    margin-top: 150px;
+    /* background-color: wheat; */
+    display: flex;
+    flex-direction: row-reverse;
+    height: 40px;
+    width: 400px;
+    justify-content: space-around;
+    align-self: flex-end;
+
+}
+
+@media (max-width: 600px) {
+    .options-container{
+       
+        margin: auto;
+        display: flex;
+        flex-direction: column;
+        height: 200px;
+        align-items: center;
+    
+    }
+}

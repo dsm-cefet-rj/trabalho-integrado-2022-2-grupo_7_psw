@@ -178,8 +178,8 @@ export default function EditList() {
               </div>
             );
           })}
-          <div>
-            <button type="submit" className="btn btn-primary">
+          <div className="button-container">
+            <button type="submit" className="btn btn-primary edit-list-button">
               Edit
             </button>
 

@@ -116,8 +116,8 @@ p {
 }
 
 hr {
-  margin-top: 20vh;
-  margin-bottom: 10vh;
+  margin-top: 20px;
+  margin-bottom: 20px;
   border: solid #779ecb;
 }
 
@@ -143,6 +143,15 @@ input[type="radio"] {
 #Description:hover {
   font-weight: 300;
   letter-spacing: 0.95px;
+}
+
+.display-container{
+  display: flex;
+  flex-direction: column;
+  
+  /* justify-content: space-between; */
+  /* background-color: #779ecb; */
+  /* min-height: 1000px; */
 }
 
 @media (max-width: 900px) {

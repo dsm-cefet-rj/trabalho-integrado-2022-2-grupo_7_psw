@@ -3,12 +3,13 @@ import ScreenLucas from "../components/screenLucas";
 import Review from "../components/review";
 import React, { useState, useEffect, Suspense } from "react";
 import { useParams } from "react-router-dom";
-import ReviewConfig from "../components/reviewconfig";
+import ReviewConfig from "../components/reviewconfig/reviewconfig";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { reviewState } from "../recoil/atoms/review";
 import useGetreviewByGameAndUser from "../recoil/hooks/reviewHooks/getReviewByGameAndUser";
 import { userAtom } from "../recoil/atoms/userState";
 import { isReviewed } from "../recoil/atoms/isReviewed";
+
 
 import "./screen.css";
 
@@ -80,18 +81,25 @@ export default function Screen() {
       <Suspense fallback={<h2>loading...</h2>}>
         <Header />
       </Suspense>
-      <Suspense fallback={<h2>loading...</h2>}>
-        <ScreenLucas
-          myCover={`https:${cover}`}
-          myDate={date}
-          myCreator={creator}
-          myTitle={title}
-          myDescription={description}
-          myScreenshot={`https:${screenshot}`}
-          myRatingAvg={ratingAvg}
-          gameId={id}
-        />
-      </Suspense>
+      <div className="display-container">
+        <Suspense fallback={<h2>loading...</h2>}>
+          <ScreenLucas
+            myCover={`https:${cover}`}
+            myDate={date}
+            myCreator={creator}
+            myTitle={title}
+            myDescription={description}
+            myScreenshot={`https:${screenshot}`}
+            myRatingAvg={ratingAvg}
+            gameId={id}
+          />
+        </Suspense>      
+            <ReviewConfig
+              myList={list}
+              isReviewed={isReviewedUser ? true : false}
+        />        
+      </div>
+      
       <hr></hr>
       {userReview.length > 0
         ? userReview.map((e) => {
@@ -111,14 +119,7 @@ export default function Screen() {
           })
         : null}
 
-      <div className="d-flex justify-content-center">
-        <div className="d-flex justify-content-center" style={reviewStyle}>
-          <ReviewConfig
-            myList={list}
-            isReviewed={isReviewedUser ? true : false}
-          />
-        </div>
-      </div>
+      
     </>
   );
 }
