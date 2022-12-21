@@ -1,6 +1,8 @@
 import { BsDropletFill } from "react-icons/bs";
 import { useState, useEffect } from "react";
 import image from "../images/userpicture.png";
+import { Link } from "react-router-dom";
+import Tilt from "react-parallax-tilt";
 
 export default function Review({
   stars,
@@ -66,7 +68,14 @@ export default function Review({
   return (
     <div className="d-flex flex-column gap-2 mx-3 mx-md-5 my-5">
       <div className="d-flex gap-3">
-        <img style={heightImage} alt="review" src={coverReview} />
+        <Link to={`/screen/${game_id}`}>
+        <Tilt
+          scale="1.1"
+          tiltEnable={false}
+        >
+          <img style={heightImage} alt="review" src={coverReview} />
+        </Tilt>
+        </Link>
         <div className="d-flex flex-column">
           <div className="d-flex align-items-center gap-3 mb-1">
             <img

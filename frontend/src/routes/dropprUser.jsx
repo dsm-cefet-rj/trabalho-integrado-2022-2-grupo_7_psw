@@ -10,7 +10,7 @@ import { useParams } from "react-router-dom";
 import { authAtom, userAtom } from "../recoil/atoms/userState";
 import { useRecoilValue, useRecoilState } from "recoil"
 
-import { useUpdateUser } from "../recoil/hooks/userHooks/useCRUDUser";
+import { useUpdateUserFriends } from "../recoil/hooks/userHooks/useCRUDUser";
 
 export default function DropprUser() {
   const [follow, setFolow] = useState(false);
@@ -48,14 +48,7 @@ export default function DropprUser() {
       .then((data) => setUserInfo(data));
   }, []);
 
-  const handleClick = (e) => {
-    let amigosCurrent = [userCurrent.friends]
-    let amigos = username
 
-    amigosCurrent.push(amigos)
-  }
-
-  console.log(userCurrent.friends)
 
   return (
     <>
@@ -76,7 +69,6 @@ export default function DropprUser() {
             type="button"
             className={buttonClass}
             onClick={() => setFolow(change)}
-            onClickCapture={handleClick}
           >
             {buttonMessage}
           </button>

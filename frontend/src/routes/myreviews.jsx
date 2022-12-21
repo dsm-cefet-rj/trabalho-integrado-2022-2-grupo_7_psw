@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { useState, useEffect, Suspense } from "react";
 import { authAtom, userAtom } from "../recoil/atoms/userState";
 import { useRecoilValue } from "recoil";
+import Footer from "../components/footer";
 
 export default function Overview() {
   const [review, setReview] = useState([]);
@@ -39,24 +40,27 @@ export default function Overview() {
           </div>
         </div>
       </div>
-      {review.map((e) => {
-        return (
-          <Review
-            key={e._id}
-            stars={e.rating}
-            title={e.titleReview}
-            cover={e.coverReview}
-            release={e.yearRelease}
-            text={e.text_review}
-            checkout={false}
-            date={e.date}
-            game_id={e.game_id}
-            username={e.username}
-            user_id={e.user}
-            profilePicture={e.profilePicture}
-          />
-        );
-      })}
+      <div className="d-flex flex-column-reverse">
+        {review.map((e) => {
+          return (
+            <Review
+              key={e._id}
+              stars={e.rating}
+              title={e.titleReview}
+              cover={e.coverReview}
+              release={e.yearRelease}
+              text={e.text_review}
+              checkout={false}
+              date={e.date}
+              game_id={e.game_id}
+              username={e.username}
+              user_id={e.user}
+              profilePicture={e.profilePicture}
+            />
+          );
+        })}        
+      </div>
+      <Footer/>
     </>
   );
 }

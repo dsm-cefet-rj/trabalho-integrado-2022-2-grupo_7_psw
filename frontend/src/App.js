@@ -79,7 +79,7 @@ export default function App() {
                     window.scrollTo(0, 0);
                   }}
                 />
-                <span className="text-light mx-4 ">Page:{page+1}</span>
+                <span className="text-light mt-2 mx-4">Page:{page +1}</span>
                 <BsFillArrowRightCircleFill
                   className="homePageArrow"
                   size={40}
@@ -192,7 +192,7 @@ export default function App() {
         <hr className="divisao"></hr>
 
         <div className="container-fluid mt-5">
-          <div className="col-12 mt-5">
+          <div className="col-12 mt-5 game-list-container">
             <ul className="m-0 p-0">
               {gamesList.map((e) => {
                 return (
@@ -221,7 +221,7 @@ export default function App() {
                     window.scrollTo(0, 0);
                   }}
                 />
-                <span className="text-light mx-4">Page:{page}</span>
+                <span className="text-light mt-2 mx-4">Page:{page +1}</span>
                 <BsFillArrowRightCircleFill
                   className="homePageArrow"
                   size={40}
@@ -237,8 +237,8 @@ export default function App() {
               </h1>
             )}
           </div>
-          <Footer />
         </div>
+          <Footer />
       </>
     );
   }
