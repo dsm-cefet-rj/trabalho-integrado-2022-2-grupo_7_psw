@@ -12,6 +12,7 @@ import { isReviewed } from "../recoil/atoms/isReviewed";
 
 
 import "./screen.css";
+import Footer from "../components/footer";
 
 export default function Screen() {
   const [cover, setCover] = useState([]);
@@ -82,27 +83,31 @@ export default function Screen() {
         <Header />
       </Suspense>
       <div className="display-container">
-        <Suspense fallback={<h2>loading...</h2>}>
-          <ScreenLucas
-            myCover={`https:${cover}`}
-            myDate={date}
-            myCreator={creator}
-            myTitle={title}
-            myDescription={description}
-            myScreenshot={`https:${screenshot}`}
-            myRatingAvg={ratingAvg}
-            gameId={id}
-          />
-        </Suspense>      
-            <ReviewConfig
-              myList={list}
-              isReviewed={isReviewedUser ? true : false}
-        />        
-      </div>
+        <div className="display-item-container">
+          <Suspense fallback={<h2>loading...</h2>}>
+            <ScreenLucas
+              myCover={`https:${cover}`}
+              myDate={date}
+              myCreator={creator}
+              myTitle={title}
+              myDescription={description}
+              myScreenshot={`https:${screenshot}`}
+              myRatingAvg={ratingAvg}
+              gameId={id}
+            />
+          </Suspense>
+
+        </div>
       
+
       <hr></hr>
-      {userReview.length > 0
-        ? userReview.map((e) => {
+      <div className="display-item2-container">
+        <ReviewConfig
+          myList={list}
+          isReviewed={isReviewedUser ? true : false}
+        />
+        {userReview.length > 0
+          ? userReview.map((e) => {
             return (
               <div className="d-flex justify-content-center justify-content-md-start">
                 <Review
@@ -117,9 +122,12 @@ export default function Screen() {
               </div>
             );
           })
-        : null}
+          : null}
 
-      
+      </div>
+        </div>
+        <Footer/>
+
     </>
   );
 }

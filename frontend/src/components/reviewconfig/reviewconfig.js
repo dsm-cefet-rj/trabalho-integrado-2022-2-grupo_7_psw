@@ -60,7 +60,7 @@ export default function ReviewConfig({ myList }) {
               </div>
             </>
           ) : null}
-          <div className="">
+          <div className="mx-3">
             <button
               type="button"
               data-bs-toggle="modal"

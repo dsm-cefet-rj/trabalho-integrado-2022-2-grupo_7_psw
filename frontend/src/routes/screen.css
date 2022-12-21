@@ -154,6 +154,20 @@ input[type="radio"] {
   /* min-height: 1000px; */
 }
 
+.display-item-container{
+  display: flex;
+  flex-direction: column;
+  min-height: 800px;
+  
+}
+.display-item2-container{
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  min-height: 200px;
+  width: 1600px;
+}
+
 @media (max-width: 900px) {
   hr {
     margin-top: 10vh;
@@ -193,5 +207,10 @@ input[type="radio"] {
     display: flexbox;
     margin: 10px;
     margin-top: 30px;
+  }
+  .display-item2-container{
+    
+    min-height: 400px;
+    width: 300px;
   }
 }
