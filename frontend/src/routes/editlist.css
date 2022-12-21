@@ -1,0 +1,33 @@
+.list-container {
+    display: flex;
+    flex-direction: column;
+    width: 800px;
+    height: 800px;
+    margin: 50px auto;
+
+}
+
+
+.form-container {
+    padding: 20px;
+    background-color: rgb(33,37,41)
+}
+
+.self-end{
+ justify-self: end;
+}
+
+.button-container{
+    flex-direction: row-reverse;
+    display: flex;
+}
+
+.linkar {
+    color: #CF9FFF;
+}
+
+@media (max-width: 608px) {
+    .list-container {       
+        width: 375px;        
+    }    
+}
