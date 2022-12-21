@@ -1,22 +1,36 @@
-import Game from "../components/game";
+import Game from "../components/imageGameList";
 import { Link } from "react-router-dom";
+import { userAtom } from "../recoil/atoms/userState"
+import { useState, useEffect } from "react"
+import { useRecoilValue } from "recoil"
+import{ useParams } from "react-router-dom"
 
 export default function Overview() {
+  const [id, setId] = useState([]);
+
+  const username = useParams().username;
+  
+  useEffect(() => {
+    fetch(`http://localhost:3001/getfavorite/${username}`)
+      .then((res) => res.json())
+      .then((data) => setId(data.data));
+  }, []);
+
   return (
     <>
       <div className="my-5 col-11 mx-auto">
         <div className="col-11 mx-auto border-bottom border-secondary d-flex gap-4">
           <div className=" border-bottom">
-            <Link to="/dropprUser">
+            <Link to={`/dropprUser/${username}`}>
               <p className="text-light fs-6">Overview</p>
             </Link>
           </div>
 
-          <Link to="/dropprUser/allgamesUser">
+          <Link to={`/dropprUser/allgamesUser/${username}`}>
             <p className="text-light fs-6">All Games</p>
           </Link>
 
-          <Link to="/dropprUser/myreviewsUser">
+          <Link to={`/dropprUser/myreviewsUser/${username}`}>
             <p className="text-light fs-6">Reviews</p>
           </Link>
         </div>
@@ -27,21 +41,9 @@ export default function Overview() {
               <h3>Favorite from User</h3>
             </div>
             <div className="d-flex flex-wrap gap-3">
-              <div className="col-6 col-md-4 col-lg-2 col-xl-2">
-                <Game gameImage="https://static-cdn.jtvnw.net/ttv-boxart/490147_IGDB-272x380.jpg" />
-              </div>
-              <div className="col-6 col-md-4 col-lg-2 col-xl-2">
-                <Game gameImage="https://image.api.playstation.com/vulcan/ap/rnd/202105/1412/bJYCCmymxvgviuuolfOx8srg.png" />
-              </div>
-              <div className="col-6 col-md-4 col-lg-2 col-xl-2">
-                <Game gameImage="https://www.gamingdragons.com/images/game_img/persona4golden.jpg" />
-              </div>
-              <div className="col-6 col-md-4 col-lg-2 col-xl-2">
-                <Game gameImage="https://store-images.s-microsoft.com/image/apps.64690.14291162525435146.863a4856-e937-4f6f-81c8-efcb52a1546f.725b97dc-d011-43fd-99bd-409a35646882" />
-              </div>
-              <div className="col-6 col-md-4 col-lg-2 col-xl-2">
-                <Game gameImage="https://assets-prd.ignimgs.com/2021/12/08/portal2-1638924084230.jpg" />
-              </div>
+            {id.map((jogosFavoritos) => {
+              return <Game id={jogosFavoritos.game_id} />;
+            })}
             </div>
           </div>
           <div className="col-1"></div>

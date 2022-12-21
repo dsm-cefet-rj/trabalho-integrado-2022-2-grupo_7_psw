@@ -11,7 +11,7 @@ export default function Overview() {
   console.log(userCurrent)
 
   useEffect(() => {
-    fetch("http://localhost:3001/getfavorite")
+    fetch(`http://localhost:3001/getfavorite/${userCurrent.username}`)
       .then((res) => res.json())
       .then((data) => setId(data.data));
   }, []);
@@ -40,10 +40,9 @@ export default function Overview() {
               <h3>Favorite from User</h3>
             </div>
           </div>
-          <div className="d-flex flex-wrap gap-5 justify-content-center">
+          <div className="d-flex flex-wrap gap-5">
             {id.map((jogosFavoritos) => {
-              if(jogosFavoritos.user===userCurrent._id)
-              {return <Game id={jogosFavoritos.game_id} />;}
+              return <Game id={jogosFavoritos.game_id} />;
             })}
           </div>
         </div>
