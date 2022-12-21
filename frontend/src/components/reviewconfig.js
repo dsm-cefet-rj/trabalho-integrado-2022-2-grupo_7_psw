@@ -25,7 +25,9 @@ export default function ReviewConfig({ myList }) {
     axios.delete(`http://localhost:3001/review/${id}/${user._id}`).then(() => {
       setIsReviewedUser(false);
       setReview(review.filter((a) => a.user !== user._id));
-      window.location.reload();
+      setTimeout(() => {
+        window.location.reload();
+      }, 500);
     });
   };
 

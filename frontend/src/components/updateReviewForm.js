@@ -78,6 +78,9 @@ export default function ReviewForm() {
         setText("");
         setRating(null);
         setMessage("Review updated successfully");
+        setTimeout(() => {
+          window.location.reload();
+        }, 1000);
       } else {
         setMessage("Some error occured");
       }

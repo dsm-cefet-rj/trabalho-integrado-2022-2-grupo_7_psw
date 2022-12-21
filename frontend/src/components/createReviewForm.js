@@ -99,6 +99,9 @@ export default function ReviewForm() {
         setRating(null);
         setMessage("Review created successfully");
         setIsReviewedUser(true);
+        setTimeout(() => {
+          window.location.reload();
+        }, 1000);
       } else {
         setMessage("Some error occured");
       }
