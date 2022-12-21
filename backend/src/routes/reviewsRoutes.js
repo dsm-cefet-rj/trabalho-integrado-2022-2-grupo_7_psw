@@ -5,7 +5,8 @@ import ReviewsController from "../controllers/reviewsController.js";
 const router = express.Router();
 
 router
-  .get("/getfavorite", ReviewsController.getFavorite)
+  .get("/getfavorite/:id", ReviewsController.getFavorite)
+  .get("/getreviewbyuser/:id", ReviewsController.getByUser)
   .get("/getreview", ReviewsController.getAllReviews)
   .get("/getsinglereview/:id", ReviewsController.getById)
   .post("/review/new", passport.authenticate('jwt', {session: false}), ReviewsController.createReview)

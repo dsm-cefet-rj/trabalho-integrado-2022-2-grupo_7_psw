@@ -13,7 +13,7 @@ export default function Overview() {
   const userCurrent = useRecoilValue(userAtom);
 
   useEffect(() => {
-    fetch("http://localhost:3001/getreview")
+    fetch(`http://localhost:3001/getreviewbyuser/${userCurrent.username}`)
       .then((res) => res.json())
       .then((data) => setId(data.data));
   }, []);

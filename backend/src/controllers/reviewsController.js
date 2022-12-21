@@ -10,7 +10,8 @@ class ReviewsController {
   };
 
   static getFavorite = (req, res) => {
-    reviews.find( {favorite: true}, (err, review) => {
+    const id = req.params.id;
+    reviews.find( {favorite: true, username : id}, (err, review) => {
       res.status(200).json({
         data: review,
       });
@@ -66,6 +67,23 @@ class ReviewsController {
       }
     });
   };
+
+  static getByUser = (req, res) => {
+    const id = req.params.id;
+
+    reviews.find({ username : id }, (err, review) => {
+      if (err) {
+        res.status(400).json({
+          data: "Error",
+        });
+      } else {
+        res.status(200).json({
+          data: review,
+        });
+      }
+    });
+  };
+
   static deleteReview = (req, res) => {
     const id = req.params.id;
     reviews.deleteOne({ game_id: id }, (err) => {

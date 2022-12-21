@@ -4,12 +4,15 @@ import { Link } from "react-router-dom";
 import { reviewState } from "../recoil/atoms/review";
 import { useRecoilValue } from "recoil";
 import { useState, useEffect, Suspense } from "react";
+import { useParams } from "react-router-dom";
 
 export default function Overview() {
   const [last5Reviews, setLast5Reviews] = useState([]);
 
+  const username = useParams().username;
+
   useEffect(() => {
-    fetch(`http://localhost:3001/getreview`)
+    fetch(`http://localhost:3001/getreviewbyuser/${username}`)
       .then((res) => res.json())
       .then((data) => setLast5Reviews(data.data.slice(-5)))
       .catch((error) => console.log(error));
@@ -22,27 +25,22 @@ export default function Overview() {
       </Suspense>
       <div className="my-5">
         <div className="col-11 mx-auto border-bottom border-secondary d-flex gap-4">
-          <Link to="/dropprUser">
+          <Link to={`/dropprUser/${username}`}>
             <p className="text-light fs-6">Overview</p>
           </Link>
 
-          <Link to="/dropprUser/allgamesUser">
+          <Link to={`/dropprUser/allgamesUser/${username}`}>
             <p className="text-light fs-6">All Games</p>
           </Link>
 
           <div className=" border-bottom">
-            <Link to="dropprUser/myreviewsUser">
+            <Link to={`/dropprUser/myreviewsUser/${username}`}>
               <p className="text-light fs-6">Reviews</p>
             </Link>
           </div>
         </div>
       </div>
       <div className="my-5">
-        <div className="mx-auto border-bottom border-secondary">
-          <p className="text-secondary fs-6 text-center">
-            Recent reviews (last 5 reviews)
-          </p>
-        </div>
         <ul className="d-flex flex-column-reverse">
           {last5Reviews.length == 0 ? (
             <h4 className="text-secondary my-3">No reviews yet.</h4>

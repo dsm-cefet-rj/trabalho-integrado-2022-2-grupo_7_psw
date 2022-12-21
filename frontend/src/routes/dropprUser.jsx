@@ -14,7 +14,7 @@ export default function DropprUser() {
   const [buttonClass, setButtonClass] = useState("btn btn-primary");
   const [buttonMessage, setButtonMessage] = useState("Follow");
 
-  /*   useEffect(() => {
+  useEffect(() => {
     if (follow) {
       console.log("entrei");
       setChange(false);
@@ -27,7 +27,7 @@ export default function DropprUser() {
       setButtonMessage("Follow");
       setChange(true);
     }
-  }, [follow]); */
+  }, [follow]);
 
   const username = useParams().username;
   const [userInfo, setUserInfo] = useState({});
@@ -97,7 +97,7 @@ export default function DropprUser() {
           {userInfo.bio || "To be done"}
         </p>
       </div>
-      <Overview />
+      <Overview user={username} />
     </>
   );
 }
