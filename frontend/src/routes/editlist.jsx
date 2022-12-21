@@ -1,4 +1,6 @@
 import Header from "../components/header";
+import Footer from "../components/footer";
+import "./editlist.css"
 import { gameListState } from "../recoil/atoms/gameList";
 import { useRecoilState } from "recoil";
 import { useState, useEffect, Suspense } from "react";
@@ -106,9 +108,9 @@ export default function EditList() {
         <Header />
       </Suspense>
 
-      <div className="d-flex flex-column col-9 mx-auto my-5">
+      <div className="list-container">
         <h3 className="bg-secondary p-2 m-0">Update your list</h3>
-        <form onSubmit={handleSubmit} className="bg-dark p-5">
+        <form onSubmit={handleSubmit} className="form-container">
           <div className="mb-3">
             <label for="exampleInputEmail1" className="form-label">
               Rename it
@@ -176,12 +178,18 @@ export default function EditList() {
               </div>
             );
           })}
-          <button type="submit" className="btn btn-primary">
-            Edit
-          </button>
+          <div>
+            <button type="submit" className="btn btn-primary">
+              Edit
+            </button>
+
+          </div>
           {message ? <h4 className="mt-4 text-success">{message}</h4> : null}
         </form>
       </div>
+      <Suspense fallback={<h2>loading...</h2>}>
+        <Footer/>
+      </Suspense>
     </>
   );
 }
