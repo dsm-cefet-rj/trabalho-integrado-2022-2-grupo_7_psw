@@ -2,11 +2,17 @@ import reviews from "../models/Review.js";
 
 class ReviewsController {
   static getAllReviews = (req, res) => {
-    reviews.find((err, review) => {
-      res.status(200).json({
-        data: review,
+    reviews
+      .find()
+      .populate("user", ["username", "pictureUrl"])
+      .exec((err, review) => {
+        res.status(200).json({
+          data: review,
+        })
       })
-    });
+
+    
+    
   };
 
   static getFavorite = (req, res) => {

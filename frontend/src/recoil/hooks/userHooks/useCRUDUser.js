@@ -19,9 +19,7 @@ export const useCreateUser = (userName, userEmail, userPassword, userPassword2, 
     }
 
     fetch('http://localhost:3001/user', requestOptions)
-    setTimeout(() => {
-        window.location.href = "http://localhost:3000/signin"        
-    }, 300);
+   
     
 }
 
