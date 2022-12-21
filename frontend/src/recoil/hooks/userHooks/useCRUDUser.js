@@ -35,7 +35,7 @@ export const useGetUserByEmail = (email) => {
     return useRecoilValue(asyncGetUserByEmail(email))
 }
 
-export const useUpdateUser = (userId, userName, userPicture, userBio, currentAuth) => {
+export const useUpdateUser = (userId, userName, userPicture, userBio, currentAuth, userFriend) => {
 
     const requestOptions = {
         method: 'PUT',
@@ -46,7 +46,8 @@ export const useUpdateUser = (userId, userName, userPicture, userBio, currentAut
             _id: userId,
             username: userName,
             pictureUrl: userPicture,
-            bio: userBio
+            bio: userBio,
+            friends: userFriend,
         })
     }
     fetch(`http://localhost:3001/user/${userId}`, requestOptions).then(response => {

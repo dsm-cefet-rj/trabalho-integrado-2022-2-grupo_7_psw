@@ -79,7 +79,7 @@ export default function App() {
                     window.scrollTo(0, 0);
                   }}
                 />
-                <span className="text-light mx-4">Page:{page}</span>
+                <span className="text-light mx-4 ">Page:{page+1}</span>
                 <BsFillArrowRightCircleFill
                   className="homePageArrow"
                   size={40}

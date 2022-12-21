@@ -7,6 +7,10 @@ import Overview from "./overviewUser";
 import { Suspense, useEffect } from "react";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
+import { authAtom, userAtom } from "../recoil/atoms/userState";
+import { useRecoilValue, useRecoilState } from "recoil"
+
+import { useUpdateUser } from "../recoil/hooks/userHooks/useCRUDUser";
 
 export default function DropprUser() {
   const [follow, setFolow] = useState(false);
@@ -14,9 +18,11 @@ export default function DropprUser() {
   const [buttonClass, setButtonClass] = useState("btn btn-primary");
   const [buttonMessage, setButtonMessage] = useState("Follow");
 
+  const userCurrent = useRecoilValue(userAtom)
+  const currentAuth = useRecoilValue(authAtom)
+
   useEffect(() => {
     if (follow) {
-      console.log("entrei");
       setChange(false);
       setButtonClass("btn btn-secondary");
       setButtonMessage("Followed");
@@ -42,6 +48,15 @@ export default function DropprUser() {
       .then((data) => setUserInfo(data));
   }, []);
 
+  const handleClick = (e) => {
+    let amigosCurrent = [userCurrent.friends]
+    let amigos = username
+
+    amigosCurrent.push(amigos)
+  }
+
+  console.log(userCurrent.friends)
+
   return (
     <>
       <Suspense fallback={<h2>loading...</h2>}>
@@ -61,6 +76,7 @@ export default function DropprUser() {
             type="button"
             className={buttonClass}
             onClick={() => setFolow(change)}
+            onClickCapture={handleClick}
           >
             {buttonMessage}
           </button>

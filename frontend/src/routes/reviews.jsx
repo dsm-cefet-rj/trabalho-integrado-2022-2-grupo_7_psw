@@ -28,9 +28,7 @@ export default function Reviews() {
           <Link to="/reviews/favorites">
             <p className="text-light fs-6">Favorites</p>
           </Link>
-          <Link to="/reviews/popular">
-            <p className="text-light fs-6">Popular</p>
-          </Link>
+
         </div>
       </div>
       {reviewList.length === 0 ? (
