@@ -8,8 +8,6 @@ export default function Overview() {
   const [id, setId] = useState([]);
   const userCurrent = useRecoilValue(userAtom);
 
-  console.log(userCurrent)
-
   useEffect(() => {
     fetch(`http://localhost:3001/getfavorite/${userCurrent.username}`)
       .then((res) => res.json())
