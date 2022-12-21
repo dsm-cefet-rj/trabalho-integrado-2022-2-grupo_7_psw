@@ -11,17 +11,33 @@ class ReviewsController {
         })
       })
 
-    
-    
+
+
   };
 
   static getFavorite = (req, res) => {
-    reviews.find( {favorite: true}, (err, review) => {
+    reviews.find({ favorite: true }, (err, review) => {
       res.status(200).json({
         data: review,
       });
     });
   };
+
+  static getByGameIdAndUserId = (req, res) => {
+    const gameId = req.params.gameId;
+    const userId = req.params.userId;
+    reviews.find({ game_id: gameId })
+    .where('user').equals(userId) //userId tem risco de quebrar
+    .exec((err, review) => {
+        console.log(gameId, userId)
+        if (!err) {
+          res.status(200).send(review)
+        } else {
+          res.status(400).send(err.message)
+        }
+      }
+    )
+  }
 
   static createReview = (req, res) => {
     let newReview = new reviews(req.body);

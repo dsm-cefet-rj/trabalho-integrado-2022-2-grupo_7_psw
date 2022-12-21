@@ -63,7 +63,6 @@ export default function Review({
       .catch((error) => console.log(error));
   }, [game_id]);
 
-  console.log(user_id);
 
   return (
     <div className="d-flex flex-column gap-2 mx-3 mx-md-5 my-5">

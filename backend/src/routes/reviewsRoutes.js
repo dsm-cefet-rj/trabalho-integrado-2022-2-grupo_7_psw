@@ -6,9 +6,10 @@ const router = express.Router();
 
 router
   .get("/getfavorite", ReviewsController.getFavorite)
+  .get("/getreview/:gameId/:userId", ReviewsController.getByGameIdAndUserId)
   .get("/getreview", ReviewsController.getAllReviews)
   .get("/getsinglereview/:id", ReviewsController.getById)
-  .post("/review/new", passport.authenticate('jwt', {session: false}), ReviewsController.createReview)
+  .post("/review/new", passport.authenticate('jwt', { session: false }), ReviewsController.createReview)
   .put("/review/update/:id", ReviewsController.updateReview)
   .delete("/review/:id", ReviewsController.deleteReview)
 

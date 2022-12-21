@@ -38,9 +38,6 @@ function Games({
         console.log(err);
       });
   });
-
-  console.log(generos);
-
   return (
     <div
       style={cardStyle}

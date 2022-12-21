@@ -1,9 +1,10 @@
-import React from "react";
+import React, { Suspense } from "react";
 import { useEffect } from "react";
 import ReviewForm from "./createReviewForm";
 import { reviewState } from "../recoil/atoms/review";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { userAtom } from "../recoil/atoms/userState";
+import useGetreviewByGameAndUser from "../recoil/hooks/reviewHooks/getReviewByGameAndUser";
 
 // import useRatingState from "../recoil/hooks/useRatingState";
 // import useHoverState from "../recoil/hooks/useHoverState";
@@ -16,9 +17,20 @@ function ScreenLucas({
   myScreenshot,
   myRatingAvg,
   isReviewed,
+  gameId
 }) {
   const [review, setReview] = useRecoilState(reviewState);
   const user = useRecoilValue(userAtom);
+  const queryParameters = `${gameId}/${user._id}`
+  const reviewContext = useGetreviewByGameAndUser(queryParameters) 
+
+  let reviewd = false
+  if(reviewContext[0].length > 0){
+    reviewd = true
+  } 
+  // if(reviewContext){
+  //   reviewd = true;
+  // }
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -41,6 +53,7 @@ function ScreenLucas({
 
   return (
     <>
+    <Suspense>
       <header style={gameBackground} /* id="game-background" */></header>
       <div id="container">
         <section id="Game-Content">
@@ -54,7 +67,7 @@ function ScreenLucas({
               Average rating:
               <span className="text-warning"> {myRatingAvg || "Unknown"}</span>
             </h4>
-            {isReviewed && user ? (
+            {reviewd && user ? (
               <button className="btn btn-secondary">Reviewed</button>
             ) : (
               <button
@@ -79,6 +92,8 @@ function ScreenLucas({
           </div>
         </section>
       </div>
+
+    </Suspense>
       <ReviewForm />
     </>
   );

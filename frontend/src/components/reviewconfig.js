@@ -21,10 +21,10 @@ export default function ReviewConfig({ isReviewed, myList }) {
     e.preventDefault();
     axios.delete(`http://localhost:3001/review/${id}`).then(() => {
       setReview([]);
-
       console.log("Deleted Successfully");
     });
   };
+
   return (
     <>
       {user ? (

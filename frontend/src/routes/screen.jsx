@@ -1,13 +1,14 @@
 import Header from "../components/header";
-import ScreenL from "../components/screenLucas";
+import ScreenLucas from "../components/screenLucas";
 import Review from "../components/review";
 import React, { useState, useEffect, Suspense } from "react";
 import { useParams } from "react-router-dom";
 import ReviewConfig from "../components/reviewconfig";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import { reviewState } from "../recoil/atoms/review";
 
 import "./screen.css";
+
 
 export default function Screen() {
   const [cover, setCover] = useState([]);
@@ -19,8 +20,9 @@ export default function Screen() {
   const [ratingAvg, setRatingAvg] = useState(0);
   const [userReview, setUserReview] = useRecoilState(reviewState);
   const [list, setList] = useState([]);
-
   const id = useParams().id;
+
+
   useEffect(() => {
     fetch(`http://localhost:3001/api/cover/${id}`)
       .then((res) => res.json())
@@ -75,16 +77,20 @@ export default function Screen() {
       <Suspense fallback={<h2>loading...</h2>}>
         <Header />
       </Suspense>
-      <ScreenL
-        myCover={`https:${cover}`}
-        myDate={date}
-        myCreator={creator}
-        myTitle={title}
-        myDescription={description}
-        myScreenshot={`https:${screenshot}`}
-        myRatingAvg={ratingAvg}
-        isReviewed={userReview.length > 0 ? true : false}
-      />
+      <Suspense fallback={<h2>loading...</h2>}>
+        <ScreenLucas
+          myCover={`https:${cover}`}
+          myDate={date}
+          myCreator={creator}
+          myTitle={title}
+          myDescription={description}
+          myScreenshot={`https:${screenshot}`}
+          myRatingAvg={ratingAvg}
+          isReviewed={userReview.length > 0 ? true : false}
+          gameId={id}
+        />
+
+      </Suspense>
       <hr></hr>
       {userReview.length > 0
         ? userReview.map((e) => {
