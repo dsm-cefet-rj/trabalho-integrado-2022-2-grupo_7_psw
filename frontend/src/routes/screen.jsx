@@ -26,16 +26,6 @@ export default function Screen() {
 
   const isReviewedUser = useRecoilValue(isReviewed);
 
-  /*   const user = useRecoilValue(userAtom);
-
-  const queryParameters = `${id}/${user._id}`;
-  const reviewContext = useGetreviewByGameAndUser(queryParameters);
-
-  let reviewd = false;
-  if (reviewContext[0].length > 0) {
-    reviewd = true;
-  } */
-
   useEffect(() => {
     fetch(`http://localhost:3001/api/cover/${id}`)
       .then((res) => res.json())
@@ -84,7 +74,7 @@ export default function Screen() {
     height: 310,
     width: 1200,
   };
-  console.log(userReview);
+
   return (
     <>
       <Suspense fallback={<h2>loading...</h2>}>

@@ -1,23 +1,26 @@
 import "./singinComponent.css";
 import { useState } from "react";
 import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
-import { authAtom, userAtom, userNameState } from "../../recoil/atoms/userState";
+import {
+  authAtom,
+  userAtom,
+  userNameState,
+} from "../../recoil/atoms/userState";
 import { useGetUserById } from "../../recoil/hooks/userHooks/useCRUDUser";
 import jwtDecode from "jwt-decode";
 import { useLoginUser } from "../../recoil/hooks/userHooks/useLoginUser";
-import {NotificationContainer} from 'react-notifications';
+import { NotificationContainer } from "react-notifications";
 
 const SinginComponent = () => {
-
   let [currentPassword, setCurrentPassword] = useState();
   let [currentUserName, setCurrentUserName] = useRecoilState(userNameState);
 
-  let setAuth = useSetRecoilState(authAtom)
+  let setAuth = useSetRecoilState(authAtom);
 
-  let setUser = useSetRecoilState(userAtom)
+  let setUser = useSetRecoilState(userAtom);
 
   const HandleLoginClick = () => {
-   useLoginUser(currentUserName, currentPassword, setUser, setAuth)
+    useLoginUser(currentUserName, currentPassword, setUser, setAuth);
   };
 
   return (
@@ -48,15 +51,26 @@ const SinginComponent = () => {
               ></input>
             </div>
           </form>
-          <p className="mt-2"><span className="opacity-50">Don't have an account yet? Sign up </span><a className="linkar"href="http://localhost:3000/register">here!</a></p>
+          <p className="mt-2">
+            <span className="opacity-50">
+              Don't have an account yet? Sign up{" "}
+            </span>
+            <a className="linkar" href="http://localhost:3000/register">
+              here!
+            </a>
+          </p>
           <div className="button-container">
-            <button class="btn btn-primary mt-1" type="submit" onClick={HandleLoginClick}>
+            <button
+              class="btn btn-primary mt-1"
+              type="submit"
+              onClick={HandleLoginClick}
+            >
               Sign In
             </button>
           </div>
         </div>
       </div>
-      <NotificationContainer/>
+      <NotificationContainer />
     </>
   );
 };

@@ -34,7 +34,7 @@ export default function UpdatePicture() {
   const [selectedPicture, setSelectedPicture] =
     useRecoilState(userPictureState);
   // const [myPictureForm, setMyPictureForm] = useRecoilState(pictureForm);
-  const  [myPictureForm, setMyPictureForm] = useRecoilState(userPictureState)
+  const [myPictureForm, setMyPictureForm] = useRecoilState(userPictureState);
 
   return (
     <>

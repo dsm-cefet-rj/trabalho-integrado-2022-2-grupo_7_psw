@@ -63,21 +63,20 @@ export default function Review({
       .catch((error) => console.log(error));
   }, [game_id]);
 
-
   return (
     <div className="d-flex flex-column gap-2 mx-3 mx-md-5 my-5">
       <div className="d-flex gap-3">
         <img style={heightImage} alt="review" src={coverReview} />
         <div className="d-flex flex-column">
-            <div className="d-flex align-items-center gap-3 mb-1">
-              <img
-                alt="profile"
-                className="rounded-circle img-fluid d-flex"
-                style={imgStyle}
-                src={profilePicture || image}
-              />
-              <h5 className="mb-0">{username}</h5>
-            </div>
+          <div className="d-flex align-items-center gap-3 mb-1">
+            <img
+              alt="profile"
+              className="rounded-circle img-fluid d-flex"
+              style={imgStyle}
+              src={profilePicture || image}
+            />
+            <h5 className="mb-0">{username}</h5>
+          </div>
           <div className="d-flex gap-3">
             <h2>{titleReview}</h2>
             <h3 className="text-secondary">{yearRelease}</h3>

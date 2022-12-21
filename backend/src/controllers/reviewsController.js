@@ -29,7 +29,6 @@ class ReviewsController {
       .where("user")
       .equals(userId) //userId tem risco de quebrar
       .exec((err, review) => {
-        console.log(gameId, userId);
         if (!err) {
           res.status(200).send(review);
         } else {

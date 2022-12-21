@@ -56,18 +56,6 @@ export default function ReviewForm() {
       );
 
       if (res.status === 200) {
-        /*        setReview([
-          ...review,
-          {
-            text_review: text,
-            rating: rating,
-            game_id: game_id,
-            date: new Date().toLocaleDateString("pt-BR"),
-            favorite: favorite,
-            status: status.value,
-            user: user._id,
-          },
-        ]); */
         console.log(review);
         setReview(
           review.map((a) => {
@@ -80,6 +68,8 @@ export default function ReviewForm() {
                 favorite: favorite,
                 status: status.value,
                 user: user._id,
+                username: user.username,
+                profilePicture: user.pictureUrl,
               };
             }
             return a;
@@ -169,16 +159,6 @@ export default function ReviewForm() {
                         onChange={setStatus}
                         options={options}
                       />
-
-                      /* <button
-                      className="btn btn-secondary dropdown-toggle"
-                      type="button"
-                      id="dropdownMenuButton1"
-                      data-bs-toggle="dropdown"
-                      aria-expanded="false"
-                    >
-                      Status
-                    </button> */
                     }
 
                     <ul
