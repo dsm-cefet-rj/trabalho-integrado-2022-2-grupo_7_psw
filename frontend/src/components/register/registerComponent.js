@@ -58,7 +58,16 @@ const RegisterComponent = () => {
       );
       validRegistration = false;
     }
-    console.log(Object.fromEntries(data.entries()).Email.indexOf("@"));
+    if (Object.fromEntries(data.entries()).Name.length>12) {
+      console.log("Entrei");
+      NotificationManager.error(
+        "Your username must contain less than 12 letters",
+        "Username error",
+        3000
+      );
+      validRegistration = false;
+    }
+    console.log();
     if (
       Object.fromEntries(data.entries()).Email.indexOf("@") === -1 ||
       Object.fromEntries(data.entries()).Email.indexOf(".com") === -1

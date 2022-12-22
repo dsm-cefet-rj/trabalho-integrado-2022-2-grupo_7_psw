@@ -34,7 +34,10 @@ export default function Lists() {
         <Header />
       </Suspense>
       <div className="mx-3 mx-md-5">
-        <div className="d-flex justify-content-center">
+        <div className="justify-content-center mt-5">
+          <h1 className="text-white text-center textoCentral">Create, share and have fun with Droppr's lists!</h1>
+        </div>
+        <div className="d-flex justify-content-center d-block">
           {list.length > 0 ? (
             <Link className="mt-5" to="/lists/new">
               <button type="button" className="purple-style-button mt-5 text-flex" >

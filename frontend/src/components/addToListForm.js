@@ -76,27 +76,27 @@ export default function ReviewForm({ list }) {
                     return (
                       <div className="d-flex">
                         {!e.games.includes(game_id) ? (
-                          <div class="form-check">
+                          <div className="form-check">
                             <input
-                              class="form-check-input"
+                              className="form-check-input"
                               type="checkbox"
                               value={true}
                               onChange={(event) => handleCheck(event, e)}
                             />
-                            <label class="form-check-label" for="defaultCheck1">
+                            <label className="form-check-label" for="defaultCheck1">
                               {e.title}
                             </label>
                           </div>
                         ) : (
-                          <div class="form-check">
+                          <div className="form-check">
                             <input
-                              class="form-check-input"
+                              className="form-check-input"
                               type="checkbox"
                               value={true}
                               onChange={(event) => handleCheck(event, e)}
                               defaultChecked={true}
                             />
-                            <label class="form-check-label" for="defaultCheck1">
+                            <label className="form-check-label" for="defaultCheck1">
                               {e.title}
                             </label>
                           </div>

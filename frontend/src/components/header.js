@@ -119,7 +119,7 @@ function Header() {
                       </Link>
                     </li>
                     <li>
-                      <hr class="dropdown-divider" />
+                      <hr className="dropdown-divider" />
                     </li>
                     <li>
                       <Link

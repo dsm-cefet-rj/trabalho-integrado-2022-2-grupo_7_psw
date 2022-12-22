@@ -44,13 +44,13 @@ function Friend({ username, url, id }) {
               />
             </Link>
             <h4 className="fs-5 fs-md-4">{username}</h4>
-            <button
+            {/*<button
               type="button"
               className={buttonClass + " ms-auto btn-sm"}
               onClick={() => setFolow(change)}
             >
               {buttonMessage}
-            </button>
+  </button>*/}
           </div>
         </div>
         <div className="col-11 mx-auto border-bottom border-secondary d-flex gap-4 my-3"></div>

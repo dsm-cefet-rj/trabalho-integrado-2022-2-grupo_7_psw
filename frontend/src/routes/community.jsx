@@ -58,7 +58,7 @@ export default function Community() {
 
       <div>
         <h3 style={textColor} className="text-center my-5 mx-3">
-          Gamers, pro players and friends. Find popular game related things.
+          Gamers, pro players and friends. All of them are <strong>here</strong>.
         </h3>
         <div
           style={textColor2}
@@ -68,9 +68,9 @@ export default function Community() {
         </div>
       </div>
       <div className="d-flex flex-column my-5 container-fluid fundo col-12 col-md-6">
-        <div class="container-fluid my-3">
+        <div className="container-fluid my-3">
           <input
-            class="form-control me-2"
+            className="form-control me-2"
             type="search"
             placeholder="Search a user"
             aria-label="Search"

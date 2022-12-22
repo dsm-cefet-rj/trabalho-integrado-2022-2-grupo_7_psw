@@ -14,7 +14,7 @@ export default function Overview() {
   useEffect(() => {
     fetch(`http://localhost:3001/getreviewbyuser/${username}`)
       .then((res) => res.json())
-      .then((data) => setLast5Reviews(data.data.slice(-5)))
+      .then((data) => setLast5Reviews(data.data))
       .catch((error) => console.log(error));
   });
 
@@ -58,6 +58,8 @@ export default function Overview() {
                 date={e.date}
                 game_id={e.game_id}
                 favorited={false}
+                profilePicture={e.profilePicture}
+                username={e.username}
               />
             );
           })}
