@@ -7,19 +7,19 @@ import { useState } from "react";
 function Friend({ username, url, id }) {
   const [follow, setFolow] = useState(false);
   const [change, setChange] = useState(true);
-  const [buttonClass, setButtonClass] = useState("btn btn-primary");
+  const [buttonClass, setButtonClass] = useState("primary-style-button");
   const [buttonMessage, setButtonMessage] = useState("Follow");
 
   useEffect(() => {
     if (follow) {
       console.log("entrei");
       setChange(false);
-      setButtonClass("btn btn-secondary");
+      setButtonClass("secondary-style-button");
       setButtonMessage("Followed");
     }
 
     if (!follow) {
-      setButtonClass("btn btn-primary");
+      setButtonClass("primary-style-button");
       setButtonMessage("Follow");
       setChange(true);
     }

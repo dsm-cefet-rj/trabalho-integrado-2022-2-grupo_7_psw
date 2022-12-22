@@ -199,7 +199,7 @@ const RegisterComponent = () => {
             <div className="button-container">
               <button
                 type="submit"
-                className="btn btn-primary self-end"
+                className="primary-style-button self-end"
                 onClick={HandleSaveClick}
               >
                 Register

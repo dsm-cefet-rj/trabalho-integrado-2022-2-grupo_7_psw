@@ -186,7 +186,7 @@ function Header() {
               to={`/search/${search}`}
             >
               <button
-                className="btn btn-outline-light"
+                className="light-style-button"
                 type="button"
                 id="myBtn"
               >

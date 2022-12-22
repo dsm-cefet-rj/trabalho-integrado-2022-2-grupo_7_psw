@@ -80,14 +80,18 @@ function ScreenLucas({
                 </span>
               </h4>
               {isReviewedUser && user ? (
-                <button className="btn btn-secondary">Reviewed</button>
+                <button 
+                  className="secondary-style-button"
+                  style={{fontSize: "20px"}}
+                  >Reviewed</button>
               ) : (
                 <button
                   type="button"
-                  className="btn btn-primary"
+                  className="primary-style-button"
                   data-bs-toggle="modal"
                   data-bs-target="#createReview"
                   data-bs-whatever="@mdo"
+                  style={{fontSize: "20px"}}
                 >
                   Rate and Review
                 </button>
@@ -100,7 +104,7 @@ function ScreenLucas({
                 <h5>{myDate}</h5>
                 <h5>Created by {myCreator}</h5>
               </div>
-              <p id="Description">{myDescription}</p>
+              <p id="Description" style={{fontSize: "18px"}}>{myDescription}</p>
             </div>
           </section>
         </div>

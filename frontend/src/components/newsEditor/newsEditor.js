@@ -66,12 +66,12 @@ return (
                 toolbarClassName="toolbar-class"
             />
         </div>
-        <div>
+        <div className='publish-button-container mt-1'>
             {
                 haveId? (
-                    <button key={"opt2"} className="button-editor" onClick={HandleUpdateClick}>Edit it!</button>
+                    <button key={"opt2"} className="primary-style-button" onClick={HandleUpdateClick}>Edit it!</button>
                     ) : (
-                    <button key={"opt1"} className="button-editor" onClick={HandleSaveClick}>Publish it!</button>
+                    <button key={"opt1"} className="primary-style-button" onClick={HandleSaveClick}>Publish it!</button>
                 )
             }
         </div>

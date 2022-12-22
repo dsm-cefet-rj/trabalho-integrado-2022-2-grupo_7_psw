@@ -28,14 +28,14 @@ export default function News() {
          {authorized ? (
           <div className="item2-container">
             <Link
-              className="button"
+              className="primary-style-button"
               // onClick={localStorage.clear()}
-              style={{
-                color: "aliceblue",
-                textAlign: "center",
-                marginBottom: "10px",
+              // style={{
+              //   color: "aliceblue",
+              //   textAlign: "center",
+              //   marginBottom: "10px",
               
-              }}
+              // }}
               to="/news-editor/create"
             >
               New article

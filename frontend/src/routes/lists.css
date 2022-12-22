@@ -24,6 +24,12 @@
     transition-duration: .1s;
 }
 
+.text-flex{
+    display: flex;
+    align-items:center;
+    justify-content: space-around;
+}
+
 @media (min-width: 768px) {
     .botaozao {
         padding: 0 2.6rem;

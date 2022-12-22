@@ -100,7 +100,7 @@ export default function Review({
             <p className="text-secondary d-none d-md-inline">Uploaded {date}</p>
           </div>
           <p className="text-secondary d-md-none">Uploaded 22 may 2020</p>
-          <p className="text-light d-none d-md-inline">{text}</p>
+          <p className="text-light d-none d-md-inline" style={{fontSize: "18px"}}>{text}</p>
         </div>
       </div>
       <p className="d-inline d-md-none text-light">{text}</p>

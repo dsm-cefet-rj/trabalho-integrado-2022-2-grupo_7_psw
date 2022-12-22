@@ -62,12 +62,12 @@ const NewsContent = () => {
                     <div>{formatedDate}</div>
                 </div>
                 { authorized? (
-                    <div className="flex space-between">
-                    <Link className="edit-button" to={`/news-editor/update/${id}`}> Edit </Link>
-                    <div className="delete-button" onClick={deleteHandler}>Delete</div>                    
+                    <div className="flex space-between mt-3">
+                    <Link className="primary-style-button" style={{padding: '3px 20px'}} to={`/news-editor/update/${id}`}> Edit </Link>
+                    <div className="warning-style-button" onClick={deleteHandler}>Delete</div>                    
                 </div>
                 ): (
-                    <div></div>
+                    null
                 )
 
                 }

@@ -14,7 +14,9 @@ export default function Lists() {
   const [cover, setCover] = useState([]);
 
   const fontStyle = {
-    fontSize: 20
+    fontSize: 25,
+    margin: 7
+   
   };
 
   useEffect(() => {
@@ -34,9 +36,10 @@ export default function Lists() {
       <div className="mx-3 mx-md-5">
         <div className="d-flex justify-content-center">
           {list.length > 0 ? (
-            <Link to="/lists/new">
-              <button type="button" class="btn botaozao p-2 fs-6 mt-5 mx-3">
-                <AiOutlinePlus size={20} /><span style={fontStyle}> Create new list </span>
+            <Link className="mt-5" to="/lists/new">
+              <button type="button" className="purple-style-button mt-5 text-flex" >
+                <AiOutlinePlus size={30}/>
+                <span style={fontStyle}>Create new list </span>
               </button>
             </Link>
           ) : null}

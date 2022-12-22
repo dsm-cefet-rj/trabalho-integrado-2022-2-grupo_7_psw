@@ -48,3 +48,116 @@ body {
     display: block;
   }
 }
+
+/*Stylized buttons*/
+.primary-style-button{ 
+  background: none;
+  color: #3f96ff;
+  border: 1px solid;
+  font-size: 18px;
+  padding: 3px 8px;
+  transition-duration: 0.2s;    
+}  
+.primary-style-button:hover {
+  border-color: #a4cdff;
+  color: white;
+  box-shadow: 0px 0.3em 0.5em -0.4em #a4cdff;
+  /* transform: translateY(-0.25em); */
+  cursor: pointer;
+}
+.primary-style-button:active {
+  border-color: #ffffff;
+  color: #ffffff;
+  box-shadow: 0px 0.5em 0.5em -0.2em #ffffff;
+  cursor: pointer;
+}
+
+
+.secondary-style-button{
+  background: none;
+  color: #939393;
+  border: 1px solid;
+  font-size: 18px;
+  padding: 3px 8px;
+  transition-duration: 0.2s;    
+}
+.secondary-style-button:hover {
+  border-color: #e5e5e5;
+  color: white;
+  box-shadow: 0px 0.2em  0.5em -0.4em #e5e5e5;
+  /* transform: translateY(-0.25em); */
+  cursor: pointer;
+}
+.secondary-style-button:active {
+  border-color: #ffffff;
+  color: #ffffff;
+  box-shadow: 0px 0.5em 0.5em -0.2em #ffffff;
+  cursor: pointer;
+}
+
+.warning-style-button {
+  background: none;
+  color: #ff6347;
+  border: 1px solid;
+  font-size: 18px;
+  padding: 3px 8px;
+  transition-duration: 0.2s;  
+}
+.warning-style-button:hover {
+  border-color: #fda291;
+  color: white;
+  box-shadow: 0px 0.3em  0.5em -0.4em #fda291;
+  /* transform: translateY(-0.25em); */
+  cursor: pointer;
+}
+.warning-style-button:active {
+  border-color: #ffffff;
+  color: #ffffff;
+  box-shadow: 0px 0.5em 0.5em -0.2em #ffffff;
+  cursor: pointer;
+}
+
+
+.light-style-button{ 
+  background: none;
+  color: #dddcdc;
+  border: 1px solid;
+  font-size: 18px;
+  padding: 3px 8px;
+  transition-duration: 0.2s;    
+}  
+.light-style-button:hover {
+  border-color: #ffffff;
+  color: white;
+  box-shadow: 0px 0.3em  0.5em -0.4em #ffffff;
+  /* transform: translateY(-0.25em); */
+  cursor: pointer;
+}
+.light-style-button:active {
+  border-color: #ffffff;
+  color: #ffffff;
+  box-shadow: 0px 0.5em 0.5em -0.2em #ffffff;
+  cursor: pointer;
+}
+
+.purple-style-button {
+  background: none;
+  color: #c992ff;
+  border: 1px solid;
+  font-size: 18px;
+  padding: 3px 8px;
+  transition-duration: 0.2s;    
+}
+.purple-style-button:hover {
+  border-color: #e1c3ff;
+  color: white;
+  box-shadow: 0px 0.5em 0.5em -0.4em #bf7fff;
+  /* transform: translateY(-0.25em); */
+  cursor: pointer;
+}
+.purple-style-button:active {
+  border-color: #ffffff;
+  color: #ffffff;
+  box-shadow: 0px 0.5em 0.5em -0.2em #ffffff;
+  cursor: pointer;
+}

@@ -38,14 +38,10 @@
 
 .botao {
   background: none;
-
   color: #ff851b;
   border: 2px solid;
-
   font-size: 1em;
-
   padding: 1em 2em;
-
   transition-duration: 0.2s;
 }
 

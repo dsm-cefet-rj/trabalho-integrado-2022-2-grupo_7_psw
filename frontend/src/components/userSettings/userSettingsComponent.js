@@ -71,7 +71,7 @@ const UserSettingsComponent = () => {
             </div>
             <div id="profile_picture_area" className="image-container">
               <div>
-                <button className="switch-button" onClick={HandleSwitch}>
+                <button className="light-style-button btn" style={{padding: "3px 25px"}} onClick={HandleSwitch}>
                   {currentFrase}
                 </button>
               </div>
@@ -108,7 +108,7 @@ const UserSettingsComponent = () => {
                     data-bs-toggle="modal"
                     data-bs-target="#updatePicture"
                     data-bs-whatever="@mdo"
-                    className="switch-button"
+                    className="light-style-button btn" style={{padding: "3px 40px"}}
                   >
                     Change it
                   </button>
@@ -120,7 +120,7 @@ const UserSettingsComponent = () => {
           </div>
 
           <div className="button-container mt-2">
-            <button className="btn btn-primary" type="submit" onClick={HandleClickOnUpdate}>
+            <button className="primary-style-button" type="submit" onClick={HandleClickOnUpdate}>
               Submit
             </button>
             <p>

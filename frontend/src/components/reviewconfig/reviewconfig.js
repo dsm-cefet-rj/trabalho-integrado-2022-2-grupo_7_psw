@@ -38,35 +38,36 @@ export default function ReviewConfig({ myList }) {
         <div className="options-container">
           {isReviewedUser ? (
             <>
-              <div className="">
+              <div className="options-container2">
                 <button
+                  style={{fontSize: "20px"}}
                   type="button"
                   data-bs-toggle="modal"
                   data-bs-target="#updateReview"
                   data-bs-whatever="@mdo"
-                  className="btn btn-dark border"
+                  className="light-style-button"
                 >
                   Edit your review
-                </button>
-              </div>
-              <div className="">
+                </button>              
                 <button
+                  style={{fontSize: "20px"}}
                   onClick={handleDelete}
                   type="button"
-                  className="btn btn-danger border"
+                  className="warning-style-button"
                 >
                   Delete review
                 </button>
               </div>
             </>
           ) : null}
-          <div className="mx-3">
+          <div className="mx-5">
             <button
               type="button"
               data-bs-toggle="modal"
               data-bs-target="#addToList"
               data-bs-whatever="@mdo"
-              className="btn btn-dark border"
+              className="purple-style-button"
+              style={{fontSize: "20px"}}
             >
               Add to lists
             </button>

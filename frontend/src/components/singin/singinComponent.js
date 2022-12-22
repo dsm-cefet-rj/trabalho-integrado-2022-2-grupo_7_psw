@@ -61,7 +61,7 @@ const SinginComponent = () => {
           </p>
           <div className="button-container">
             <button
-              class="btn btn-primary mt-1"
+              class="primary-style-button mt-1"
               type="submit"
               onClick={HandleLoginClick}
             >

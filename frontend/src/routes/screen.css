@@ -165,7 +165,7 @@ input[type="radio"] {
   display: flex;
   flex-direction: column;
   min-height: 200px;
-  width: 1600px;
+  width: 80%;
 }
 
 @media (max-width: 900px) {
