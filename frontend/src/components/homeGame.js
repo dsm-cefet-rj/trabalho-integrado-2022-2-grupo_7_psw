@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import Tilt from "react-parallax-tilt";
+import Genero from "./generos"
 
 function Games({
   background_image,
@@ -37,12 +38,6 @@ function Games({
       .catch((err) => {
         console.log(err);
       });
-
-    if (typeof genres === "object") {
-      fetch(`http://localhost:3001/api/genre/${[genres[0]]}`)
-      .then((res) => res.json())
-      .then((data) => setGenero(data.data))
-    }
   });
 
   return (
@@ -72,9 +67,13 @@ function Games({
       </Link>
       <div className="mx-auto mx-md-0 d-flex d-md-inline-block flex-column align-items-center">
         <h2 className="text-light mt-md-2 fs-3 fs-md-2 m-4 m-md-0">{title}</h2>
-        {generos[0] ?
-          <h3 className="badge rounded-pill bg-secondary m-2 generos">{generos[0].name}</h3>
-          : <h3></h3>
+        {generos ?
+          genres.map((e) => {
+            return <Genero genero={e}/>
+            //eturn  <h3 className="badge rounded-pill bg-secondary m-2 generos">{generos}</h3>
+          }
+          )
+          : <h3 className="badge rounded-pill bg-secondary m-2 generos">loading.....</h3>
         }
       </div>
     </div>
