@@ -11,7 +11,6 @@ function signIn() {
       <Suspense>
         <SinginComponent />
       </Suspense>
-      <Footer />
     </>
   );
 }
