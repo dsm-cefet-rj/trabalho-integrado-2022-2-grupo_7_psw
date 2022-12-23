@@ -36,6 +36,7 @@ function ScreenLucas({
     HandleHook();
   }
 
+
   // if(reviewContext){
   //   reviewd = true;
   // }
@@ -60,6 +61,10 @@ function ScreenLucas({
     opacity: 0.4,
   };
 
+  const buttonStyle = {
+    // color: "white",
+    fontSize: 20
+  }
   return (
     <>
       <Suspense>
@@ -79,23 +84,37 @@ function ScreenLucas({
                   {myRatingAvg || "Unknown"}
                 </span>
               </h4>
-              {isReviewedUser && user ? (
-                <button 
-                  className="secondary-style-button"
-                  style={{fontSize: "20px"}}
-                  >Reviewed</button>
-              ) : (
+              {isReviewedUser ? (
                 <button
-                  type="button"
-                  className="primary-style-button"
-                  data-bs-toggle="modal"
-                  data-bs-target="#createReview"
-                  data-bs-whatever="@mdo"
-                  style={{fontSize: "20px"}}
-                >
-                  Rate and Review
-                </button>
-              )}
+                  className="secondary-style-button"
+                  style={{ fontSize: "20px" }}
+                >Reviewed</button>
+              ) : (
+                user ? (
+                  <button
+                    type="button"
+                    className="primary-style-button"
+                    data-bs-toggle="modal"
+                    data-bs-target="#createReview"
+                    data-bs-whatever="@mdo"
+                    style={buttonStyle}
+                  >
+                    Rate and Review
+                  </button>
+                ) : (
+                  <a
+                    
+                    className="primary-style-button"                
+                    style={buttonStyle}
+                    href="http://localhost:3000/signIn"
+                  >
+                    Sign in to review
+                  </a>
+
+
+                )
+              )
+              }
             </div>
 
             <div id="Game-Informations">
@@ -104,12 +123,18 @@ function ScreenLucas({
                 <h5>{myDate}</h5>
                 <h5>Created by {myCreator}</h5>
               </div>
-              <p id="Description" style={{fontSize: "18px"}}>{myDescription}</p>
+              <p id="Description" style={{ fontSize: "18px" }}>{myDescription}</p>
             </div>
           </section>
         </div>
       </Suspense>
-      <ReviewForm />
+      {user ? (
+        <ReviewForm />
+      ) : (
+        null
+      )
+
+      }
     </>
   );
 }

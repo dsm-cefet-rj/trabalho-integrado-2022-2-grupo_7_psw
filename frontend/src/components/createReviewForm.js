@@ -34,7 +34,7 @@ export default function ReviewForm() {
   const [status, setStatus] = useState("status");
 
   const currentAuth = useRecoilValue(authAtom);
-  const userCurrent = useRecoilValue(userAtom);
+  const currentUser = useRecoilValue(userAtom);
 
   const [isReviewedUser, setIsReviewedUser] = useRecoilState(isReviewed);
 
@@ -49,7 +49,7 @@ export default function ReviewForm() {
   ];
 
   const handleClick = (e) => {
-    if (userCurrent == null) {
+    if (currentUser == null) {
       NotificationManager.error(
         "You must have an account to create an review",
         "Error",
@@ -74,9 +74,9 @@ export default function ReviewForm() {
           date: new Date().toLocaleDateString("pt-BR"),
           favorite: favorite,
           status: status.value,
-          user: userCurrent._id,
-          username: userCurrent.username,
-          profilePicture: userCurrent.pictureUrl,
+          user: currentUser._id,
+          username: currentUser.username,
+          profilePicture: currentUser.pictureUrl,
         }),
       });
 
@@ -90,9 +90,9 @@ export default function ReviewForm() {
             date: new Date().toLocaleDateString("pt-BR"),
             favorite: favorite,
             status: status.value,
-            user: userCurrent._id,
-            username: userCurrent.username,
-            profilePicture: userCurrent.pictureUrl,
+            user: currentUser._id,
+            username: currentUser.username,
+            profilePicture: currentUser.pictureUrl,
           },
         ]);
         setText("");
