@@ -1,13 +1,11 @@
 import { Link } from "react-router-dom";
-import React, { Suspense, useEffect, useState } from "react";
-import { login } from "../recoil/atoms/login";
+import React, {  useEffect, useState } from "react";
 import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import logo from "../images/Logo_Droppr.svg";
 import nome_droppr from "../images/Nome_Droppr.png";
 import "./header.css";
 import Tilt from "react-parallax-tilt";
 import {
-  authAtom,
   userAtom,
   userPictureState,
 } from "../recoil/atoms/userState";
@@ -118,6 +116,19 @@ function Header() {
                         Lists
                       </Link>
                     </li>
+                    { myProfile.level == 1? (
+                      <Link className="text-center nav-link fs-6" to="/register">                        
+                        Add special user
+                      </Link>
+                      
+                      ) : (
+                        null
+                      )
+                    
+
+                    }
+                   
+                   
                     <li>
                       <hr className="dropdown-divider" />
                     </li>
