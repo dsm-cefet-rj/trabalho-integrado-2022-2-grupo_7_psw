@@ -9,6 +9,7 @@ export default function Friends() {
         <Header />
       </Suspense>
       <div className="d-flex flex-column my-5 container-fluid fundo">
+        {/* <Friend />
         <Friend />
         <Friend />
         <Friend />
@@ -19,8 +20,7 @@ export default function Friends() {
         <Friend />
         <Friend />
         <Friend />
-        <Friend />
-        <Friend />
+        <Friend /> */}
       </div>
     </>
   );

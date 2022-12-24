@@ -67,9 +67,7 @@ export const useUpdateUser = (userId, userName, userPicture, userBio, currentAut
     })
 }
 
-export const useUpdateUserFriends = (userId, currentFriendList, currentFriend, currentAuth) => {
-
-    let updatedFriends = currentFriendList.push(currentFriend)
+export const useAddUserFriends = (userId, friendName, friendPicture, currentAuth) => {    
 
     const requestOptions = {
         method: 'PUT',
@@ -78,10 +76,33 @@ export const useUpdateUserFriends = (userId, currentFriendList, currentFriend, c
             'Authorization': "Bearer " + currentAuth
         }, body: JSON.stringify({
             _id: userId,
-            friends: updatedFriends
+            username: friendName,
+            pictureUrl: friendPicture
         })
     }
-    fetch(`http://localhost:3001/user/${userId}`, requestOptions).then(response => {
+    fetch(`http://localhost:3001/user_add_friend/${userId}`, requestOptions).then(response => {
+        if (response.status == 401) {
+            alert("Login timeout. Sign in again!")
+            localStorage.removeItem("current_auth")
+            localStorage.removeItem("current_user")
+            
+        }
+    })
+}
+
+export const useRemoveUserFriends = (userId, friendName, currentAuth) => {    
+
+    const requestOptions = {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': "Bearer " + currentAuth
+        }, body: JSON.stringify({
+            _id: userId,
+            username: friendName,
+        })
+    }
+    fetch(`http://localhost:3001/user_remove_friend/${userId}`, requestOptions).then(response => {
         if (response.status == 401) {
             alert("Login timeout. Sign in again!")
             localStorage.removeItem("current_auth")

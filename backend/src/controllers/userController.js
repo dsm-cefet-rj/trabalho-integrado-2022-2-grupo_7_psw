@@ -37,6 +37,7 @@ class UserController {
       }
     );
   };
+
   static updateUser = (req, res) => {
     const id = req.params.id;
     User.findByIdAndUpdate(id, { $set: req.body }, (err) => {
@@ -47,6 +48,45 @@ class UserController {
       }
     });
   };
+
+  static updateAddFriends = (req, res) => {
+    const id = req.params.id;
+    User.findByIdAndUpdate(id, {
+      $push: {
+        friends: {
+          "username": req.body.username,
+          "pictureUrl": req.body.pictureUrl
+        }
+      }
+    },
+      (err) => {
+        if (!err) {
+          res.status(200).send({ message: "User updated successfuly" });
+        } else {
+          res.status(500).send({ message: err.message });
+        }
+      })
+  }
+
+  static updateRemoveFriends = (req, res) => {
+    const id = req.params.id;
+    console.log(req.body.username)
+    User.findByIdAndUpdate(id, {
+      $pull: {
+        friends: {
+          "username": req.body.username,
+        }
+      }
+    },
+      (err) => {
+        if (!err) {
+          res.status(200).send({ message: "User updated successfuly" });
+        } else {
+          res.status(500).send({ message: err.message });
+        }
+      })
+  }
+
   static getById = (req, res) => {
     const id = req.params.id;
 

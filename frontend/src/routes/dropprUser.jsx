@@ -10,7 +10,6 @@ import { useParams } from "react-router-dom";
 import { authAtom, userAtom } from "../recoil/atoms/userState";
 import { useRecoilValue, useRecoilState } from "recoil"
 
-import { useUpdateUserFriends } from "../recoil/hooks/userHooks/useCRUDUser";
 
 export default function DropprUser() {
   const [follow, setFolow] = useState(false);

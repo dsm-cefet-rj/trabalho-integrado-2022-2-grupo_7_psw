@@ -9,7 +9,10 @@ const userSchema = new mongoose.Schema({
   level: { type: Number },
   bio: { type: String },
   pictureUrl: { type: String },
-  friends: [{ user: { type: mongoose.Schema.Types.ObjectId, ref: "users" } }],
+  friends: [{
+    username: {type: String},
+    pictureUrl: {type: String}
+  }],
 });
 
 userSchema.plugin(passportLocalMongoose);

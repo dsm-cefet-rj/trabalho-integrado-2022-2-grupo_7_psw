@@ -3,12 +3,20 @@ import image from "../images/userpicture.png";
 
 import { useEffect } from "react";
 import { useState } from "react";
+import { useRecoilValue } from "recoil";
+import { authAtom, userAtom } from "../recoil/atoms/userState";
+import { useUpdateUser, useAddUserFriends as useAddUserFriends, useRemoveUserFriends } from "../recoil/hooks/userHooks/useCRUDUser";
 
-function Friend({ username, url, id }) {
+function FollowButton({ username, id, url }) {
   const [follow, setFolow] = useState(false);
   const [change, setChange] = useState(true);
   const [buttonClass, setButtonClass] = useState("primary-style-button");
   const [buttonMessage, setButtonMessage] = useState("Follow");
+
+  const loggedUser = useRecoilValue(userAtom)
+  const auth = useRecoilValue(authAtom)
+
+  // const updateFollow = useUpdateUserFriends()
 
   useEffect(() => {
     if (follow) {
@@ -24,6 +32,16 @@ function Friend({ username, url, id }) {
       setChange(true);
     }
   }, [follow]);
+
+  const HandleAdd = () => {
+    setFolow(true)
+    useAddUserFriends(loggedUser._id, username, url, auth)
+  }
+  const HandleRemove = () => {
+    setFolow(false)
+    useRemoveUserFriends(loggedUser._id, username, auth)
+  }
+
 
   const imgStyle = {
     width: 50,
@@ -44,13 +62,31 @@ function Friend({ username, url, id }) {
               />
             </Link>
             <h4 className="fs-5 fs-md-4">{username}</h4>
-            <button
-              type="button"
-              className={buttonClass + " ms-auto btn-sm"}
-              onClick={() => setFolow(change)}
-            >
-              {buttonMessage}
-            </button>
+            {loggedUser ? (
+              follow ? (
+                <button
+                  type="button"
+                  className={buttonClass + " ms-auto btn-sm"}
+                  onClick={HandleRemove}
+                >
+                  {buttonMessage}
+                </button>
+              ) : (
+                <button
+                  type="button"
+                  className={buttonClass + " ms-auto btn-sm"}
+                  onClick={HandleAdd}
+                >
+                  {buttonMessage}
+                </button>
+
+              )
+
+
+            ) : (
+              null
+            )
+            }
           </div>
         </div>
         <div className="col-11 mx-auto border-bottom border-secondary d-flex gap-4 my-3"></div>
@@ -59,4 +95,4 @@ function Friend({ username, url, id }) {
   );
 }
 
-export default Friend;
+export default FollowButton;

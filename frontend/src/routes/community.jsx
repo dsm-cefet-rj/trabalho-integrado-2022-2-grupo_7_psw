@@ -1,5 +1,5 @@
 import Header from "../components/header";
-import Friend from "../components/friend";
+import FollowButton from "../components/friend";
 import { BiGame } from "react-icons/bi";
 import { Suspense } from "react";
 import { useEffect, useState } from "react";
@@ -81,12 +81,12 @@ export default function Community() {
         </div>
         {!searchUser
           ? users.map((user) => {
-              return <Friend username={user.username} url={user.pictureUrl} />;
+              return <FollowButton username={user.username} id={user._id} url={user.pictureUrl} />;
             })
           : users.map((user) => {
               if (matchInput(searchUser.toLowerCase(), user.username.toLowerCase())) {
                 return (
-                  <Friend username={user.username} url={user.pictureUrl} />
+                  <FollowButton username={user.username} url={user.pictureUrl} />
                 );
               }
             })}

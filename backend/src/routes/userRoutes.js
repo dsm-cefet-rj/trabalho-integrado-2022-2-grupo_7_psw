@@ -11,6 +11,14 @@ router
   .get("/findusername/:username", UserController.getByUsername)
   .get("/user/:id", UserController.getById)
   .post("/user", UserController.createUser)
+  .put("/user_add_friend/:id",
+    passport.authenticate("jwt", { session: false }),
+    UserController.updateAddFriends
+  )
+  .put("/user_remove_friend/:id",
+    passport.authenticate("jwt", { session: false }),
+    UserController.updateRemoveFriends
+  )
   .put(
     "/user/:id",
     passport.authenticate("jwt", { session: false }),

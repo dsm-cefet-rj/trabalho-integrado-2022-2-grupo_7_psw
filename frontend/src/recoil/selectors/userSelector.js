@@ -49,3 +49,18 @@ export const asyncGetUserByEmail = selectorFamily({
     return result;
   },
 });
+
+export const asyncGetUserByName = selectorFamily({
+  key: "getuserByName",
+  get: (email) => async () => {
+    const response = await fetch(`http://localhost:3001/user/?email=${email}`);
+    if (!response.ok) {
+      console.log(response.status);
+      return undefined;
+    }
+
+    const result = await response.json();
+    console.log(result.body);
+    return result;
+  },
+});
