@@ -14,7 +14,6 @@ const RegisterPage = () => {
       <Suspense>
         <RegisterComponent />
       </Suspense>
-      <Footer />
     </>
   );
 };

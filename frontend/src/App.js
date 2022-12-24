@@ -19,6 +19,8 @@ import { login } from "./recoil/atoms/login";
 import "./App.css";
 import { authAtom, userAtom } from "./recoil/atoms/userState";
 
+import { VscArrowSmallRight,  VscArrowSmallLeft } from "react-icons/vsc";
+
 export default function App() {
   const [gamesList, setGamesList] = useState([]);
   const [page, setPage] = useState(0);
@@ -54,6 +56,7 @@ export default function App() {
             <ul className="m-0 p-0">
               {gamesList.map((e) => {
                 return (
+                  <Suspense fallback={<h2>loading...</h2>}>
                   <Game
                     key={e.id}
                     myKey={e.id}
@@ -62,13 +65,14 @@ export default function App() {
                     category={e.category}
                     genres={e.genres}
                     platforms={e.platforms}
-                  />
+                    />
+                  </Suspense>
                 );
               })}
             </ul>
             {display ? (
               <div className="col-12 col-md-6 mx-auto d-flex justify-content-center mb-5">
-                <BsFillArrowLeftCircleFill
+                <VscArrowSmallLeft
                   className="homePageArrow"
                   size={40}
                   onClick={() => {
@@ -79,8 +83,8 @@ export default function App() {
                     window.scrollTo(0, 0);
                   }}
                 />
-                <span className="text-light mt-2 mx-4">Page:{page +1}</span>
-                <BsFillArrowRightCircleFill
+                <span className="text-light mt-2 mx-4">{page +1}</span>
+                <VscArrowSmallRight
                   className="homePageArrow"
                   size={40}
                   onClick={() => {

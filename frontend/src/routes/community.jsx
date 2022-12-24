@@ -28,6 +28,7 @@ export default function Community() {
   function matchInput(searchUser, user) {
     const inputLength = searchUser.length;
     const userLength = user.length;
+
     if (inputLength > userLength) {
       return false;
     }
@@ -51,8 +52,8 @@ export default function Community() {
         className="d-flex col-8 col-md-6 mx-auto align-items-center gap-3"
       >
         <BiGame color="yellow" className="d-block" size={60} />
-        <p className="text-light">
-          d&nbsp;r&nbsp;o&nbsp;p&nbsp;p&nbsp;r&ensp;i&nbsp;s&ensp;f&nbsp;u&nbsp;n
+        <p className="text-light dropprisfun">
+          D&nbsp;r&nbsp;o&nbsp;p&nbsp;p&nbsp;r&ensp; i&nbsp;s&ensp; f&nbsp;u&nbsp;n
         </p>
       </div>
 
@@ -83,7 +84,7 @@ export default function Community() {
               return <Friend username={user.username} url={user.pictureUrl} />;
             })
           : users.map((user) => {
-              if (matchInput(searchUser, user.username)) {
+              if (matchInput(searchUser.toLowerCase(), user.username.toLowerCase())) {
                 return (
                   <Friend username={user.username} url={user.pictureUrl} />
                 );
