@@ -1,5 +1,5 @@
 import Header from "../components/header";
-import Friend from "../components/friend";
+// import Friend from "../components/friend";
 import { Suspense } from "react";
 
 export default function Friends() {

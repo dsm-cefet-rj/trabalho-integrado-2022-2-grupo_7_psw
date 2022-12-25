@@ -1,13 +1,14 @@
 import { Link } from "react-router-dom";
-import image from "../images/userpicture.png";
+import image from "../../images/userpicture.png";
+import "./friend.css"
 
 import { useEffect } from "react";
 import { useState } from "react";
 import { useRecoilValue } from "recoil";
-import { authAtom, userAtom } from "../recoil/atoms/userState";
-import { useUpdateUser, useAddUserFriends as useAddUserFriends, useRemoveUserFriends } from "../recoil/hooks/userHooks/useCRUDUser";
+import { authAtom, userAtom } from "../../recoil/atoms/userState";
+import { useUpdateUser, useAddUserFriends as useAddUserFriends, useRemoveUserFriends } from "../../recoil/hooks/userHooks/useCRUDUser";
 
-function FollowButton({ username, id, url, following }) {
+function Friend({ username, id, url, following }) {
   const [follow, setFolow] = useState(following);
   const [change, setChange] = useState(true);
   const [buttonClass, setButtonClass] = useState("primary-style-button");
@@ -52,17 +53,18 @@ function FollowButton({ username, id, url, following }) {
   return (
     <>
       <div>
-        <div className="col-11 d-flex flex-column m-3">
-          <div className="d-flex align-items-center gap-3">
-            <Link className="position-relative" to={`/dropprUser/${username}`}>
+        <div className="col-11 d-flex flex-column ">
+          <div className="friend-container">
+
+            <Link className="position-relative link-container gap-3" to={`/dropprUser/${username}`}>
               <img
                 alt="profile"
                 className="rounded-circle img-fluid"
                 style={imgStyle}
                 src={url || image}
               />
+              <h4 className="fs-5 fs-md-4">{username}</h4>
             </Link>
-            <h4 className="fs-5 fs-md-4">{username}</h4>
             {loggedUser ? (
               following ? (
                 <button
@@ -90,10 +92,10 @@ function FollowButton({ username, id, url, following }) {
             }
           </div>
         </div>
-        <div className="col-11 mx-auto border-bottom border-secondary d-flex gap-4 my-3"></div>
+        <div className="col-11 mx-auto border-bottom border-secondary d-flex gap-4 "></div>
       </div>
     </>
   );
 }
 
-export default FollowButton;
+export default Friend;
