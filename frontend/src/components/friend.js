@@ -7,20 +7,21 @@ import { useRecoilValue } from "recoil";
 import { authAtom, userAtom } from "../recoil/atoms/userState";
 import { useUpdateUser, useAddUserFriends as useAddUserFriends, useRemoveUserFriends } from "../recoil/hooks/userHooks/useCRUDUser";
 
-function FollowButton({ username, id, url }) {
-  const [follow, setFolow] = useState(false);
+function FollowButton({ username, id, url, following }) {
+  const [follow, setFolow] = useState(following);
   const [change, setChange] = useState(true);
   const [buttonClass, setButtonClass] = useState("primary-style-button");
   const [buttonMessage, setButtonMessage] = useState("Follow");
-
+  
   const loggedUser = useRecoilValue(userAtom)
   const auth = useRecoilValue(authAtom)
+  
+  
+  
 
-  // const updateFollow = useUpdateUserFriends()
-
+  console.log(following)
   useEffect(() => {
     if (follow) {
-      console.log("entrei");
       setChange(false);
       setButtonClass("secondary-style-button");
       setButtonMessage("Followed");
@@ -63,7 +64,7 @@ function FollowButton({ username, id, url }) {
             </Link>
             <h4 className="fs-5 fs-md-4">{username}</h4>
             {loggedUser ? (
-              follow ? (
+              following ? (
                 <button
                   type="button"
                   className={buttonClass + " ms-auto btn-sm"}

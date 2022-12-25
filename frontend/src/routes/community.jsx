@@ -3,8 +3,15 @@ import FollowButton from "../components/friend";
 import { BiGame } from "react-icons/bi";
 import { Suspense } from "react";
 import { useEffect, useState } from "react";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { userAtom, userFollowState } from "../recoil/atoms/userState";
 
 export default function Community() {
+
+  const loggedUser = useRecoilValue(userAtom)
+  // let follow = false;
+  const [currentFollow, setCurrentFollow] = useRecoilState(userFollowState)
+
   const textColor = {
     color: "#D3D3D3",
   };
@@ -16,14 +23,31 @@ export default function Community() {
     marginTop: 100,
   };
 
+
   const [searchUser, setSearchUser] = useState("");
 
-  const [users, setUsers] = useState([]);
+  let [users, setUsers] = useState([]);
   useEffect(() => {
     fetch("http://localhost:3001/user")
       .then((res) => res.json())
-      .then((data) => setUsers(data));
+      .then((data) => {
+      
+        setUsers(data) 
+      })
+      
   }, []);
+
+
+  users.map((user) => {
+    user.followed = false;
+    for (let i = 1; i < loggedUser.friends.length; i++) {
+      if (user.username === loggedUser.friends[i].username) {
+        user.followed = true
+      } 
+    }
+  })
+
+
 
   function matchInput(searchUser, user) {
     const inputLength = searchUser.length;
@@ -81,15 +105,21 @@ export default function Community() {
         </div>
         {!searchUser
           ? users.map((user) => {
-              return <FollowButton username={user.username} id={user._id} url={user.pictureUrl} />;
-            })
+
+       
+            return <Suspense>
+              <FollowButton username={user.username} id={user._id} url={user.pictureUrl} following={user.followed} />
+            </Suspense>
+          })
           : users.map((user) => {
-              if (matchInput(searchUser.toLowerCase(), user.username.toLowerCase())) {
-                return (
+            if (matchInput(searchUser.toLowerCase(), user.username.toLowerCase())) {
+              return (
+                <Suspense>
                   <FollowButton username={user.username} url={user.pictureUrl} />
-                );
-              }
-            })}
+                </Suspense>
+              );
+            }
+          })}
       </div>
     </>
   );

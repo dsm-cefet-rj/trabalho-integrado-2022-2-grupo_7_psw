@@ -70,3 +70,8 @@ const localStorageEffect = key => ({setSelf, onSet}) => {
     key: "userBioState",
     default: ""
   })
+
+  export const userFollowState = atom({
+    key: "followState",
+    default: []
+  })

@@ -70,7 +70,6 @@ class UserController {
 
   static updateRemoveFriends = (req, res) => {
     const id = req.params.id;
-    console.log(req.body.username)
     User.findByIdAndUpdate(id, {
       $pull: {
         friends: {
