@@ -15,12 +15,8 @@ function Friend({ username, id, url, following }) {
   const [buttonMessage, setButtonMessage] = useState("Follow");
   
   const loggedUser = useRecoilValue(userAtom)
-  const auth = useRecoilValue(authAtom)
-  
-  
-  
+  const auth = useRecoilValue(authAtom)  
 
-  console.log(following)
   useEffect(() => {
     if (follow) {
       setChange(false);

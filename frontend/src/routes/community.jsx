@@ -28,8 +28,7 @@ export default function Community() {
   useEffect(() => {
     fetch("http://localhost:3001/user")
       .then((res) => res.json())
-      .then((data) => {
-      
+      .then((data) => {      
         setUsers(data) 
       })
       

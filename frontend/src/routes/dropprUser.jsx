@@ -9,40 +9,69 @@ import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { authAtom, userAtom } from "../recoil/atoms/userState";
 import { useRecoilValue, useRecoilState } from "recoil"
+import { useAddUserFriends, useRemoveUserFriends } from "../recoil/hooks/userHooks/useCRUDUser";
 
 
 export default function DropprUser() {
+
   const [follow, setFolow] = useState(false);
   const [change, setChange] = useState(true);
-  const [buttonClass, setButtonClass] = useState("btn btn-primary");
+  const [buttonClass, setButtonClass] = useState("primary-style-button");
   const [buttonMessage, setButtonMessage] = useState("Follow");
 
-  const userCurrent = useRecoilValue(userAtom)
+  const loggedUser = useRecoilValue(userAtom)
   const currentAuth = useRecoilValue(authAtom)
+  const user = useParams();
 
   useEffect(() => {
+    for (let i = 1; i < loggedUser.friends.length; i++) {
+      if (loggedUser.friends[i].username === user.username) {
+        setFolow(true)
+        break;
+      }
+    }
+
+
     if (follow) {
       setChange(false);
-      setButtonClass("btn btn-secondary");
+      setButtonClass("secondary-style-button");
       setButtonMessage("Followed");
     }
 
     if (!follow) {
-      setButtonClass("btn btn-primary");
+      setButtonClass("primary-style-button");
       setButtonMessage("Follow");
       setChange(true);
     }
   }, [follow]);
 
-  const username = useParams().username;
+  const HandleAdd = () => {
+    setFolow(true)
+    useAddUserFriends(loggedUser._id, user.username, user.pictureUrl, currentAuth)
+  }
+  const HandleRemove = () => {
+    setFolow(false)
+    useRemoveUserFriends(loggedUser._id, user.username, currentAuth)
+  }
+
+
   const [userInfo, setUserInfo] = useState({});
   const avatarDimension = {
     width: "250px",
     height: "250px",
   };
 
+  // for(let i = 1; i < loggedUser.friends.length; i++){
+  //   if(loggedUser.friends[i].username === username){
+  //     var isFollow = true;
+  //   }
+  // }
+
+
+
+
   useEffect(() => {
-    fetch(`http://localhost:3001/findusername/${username}`)
+    fetch(`http://localhost:3001/findusername/${user.username}`)
       .then((res) => res.json())
       .then((data) => setUserInfo(data));
   }, []);
@@ -64,15 +93,33 @@ export default function DropprUser() {
             alt=""
           />
           <h2 className="text-light">{userInfo.username}</h2>
-          {/*<button
-            type="button"
-            className={buttonClass}
-            onClick={() => setFolow(change)}
-          >
-            {buttonMessage}
-  </button>*/}
+          {loggedUser ? (
+            follow ? (
+              <button
+                type="button"
+                className={buttonClass}
+                onClick={HandleRemove}
+              >
+                {buttonMessage}
+              </button>
+            ) : (
+              <button
+                type="button"
+                className={buttonClass}
+                onClick={HandleAdd}
+              >
+                {buttonMessage}
+              </button>
+
+            )
+
+
+          ) : (
+            null
+          )
+          }
         </div>
-        {/*<div className="bg-secondary col-12 col-md-6 my-4  order-2">
+        <div className="bg-secondary col-12 col-md-6 my-4  order-2">
           <p className="text-white-50 text-center my-1 p-1">
             <span className="text-light">Activities</span> (These activities are
             automatically updated)
@@ -94,7 +141,7 @@ export default function DropprUser() {
               <p>0 games</p>
             </div>
           </div>}
-            </div>*/}
+        </div>
       </div>
       <div className="col-11 mx-auto">
         <div className="col-11 mx-auto border-bottom border-secondary">
@@ -104,7 +151,7 @@ export default function DropprUser() {
           {userInfo.bio || "To be done"}
         </p>
       </div>
-      <Overview user={username} />
+      <Overview user={user.username} />
     </>
   );
 }
